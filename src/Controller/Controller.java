@@ -1,36 +1,40 @@
 package Controller;
 
-import Model.Model;
-import View.login.LoginFrame;
+import javax.swing.ImageIcon;
 import View.main.MainFrame;
+import View.login.LoginFrame;
+import Model.Model;
 
-import javax.swing.*;
-
-public class Controller {
-
+public class Controller
+{
     private Model model;
     private LoginFrame loginFrame;
+    private MainFrame view;
 
-
-    public Controller(){
-        MainFrame view = new MainFrame(this);
-
+    public Controller() {
+        final MainFrame view = new MainFrame(this);
+        this.view = view;
     }
 
-    public void homePage(){
-
+    public void homePage() {
     }
 
     public void setupLogin() {
         this.loginFrame = new LoginFrame(this);
     }
 
-    public void login(String str, ImageIcon icon) {
+    public void login(final String str, final ImageIcon icon) {
         this.model = new Model();
     }
 
     public void searchClicked() {
+    }
 
+    public void loginClicked() {
+        this.view.loginButtonClicked(this);
+    }
 
+    public void saFungerarDetClicked() {
+        this.view.clearJFrame(this);
     }
 }

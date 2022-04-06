@@ -60,8 +60,9 @@ public class TopPanel extends JPanel {
         saFungerarDet.setBackground(Color.WHITE);
         saFungerarDet.setBorderPainted(false);
         saFungerarDet.setLocation(350, 48);
-        saFungerarDet.setSize(300, 30);
+        saFungerarDet.setSize(180, 30);
         saFungerarDet.setHorizontalAlignment(JLabel.LEFT);
+        saFungerarDet.addActionListener(l -> controller.saFungerarDetClicked());
         saFungerarDet.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(saFungerarDet);
 
@@ -69,16 +70,7 @@ public class TopPanel extends JPanel {
         meddelanden.setBackground(Color.WHITE);
         meddelanden.setBorderPainted(false);
         meddelanden.setLocation(525, 48);
-        meddelanden.setSize(300, 30);
-        meddelanden.setHorizontalAlignment(JLabel.LEFT);
-        meddelanden.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
-        this.add(meddelanden);
-
-        meddelanden = new JButton("Meddelanden");
-        meddelanden.setBackground(Color.WHITE);
-        meddelanden.setBorderPainted(false);
-        meddelanden.setLocation(525, 48);
-        meddelanden.setSize(300, 30);
+        meddelanden.setSize(150, 30);
         meddelanden.setHorizontalAlignment(JLabel.LEFT);
         meddelanden.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(meddelanden);
@@ -89,6 +81,7 @@ public class TopPanel extends JPanel {
         loggaInRegistrera.setLocation(1025, 37);
         loggaInRegistrera.setSize(200, 40);
         loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
+        loggaInRegistrera.addActionListener(l -> controller.loginClicked());
         loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(loggaInRegistrera);
 

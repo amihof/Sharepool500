@@ -17,6 +17,8 @@ public class Controller
     }
 
     public void homePage() {
+        view.clearJFrame(this);
+        view.updateJFrameHome(this);
     }
 
     public void setupLogin() {
@@ -28,6 +30,8 @@ public class Controller
     }
 
     public void searchClicked() {
+        view.clearJFrame(this);
+        view.updateJFrameAnnons(this);
     }
 
     public void loginClicked() {
@@ -36,5 +40,6 @@ public class Controller
 
     public void saFungerarDetClicked() {
         this.view.clearJFrame(this);
+        view.updateJFrame(this);
     }
 }

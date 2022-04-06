@@ -14,10 +14,12 @@ public class MainPanelSFD extends JPanel
     private SFDPanel sfdPanel;
     private TopPanel topPanel;
 
-    public MainPanelSFD(final int width, final int height, final Controller controller) {
+    public MainPanelSFD(int width, int height, Controller controller) {
         super(null);
-        this.setSize(this.width = width, this.height = height);
+        this.width = width;
+        this.height = height;
+        this.setSize(width, height);
         this.add((Component)(this.sfdPanel = new SFDPanel(width, height - 100, controller)));
-        this.add((Component)(this.topPanel = new TopPanel(width, height, controller)));
+        this.add((Component)(this.topPanel = new TopPanel(width, height, controller, "SFD")));
     }
 }

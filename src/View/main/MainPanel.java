@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
         startPanel = new StartPanel(width, height-100, controller);
         this.add(startPanel);
 
-        topPanel = new TopPanel(width, height, controller);
+        topPanel = new TopPanel(width, height, controller, "Hem");
         this.add(topPanel);
 
     }

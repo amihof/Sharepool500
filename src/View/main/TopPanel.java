@@ -16,10 +16,13 @@ public class TopPanel extends JPanel {
     private JButton loggaInRegistrera;
     private RoundedPanelExample roundedPanelExample;
     private Controller controller;
+    private JPanel whichPageColor;
+    private String whichPage;
 
-    public TopPanel(int width, int height, Controller controller){
+    public TopPanel(int width, int height, Controller controller, String whichPage){
         this.setLayout(null);
         this.controller = controller;
+        this.whichPage = whichPage;
         roundedPanelExample = new RoundedPanelExample();
 
         this.setBackground(Color.WHITE);
@@ -84,6 +87,26 @@ public class TopPanel extends JPanel {
         loggaInRegistrera.addActionListener(l -> controller.loginClicked());
         loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(loggaInRegistrera);
+
+        if ("Hem".equals(whichPage)) {
+            whichPageColor = new JPanel();
+            whichPageColor.setSize(95, 5);
+            whichPageColor.setLocation(255, 95);
+            whichPageColor.setBackground(myNewColor);
+            this.add(whichPageColor);
+        } else if ("SFD".equals(whichPage)) {
+            whichPageColor = new JPanel();
+            whichPageColor.setSize(160, 5);
+            whichPageColor.setLocation(350, 95);
+            whichPageColor.setBackground(myNewColor);
+            this.add(whichPageColor);
+        } else if ("Meddelanden".equals(whichPage)) {
+            whichPageColor = new JPanel();
+            whichPageColor.setSize(140, 5);
+            whichPageColor.setLocation(525, 95);
+            whichPageColor.setBackground(myNewColor);
+            this.add(whichPageColor);
+        }
 
     }
 }

@@ -9,13 +9,13 @@ import java.awt.*;
  * LoginFrame is single components frame:
  * JPanel for the user to insert their  log-in details*/
 public class LoginFrame extends JFrame{
-    private final Controller controller;
+    private Controller controller;
     private LoginFrame frame;
     private LoginPanel lPnl;
     private RegistrationPanel rPnl;
 
-    private final int width = 800;
-    private final int height = 600;
+    private int width = 800;
+    private int height = 600;
 
 
     public LoginFrame(Controller controller){

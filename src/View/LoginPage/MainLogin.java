@@ -43,6 +43,7 @@ public class MainLogin extends JDialog
     public void setUp() {
         final Font myFont = new Font("Shree Devanagari 714", 0, 18);
         final Font newFont = myFont.deriveFont(25.0f);
+
         final Color greenColor = new Color(167, 203, 156, 255);
         (this.registrera = new JLabel("Skapa konto")).setLocation(0, 10);
         this.registrera.setSize(375, 100);

@@ -2,10 +2,12 @@ package View.main;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 /**
  * a class that makes the panels with rounded corners, so the GUI looks better. Refer to this class
@@ -121,3 +123,4 @@ public class RoundedPanelExample{
         }
     }
 }
+

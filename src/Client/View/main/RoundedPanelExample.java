@@ -1,4 +1,4 @@
-package main.java.View.main;
+package Client.View.main;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

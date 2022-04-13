@@ -1,14 +1,12 @@
-package main.java.View.Annonser;
+package Client.View.Annonser;
 
-import main.java.Controller.Controller;
-import main.java.View.main.CircleButton;
-import main.java.View.main.RoundedPanelExample;
+import Client.Controller.Controller;
+import Client.View.main.CircleButton;
+import Client.View.main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 
 public class AnnonsPanel extends JPanel {
     private int width;

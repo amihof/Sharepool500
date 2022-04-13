@@ -1,7 +1,7 @@
-package main.java.View.main;
+package Client.View.main;
 
-import main.java.Controller.Controller;
-import main.java.View.Hem.StartPanel;
+import Client.Controller.Controller;
+import Client.View.Hem.StartPanel;
 
 import javax.swing.*;
 

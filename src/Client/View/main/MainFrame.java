@@ -1,15 +1,13 @@
-package main.java.View.main;
+package Client.View.main;
 
-import java.awt.Container;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import main.java.View.Annonser.AnnonsPanel;
-import main.java.View.Annonser.MainPanelAnnons;
-import main.java.View.HowItWorks.MainPanelSFD;
-import main.java.View.LoginPage.MainLogin;
-import main.java.Controller.Controller;
-import main.java.View.MinaSidorPage.MainPanelMinaSidor;
+import Client.View.Annonser.MainPanelAnnons;
+import Client.View.HowItWorks.MainPanelSFD;
+import Client.View.LoginPage.MainLogin;
+import Client.Controller.Controller;
+import Client.View.MinaSidorPage.MainPanelMinaSidor;
 
 import javax.swing.JFrame;
 

@@ -1,7 +1,7 @@
-package main.java.View.Annonser;
+package Client.View.Annonser;
 
-import main.java.Controller.Controller;
-import main.java.View.main.TopPanel;
+import Client.Controller.Controller;
+import Client.View.main.TopPanel;
 
 import javax.swing.*;
 

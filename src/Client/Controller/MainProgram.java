@@ -1,4 +1,4 @@
-package main.java.Controller;
+package Client.Controller;
 
 /**
  * MainProgram is the entry point to run the program

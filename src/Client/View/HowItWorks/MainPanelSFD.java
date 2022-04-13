@@ -1,9 +1,9 @@
-package main.java.View.HowItWorks;
+package Client.View.HowItWorks;
 
 import java.awt.Component;
-import java.awt.LayoutManager;
-import main.java.View.main.TopPanel;
-import main.java.Controller.Controller;
+
+import Client.View.main.TopPanel;
+import Client.Controller.Controller;
 import javax.swing.JPanel;
 
 public class MainPanelSFD extends JPanel

@@ -95,6 +95,7 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
+        registerUser.addActionListener(l -> controller.registerNewUser(userNameField.getText(),eMailField.getText(),passwordField.getText()));
         this.add(this.registerUser);
         (this.loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
         this.loginButton.setBorderPainted(false);

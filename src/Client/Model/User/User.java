@@ -41,12 +41,10 @@ public class User implements UserDetails {
     private Boolean enabled = false;
 
     public User(String firstName,
-                   String lastName,
                    String email,
                    String password,
                    UserRole userRole) {
         this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.userRole = userRole;

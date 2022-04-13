@@ -21,7 +21,7 @@ public class MainPanelAnnons extends JPanel {
         annonsPanel = new AnnonsPanel(width, height-100, controller);
         this.add(annonsPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", false);
         this.add(topPanel);
 
     }

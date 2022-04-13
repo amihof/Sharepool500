@@ -1,11 +1,11 @@
-package View.HowItWorks;
+package main.java.View.HowItWorks;
 
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.LayoutManager;
 import javax.swing.JLabel;
-import Controller.Controller;
+import main.java.Controller.Controller;
 import javax.swing.JPanel;
 
 public class SFDPanel extends JPanel

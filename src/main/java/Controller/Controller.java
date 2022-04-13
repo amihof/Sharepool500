@@ -1,8 +1,8 @@
-package Controller;
+package main.java.Controller;
 
 import javax.swing.ImageIcon;
-import View.main.MainFrame;
-import Model.Model;
+import main.java.View.main.MainFrame;
+import main.java.Model.Model;
 
 public class Controller
 {

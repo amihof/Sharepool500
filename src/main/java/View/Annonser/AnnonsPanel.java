@@ -1,8 +1,8 @@
-package View.Annonser;
+package main.java.View.Annonser;
 
-import Controller.Controller;
-import View.main.CircleButton;
-import View.main.RoundedPanelExample;
+import main.java.Controller.Controller;
+import main.java.View.main.CircleButton;
+import main.java.View.main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;

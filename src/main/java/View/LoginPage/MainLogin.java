@@ -1,13 +1,13 @@
-package View.LoginPage;
+package main.java.View.LoginPage;
 
-import View.main.RoundedPanelExample;
+import main.java.View.main.RoundedPanelExample;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Dialog;
 import java.awt.LayoutManager;
 import java.awt.Color;
 import javax.swing.JPanel;
-import Controller.Controller;
+import main.java.Controller.Controller;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;

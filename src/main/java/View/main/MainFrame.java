@@ -1,15 +1,15 @@
-package View.main;
+package main.java.View.main;
 
 import java.awt.Container;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import View.Annonser.AnnonsPanel;
-import View.Annonser.MainPanelAnnons;
-import View.HowItWorks.MainPanelSFD;
-import View.LoginPage.MainLogin;
-import Controller.Controller;
-import View.MinaSidorPage.MainPanelMinaSidor;
+import main.java.View.Annonser.AnnonsPanel;
+import main.java.View.Annonser.MainPanelAnnons;
+import main.java.View.HowItWorks.MainPanelSFD;
+import main.java.View.LoginPage.MainLogin;
+import main.java.Controller.Controller;
+import main.java.View.MinaSidorPage.MainPanelMinaSidor;
 
 import javax.swing.JFrame;
 

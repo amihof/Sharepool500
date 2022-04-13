@@ -1,7 +1,7 @@
-package View.Hem;
+package main.java.View.Hem;
 
-import Controller.Controller;
-import View.main.RoundedPanelExample;
+import main.java.Controller.Controller;
+import main.java.View.main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;

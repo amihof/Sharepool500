@@ -1,8 +1,8 @@
-package View.MinaSidorPage;
+package main.java.View.MinaSidorPage;
 
-import Controller.Controller;
-import View.Annonser.AnnonsPanel;
-import View.main.TopPanel;
+import main.java.Controller.Controller;
+import main.java.View.Annonser.AnnonsPanel;
+import main.java.View.main.TopPanel;
 
 import javax.swing.*;
 

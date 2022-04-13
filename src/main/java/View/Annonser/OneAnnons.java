@@ -1,4 +1,4 @@
-package View.Annonser;
+package main.java.View.Annonser;
 
 import javax.swing.*;
 import java.awt.*;

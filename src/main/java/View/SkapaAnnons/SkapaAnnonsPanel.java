@@ -1,4 +1,11 @@
-package View.SkapaAnnons;
+package main.java.View.SkapaAnnons;
 
-public class SkapaAnnonsPanel {
+import main.java.Controller.Controller;
+
+import javax.swing.*;
+
+public class SkapaAnnonsPanel extends JPanel {
+    public SkapaAnnonsPanel(int width, int height, Controller controller) {
+
+    }
 }

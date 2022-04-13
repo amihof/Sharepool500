@@ -1,9 +1,9 @@
-package main.java.Model.Registration.Token;
+package Client.Model.Registration.Token;
 
+import Client.Model.User.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import main.java.Model.User.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

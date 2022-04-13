@@ -1,4 +1,4 @@
-package main.java.Model.Registration.Token;
+package Client.Model.Registration.Token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,13 +1,14 @@
-package main.java.Model.Registration;
+package Client.Model.Registration;
 
 
+import Client.Model.Email.EmailSender;
+import Client.Model.Registration.Token.ConfirmationToken;
+import Client.Model.Registration.Token.ConfirmationTokenService;
+import Client.Model.User.User;
+import Client.Model.User.UserRole;
+import Client.Model.User.UserService;
 import lombok.AllArgsConstructor;
-import main.java.Model.Email.EmailSender;
-import main.java.Model.Registration.Token.ConfirmationToken;
-import main.java.Model.Registration.Token.ConfirmationTokenService;
-import main.java.Model.User.User;
-import main.java.Model.User.UserRole;
-import main.java.Model.User.UserService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

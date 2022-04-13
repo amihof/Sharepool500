@@ -1,4 +1,4 @@
-package main.java.Model.Registration;
+package Client.Model.Registration;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

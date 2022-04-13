@@ -1,4 +1,4 @@
-package main.java.Model.Registration;
+package Client.Model.Registration;
 
 import org.springframework.stereotype.Service;
 

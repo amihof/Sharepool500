@@ -1,9 +1,9 @@
-package main.java.Model.User;
+package Client.Model.User;
 
 
+import Client.Model.Registration.Token.ConfirmationToken;
+import Client.Model.Registration.Token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
-import main.java.Model.Registration.Token.ConfirmationToken;
-import main.java.Model.Registration.Token.ConfirmationTokenService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final main.java.Model.User.UserRepository UserRepository;
+    private final UserRepository UserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
 

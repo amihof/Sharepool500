@@ -1,4 +1,4 @@
-package main.java.Model.Registration.Token;
+package Client.Model.Registration.Token;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

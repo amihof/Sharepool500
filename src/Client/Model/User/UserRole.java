@@ -1,4 +1,4 @@
-package main.java.Model.User;
+package Client.Model.User;
 
 public enum UserRole {
     USER,

@@ -1,11 +1,9 @@
-package main.java.Model.Registration;
+package Client.Model.Registration;
 
+import Client.Model.Registration.RegistrationRequest;
+import Client.Model.Registration.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 @RestController
 @RequestMapping(path = "api/v1/registration") //till databasen

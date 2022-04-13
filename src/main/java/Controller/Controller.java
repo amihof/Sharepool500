@@ -1,12 +1,9 @@
 package main.java.Controller;
 
-import javax.swing.ImageIcon;
 import main.java.View.main.MainFrame;
-import main.java.Model.Model;
 
 public class Controller
 {
-    private Model model;
     private MainFrame view;
 
     public Controller() {

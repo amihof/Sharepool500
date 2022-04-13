@@ -1,11 +1,9 @@
-package Client.Controller;
+package main.java.Controller;
 
-import Client.View.main.MainFrame;
-import Client.Model.Model;
+import main.java.View.main.MainFrame;
 
 public class Controller
 {
-    private Model model;
     private MainFrame view;
 
     public Controller() {

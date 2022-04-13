@@ -1,6 +1,7 @@
 package Client.Model.Registration;
 
 
+import Client.Controller.Controller;
 import Client.Model.Email.EmailSender;
 import Client.Model.Registration.Token.ConfirmationToken;
 import Client.Model.Registration.Token.ConfirmationTokenService;
@@ -22,8 +23,10 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private Controller controller;
 
     public String register(RegistrationRequest request) {
+        controller = new Controller();
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
@@ -33,10 +36,9 @@ public class RegistrationService {
 
         String token = userService.signUpUser(
                 new User(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword(),
+                        controller.getUserName(),
+                        controller.getEmail(),
+                        controller.getPassword(),
                         UserRole.USER
 
                 )

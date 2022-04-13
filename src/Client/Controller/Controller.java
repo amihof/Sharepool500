@@ -5,6 +5,9 @@ import Client.View.main.MainFrame;
 public class Controller
 {
     private MainFrame view;
+    private String password;
+    private String email;
+    private String userName;
 
     public Controller() {
         final MainFrame view = new MainFrame(this);
@@ -38,4 +41,21 @@ public class Controller
     public void skapaAnnonsClicked() {
 
     }
+
+    public void registerNewUser(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getPassword(){
+        return password;
+    }
+
 }

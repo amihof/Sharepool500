@@ -19,10 +19,10 @@ public class Client {
     private Thread t2;
 
     private class InputHandler implements Runnable{
-        private Buffer<Message> inputBuffer;
+        private Server.Model.Buffer<Message> inputBuffer;
 
         public InputHandler(){
-            inputBuffer = new Buffer<>();
+            inputBuffer = new Server.Model.Buffer<>();
         }
 
         public void addToBuffer(Message msg){

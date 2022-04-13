@@ -1,6 +1,6 @@
-package main.java.Controller;
+package Client.Controller;
 
-import main.java.View.main.MainFrame;
+import Client.View.main.MainFrame;
 
 public class Controller
 {

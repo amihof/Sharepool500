@@ -18,9 +18,13 @@ public class TopPanel extends JPanel {
     private Controller controller;
     private JPanel whichPageColor;
     private String whichPage;
+    private Boolean loggedIn;
+    private JButton skapaAnnonsButton;
+    private JButton minaSidorButton;
 
-    public TopPanel(int width, int height, Controller controller, String whichPage){
+    public TopPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn){
         this.setLayout(null);
+        this.loggedIn = loggedIn;
         this.controller = controller;
         this.whichPage = whichPage;
         roundedPanelExample = new RoundedPanelExample();
@@ -78,15 +82,39 @@ public class TopPanel extends JPanel {
         meddelanden.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(meddelanden);
 
-        loggaInRegistrera = new RoundedPanelExample.CircleBtn("Logga in/Registrera");
-        loggaInRegistrera.setBackground(greenColor);
-        loggaInRegistrera.setBorderPainted(false);
-        loggaInRegistrera.setLocation(1025, 37);
-        loggaInRegistrera.setSize(200, 40);
-        loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
-        loggaInRegistrera.addActionListener(l -> controller.loginClicked());
-        loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
-        this.add(loggaInRegistrera);
+        if(loggedIn){
+            minaSidorButton = new RoundedPanelExample.CircleBtn("Mina sidor");
+            minaSidorButton.setBackground(greenColor);
+            minaSidorButton.setBorderPainted(false);
+            minaSidorButton.setLocation(1050, 37);
+            minaSidorButton.setSize(175, 40);
+            minaSidorButton.setHorizontalAlignment(JLabel.CENTER);
+            minaSidorButton.addActionListener(l -> controller.minaSidorClicked());
+            minaSidorButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
+            this.add(minaSidorButton);
+
+            skapaAnnonsButton = new RoundedPanelExample.CircleBtn("Skapa annons");
+            skapaAnnonsButton.setBackground(greenColor);
+            skapaAnnonsButton.setBorderPainted(false);
+            skapaAnnonsButton.setLocation(850, 37);
+            skapaAnnonsButton.setSize(175, 40);
+            skapaAnnonsButton.setHorizontalAlignment(JLabel.CENTER);
+            skapaAnnonsButton.addActionListener(l -> controller.skapaAnnonsClicked());
+            skapaAnnonsButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
+            this.add(skapaAnnonsButton);
+
+        }
+        else if(!loggedIn) {
+            loggaInRegistrera = new RoundedPanelExample.CircleBtn("Logga in/Registrera");
+            loggaInRegistrera.setBackground(greenColor);
+            loggaInRegistrera.setBorderPainted(false);
+            loggaInRegistrera.setLocation(1025, 37);
+            loggaInRegistrera.setSize(200, 40);
+            loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
+            loggaInRegistrera.addActionListener(l -> controller.loginClicked());
+            loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
+            this.add(loggaInRegistrera);
+        }
 
         if ("Hem".equals(whichPage)) {
             whichPageColor = new JPanel();

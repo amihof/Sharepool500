@@ -9,6 +9,8 @@ import View.Annonser.MainPanelAnnons;
 import View.HowItWorks.MainPanelSFD;
 import View.LoginPage.MainLogin;
 import Controller.Controller;
+import View.MinaSidorPage.MainPanelMinaSidor;
+
 import javax.swing.JFrame;
 
 public class MainFrame
@@ -21,12 +23,15 @@ public class MainFrame
     private MainLogin mainLogin;
     private MainPanelSFD mainPanelSFD;
     private MainPanelAnnons mainPanelAnnons;
+    private MainPanelMinaSidor mainPanelMinaSidor;
 
     public MainFrame(final Controller controller) {
         this.controller = controller;
         this.height = 1080;
         this.width = 1920;
         this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller);
+        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
+        this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
         this.frame = new JFrame();
         this.mainPanel = new MainPanel(this.width, this.height, controller);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -44,11 +49,20 @@ public class MainFrame
     public void clearJFrame(final Controller controller) {
         final Component[] components = this.mainPanel.getComponents();
         final Component[] components2 = this.mainPanelSFD.getComponents();
+        final Component[] components3 = this.mainPanelMinaSidor.getComponents();
+        final Component[] components4 = this.mainPanelAnnons.getComponents();
+
         for (final Component component : components) {
             this.mainPanel.remove(component);
         }
         for (final Component component : components2) {
             this.mainPanelSFD.remove(component);
+        }
+        for (final Component component : components3) {
+            this.mainPanelMinaSidor.remove(component);
+        }
+        for (final Component component : components4) {
+            this.mainPanelAnnons.remove(component);
         }
     }
 
@@ -87,6 +101,19 @@ public class MainFrame
         this.frame.pack();
         this.frame.setVisible(true);
         this.frame.setContentPane(this.mainPanelAnnons);
+        this.frame.revalidate();
+        this.frame.repaint();
+    }
+
+    public void updateJFrameMinaSidor(Controller controller) {
+        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
+        this.frame.add(this.mainPanelMinaSidor);
+        this.frame.setDefaultCloseOperation(3);
+        this.frame.setPreferredSize(new Dimension(this.width, this.height));
+        this.frame.setResizable(true);
+        this.frame.pack();
+        this.frame.setVisible(true);
+        this.frame.setContentPane(this.mainPanelMinaSidor);
         this.frame.revalidate();
         this.frame.repaint();
     }

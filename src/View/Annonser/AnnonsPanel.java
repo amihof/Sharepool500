@@ -7,6 +7,8 @@ import View.main.RoundedPanelExample;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 public class AnnonsPanel extends JPanel {
     private int width;
@@ -109,6 +111,13 @@ public class AnnonsPanel extends JPanel {
         searchLabel.setFont(newFont.deriveFont(20.0F));
         searchLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(searchLabel);
+
+        JPanel testtest = new JPanel();
+        OneAnnons annonser = new OneAnnons();
+        testtest.add(annonser);
+        testtest.setSize(500, 500);
+        testtest.setLocation(255, 95);
+        this.add(testtest);
 
     }
 

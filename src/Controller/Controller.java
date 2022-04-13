@@ -32,4 +32,13 @@ public class Controller
         this.view.clearJFrame(this);
         view.updateJFrame(this);
     }
+
+    public void minaSidorClicked() {
+        view.clearJFrame(this);
+        view.updateJFrameMinaSidor(this);
+    }
+
+    public void skapaAnnonsClicked() {
+
+    }
 }

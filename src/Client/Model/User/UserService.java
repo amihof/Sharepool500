@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(encodedPassword);
 
-        UserRepository.save(user);
+        UserRepository.save(user); //här ska usern sparas på databasen
 
         String token = UUID.randomUUID().toString();
 

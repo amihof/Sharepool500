@@ -29,6 +29,10 @@ public class Controller
         this.view.loginButtonClicked(this);
     }
 
+    public void andraUppgifterClicked() {
+        view.andraUppgifterClicked(this);
+    }
+
     public void saFungerarDetClicked() {
         this.view.clearJFrame(this);
         view.updateJFrame(this);
@@ -62,7 +66,7 @@ public class Controller
     }
 
     public Categories[] getCategoriesValues() {
-        return Categories.values ();
+        return Categories.values();
     }
 
 }

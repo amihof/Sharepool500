@@ -7,10 +7,12 @@ import Client.View.HowItWorks.MainPanelSFD;
 import Client.View.LoginPage.MainLogin;
 import Client.Controller.Controller;
 import Client.View.MinaSidorPage.MainPanelMinaSidor;
+import Client.View.MinaSidorPage.RedigeraUppgifter;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Client.View.SkapaAnnons.SkapaAnnonsPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class MainFrame
 {
@@ -26,6 +28,7 @@ public class MainFrame
     private MainPanelSkapaAnnons mainPanelSkapaAnnons;
     private SkapaAnnonsPanel skapaAnnonsPanel;
     private TopPanel topPanel;
+    private RedigeraUppgifter redigeraUppgifter;
 
     public MainFrame(final Controller controller) {
         this.controller = controller;
@@ -45,6 +48,10 @@ public class MainFrame
 
     public void loginButtonClicked(final Controller controller) {
         this.mainLogin = new MainLogin(controller);
+    }
+
+    public void andraUppgifterClicked(final Controller controller) {
+        this.redigeraUppgifter = new RedigeraUppgifter(controller);
     }
 
     public void clearJFrame(final Controller controller) {
@@ -120,8 +127,6 @@ public class MainFrame
     }
 
     public void updateJFrameSkapaAnnons(Controller controller) {
-        skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
-        addScroll(skapaAnnonsPanel,width, 50);
         topPanel = new TopPanel(width, height, controller, "0", true);
        // this.frame.add(this.mainPanelSkapaAnnons);
         frame.add(topPanel);
@@ -130,27 +135,26 @@ public class MainFrame
         this.frame.setResizable(true);
         this.frame.pack();
         this.frame.setVisible(true);
-        //this.frame.setContentPane(topPanel);
+        this.frame.setContentPane(topPanel);
+        addScroll(skapaAnnonsPanel,width, height-100);
         this.frame.revalidate();
         this.frame.repaint();
+
     }
 
     public void addScroll(JPanel jPanel, int w, int h) {
-        JScrollPane jScrollPane = new JScrollPane(){
+        skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
 
-        };
-        JViewport viewport = new JViewport() {
-
-        };
-        jScrollPane.setViewport(viewport);
-        jScrollPane.setViewportView(jPanel);
-        jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane.setSize(new Dimension(w, h));
-        jScrollPane.setMinimumSize(new Dimension(w, h));
-        jScrollPane.setPreferredSize(new Dimension(w, h));
-        jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        jScrollPane.setLocation(0,100);
-        frame.setContentPane(jScrollPane);
+        final JScrollPane scrollPanel = new JScrollPane(
+                skapaAnnonsPanel,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        skapaAnnonsPanel.setPreferredSize(new Dimension((int) skapaAnnonsPanel.getPreferredSize().getWidth(),
+                (int)(skapaAnnonsPanel.getPreferredSize().getHeight()+500)));
+        scrollPanel.setBounds(0, 100, width, height-100);
+        scrollPanel.setBorder(BorderFactory.createEmptyBorder());
+        frame.add(scrollPanel);
     }
+
 }

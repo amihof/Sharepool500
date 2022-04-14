@@ -1,4 +1,4 @@
-package main.java.Model.Security;
+package Client.Model.Security;
 
 public class PasswordEncoder {
 }

@@ -1,21 +1,27 @@
 package Client.Model;
 
+import Server.Model.Server;
+
 import java.sql.*;
 import java.time.LocalDate;
 
+
 public class RegisterUser {
+
     public void addNewPatient(String userName, String email, String password) throws SQLException {
-        //Connection con = getDatabaseConnection();
+        Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call addmember(?, ?, ?, ?, ?, ?);"; //procedure
+            String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
+                    "VALUES('%s', '%s', '%s');",userName, email, password );
+
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, userName);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
             pstmt.executeUpdate();
 
-            String QUERY2 = "SELECT email FROM patient where userName = '" + email + "';";
+            String QUERY2 = "SELECT email FROM patient where userName = '" + userName + "';";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(QUERY2);
             while (rs.next()) {

@@ -27,6 +27,7 @@ public class Server {
 
     }
 
+    public static Connection getCon(){return con;}
     private ServerSocket ss;
     private int port = 2343;
 

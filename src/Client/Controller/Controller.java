@@ -1,5 +1,6 @@
 package Client.Controller;
 
+import Client.Model.Categories;
 import Client.View.main.MainFrame;
 
 public class Controller
@@ -39,6 +40,8 @@ public class Controller
     }
 
     public void skapaAnnonsClicked() {
+        view.clearJFrame(this);
+        view.updateJFrameSkapaAnnons(this);
 
     }
 
@@ -56,6 +59,10 @@ public class Controller
     }
     public String getPassword(){
         return password;
+    }
+
+    public Categories[] getCategoriesValues() {
+        return Categories.values ();
     }
 
 }

@@ -1,11 +1,13 @@
 package Client.Model;
 
+import Server.Model.Server;
+
 import java.sql.*;
 import java.time.LocalDate;
 
 public class RegisterUser {
     public void addNewPatient(String userName, String email, String password) throws SQLException {
-        //Connection con = getDatabaseConnection();
+        Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
             String QUERY = "call addmember(?, ?, ?, ?, ?, ?);"; //procedure

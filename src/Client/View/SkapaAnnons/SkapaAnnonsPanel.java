@@ -4,12 +4,20 @@ package Client.View.SkapaAnnons;
 import Client.Controller.Controller;
 import Client.View.main.RoundedPanelExample;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class SkapaAnnonsPanel extends JPanel {
+import static java.awt.Color.black;
+
+public class SkapaAnnonsPanel extends JPanel implements ActionListener {
     private Controller controller;
     private JLabel skapaAnnonsLabel;
     private JLabel kategoriLabel;
@@ -18,7 +26,12 @@ public class SkapaAnnonsPanel extends JPanel {
     private JLabel beskrivningLabel;
     private JComboBox cmbCategories;
     private JTextField rubrikTextField;
-    private JTextField beskrivningTextField;
+    private JTextArea beskrivningTextField;
+    private JButton postAnnons;
+    private JButton uploadPic;
+    private JLabel picLabel = new JLabel();
+    private ImageIcon clientPicture;
+
 
     public SkapaAnnonsPanel(int width, int height, Controller controller) {
         this.setLayout(null);
@@ -30,9 +43,15 @@ public class SkapaAnnonsPanel extends JPanel {
 
         this.setUp();
         createAndInitiateComboBox();
+        addPicture();
+        addActionEvent();
     }
 
     private void setUp() {
+
+        Color myNewColor = new Color (225, 143, 107);
+
+        Color greenColor = new Color (167, 203, 156, 255);
 
         ButtonGroup G = new ButtonGroup();
         JRadioButton j1 = new JRadioButton();
@@ -93,12 +112,36 @@ public class SkapaAnnonsPanel extends JPanel {
         beskrivningLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(beskrivningLabel);
 
-        beskrivningTextField = new RoundedPanelExample.RoundedTextField(20);
+        beskrivningTextField = new RoundedPanelExample.RoundedTextArea("");
         beskrivningTextField.setLocation(50, 410);
         beskrivningTextField.setSize(1000, 200);
         beskrivningTextField.setFont(newFont.deriveFont(15.0f));
-        beskrivningTextField.setHorizontalAlignment(2);
+        beskrivningTextField.setLineWrap(true);
         this.add(beskrivningTextField);
+
+        uploadPic = new RoundedPanelExample.CircleBtn("Ladda upp bild");
+        uploadPic.setBackground(myNewColor);
+        uploadPic.setBorderPainted(false);
+        uploadPic.setBounds(50, 840, 200, 40);
+        uploadPic.setHorizontalAlignment(JLabel.CENTER);
+        uploadPic.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
+        this.add(uploadPic);
+
+        postAnnons = new RoundedPanelExample.CircleBtn("Skapa annons");
+        postAnnons.setBackground(greenColor);
+        postAnnons.setBorderPainted(false);
+        postAnnons.setLocation(50, 930);
+        postAnnons.setSize(230, 50);
+        postAnnons.setHorizontalAlignment(JLabel.CENTER);
+       // postAnnons.addActionListener(l -> controller.minaSidorClicked());
+        postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
+        this.add(postAnnons);
+
+        this.add(uploadPic);
+
+        picLabel.setBounds(50, 650, 150, 150);
+        picLabel.setBorder(BorderFactory.createLineBorder(black));
+        this.add(picLabel);
 
     }
 
@@ -120,4 +163,50 @@ public class SkapaAnnonsPanel extends JPanel {
             }
         });
     }
+
+    public void addPicture(){
+
+    }
+
+    public void addActionEvent() {
+        uploadPic.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == uploadPic) {
+            JFileChooser fileChooser = new JFileChooser();
+            File selectedFile = null;
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+            int result = fileChooser.showOpenDialog(getParent());
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    BufferedImage picture = ImageIO.read(file);
+
+                    //picLabel.setIcon(new ImageIcon(picture));
+                    //add(picLabel);
+                    selectedFile = fileChooser.getSelectedFile();
+                    setPicture(selectedFile.getAbsolutePath());
+
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "ERROR");
+                }
+            }
+            uploadPic.setEnabled(false);
+        }
+    }
+
+    public ImageIcon setPicture(String fileName){
+        clientPicture = new ImageIcon(fileName);
+        Image clientImage = clientPicture.getImage();
+        Image newClientImage = clientImage.getScaledInstance(150,150, java.awt.Image.SCALE_SMOOTH);
+        clientPicture = new ImageIcon(newClientImage);
+        picLabel.setIcon(clientPicture);
+        add(picLabel);
+
+        return clientPicture;
+    }
+
 }

@@ -98,7 +98,7 @@ public class MinaSidorPanel extends JPanel {
         changeUppgifterButton.setLocation(300, 390);
         changeUppgifterButton.setSize(225, 50);
         changeUppgifterButton.setHorizontalAlignment(JLabel.CENTER);
-        //changeUppgifterButton.addActionListener(l -> controller.minaSidorClicked());
+        changeUppgifterButton.addActionListener(l -> controller.andraUppgifterClicked());
         changeUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(22.0F));
         this.add(changeUppgifterButton);
 

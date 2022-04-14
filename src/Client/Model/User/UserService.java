@@ -1,8 +1,6 @@
 package Client.Model.User;
 
 
-import Client.Model.Registration.Token.ConfirmationToken;
-import Client.Model.Registration.Token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

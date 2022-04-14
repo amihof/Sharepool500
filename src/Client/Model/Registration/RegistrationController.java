@@ -1,7 +1,5 @@
 package Client.Model.Registration;
 
-import Client.Model.Registration.RegistrationRequest;
-import Client.Model.Registration.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

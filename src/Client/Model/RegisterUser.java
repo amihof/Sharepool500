@@ -3,7 +3,7 @@ package Client.Model;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class Registration {
+public class RegisterUser {
     public void addNewPatient(String userName, String email, String password) throws SQLException {
         //Connection con = getDatabaseConnection();
         PreparedStatement pstmt = null;

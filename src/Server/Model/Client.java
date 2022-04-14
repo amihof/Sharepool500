@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 public class Client {
-    private static HashMap<User, Client> chm = new HashMap<>();
+    private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
 
 
     private Socket socket;
@@ -14,18 +14,29 @@ public class Client {
     private ObjectInputStream ois;
     private InputHandler ih;
 
-    private Thread t1;
-    private Thread t2;
+    private InputHandler inputHandler;
+    private InputListener inputListener;
+    private final Thread inputHandlerThread, inputListenerThread;
+
+    public Client(Socket s) {
+        this.socket = s;
+        inputHandler = new InputHandler();
+        inputListener = new InputListener();
+
+        inputHandlerThread = new Thread(inputHandler);
+        inputListenerThread = new Thread(inputListener);
+
+    }
 
     private class InputHandler implements Runnable{
-        private Server.Model.Buffer<Message> inputBuffer;
+        private Server.Model.Buffer<Request> inputBuffer;
 
         public InputHandler(){
             inputBuffer = new Server.Model.Buffer<>();
         }
 
-        public void addToBuffer(Message msg){
-            inputBuffer.put(msg);
+        public void addToBuffer(Request request){
+            inputBuffer.put(request);
         }
 
 
@@ -33,9 +44,29 @@ public class Client {
         public synchronized void run() {
             Object o = null;
             while (!Thread.interrupted()) {
-                Message temp = null;
+                Request request = null;
+                String str = null;
                 try {
-                    inputBuffer.get();
+                    request = inputBuffer.get();
+
+                    str = request.getRequest();
+
+                    /*switch (str){
+                        case "":
+                            break;
+                        case "":
+                            break;
+                        case "":
+                            break;
+                        case "":
+                            break;
+                        case "":
+                            break;
+                        case "":
+                            break;
+                        case "":
+                            break;
+                    }*/
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -45,9 +76,38 @@ public class Client {
         }
     }
 
+    private class InputListener implements Runnable{
 
-    public Client(Socket s) {
-        this.socket = s;
+        @Override
+        public synchronized void run() {
+            try {
+                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e) {
+                inputHandlerThread.interrupt();
+                inputListenerThread.interrupt();
+                e.printStackTrace();
+            }
 
+            Object input = null;
+            while (!Thread.interrupted()) {
+                try {
+                    input = ois.readObject();
+
+                    if(input.getClass().isAssignableFrom(Request.class)){
+                        inputHandler.addToBuffer((Request) input);
+                    } else {
+                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");
+                    }
+
+                } catch (EOFException e) {
+                    inputHandlerThread.interrupt();
+                    inputListenerThread.interrupt();
+                    e.printStackTrace();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 }

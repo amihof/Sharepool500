@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 public class Message implements Serializable {
     @Serial
-    private static final long serialVersionUID = -3930131856060689940L;
+    private static final long serialVersionUID = 8582693598132329383L;
 
     private static int nextID = 0;
     private int currID;
@@ -20,7 +20,6 @@ public class Message implements Serializable {
     private Timestamp downloaded;
 
     private final User sender;
-    private final LinkedList<User> recipients;
 
     public Message(){
         currID = nextID;
@@ -28,7 +27,6 @@ public class Message implements Serializable {
         this.text = null;
         this.icon = null;
         sender = null;
-        recipients = null;
     }
 
     /**
@@ -40,7 +38,6 @@ public class Message implements Serializable {
         this.text = text;
         this.icon = null;
         this.sender = sender;
-        this.recipients = null;
 
     }
 
@@ -53,7 +50,6 @@ public class Message implements Serializable {
         this.text = text;
         this.icon = icon;
         this.sender = sender;
-        this.recipients = recipients;
 
     }
 
@@ -81,9 +77,6 @@ public class Message implements Serializable {
     public User getSender(){return sender;}
     public int getCurrID(){return currID;}
     public void setCurrID(){currID = nextID; nextID++;}
-    public LinkedList<User> getRecipients(){
-        return recipients;
-    }
     public void setUploaded(Timestamp uploaded) {
         this.uploaded = uploaded;
     }

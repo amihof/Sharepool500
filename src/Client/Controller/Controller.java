@@ -1,12 +1,14 @@
 package Client.Controller;
 
+import Client.Model.Categories;
 import Client.View.main.MainFrame;
-import Client.Model.Model;
 
 public class Controller
 {
-    private Model model;
     private MainFrame view;
+    private String password;
+    private String email;
+    private String userName;
 
     public Controller() {
         final MainFrame view = new MainFrame(this);
@@ -38,6 +40,29 @@ public class Controller
     }
 
     public void skapaAnnonsClicked() {
+        view.clearJFrame(this);
+        view.updateJFrameSkapaAnnons(this);
 
     }
+
+    public void registerNewUser(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getPassword(){
+        return password;
+    }
+
+    public Categories[] getCategoriesValues() {
+        return Categories.values ();
+    }
+
 }

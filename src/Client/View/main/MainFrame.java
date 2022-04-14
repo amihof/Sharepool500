@@ -1,35 +1,38 @@
 package Client.View.main;
 
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 
 import Client.View.Annonser.MainPanelAnnons;
 import Client.View.HowItWorks.MainPanelSFD;
 import Client.View.LoginPage.MainLogin;
 import Client.Controller.Controller;
 import Client.View.MinaSidorPage.MainPanelMinaSidor;
+import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
+import Client.View.SkapaAnnons.SkapaAnnonsPanel;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class MainFrame
 {
     private MainPanel mainPanel;
-    private int width;
-    private int height;
+    private int width = 1280;
+    private int height = 1920;
     private JFrame frame;
     private Controller controller;
     private MainLogin mainLogin;
     private MainPanelSFD mainPanelSFD;
     private MainPanelAnnons mainPanelAnnons;
     private MainPanelMinaSidor mainPanelMinaSidor;
+    private MainPanelSkapaAnnons mainPanelSkapaAnnons;
+    private SkapaAnnonsPanel skapaAnnonsPanel;
+    private TopPanel topPanel;
 
     public MainFrame(final Controller controller) {
         this.controller = controller;
-        this.height = 1080;
-        this.width = 1920;
         this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller);
         this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
         this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
+        this.mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller);
         this.frame = new JFrame();
         this.mainPanel = new MainPanel(this.width, this.height, controller);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -114,5 +117,40 @@ public class MainFrame
         this.frame.setContentPane(this.mainPanelMinaSidor);
         this.frame.revalidate();
         this.frame.repaint();
+    }
+
+    public void updateJFrameSkapaAnnons(Controller controller) {
+        skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
+        addScroll(skapaAnnonsPanel,width, 50);
+        topPanel = new TopPanel(width, height, controller, "0", true);
+       // this.frame.add(this.mainPanelSkapaAnnons);
+        frame.add(topPanel);
+        this.frame.setDefaultCloseOperation(3);
+        this.frame.setPreferredSize(new Dimension(this.width, this.height));
+        this.frame.setResizable(true);
+        this.frame.pack();
+        this.frame.setVisible(true);
+        //this.frame.setContentPane(topPanel);
+        this.frame.revalidate();
+        this.frame.repaint();
+    }
+
+    public void addScroll(JPanel jPanel, int w, int h) {
+        JScrollPane jScrollPane = new JScrollPane(){
+
+        };
+        JViewport viewport = new JViewport() {
+
+        };
+        jScrollPane.setViewport(viewport);
+        jScrollPane.setViewportView(jPanel);
+        jScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setSize(new Dimension(w, h));
+        jScrollPane.setMinimumSize(new Dimension(w, h));
+        jScrollPane.setPreferredSize(new Dimension(w, h));
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        jScrollPane.setLocation(0,100);
+        frame.setContentPane(jScrollPane);
     }
 }

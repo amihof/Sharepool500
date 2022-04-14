@@ -66,4 +66,8 @@ public class Server {
         }
 
     }
+
+    public static Connection getCon(){
+        return con;
+    }
 }

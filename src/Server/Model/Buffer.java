@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class Buffer<T> implements Serializable {
     @Serial
-    private static final long serialVersionUID = -5690873327923645132L;
+    private static final long serialVersionUID = -689559181872181133L;
     private LinkedList<T> buffer = new LinkedList<T>();
 
     public synchronized void put(T obj) {

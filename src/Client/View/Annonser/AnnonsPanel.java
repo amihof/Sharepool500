@@ -70,6 +70,10 @@ public class AnnonsPanel extends JPanel {
         sortAfterText.setHorizontalAlignment(JLabel.LEFT);
         this.add(sortAfterText);
 
+        ButtonGroup G = new ButtonGroup();
+        G.add(buttonCircle);
+        G.add(buttonCircle2);
+
         buttonCircle = new CircleButton("");
         buttonCircle.setBorderPainted(false);
         buttonCircle.setLocation(200, 72);

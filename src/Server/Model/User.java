@@ -9,11 +9,11 @@ public class User implements Serializable {
     private static final long serialVersionUID = -5886308724572898536L;
 
     private String username;
-    private ImageIcon image;
+    private String password;
+    private String email;
 
-    public User(String username, ImageIcon image){
+    public User(String username){
         this.username = username;
-        this.image = image;
     }
 
     public int hashCode() {
@@ -33,9 +33,5 @@ public class User implements Serializable {
     @Override
     public String toString(){
         return username;
-    }
-
-    public ImageIcon getImage() {
-        return image;
     }
 }

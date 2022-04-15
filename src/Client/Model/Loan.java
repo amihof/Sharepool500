@@ -1,2 +1,4 @@
-package Client.Model;public class Loan {
+package Client.Model;
+
+public class Loan {
 }

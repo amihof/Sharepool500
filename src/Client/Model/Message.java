@@ -21,7 +21,7 @@ public class Message implements Serializable {
     private Timestamp uploaded;
     private Timestamp downloaded;
 
-    private final Server.Model.User sender;
+    private final User sender;
 
     public Message(){
         currID = nextID;
@@ -34,7 +34,7 @@ public class Message implements Serializable {
     /**
      * Message constructor for
      * message objects to be sent to all online users. */
-    public Message(String text, Server.Model.User sender){
+    public Message(String text, User sender){
         currID = nextID;
         nextID++;
         this.text = text;
@@ -46,7 +46,7 @@ public class Message implements Serializable {
     /**
      * Message constructor for
      * message objects to be sent to specific recipients */
-    public Message(String text, ImageIcon icon, LinkedList<Server.Model.User> recipients, Server.Model.User sender) {
+    public Message(String text, ImageIcon icon, LinkedList<User> recipients, User sender) {
         currID = nextID;
         nextID++;
         this.text = text;
@@ -57,8 +57,8 @@ public class Message implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Server.Model.Message){
-            if( ((Server.Model.Message) obj).getCurrID() == this.currID ){
+        if(obj instanceof Message){
+            if( ((Message) obj).getCurrID() == this.currID ){
                 return true;
             }
         }

@@ -9,7 +9,7 @@ public class Server {
     private ServerSocket ss;
     private int port = 2343;
 
-    private Client.Model.Server.ClientConnector connector;
+    private Server.ClientConnector connector;
 
     public Server() {
         try {
@@ -23,7 +23,7 @@ public class Server {
 
     public synchronized void start() {
         if (connector == null) {
-            connector = new Client.Model.Server.ClientConnector();
+            connector = new Server.ClientConnector();
             Thread t = new Thread(connector);
             t.start();
         }

@@ -20,8 +20,8 @@ public class User implements Serializable {
     }
 
     public boolean equals(Object obj) {
-        if(obj!=null && obj instanceof Server.Model.User)
-            return username.equals(((Server.Model.User)obj).getUsername());
+        if(obj!=null && obj instanceof User)
+            return username.equals(((User)obj).getUsername());
         return false;
     }
 

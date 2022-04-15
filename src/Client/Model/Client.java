@@ -11,21 +11,21 @@ import java.net.Socket;
 import java.util.HashMap;
 
 public class Client {
-    private static HashMap<Server.Model.Client, User> clientUserHashMap = new HashMap<>();
+    private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
 
     private Socket socket;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
-    private Client.Model.Client.InputHandler ih;
+    private Client.InputHandler ih;
 
-    private Client.Model.Client.InputHandler inputHandler;
-    private Client.Model.Client.InputListener inputListener;
+    private Client.InputHandler inputHandler;
+    private Client.InputListener inputListener;
     private final Thread inputHandlerThread, inputListenerThread;
 
     public Client(Socket s) {
         this.socket = s;
-        inputHandler = new Client.Model.Client.InputHandler();
-        inputListener = new Client.Model.Client.InputListener();
+        inputHandler = new Client.InputHandler();
+        inputListener = new Client.InputListener();
 
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);
@@ -33,10 +33,10 @@ public class Client {
     }
 
     private class InputHandler implements Runnable{
-        private Client.Model.Buffer<Request> inputBuffer;
+        private Buffer<Request> inputBuffer;
 
         public InputHandler(){
-            inputBuffer = new Client.Model.Buffer<>();
+            inputBuffer = new Buffer<>();
         }
 
         public void addToBuffer(Request request){
@@ -97,7 +97,7 @@ public class Client {
                 try {
                     input = ois.readObject();
 
-                    if(input.getClass().isAssignableFrom(Server.Model.Request.class)){
+                    if(input.getClass().isAssignableFrom(Request.class)){
                         inputHandler.addToBuffer((Request) input);
                     } else {
                         throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");

@@ -29,10 +29,10 @@ public class Client {
     }
 
     private class InputHandler implements Runnable{
-        private Server.Model.Buffer<Request> inputBuffer;
+        private Buffer<Request> inputBuffer;
 
         public InputHandler(){
-            inputBuffer = new Server.Model.Buffer<>();
+            inputBuffer = new Buffer<>();
         }
 
         public void addToBuffer(Request request){

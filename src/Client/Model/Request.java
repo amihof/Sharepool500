@@ -12,11 +12,11 @@ public class Request {
     private String request;
     private String response;
 
-    private Server.Model.User user;
+    private User user;
     private Chat chat;
-    private Server.Model.Message msg;
-    private Server.Model.Annons annons;
-    private Server.Model.Loan loan;
+    private Message msg;
+    private Annons annons;
+    private Loan loan;
 
     public Request(){
 

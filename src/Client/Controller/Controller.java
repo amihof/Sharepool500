@@ -69,4 +69,7 @@ public class Controller
         return Categories.values();
     }
 
+    public void uploadAnnons() {
+        view.addAnnons();
+    }
 }

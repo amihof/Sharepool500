@@ -7,6 +7,7 @@ import Client.View.main.RoundedPanelExample;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AnnonsPanel extends JPanel {
     private int width;
@@ -22,12 +23,13 @@ public class AnnonsPanel extends JPanel {
     private JLabel searchLabel;
     private JLabel hyrsUtLabel;
 
+
     public AnnonsPanel(int width, int height, Controller controller){
         this.setLayout(null);
         this.controller = controller;
         Color myNewColor = new Color(245, 221, 204);
         this.setBackground(myNewColor);
-        this.setSize(width, height);
+        this.setSize(width, 150);
         this.setLocation(0, 100);
 
         RoundedPanelExample roundedPanelExample = new RoundedPanelExample();
@@ -35,7 +37,7 @@ public class AnnonsPanel extends JPanel {
         this.circleButton = circleButton;
         this.roundedPanelExample = roundedPanelExample;
 
-        this.setUp();
+        setUp();
     }
 
     public void setUp(){
@@ -95,7 +97,7 @@ public class AnnonsPanel extends JPanel {
         buttonCircle2.setHorizontalAlignment(JLabel.CENTER);
         buttonCircle2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //buttonCircle.setDisabled();
+                controller.uploadAnnons();
             }
         });
         this.add(buttonCircle2);
@@ -114,12 +116,12 @@ public class AnnonsPanel extends JPanel {
         searchLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(searchLabel);
 
-        JPanel testtest = new JPanel();
+        /*JPanel testtest = new JPanel();
         OneAnnons annonser = new OneAnnons();
         testtest.add(annonser);
         testtest.setSize(500, 500);
         testtest.setLocation(255, 95);
-        this.add(testtest);
+        this.add(testtest);*/
 
     }
 

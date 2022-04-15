@@ -1,8 +1,12 @@
 package Client.View.main;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import Client.View.Annonser.AnnonsPanel;
 import Client.View.Annonser.MainPanelAnnons;
+import Client.View.Annonser.OneAnnons;
 import Client.View.HowItWorks.MainPanelSFD;
 import Client.View.LoginPage.MainLogin;
 import Client.Controller.Controller;
@@ -29,6 +33,11 @@ public class MainFrame
     private SkapaAnnonsPanel skapaAnnonsPanel;
     private TopPanel topPanel;
     private RedigeraUppgifter redigeraUppgifter;
+    private AnnonsPanel annonsPanel;
+    private JPanel newAnnonsPanel;
+
+    private int i;
+    private JPanel listContainer;
 
     public MainFrame(final Controller controller) {
         this.controller = controller;
@@ -44,6 +53,7 @@ public class MainFrame
         this.frame.pack();
         this.frame.setVisible(true);
         this.frame.add((Component)this.mainPanel);
+        //initUI();
     }
 
     public void loginButtonClicked(final Controller controller) {
@@ -100,19 +110,6 @@ public class MainFrame
         this.frame.repaint();
     }
 
-    public void updateJFrameAnnons(Controller controller) {
-        this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
-        this.frame.add(this.mainPanelAnnons);
-        this.frame.setDefaultCloseOperation(3);
-        this.frame.setPreferredSize(new Dimension(this.width, this.height));
-        this.frame.setResizable(true);
-        this.frame.pack();
-        this.frame.setVisible(true);
-        this.frame.setContentPane(this.mainPanelAnnons);
-        this.frame.revalidate();
-        this.frame.repaint();
-    }
-
     public void updateJFrameMinaSidor(Controller controller) {
         this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
         this.frame.add(this.mainPanelMinaSidor);
@@ -142,6 +139,24 @@ public class MainFrame
 
     }
 
+    public void updateJFrameAnnons(Controller controller) {
+        topPanel = new TopPanel(width, height, controller, "0", true);
+        annonsPanel = new AnnonsPanel(width, height-100, controller);
+        //this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
+        //this.frame.add(this.mainPanelAnnons);
+        frame.add(topPanel);
+        this.frame.setDefaultCloseOperation(3);
+        this.frame.setPreferredSize(new Dimension(this.width, this.height));
+        this.frame.setResizable(true);
+        this.frame.pack();
+        this.frame.setVisible(true);
+        this.frame.setContentPane(topPanel);
+        frame.add(annonsPanel);
+        addAnnonserPanel();
+        this.frame.revalidate();
+        this.frame.repaint();
+    }
+
     public void addScroll(JPanel jPanel, int w, int h) {
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
 
@@ -157,4 +172,27 @@ public class MainFrame
         frame.add(scrollPanel);
     }
 
+    public void addAnnonserPanel(){
+        this.listContainer = new JPanel();
+        listContainer.setLayout(new BoxLayout(listContainer, BoxLayout.Y_AXIS));
+
+        final JScrollPane scrollPanel = new JScrollPane(
+                listContainer,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        listContainer.setPreferredSize(new Dimension((int) listContainer.getPreferredSize().getWidth(),
+                (int)(listContainer.getPreferredSize().getHeight()+500)));
+        scrollPanel.setBounds(0, 250, width, height-100);
+        scrollPanel.setBorder(BorderFactory.createEmptyBorder());
+        frame.add(scrollPanel);
+        frame.setVisible(true);
+    }
+
+    public void addAnnons(){
+        OneAnnons newAnnons = new OneAnnons();
+        listContainer.add(newAnnons);
+        listContainer.revalidate();
+
+    }
 }

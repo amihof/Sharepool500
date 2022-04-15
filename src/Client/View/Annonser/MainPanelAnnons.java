@@ -4,6 +4,9 @@ import Client.Controller.Controller;
 import Client.View.main.TopPanel;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainPanelAnnons extends JPanel {
     private int width;
@@ -11,6 +14,11 @@ public class MainPanelAnnons extends JPanel {
     private Controller controller;
     private AnnonsPanel annonsPanel;
     private TopPanel topPanel;
+
+    private JScrollPane scrollPane;
+
+    private int i;
+    private JPanel listContainer;
 
     public MainPanelAnnons(int width, int height, Controller controller){
         super(null);

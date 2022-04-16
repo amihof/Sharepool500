@@ -20,15 +20,8 @@ public class SQLquery {
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
-            pstmt.execute();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(QUERY);
-            while (rs.next()) {
-                return true;
-            }
-            pstmt.closeOnCompletion();
-            pstmt.closeOnCompletion();
-            con.close();
+            return pstmt.execute();
+
         } catch (Exception p) {
             return false;
         }

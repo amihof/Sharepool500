@@ -1,7 +1,5 @@
 package Client.Controller;
 
-import Client.Model.RegisterUser;
-
 /**
  * MainProgram is the entry point to run the program
  * */

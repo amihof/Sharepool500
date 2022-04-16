@@ -30,6 +30,8 @@ public class Client {
         this.ip = ip;
         try {
             socket  = new Socket(ip, proxy);
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +65,14 @@ public class Client {
                     request = inputBuffer.get();
 
                     str = request.getRequest();
-
+                    /**
+                     * In this switch statement which takes the request (string from the request class),
+                     * The string for the different function is found in the java file
+                     * you send a Request object
+                     * Then, you wait until i respond to you, according to the agreed protocol
+                     * final, send the information back ami so she can present them to the user
+                     * rinse, repeat
+                     * */
                     /*switch (str){
                         case "":
                             break;

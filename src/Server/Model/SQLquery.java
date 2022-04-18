@@ -70,7 +70,7 @@ public class SQLquery {
             ArrayList<Annons> result;
             Annons tempAnnons;
             while (resultSet.next()){
-                result.add(new Annons(resultSet.getString(1)));
+                //result.add(new Annons(resultSet.getString(1)));
             }
 
 

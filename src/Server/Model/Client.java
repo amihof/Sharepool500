@@ -56,7 +56,11 @@ public class Client {
                     switch (str){
                         case "login":
                             try {
-                                oos.writeBoolean(sql.login(request.getUser().getEmail(), request.getUser().getPassword()));
+                                oos.writeBoolean(
+                                        sql.login(
+                                                request.getUser().getEmail(),
+                                                request.getUser().getPassword())
+                                );
                                 oos.flush();
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -64,7 +68,11 @@ public class Client {
                             break;
                         case "register":
                             try {
-                                oos.writeBoolean(sql.register(request.getUser().getUsername(), request.getUser().getEmail(), request.getUser().getPassword()));
+                                oos.writeBoolean(
+                                        sql.register(
+                                                request.getUser().getUsername(),
+                                                request.getUser().getEmail(),
+                                                request.getUser().getPassword()));
                                 oos.flush();
                             } catch (IOException e) {
                                 e.printStackTrace();

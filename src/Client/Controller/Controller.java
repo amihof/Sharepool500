@@ -77,8 +77,8 @@ public class Controller
         view.addAnnons();
     }
 
-    public void newAnnons(String productName, String productDescription, Enum<Category> productCategory) {
-        annons = new Annons(productName, productDescription, productCategory );
+    public void newAnnons(String productName, String productDescription, Enum<Category> productCategory, User user) {
+        annons = new Annons(productName, productDescription, productCategory, user);
 
     }
 }

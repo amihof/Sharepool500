@@ -43,4 +43,5 @@ public class Annons implements Serializable {
     public void setProductCategory(Enum<Category> productCategory) {
         this.productCategory = productCategory;
     }
+
 }

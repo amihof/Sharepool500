@@ -1,5 +1,9 @@
 package Client.Model;
 
+import Client.Controller.Controller;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,6 +13,9 @@ import java.util.Objects;
 
 public class Client {
 
+    private Controller controller;
+    private User user;
+    private Annons annons;
 
     private Socket socket;
     private int proxy;
@@ -52,6 +59,8 @@ public class Client {
 
         @Override
         public synchronized void run() {
+            controller = new Controller();
+            user = new User();
             Object o = null;
             while (!Thread.interrupted()) {
                 Request request = null;
@@ -72,17 +81,17 @@ public class Client {
                         //case for login
                         case "login" :
                             try {
-                                oos.writeObject(request);
+                                oos.writeObject(request); /**sends the request**/
                                 oos.flush();
 
-                                Boolean loggedIn = ois.readBoolean();
+                                Boolean loggedIn = ois.readBoolean(); /**sees if its logged in**/
                                 //send back result of login to amidala
-                                //if(loggedIn){
-                                // client.setUser(request.getUser());
-                                // controller.loggedIn()
-                                // } else{
-                                // 
-                                // }
+                                if(loggedIn){
+                                    user.setUser(request.getUser()); /**the user information saves**/
+                                    controller.loginClicked(); /**usern logs in to the program**/
+                                } else{
+
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -90,12 +99,17 @@ public class Client {
                             break;
                         //case for register
                         case "register":
+                            String userName = user.getUsername();
+                            String email = user.getEmail();
+                            String password = user.getPassword();
                             try {
                                 oos.writeObject(request);
                                 oos.flush();
 
                                 Boolean registered = ois.readBoolean();
                                 //send back result of register to amidala
+                                user.setUser(request.getUser()); /**the user information saves**/
+                                controller.registerNewUser(userName, email, password);/**registers the user with its information**/
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -107,6 +121,9 @@ public class Client {
 
                                 Boolean annonsCreated = ois.readBoolean();
                                 //send back result of creating the annons to amidala
+                                annons.setAnnons(request.getAnnons());
+                                controller.skapaAnnonsClicked();
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -124,6 +141,7 @@ public class Client {
 
                                 }
                                 //send back result of search to amidala
+                                controller.searchClicked();
                             } catch (IOException | ClassNotFoundException e) {
                                 e.printStackTrace();
                             }

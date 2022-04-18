@@ -85,7 +85,8 @@ public class Client {
                                                 request.getAnnons().getProductName(),
                                                 request.getAnnons().getProductDescription(),
                                                 request.getAnnons().getProductCategory(),
-                                                request.getUser().getEmail()
+                                                request.getUser().getEmail(),
+                                                request.getAnnons().getRenting()
                                         )
                                 );
                                 oos.flush();

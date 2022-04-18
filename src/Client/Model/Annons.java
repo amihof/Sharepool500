@@ -12,21 +12,17 @@ public class Annons implements Serializable {
     private String productName;
     private String productDescription;
     private Category productCategory;
+    private Boolean renting;
 
-    public Annons(String productName, String productDescription, Category productCategory, User publisher) {
+
+    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.publisher = publisher;
+        this.renting  = renting;
     }
 
-    public Annons(String productName, String productDescription, Enum<Category> productCategory){
-
-    }
-
-    public void setAnnons(Annons annons){
-
-    }
 
 
     public String getProductName() {
@@ -37,11 +33,13 @@ public class Annons implements Serializable {
         return productDescription;
     }
 
-    public Enum<Category> getProductCategory() {
+    public Category getProductCategory() {
         return productCategory;
     }
 
     public User getPublisher() {
         return publisher;
     }
+
+    public Boolean getRenting(){return renting;}
 }

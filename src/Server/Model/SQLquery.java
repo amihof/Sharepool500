@@ -77,7 +77,7 @@ public class SQLquery {
 
     }
 
-    public boolean createAnnons(String productName, String productDescription, Enum<Category> productCategory, String publisherEmail){
+    public boolean createAnnons(String productName, String productDescription, Enum<Category> productCategory, String publisherEmail, Boolean renting){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;

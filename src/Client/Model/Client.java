@@ -1,15 +1,11 @@
 package Client.Model;
 
-import Server.Model.Buffer;
-import Server.Model.Request;
-import Server.Model.User;
-
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Client {
 
@@ -22,8 +18,7 @@ public class Client {
     private ObjectInputStream ois;
 
     private InputHandler inputHandler;
-    private InputListener inputListener;
-    private final Thread inputHandlerThread, inputListenerThread;
+    private final Thread inputHandlerThread;
 
     public Client(int proxy, String ip) {
         this.proxy = proxy;
@@ -36,16 +31,16 @@ public class Client {
             e.printStackTrace();
         }
         inputHandler = new InputHandler();
-        inputListener = new InputListener();
 
         inputHandlerThread = new Thread(inputHandler);
-        inputListenerThread = new Thread(inputListener);
 
     }
+
 
     private class InputHandler implements Runnable{
         private Buffer<Request> inputBuffer;
 
+        //client.getInputHandler.addToBuffer(den request du skapade i requestFactory)
         public InputHandler(){
             inputBuffer = new Buffer<>();
         }
@@ -73,59 +68,71 @@ public class Client {
                      * final, send the information back ami so she can present them to the user
                      * rinse, repeat
                      * */
-                    /*switch (str){
-                        case "":
-                            break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                    }*/
+                    switch (str){
+                        //case for login
+                        case "login" :
+                            try {
+                                oos.writeObject(request);
+                                oos.flush();
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                                Boolean loggedIn = ois.readBoolean();
+                                //send back result of login to amidala
+                                //if(loggedIn){
+                                // client.setUser(request.getUser());
+                                // controller.loggedIn()
+                                // } else{
+                                // 
+                                // }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
 
-            }
-        }
-    }
+                            break;
+                        //case for register
+                        case "register":
+                            try {
+                                oos.writeObject(request);
+                                oos.flush();
 
-    private class InputListener implements Runnable{
+                                Boolean registered = ois.readBoolean();
+                                //send back result of register to amidala
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case "createAnnons":
+                            try {
+                                oos.writeObject(request);
+                                oos.flush();
 
-        @Override
-        public synchronized void run() {
-            try {
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e) {
-                inputHandlerThread.interrupt();
-                inputListenerThread.interrupt();
-                e.printStackTrace();
-            }
+                                Boolean annonsCreated = ois.readBoolean();
+                                //send back result of creating the annons to amidala
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        case "search":
+                            try {
+                                oos.writeObject(request);
+                                oos.flush();
 
-            Object input = null;
-            while (!Thread.interrupted()) {
-                try {
-                    input = ois.readObject();
+                                Object tempObject = ois.readObject();
+                                ArrayList<Annons> result;
 
-                    if(input.getClass().isAssignableFrom(Request.class)){
-                        inputHandler.addToBuffer((Request) input);
-                    } else {
-                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");
+                                if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
+                                    result = (ArrayList<Annons>) tempObject;
+
+                                }
+                                //send back result of search to amidala
+                            } catch (IOException | ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                        default:
+                            break;
                     }
 
-                } catch (EOFException e) {
-                    inputHandlerThread.interrupt();
-                    inputListenerThread.interrupt();
-                    e.printStackTrace();
-                } catch (IOException | ClassNotFoundException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 

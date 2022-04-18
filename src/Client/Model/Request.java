@@ -14,6 +14,7 @@ public class Request implements Serializable {
     private Message msg = null;
     private Annons annons = null;
     private Loan loan = null;
+    private Search search = null;
 
     /**
      * This constructor is used to create a request for:
@@ -22,20 +23,33 @@ public class Request implements Serializable {
      * */
     public Request(String requestType, User user){
         if(requestType == "login") {
-            request = "ibsfefibse";
+            request = "login";
             this.user = user;
 
         }else if (requestType == "register"){
-            request = "isfhbefs";
+            request = "register";
             this.user = user;
         }
     }
 
     /**
-     * This constructor is used to create a skapa annons request*/
+     * This constructor is used to create a request for:
+     * createAnnons
+     *
+     * */
     public Request(Annons annons){
-        request = "habonaufneadai";
+        request = "createAnnons";
         this.annons = annons;
+    }
+
+    /**
+     * This constructor is used to create a request for:
+     * search
+     *
+     * */
+    public Request(Search search){
+        request = "search";
+        this.search = search;
     }
 
     public String getRequest() {
@@ -56,5 +70,13 @@ public class Request implements Serializable {
 
     public Loan getLoan() {
         return loan;
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
+    public Search getSearch() {
+        return search;
     }
 }

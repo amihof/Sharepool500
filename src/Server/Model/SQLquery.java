@@ -10,7 +10,7 @@ public class SQLquery {
 
     }
 
-    public boolean login(String email, String password){
+   /* public boolean login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class SQLquery {
         }
 
 
-    }
+    }*/
 
 
 

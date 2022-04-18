@@ -53,7 +53,7 @@ public class Client {
 
                     str = request.getRequest();
 
-                    switch (str){
+                    /*switch (str){
                         case "login":
                             try {
                                 oos.writeBoolean(
@@ -109,7 +109,7 @@ public class Client {
                                 e.printStackTrace();
                             }
                             break;
-                    }
+                    }*/
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -21,7 +21,7 @@ public class MainPanel extends JPanel {
      * @param height the height of the panel
      * @param controller is needed for it to function
      */
-    public MainPanel(int width, int height, Controller controller) {
+    public MainPanel(int width, int height, Controller controller, Boolean loggedIn) {
         super(null);
         this.width = width;
         this.height = height;

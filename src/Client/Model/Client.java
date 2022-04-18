@@ -106,8 +106,12 @@ public class Client {
 
                                 Boolean registered = ois.readBoolean();
                                 //send back result of register to amidala
-                                user.setUser(request.getUser()); /**the user information saves**/
-                                controller.registerNewUser(userName, email, password);/**registers the user with its information**/
+                                if(registered){
+                                    user.setUser(request.getUser()); /**the user information saves**/
+                                    controller.registerNewUser(userName, email, password);/**registers the user with its information**/
+                                } else{
+
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -118,9 +122,14 @@ public class Client {
                                 oos.flush();
 
                                 Boolean annonsCreated = ois.readBoolean();
+
                                 //send back result of creating the annons to amidala
-                                annons.setAnnons(request.getAnnons());
-                                controller.skapaAnnonsClicked();
+                                if(annonsCreated) {
+                                    annons.setAnnons(request.getAnnons());
+                                    controller.skapaAnnonsClicked();
+                                } else{
+                                    
+                                }
 
                             } catch (IOException e) {
                                 e.printStackTrace();

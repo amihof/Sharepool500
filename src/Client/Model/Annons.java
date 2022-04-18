@@ -20,6 +20,11 @@ public class Annons implements Serializable {
         this.publisher = publisher;
     }
 
+    public void setAnnons(Annons annons){
+
+    }
+
+
     public String getProductName() {
         return productName;
     }

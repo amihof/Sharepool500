@@ -1,6 +1,6 @@
 package Client.Model;
 
-public enum Categories {
+public enum Category {
 
     Kategori,
     Bygg_och_verktyg,

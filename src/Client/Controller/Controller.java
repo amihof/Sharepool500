@@ -1,6 +1,6 @@
 package Client.Controller;
 
-import Client.Model.Categories;
+import Client.Model.Category;
 import Client.View.main.MainFrame;
 
 public class Controller
@@ -65,8 +65,8 @@ public class Controller
         return password;
     }
 
-    public Categories[] getCategoriesValues() {
-        return Categories.values();
+    public Category[] getCategoriesValues() {
+        return Category.values();
     }
 
     public void uploadAnnons() {

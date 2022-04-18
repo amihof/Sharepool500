@@ -16,7 +16,7 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         try {
             String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');",username, email, password );
+                    "VALUES('%s', '%s', '%s');", email, password );
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
@@ -51,35 +51,29 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String text, Enum<Category> category, Date fromDate, Date toDate){
+    public ArrayList<Annons> search(String text, Enum<Category> category, Date fromDate, Date toDate) {
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
             String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');",username, email, password );
+                    "VALUES('%s', '%s', '%s');");
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, username);
-            pstmt.setString(2, email);
-            pstmt.setString(3, password);
+
 
             ResultSet resultSet = pstmt.executeQuery();
 
-            ArrayList<Annons> result;
+            ArrayList<Annons> result = null;
             Annons tempAnnons;
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 //result.add(new Annons(resultSet.getString(1)));
             }
-
-
-
-            return pstmt.execute();
+            return result;
 
         } catch (Exception p) {
             return null;
         }
-
 
     }
 
@@ -89,12 +83,10 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         try {
             String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');",username, email, password );
+                    "VALUES('%s', '%s', '%s');");
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, username);
-            pstmt.setString(2, email);
-            pstmt.setString(3, password);
+
             return pstmt.execute();
 
         } catch (Exception p) {

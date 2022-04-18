@@ -1,29 +1,41 @@
 package Client.Model;
 
-import Server.Model.Annons;
-import Server.Model.Chat;
-import Server.Model.Loan;
-import Server.Model.Message;
-import Server.Model.User;
+import java.io.Serial;
+import java.io.Serializable;
 
-public class Request {
+public class Request implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8969009813588142777L;
 
-    private String request;
-    private String response;
+    private static String request = "";
 
-    private User user;
-    private Chat chat;
-    private Message msg;
-    private Annons annons;
-    private Loan loan;
+    private User user = null;
+    private Chat chat = null;
+    private Message msg = null;
+    private Annons annons = null;
+    private Loan loan = null;
 
-    public Request(){
+    /**
+     * This constructor is used to create a request for:
+     * login
+     * register
+     * */
+    public Request(String requestType, User user){
+        if(requestType == "login") {
+            request = "ibsfefibse";
+            this.user = user;
 
+        }else if (requestType == "register"){
+            request = "isfhbefs";
+            this.user = user;
+        }
     }
 
-    public void setResponse(){
-
+    /**
+     * This constructor is used to create a skapa annons request*/
+    public Request(Annons annons){
+        request = "habonaufneadai";
+        this.annons = annons;
     }
 
     public String getRequest() {

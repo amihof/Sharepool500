@@ -8,8 +8,6 @@ public class Annons implements Serializable {
     @Serial
     private static final long serialVersionUID = 5403016831143700756L;
 
-    private static final String request = "habonaufneadai";
-
     private String productName;
     private String productDescription;
     private Enum<Category> productCategory;

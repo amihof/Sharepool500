@@ -52,7 +52,7 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String text, Enum<Category> category, Date date){
+   /* public ArrayList<Annons> search(String text, Enum<Category> category, Date date){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -82,9 +82,9 @@ public class SQLquery {
         }
 
 
-    }
+    }*/
 
-    public boolean createAnnons(String text){
+   /* public boolean createAnnons(String text){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -105,6 +105,6 @@ public class SQLquery {
 
     }
 
-
+*/
 
 }

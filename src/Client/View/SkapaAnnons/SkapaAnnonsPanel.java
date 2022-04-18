@@ -51,6 +51,8 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
 
         Color myNewColor = new Color (225, 143, 107);
 
+        Color backgroundColor = new Color(245, 221, 204);
+
         Color greenColor = new Color (167, 203, 156, 255);
 
         ButtonGroup G = new ButtonGroup();
@@ -88,6 +90,8 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
 
         j1.setBounds(50,220,100,50);
         j2.setBounds(200,220,100,50);
+        j1.setBackground(backgroundColor);
+        j2.setBackground(backgroundColor);
 
         j1.setText("Hyrs ut");
         j1.setFont(newFont.deriveFont(20.0F));
@@ -134,7 +138,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         postAnnons.setSize(230, 50);
         postAnnons.setHorizontalAlignment(JLabel.CENTER);
         postAnnons.addActionListener(l -> controller.uploadAnnons());
-        postAnnons.addActionListener(l -> controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText()));
+      //  postAnnons.addActionListener(l -> controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText()));
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(postAnnons);
 

@@ -20,6 +20,10 @@ public class Annons implements Serializable {
         this.publisher = publisher;
     }
 
+    public Annons(String productName, String productDescription, Enum<Category> productCategory){
+
+    }
+
     public void setAnnons(Annons annons){
 
     }

@@ -19,6 +19,11 @@ public class Annons implements Serializable {
         this.productCategory = productCategory;
     }
 
+    public void setAnnons(Annons annons){
+
+    }
+
+
     public String getProductName() {
         return productName;
     }

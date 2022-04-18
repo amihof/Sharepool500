@@ -44,7 +44,6 @@ public class RequestFactory {
     public RequestFactory(Search search){
         request = "search";
         this.search = search;
-        //searchObject.add(search);
 
     }
 

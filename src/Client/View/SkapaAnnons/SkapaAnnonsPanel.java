@@ -134,6 +134,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         postAnnons.setSize(230, 50);
         postAnnons.setHorizontalAlignment(JLabel.CENTER);
         postAnnons.addActionListener(l -> controller.uploadAnnons());
+        postAnnons.addActionListener(l -> controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText()));
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(postAnnons);
 

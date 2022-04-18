@@ -48,54 +48,64 @@ public class MainLogin extends JDialog
         this.registrera.setFont(newFont.deriveFont(25.0f));
         this.registrera.setHorizontalAlignment(0);
         this.add(this.registrera);
+
         (this.loggaIn = new JLabel("Logga in")).setLocation(375, 10);
         this.loggaIn.setSize(375, 100);
         this.loggaIn.setFont(newFont.deriveFont(25.0f));
         this.loggaIn.setHorizontalAlignment(0);
         this.add(this.loggaIn);
+
         (this.userNameField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Användarnamn");
         this.userNameField.setLocation(38, 100);
         this.userNameField.setSize(300, 40);
         this.userNameField.setFont(newFont.deriveFont(15.0f));
         this.userNameField.setHorizontalAlignment(2);
         this.add(this.userNameField);
+
         (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
         this.eMailField.setLocation(38, 160);
         this.eMailField.setSize(300, 40);
         this.eMailField.setFont(newFont.deriveFont(15.0f));
         this.eMailField.setHorizontalAlignment(2);
         this.add(this.eMailField);
+
         (this.passwordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
         this.passwordField.setLocation(38, 220);
         this.passwordField.setSize(300, 40);
         this.passwordField.setFont(newFont.deriveFont(15.0f));
         this.passwordField.setHorizontalAlignment(2);
         this.add(this.passwordField);
+
         (this.upprepaPasswordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Upprepa lösenord");
         this.upprepaPasswordField.setLocation(38, 280);
         this.upprepaPasswordField.setSize(300, 40);
         this.upprepaPasswordField.setFont(newFont.deriveFont(15.0f));
         this.upprepaPasswordField.setHorizontalAlignment(2);
         this.add(this.upprepaPasswordField);
+
         (this.eMailLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
         this.eMailLoginField.setLocation(413, 100);
         this.eMailLoginField.setSize(300, 40);
         this.eMailLoginField.setFont(newFont.deriveFont(15.0f));
         this.eMailLoginField.setHorizontalAlignment(2);
         this.add(this.eMailLoginField);
-        (this.passwordLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("L\u00f6senord");
+
+        (this.passwordLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
         this.passwordLoginField.setLocation(413, 160);
         this.passwordLoginField.setSize(300, 40);
         this.passwordLoginField.setFont(newFont.deriveFont(15.0f));
         this.passwordLoginField.setHorizontalAlignment(2);
         this.add(this.passwordLoginField);
+
         (this.registerUser = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
         this.registerUser.setBorderPainted(false);
         this.registerUser.setLocation(38, 340);
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
+        registerUser.addActionListener(l -> controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText()));
         this.add(this.registerUser);
+
         (this.loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
         this.loginButton.setBorderPainted(false);
         this.loginButton.setLocation(413, 340);
@@ -103,6 +113,7 @@ public class MainLogin extends JDialog
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
         this.add(this.loginButton);
+
         (this.forgotPassword = new JButton("Jag har glömt mitt lösenord")).setBackground(Color.WHITE);
         this.forgotPassword.setBorderPainted(false);
         this.forgotPassword.setLocation(375, 200);
@@ -112,10 +123,12 @@ public class MainLogin extends JDialog
         this.forgotPassword.setForeground(Color.GRAY);
         this.forgotPassword.setEnabled(true);
         this.add(this.forgotPassword);
+
         (this.streck = new JPanel()).setLayout(null);
         this.streck.setSize(2, 350);
         this.streck.setLocation(375, 35);
         this.streck.setBackground(Color.BLACK);
         this.add(this.streck);
+
     }
 }

@@ -1,6 +1,8 @@
 package Client.Controller;
 
 import Client.Model.Category;
+import Client.Model.Annons;
+import Client.Model.User;
 import Client.View.main.MainFrame;
 
 public class Controller
@@ -9,6 +11,10 @@ public class Controller
     private String password;
     private String email;
     private String userName;
+
+    private User user;
+
+    private Annons annons;
 
     public Controller() {
         final MainFrame view = new MainFrame(this);
@@ -50,9 +56,7 @@ public class Controller
     }
 
     public void registerNewUser(String userName, String email, String password) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
+        user = new User(userName, email, password);
     }
 
     public String getUserName(){
@@ -71,5 +75,10 @@ public class Controller
 
     public void uploadAnnons() {
         view.addAnnons();
+    }
+
+    public void newAnnons(String productName, String productDescription, Enum<Category> productCategory) {
+        annons = new Annons(productName, productDescription, productCategory );
+
     }
 }

@@ -11,8 +11,10 @@ public class User implements Serializable {
     private String password;
     private String email;
 
-    public User(String username){
+    public User(String email, String username, String password){
+        this.email = email;
         this.username = username;
+        this.password = password;
     }
 
     public int hashCode() {

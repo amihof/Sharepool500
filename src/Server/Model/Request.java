@@ -1,12 +1,5 @@
 package Server.Model;
 
-import Client.Model.Annons;
-import Client.Model.Chat;
-import Client.Model.Loan;
-import Client.Model.Message;
-import Client.Model.Search;
-import Client.Model.User;
-
 import java.io.Serial;
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
 package Server.Model;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SQLquery {
 
@@ -10,7 +10,7 @@ public class SQLquery {
 
     }
 
-    public boolean login(String username,String email, String password){
+    public boolean login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -19,9 +19,8 @@ public class SQLquery {
                     "VALUES('%s', '%s', '%s');",username, email, password );
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, username);
-            pstmt.setString(2, email);
-            pstmt.setString(3, password);
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
             return pstmt.execute();
 
         } catch (Exception p) {
@@ -52,7 +51,7 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String text, Enum<Category> category, Date date){
+    public ArrayList<Annons> search(String text, Enum<Category> category, Date fromDate, Date toDate){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -84,7 +83,7 @@ public class SQLquery {
 
     }
 
-    public boolean createAnnons(String text){
+    public boolean createAnnons(String productName, String productDescription, Enum<Category> productCategory, String email){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;

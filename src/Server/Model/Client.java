@@ -3,6 +3,7 @@ package Server.Model;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Client {
@@ -14,6 +15,7 @@ public class Client {
     private ObjectInputStream ois;
     private InputHandler ih;
 
+    private SQLquery sql;
     private InputHandler inputHandler;
     private InputListener inputListener;
     private final Thread inputHandlerThread, inputListenerThread;
@@ -51,22 +53,55 @@ public class Client {
 
                     str = request.getRequest();
 
-                    /*switch (str){
-                        case "":
+                    switch (str){
+                        case "login":
+                            try {
+                                oos.writeBoolean(sql.login(request.getUser().getEmail(), request.getUser().getPassword()));
+                                oos.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
-                        case "":
+                        case "register":
+                            try {
+                                oos.writeBoolean(sql.register(request.getUser().getUsername(), request.getUser().getEmail(), request.getUser().getPassword()));
+                                oos.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
-                        case "":
+                        case "createAnnons":
+                            try {
+                                oos.writeBoolean(
+                                        sql.createAnnons(
+                                                request.getAnnons().getProductName(),
+                                                request.getAnnons().getProductDescription(),
+                                                request.getAnnons().getProductCategory(),
+                                                request.getUser().getEmail()
+                                        )
+                                );
+                                oos.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
-                        case "":
+                        case "search":
+                            ArrayList<Annons> result = sql.search(
+                                    request.getSearch().getText(),
+                                    request.getSearch().getCategory(),
+                                    request.getSearch().getFromDate(),
+                                    request.getSearch().getToDate()
+                            );
                             break;
-                        case "":
+                        default:
+                            try {
+                                oos.writeBoolean(false);
+                                oos.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
-                        case "":
-                            break;
-                        case "":
-                            break;
-                    }*/
+                    }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

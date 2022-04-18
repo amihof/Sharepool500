@@ -4,6 +4,7 @@ import Client.View.main.RoundedPanelExample;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import Client.Controller.Controller;
 import javax.swing.JButton;
@@ -103,6 +104,17 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
+        registerUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (passwordField == upprepaPasswordField && eMailField != null && userNameField != null){
+                    controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText());
+                }
+                else{
+                    System.out.println("error");
+                }
+            }
+        });
+
         registerUser.addActionListener(l -> controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText()));
         this.add(this.registerUser);
 

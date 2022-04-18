@@ -73,10 +73,12 @@ public class AnnonsPanel extends JPanel {
         this.add(sortAfterText);
 
         ButtonGroup G = new ButtonGroup();
+        JRadioButton buttonCircle = new JRadioButton();
+        JRadioButton buttonCircle2 = new JRadioButton();
         G.add(buttonCircle);
         G.add(buttonCircle2);
 
-        buttonCircle = new CircleButton("");
+     /*   buttonCircle = new CircleButton("");
         buttonCircle.setBorderPainted(false);
         buttonCircle.setLocation(200, 72);
         buttonCircle.setSize(20, 20);
@@ -100,9 +102,24 @@ public class AnnonsPanel extends JPanel {
                 controller.uploadAnnons();
             }
         });
+        this.add(buttonCircle2);*/
+
+        buttonCircle.setBounds(400,62,100,50);
+        buttonCircle2.setBounds(200,62,100,50);
+
+        buttonCircle.setText("Hyrs ut");
+        buttonCircle.setFont(newFont.deriveFont(20.0F));
+        buttonCircle.setBackground(myNewColor);
+
+        buttonCircle2.setText("Sökes");
+        buttonCircle2.setFont(newFont.deriveFont(20.0F));
+        buttonCircle2.setBackground(myNewColor);
+
+
+        this.add(buttonCircle);
         this.add(buttonCircle2);
 
-        hyrsUtLabel = new JLabel("Hyrs ut");
+       /* hyrsUtLabel = new JLabel("Hyrs ut");
         hyrsUtLabel.setLocation(240, 60);
         hyrsUtLabel.setSize(300, 50);
         hyrsUtLabel.setFont(newFont.deriveFont(20.0F));
@@ -114,7 +131,7 @@ public class AnnonsPanel extends JPanel {
         searchLabel.setSize(300, 50);
         searchLabel.setFont(newFont.deriveFont(20.0F));
         searchLabel.setHorizontalAlignment(JLabel.LEFT);
-        this.add(searchLabel);
+        this.add(searchLabel);*/
 
         /*JPanel testtest = new JPanel();
         OneAnnons annonser = new OneAnnons();

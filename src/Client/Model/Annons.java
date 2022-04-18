@@ -11,9 +11,9 @@ public class Annons implements Serializable {
     private User publisher;
     private String productName;
     private String productDescription;
-    private Enum<Category> productCategory;
+    private Category productCategory;
 
-    public Annons(String productName, String productDescription, Enum<Category> productCategory, User publisher) {
+    public Annons(String productName, String productDescription, Category productCategory, User publisher) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;

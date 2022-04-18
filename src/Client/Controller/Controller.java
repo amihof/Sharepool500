@@ -12,12 +12,15 @@ public class Controller
     private String email;
     private String userName;
 
+    private boolean loggedIn;
+
     private User user;
 
     private Annons annons;
 
     public Controller() {
-        final MainFrame view = new MainFrame(this);
+        loggedIn = false;
+        final MainFrame view = new MainFrame(this, loggedIn);
         this.view = view;
     }
 
@@ -57,6 +60,7 @@ public class Controller
 
     public void registerNewUser(String userName, String email, String password) {
         user = new User(userName, email, password);
+        this.user = user;
     }
 
     public String getUserName(){
@@ -77,8 +81,13 @@ public class Controller
         view.addAnnons();
     }
 
-    public void newAnnons(String productName, String productDescription, Enum<Category> productCategory) {
-        annons = new Annons(productName, productDescription, productCategory );
+    public void newAnnons(String productName, String productDescription, Category productCategory) {
+        annons = new Annons(productName, productDescription, productCategory, user);
 
     }
+
+    public void loggedInOrNot(boolean loggedIn){
+
+    }
+
 }

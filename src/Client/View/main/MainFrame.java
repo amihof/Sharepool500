@@ -36,17 +36,21 @@ public class MainFrame
     private AnnonsPanel annonsPanel;
     private JPanel newAnnonsPanel;
 
+    private boolean loggedIn;
+
     private int i;
     private JPanel listContainer;
 
-    public MainFrame(final Controller controller) {
+    public MainFrame(final Controller controller, boolean loggedIn) {
+        this.loggedIn = loggedIn;
+        
         this.controller = controller;
         this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller);
         this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
         this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
         this.mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller);
         this.frame = new JFrame();
-        this.mainPanel = new MainPanel(this.width, this.height, controller);
+        this.mainPanel = new MainPanel(this.width, this.height, controller, loggedIn);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
         this.frame.setResizable(true);
         this.frame.setDefaultCloseOperation(3);
@@ -98,7 +102,7 @@ public class MainFrame
     }
 
     public void updateJFrameHome(Controller controller) {
-        this.mainPanel = new MainPanel(width, height, controller);
+        this.mainPanel = new MainPanel(width, height, controller,loggedIn);
         this.frame.add(this.mainPanel);
         this.frame.setDefaultCloseOperation(3);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));

@@ -10,7 +10,7 @@ public class SQLquery {
 
     }
 
-   /* public boolean login(String email, String password){
+   public boolean login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -51,7 +51,7 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String text, Enum<Category> category, Date fromDate, Date toDate) {
+    public ArrayList<Annons> search(String text, Category category, Date fromDate, Date toDate) {
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -77,7 +77,7 @@ public class SQLquery {
 
     }
 
-    public boolean createAnnons(String productName, String productDescription, Enum<Category> productCategory, String publisherEmail, Boolean renting){
+    public boolean createAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class SQLquery {
         }
 
 
-    }*/
+    }
 
 
 

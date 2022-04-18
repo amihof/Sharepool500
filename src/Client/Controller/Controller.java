@@ -81,9 +81,9 @@ public class Controller
         view.addAnnons();
     }
 
-    public void newAnnons(String productName, String productDescription, Category productCategory) {
+    public void newAnnons(String productName, String productDescription, Category productCategory, User publisher,Boolean renting) {
 
-        annons = new Annons(productName, productDescription, productCategory, user);
+        annons = new Annons(productName, productDescription, productCategory, publisher ,renting);
 
     }
 

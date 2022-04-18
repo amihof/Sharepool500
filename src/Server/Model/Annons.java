@@ -10,10 +10,10 @@ public class Annons implements Serializable {
     private User publisher;
     private String productName;
     private String productDescription;
-    private Enum<Category> productCategory;
+    private Category productCategory;
     private boolean renting;
 
-    public Annons(String productName, String productDescription, Enum<Category> productCategory, User publisher, Boolean renting) {
+    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
@@ -31,7 +31,7 @@ public class Annons implements Serializable {
         return productDescription;
     }
 
-    public Enum<Category> getProductCategory() {
+    public Category getProductCategory() {
         return productCategory;
     }
 

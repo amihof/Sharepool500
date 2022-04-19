@@ -26,19 +26,29 @@ public class Client {
     private final Thread inputHandlerThread;
 
     public Client(int proxy, String ip) {
+        System.out.println("client starta");
         this.proxy = proxy;
         this.ip = ip;
         try {
             socket  = new Socket(ip, proxy);
-            oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("try catch färdig");
         inputHandler = new InputHandler();
+        System.out.println("ny inputhandler");
 
         inputHandlerThread = new Thread(inputHandler);
+        inputHandlerThread.start();
+        System.out.println("starta tråd");
 
+    }
+
+    public void addToBuffer(Request request){
+        inputHandler.addToBuffer(request);
     }
 
 
@@ -54,11 +64,8 @@ public class Client {
             inputBuffer.put(request);
         }
 
-
         @Override
         public synchronized void run() {
-            controller = new Controller();
-            user = new User();
             Object o = null;
             while (!Thread.interrupted()) {
                 Request request = null;
@@ -97,9 +104,6 @@ public class Client {
                             break;
                         //case for register
                         case "register":
-                            String userName = user.getUsername();
-                            String email = user.getEmail();
-                            String password = user.getPassword();
                             try {
                                 oos.writeObject(request);
                                 oos.flush();
@@ -107,8 +111,9 @@ public class Client {
                                 Boolean registered = ois.readBoolean();
                                 //send back result of register to amidala
                                 if(registered){
+                                    user = request.getUser();
                                     user.setUser(request.getUser()); /**the user information saves**/
-                                    controller.registerNewUser(userName, email, password);/**registers the user with its information**/
+                                   // controller.registerNewUser(userName, email, password);/**registers the user with its information**/
                                 } else{
 
                                 }
@@ -164,4 +169,5 @@ public class Client {
             }
         }
     }
+
 }

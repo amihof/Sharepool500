@@ -22,11 +22,11 @@ public class Request implements Serializable {
      * register
      * */
     public Request(String requestType, User user){
-        if(requestType == "login") {
+        if(requestType.equals("login")) {
             request = "login";
             this.user = user;
 
-        }else if (requestType == "register"){
+        }else if (requestType.equals("register")){
             request = "register";
             this.user = user;
         }

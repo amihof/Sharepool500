@@ -22,8 +22,19 @@ public class Client {
 
     public Client(Socket s) {
         this.socket = s;
+
+        try{
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+            oos.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         inputHandler = new InputHandler();
         inputListener = new InputListener();
+
 
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);

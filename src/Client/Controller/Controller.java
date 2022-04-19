@@ -1,8 +1,6 @@
 package Client.Controller;
 
-import Client.Model.Category;
-import Client.Model.Annons;
-import Client.Model.User;
+import Client.Model.*;
 import Client.View.main.MainFrame;
 
 public class Controller
@@ -11,6 +9,8 @@ public class Controller
     private String password;
     private String email;
     private String userName;
+    private RequestFactory requestFactory;
+    private Client client;
 
     private boolean loggedIn;
 
@@ -20,8 +20,12 @@ public class Controller
 
     public Controller() {
         loggedIn = false;
-        final MainFrame view = new MainFrame(this, loggedIn);
+        MainFrame view = new MainFrame(this, loggedIn);
         this.view = view;
+        System.out.println("view färdig");
+        client = new Client(725,"127.0.0.1");
+        System.out.println("client färdig");
+        requestFactory = new RequestFactory(client);
     }
 
     public void homePage() {
@@ -59,8 +63,7 @@ public class Controller
     }
 
     public void registerNewUser(String userName, String email, String password) {
-        user = new User(userName, email, password);
-        this.user = user;
+        requestFactory.register(new User(userName, email, password));
     }
 
     public String getUserName(){

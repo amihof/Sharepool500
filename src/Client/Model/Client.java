@@ -125,7 +125,7 @@ public class Client {
 
                                 //send back result of creating the annons to amidala
                                 if(annonsCreated) {
-                                    annons.setAnnons(request.getAnnons());
+                                    //annons.setAnnons(request.getAnnons());
                                     controller.skapaAnnonsClicked();
                                 } else{
                                     

@@ -117,6 +117,7 @@ public class MainLogin extends JDialog
         });
 
         registerUser.addActionListener(l -> controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText()));
+        registerUser.addActionListener(l-> this.dispose());
         this.add(this.registerUser);
 
         (this.loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
@@ -125,7 +126,8 @@ public class MainLogin extends JDialog
         this.loginButton.setSize(300, 50);
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
-        //loginButton.addActionListener(l-> controller.login());
+        loginButton.addActionListener(l-> controller.login());
+        loginButton.addActionListener(l-> this.dispose());
         this.add(this.loginButton);
 
         (this.forgotPassword = new JButton("Jag har glömt mitt lösenord")).setBackground(Color.WHITE);

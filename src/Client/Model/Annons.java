@@ -12,10 +12,10 @@ public class Annons implements Serializable {
     private String productName;
     private String productDescription;
     private Category productCategory;
-    private Boolean renting;
+    private String renting;
 
 
-    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting) {
+    public Annons(String productName, String productDescription, Category productCategory/*, User publisher*/, String renting) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
@@ -41,5 +41,5 @@ public class Annons implements Serializable {
         return publisher;
     }
 
-    public Boolean getRenting(){return renting;}
+    public String getRenting(){return renting;}
 }

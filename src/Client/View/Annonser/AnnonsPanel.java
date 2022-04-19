@@ -78,32 +78,6 @@ public class AnnonsPanel extends JPanel {
         G.add(buttonCircle);
         G.add(buttonCircle2);
 
-     /*   buttonCircle = new CircleButton("");
-        buttonCircle.setBorderPainted(false);
-        buttonCircle.setLocation(200, 72);
-        buttonCircle.setSize(20, 20);
-        buttonCircle.setFont(newFont.deriveFont(15.0F));
-        buttonCircle.setHorizontalAlignment(JLabel.CENTER);
-        buttonCircle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        this.add(buttonCircle);
-
-        buttonCircle2 = new CircleButton("");
-        buttonCircle2.setBorderPainted(false);
-        buttonCircle2.setLocation(400, 72);
-        buttonCircle2.setSize(20, 20);
-        buttonCircle2.setFont(newFont.deriveFont(15.0F));
-        buttonCircle2.setHorizontalAlignment(JLabel.CENTER);
-        buttonCircle2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                controller.uploadAnnons();
-            }
-        });
-        this.add(buttonCircle2);*/
-
         buttonCircle.setBounds(400,62,100,50);
         buttonCircle2.setBounds(200,62,100,50);
 

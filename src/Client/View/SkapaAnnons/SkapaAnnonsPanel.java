@@ -15,6 +15,7 @@ import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import static java.awt.Color.black;
 
@@ -32,7 +33,10 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
     private JButton uploadPic;
     private JLabel picLabel = new JLabel();
     private ImageIcon clientPicture;
-
+    private JRadioButton j1;
+    private JRadioButton j2;
+    private ButtonGroup G;
+    private String radioButtonText = null;
 
     public SkapaAnnonsPanel(int width, int height, Controller controller) {
         this.setLayout(null);
@@ -56,9 +60,9 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
 
         Color greenColor = new Color (167, 203, 156, 255);
 
-        ButtonGroup G = new ButtonGroup();
-        JRadioButton j1 = new JRadioButton();
-        JRadioButton j2 = new JRadioButton();
+        G = new ButtonGroup();
+        j1 = new JRadioButton();
+        j2 = new JRadioButton();
         G.add(j1);
         G.add(j2);
 
@@ -95,13 +99,16 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         j2.setBackground(backgroundColor);
 
         j1.setText("Hyrs ut");
+        j2.setActionCommand("Hyrs ut");
         j1.setFont(newFont.deriveFont(20.0F));
 
         j2.setText("Sökes");
+        j2.setActionCommand("Sökes");
         j2.setFont(newFont.deriveFont(20.0F));
 
         this.add(j1);
         this.add(j2);
+
 
         rubrikTextField = new RoundedPanelExample.RoundedTextField(20);
         rubrikTextField.setLocation(50, 310);
@@ -139,7 +146,21 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         postAnnons.setSize(230, 50);
         postAnnons.setHorizontalAlignment(JLabel.CENTER);
         postAnnons.addActionListener(l -> controller.uploadAnnons());
-        postAnnons.addActionListener(l -> controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem()));
+        postAnnons.addActionListener(this);
+        postAnnons.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Enumeration<AbstractButton> allRadioButton=G.getElements();
+                while(allRadioButton.hasMoreElements())
+                {
+                    JRadioButton temp=(JRadioButton)allRadioButton.nextElement();
+                    if(temp.isSelected())
+                    {
+                        radioButtonText = temp.getText();
+                    }
+                }
+                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), radioButtonText);
+            }
+        });
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(postAnnons);
 
@@ -202,6 +223,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
             }
             uploadPic.setEnabled(false);
         }
+
     }
 
     public ImageIcon setPicture(String fileName){

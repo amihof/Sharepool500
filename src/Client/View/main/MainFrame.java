@@ -193,13 +193,14 @@ public class MainFrame
 
     public void addAnnons(){
         OneAnnons newAnnons = new OneAnnons();
-        listContainer.add(newAnnons);
-        listContainer.revalidate();
+        //listContainer.add(newAnnons);
+        //listContainer.revalidate();
 
     }
 
     public void dispose() {
         frame.dispose();
+        mainLogin.dispose();
 
     }
 }

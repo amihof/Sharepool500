@@ -15,8 +15,7 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');", email, password );
+            String QUERY = "call procedure_login(?,?)";
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
@@ -35,8 +34,7 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');",username, email, password );
+            String QUERY = "call procedure_create_user(?,?,?)";
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, username);
@@ -51,17 +49,14 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String text, Category category, Date fromDate, Date toDate) {
-
+    public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
+
         PreparedStatement pstmt = null;
         try {
-            String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
-                    "VALUES('%s', '%s', '%s');");
+            String QUERY = "call procedure_search_annons(?,?,?,?)";
 
             pstmt = con.prepareStatement(QUERY);
-
-
             ResultSet resultSet = pstmt.executeQuery();
 
             ArrayList<Annons> result = null;
@@ -82,7 +77,7 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = String.format("INSERT INTO \"user\" (username, email, password) " +
+            String QUERY = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
                     "VALUES('%s', '%s', '%s');");
 
             pstmt = con.prepareStatement(QUERY);

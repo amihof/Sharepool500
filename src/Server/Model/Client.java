@@ -41,6 +41,9 @@ public class Client {
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);
 
+        inputHandlerThread.start();
+        inputListenerThread.start();
+
         if(!streamWorking){
            inputHandlerThread.interrupt();
            inputListenerThread.interrupt();
@@ -148,6 +151,8 @@ public class Client {
             Object input = null;
             while (!Thread.interrupted()) {
                 try {
+                    System.out.println("waiting to read");
+
                     input = ois.readObject();
 
                     System.out.println("i read the request");

@@ -2,8 +2,8 @@ package Client.View.SkapaAnnons;
 
 
 import Client.Controller.Controller;
-import Client.Model.Category;
 import Client.View.main.RoundedPanelExample;
+import Delad.Category;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -158,7 +158,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
                         radioButtonText = temp.getText();
                     }
                 }
-                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), radioButtonText);
+                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), controller.getEmail(), radioButtonText == "Hyrs ut" ? true : false);
             }
         });
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));

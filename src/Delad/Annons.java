@@ -22,7 +22,6 @@ public class Annons implements Serializable {
     }
 
 
-
     public String getProductName() {
         return productName;
     }

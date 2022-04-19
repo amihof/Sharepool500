@@ -1,5 +1,8 @@
 package Client.Model;
 
+import Delad.Request;
+import Delad.User;
+
 import java.util.ArrayList;
 
 public class RequestFactory {

@@ -1,6 +1,10 @@
 package Client.Model;
 
 import Client.Controller.Controller;
+import Delad.Annons;
+import Delad.Buffer;
+import Delad.Request;
+import Delad.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -92,7 +96,7 @@ public class Client {
                                 Boolean loggedIn = ois.readBoolean(); /**sees if its logged in**/
                                 //send back result of login to amidala
                                 if(loggedIn){
-                                    user.setUser(request.getUser()); /**the user information saves**/
+                                    user = request.getUser(); /**the user information saves**/
                                     controller.loginClicked(); /**usern logs in to the program**/
                                 } else{
 
@@ -111,8 +115,7 @@ public class Client {
                                 Boolean registered = ois.readBoolean();
                                 //send back result of register to amidala
                                 if(registered){
-                                    user = request.getUser();
-                                    user.setUser(request.getUser()); /**the user information saves**/
+                                    user = request.getUser();/**the user information saves**/
                                    // controller.registerNewUser(userName, email, password);/**registers the user with its information**/
                                 } else{
 

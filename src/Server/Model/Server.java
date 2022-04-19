@@ -32,7 +32,7 @@ public class Server {
     }
 
     private ServerSocket ss;
-    private int port = 2343;
+    private int port = 725;
 
     private ClientConnector connector;
 

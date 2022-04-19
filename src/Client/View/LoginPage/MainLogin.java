@@ -107,12 +107,12 @@ public class MainLogin extends JDialog
         this.registerUser.setHorizontalAlignment(0);
         registerUser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (passwordField == upprepaPasswordField && eMailField != null && userNameField != null){
+               // if (passwordField == upprepaPasswordField && eMailField != null && userNameField != null){
                     controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText());
-                }
-                else{
-                    System.out.println("error");
-                }
+               // }
+                //else{
+                //    System.out.println("error");
+                //}
             }
         });
 

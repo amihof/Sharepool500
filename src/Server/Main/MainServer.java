@@ -1,7 +1,9 @@
 package Server.Main;
 
 
+import Server.Model.Category;
 import Server.Model.Server;
+
 
 /**
  * MainServer is the starting point for the Server-side of the Application

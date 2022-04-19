@@ -1,4 +1,4 @@
-package Server.Model;
+package Delad;
 
 public enum Category {
 

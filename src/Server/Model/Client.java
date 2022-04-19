@@ -1,10 +1,18 @@
 package Server.Model;
 
 
+import Delad.Annons;
+import Delad.Buffer;
+import Delad.Request;
+import Delad.User;
+
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static java.nio.charset.StandardCharsets.*;
 
 public class Client {
     private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
@@ -23,7 +31,7 @@ public class Client {
     public Client(Socket s) {
         this.socket = s;
         Boolean streamWorking;
-        try{
+        try {
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
             oos.flush();
@@ -44,27 +52,27 @@ public class Client {
         inputHandlerThread.start();
         inputListenerThread.start();
 
-        if(!streamWorking){
-           inputHandlerThread.interrupt();
-           inputListenerThread.interrupt();
+
+        if (!streamWorking) {
+            inputHandlerThread.interrupt();
+            inputListenerThread.interrupt();
         }
     }
 
-    private class InputHandler implements Runnable{
+    private class InputHandler implements Runnable {
         private Buffer<Request> inputBuffer;
 
-        public InputHandler(){
+        public InputHandler() {
             inputBuffer = new Buffer<>();
         }
 
-        public void addToBuffer(Request request){
+        public void addToBuffer(Request request) {
             inputBuffer.put(request);
         }
 
 
         @Override
         public synchronized void run() {
-            Object o = null;
             while (!Thread.interrupted()) {
                 Request request = null;
                 String str = null;
@@ -72,70 +80,50 @@ public class Client {
                     request = inputBuffer.get();
 
                     str = request.getRequest();
+                    System.out.println(str);
 
-                    switch (str){
-                        case "login":
-                            try {
-                                oos.writeBoolean(
-                                        sql.login(
-                                                request.getUser().getEmail(),
-                                                request.getUser().getPassword())
-                                );
-                                oos.flush();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "register":
-                            System.out.println("enter case register");
-                            try {
-                                oos.writeBoolean(
-                                        sql.register(
-                                                request.getUser().getUsername(),
-                                                request.getUser().getEmail(),
-                                                request.getUser().getPassword()));
-                                oos.flush();
-                                System.out.println("query executed and request handled");
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "createAnnons":
-                            try {
-                                oos.writeBoolean(
-                                        sql.createAnnons(
-                                                request.getAnnons().getProductName(),
-                                                request.getAnnons().getProductDescription(),
-                                                request.getAnnons().getProductCategory(),
-                                                request.getUser().getEmail(),
-                                                request.getAnnons().getRenting()
-                                        )
-                                );
-                                oos.flush();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "search":
-                            ArrayList<Annons> result = sql.search(
-                                    request.getSearch().getText(),
-                                    request.getSearch().getCategory(),
-                                    request.getSearch().getFromDate(),
-                                    request.getSearch().getToDate()
-                            );
-                            break;
-                        default:
-                            System.out.println("default case and return false");
-                            try {
-                                oos.writeBoolean(false);
-                                oos.flush();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
+                    if (str.equals("login")) {
+                        oos.writeBoolean(
+                                sql.login(
+                                        request.getUser().getEmail(),
+                                        request.getUser().getPassword())
+                        );
+                        oos.flush();
+                    } else if (str.equals("register")) {
+                        System.out.println("register request is going to be handled");
+                        oos.writeBoolean(
+                                sql.register(
+                                        request.getUser().getUsername(),
+                                        request.getUser().getEmail(),
+                                        request.getUser().getPassword()));
+                        oos.flush();
+                        System.out.println("query executed and request handled");
+
+                    } else if (str.equals("createAnnons")) {
+                        oos.writeBoolean(
+                                sql.createAnnons(
+                                        request.getAnnons().getProductName(),
+                                        request.getAnnons().getProductDescription(),
+                                        request.getAnnons().getProductCategory(),
+                                        request.getUser().getEmail(),
+                                        request.getAnnons().getRenting()
+                                )
+                        );
+                        oos.flush();
+                    } else if (str.equals("search")) {
+                        ArrayList<Annons> result = sql.search(
+                                request.getSearch().getText(),
+                                request.getSearch().getCategory(),
+                                request.getSearch().getFromDate(),
+                                request.getSearch().getToDate()
+                        );
+                    } else {
+                        System.out.println("default case and return false");
+                        oos.writeBoolean(false);
+                        oos.flush();
                     }
 
-                } catch (InterruptedException e) {
+                } catch (IOException | InterruptedException e) {
                     System.out.println("didnt enter the switch statement. Interrupted thread");
                     e.printStackTrace();
                 }
@@ -144,7 +132,7 @@ public class Client {
         }
     }
 
-    private class InputListener implements Runnable{
+    private class InputListener implements Runnable {
 
         @Override
         public synchronized void run() {
@@ -157,9 +145,10 @@ public class Client {
 
                     System.out.println("i read the request");
 
-                    if(input.getClass().isAssignableFrom(Request.class)){
+                    if (input.getClass().isAssignableFrom(Request.class)) {
                         inputHandler.addToBuffer((Request) input);
                     } else {
+                        System.out.println(input.getClass().toString());
                         throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");
                     }
 

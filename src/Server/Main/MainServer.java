@@ -1,7 +1,6 @@
 package Server.Main;
 
 
-import Server.Model.Category;
 import Server.Model.Server;
 
 

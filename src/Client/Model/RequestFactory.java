@@ -1,5 +1,8 @@
 package Client.Model;
 
+import Delad.Request;
+import Delad.User;
+
 import java.util.ArrayList;
 
 public class RequestFactory {
@@ -11,11 +14,11 @@ public class RequestFactory {
     }
 
     public void login(User user){
-        client.addToBuffer(new Request("login", user));
+        client.addToBuffer(new Request(false, user));
     }
 
     public void register(User user){
-        client.addToBuffer(new Request("register", user));
+        client.addToBuffer(new Request(true, user));
     }
 }
 

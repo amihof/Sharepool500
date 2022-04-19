@@ -2,6 +2,9 @@ package Client.Controller;
 
 import Client.Model.*;
 import Client.View.main.MainFrame;
+import Delad.Annons;
+import Delad.Category;
+import Delad.User;
 
 public class Controller
 {
@@ -84,9 +87,9 @@ public class Controller
         view.addAnnons();
     }
 
-    public void newAnnons(String productName, String productDescription, Category productCategory, String renting) {
+    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting) {
 
-        annons = new Annons(productName, productDescription, productCategory /*publisher*/ ,renting);
+        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting);
 
     }
 

@@ -1,4 +1,4 @@
-package Server.Model;
+package Delad;
 
 import javax.swing.*;
 import java.io.Serial;

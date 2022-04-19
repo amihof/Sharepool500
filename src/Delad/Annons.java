@@ -1,4 +1,4 @@
-package Server.Model;
+package Delad;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,7 +20,6 @@ public class Annons implements Serializable {
         this.publisher = publisher;
         this.renting  = renting;
     }
-
 
 
     public String getProductName() {

@@ -13,7 +13,7 @@ public class SQLquery {
 
     }
 
-   public boolean login(String email, String password){
+    public boolean login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -43,32 +43,37 @@ public class SQLquery {
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
-
-            System.out.println("Quert prepared and will execute");
             return pstmt.execute();
 
         } catch (Exception p) {
-            System.out.println("query executed and result was false");
             return false;
         }
 
 
     }
 
-    public ArrayList<Annons> search(String searchText, Category category, Date fromDate, Date toDate) {
+    // To do date
+
+    public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
+
 
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_search_annons(?,?,?,?)";
+            String QUERY = "SELECT  product.name, product.description, annons.owner_email FROM product_type " +
+                    "INNER JOIN product ON  product_type.id = product.product_type_id " +
+                    "INNER JOIN annons ON product.id = annons.p_id " +
+                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%';";
 
             pstmt = con.prepareStatement(QUERY);
+            pstmt.setString(1,category.toString());
+            pstmt.setString(2,productname);
             ResultSet resultSet = pstmt.executeQuery();
 
             ArrayList<Annons> result = null;
             Annons tempAnnons;
             while (resultSet.next()) {
-                //result.add(new Annons(resultSet.getString(1)));
+                //result.add(new Annons(resultSet.getString(1),category.valueOf(resultSet.getString(2)),));
             }
             return result;
 
@@ -83,9 +88,14 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
-                    "VALUES('%s', '%s', '%s');");
+            String QUERY = "call procedure_create_annons(?,?,?,?,?)";
 
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setString(1, productName);
+            pstmt.setString(2, productDescription);
+            pstmt.setString(3, productCategory.toString());
+            pstmt.setString(4, publisherEmail);
+            pstmt.setBoolean(5, renting);
             pstmt = con.prepareStatement(QUERY);
 
             return pstmt.execute();

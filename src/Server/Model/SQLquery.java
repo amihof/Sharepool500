@@ -1,5 +1,8 @@
 package Server.Model;
 
+import Delad.Annons;
+import Delad.Category;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;

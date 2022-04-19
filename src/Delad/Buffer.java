@@ -1,11 +1,8 @@
-package Client.Model;
-
-import Server.Model.Message;
+package Delad;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.Stack;
 
 public class Buffer<T> implements Serializable {
     @Serial

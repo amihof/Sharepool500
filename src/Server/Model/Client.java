@@ -1,6 +1,11 @@
 package Server.Model;
 
 
+import Delad.Annons;
+import Delad.Buffer;
+import Delad.Request;
+import Delad.User;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -151,6 +156,7 @@ public class Client {
                     if(input.getClass().isAssignableFrom(Request.class)){
                         inputHandler.addToBuffer((Request) input);
                     } else {
+                        System.out.println(input.getClass().toString());
                         throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");
                     }
 

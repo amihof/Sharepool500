@@ -1,4 +1,4 @@
-package Client.Model;
+package Delad;
 
 public class Loan {
 }

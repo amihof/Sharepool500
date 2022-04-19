@@ -1,4 +1,7 @@
-package Client.Model;
+package Delad;
+
+
+import Delad.Category;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,9 +15,9 @@ public class Search implements Serializable {
     private String text = "";
     private Date toDate = null;
     private Date fromDate = null;
-    private Enum<Category> category = null;
+    private Category category = null;
 
-    public Search(String text, Date toDate, Date fromDate, Enum<Category> category) {
+    public Search(String text, Date toDate, Date fromDate, Category category) {
         this.text = text;
         this.toDate = toDate;
         this.fromDate = fromDate;
@@ -33,7 +36,7 @@ public class Search implements Serializable {
         return fromDate;
     }
 
-    public Enum<Category> getCategory() {
+    public Category getCategory() {
         return category;
     }
 }

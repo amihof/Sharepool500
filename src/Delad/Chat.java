@@ -1,4 +1,4 @@
-package Server.Model;
+package Delad;
 
 import java.io.Serial;
 import java.io.Serializable;

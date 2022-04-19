@@ -5,6 +5,7 @@ import Client.View.main.RoundedPanelExample;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import Client.Controller.Controller;
 import javax.swing.JButton;
@@ -104,7 +105,7 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
-        registerUser.addActionListener(new java.awt.event.ActionListener() {
+        registerUser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (passwordField == upprepaPasswordField && eMailField != null && userNameField != null){
                     controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText());
@@ -124,6 +125,7 @@ public class MainLogin extends JDialog
         this.loginButton.setSize(300, 50);
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
+        //loginButton.addActionListener(l-> controller.login());
         this.add(this.loginButton);
 
         (this.forgotPassword = new JButton("Jag har glömt mitt lösenord")).setBackground(Color.WHITE);

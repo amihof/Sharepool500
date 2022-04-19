@@ -38,17 +38,16 @@ public class MainFrame
 
     private boolean loggedIn;
 
-    private int i;
     private JPanel listContainer;
 
     public MainFrame(final Controller controller, boolean loggedIn) {
         this.loggedIn = loggedIn;
         
         this.controller = controller;
-        this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller);
-        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
-        this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
-        this.mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller);
+        this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller, loggedIn);
+        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn);
+        this.mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn);
+        this.mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller, loggedIn);
         this.frame = new JFrame();
         this.mainPanel = new MainPanel(this.width, this.height, controller, loggedIn);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -57,7 +56,6 @@ public class MainFrame
         this.frame.pack();
         this.frame.setVisible(true);
         this.frame.add((Component)this.mainPanel);
-        //initUI();
     }
 
     public void loginButtonClicked(final Controller controller) {
@@ -89,7 +87,7 @@ public class MainFrame
     }
 
     public void updateJFrame(Controller controller) {
-        this.mainPanelSFD = new MainPanelSFD(width, height, controller);
+        this.mainPanelSFD = new MainPanelSFD(width, height, controller, loggedIn);
         this.frame.add(this.mainPanelSFD);
         this.frame.setDefaultCloseOperation(3);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -115,7 +113,7 @@ public class MainFrame
     }
 
     public void updateJFrameMinaSidor(Controller controller) {
-        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller);
+        this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn);
         this.frame.add(this.mainPanelMinaSidor);
         this.frame.setDefaultCloseOperation(3);
         this.frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -128,7 +126,7 @@ public class MainFrame
     }
 
     public void updateJFrameSkapaAnnons(Controller controller) {
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
        // this.frame.add(this.mainPanelSkapaAnnons);
         frame.add(topPanel);
         this.frame.setDefaultCloseOperation(3);
@@ -144,7 +142,7 @@ public class MainFrame
     }
 
     public void updateJFrameAnnons(Controller controller) {
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
         annonsPanel = new AnnonsPanel(width, height-100, controller);
         //this.mainPanelAnnons = new MainPanelAnnons(width, height, controller);
         //this.frame.add(this.mainPanelAnnons);
@@ -197,6 +195,11 @@ public class MainFrame
         OneAnnons newAnnons = new OneAnnons();
         listContainer.add(newAnnons);
         listContainer.revalidate();
+
+    }
+
+    public void dispose() {
+        frame.dispose();
 
     }
 }

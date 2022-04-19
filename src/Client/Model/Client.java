@@ -86,86 +86,63 @@ public class Client {
                      * final, send the information back ami so she can present them to the user
                      * rinse, repeat
                      * */
-                    switch (str){
-                        //case for login
-                        case "login" :
-                            try {
-                                oos.writeObject(request); /**sends the request**/
-                                oos.flush();
 
-                                Boolean loggedIn = ois.readBoolean(); /**sees if its logged in**/
-                                //send back result of login to amidala
-                                if(loggedIn){
-                                    user = request.getUser(); /**the user information saves**/
-                                    controller.loginClicked(); /**usern logs in to the program**/
-                                } else{
+                    if(str.equals("login")){
+                        oos.writeObject(request); /**sends the request**/
+                        oos.flush();
 
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                        Boolean loggedIn = ois.readBoolean(); /**sees if its logged in**/
+                        //send back result of login to amidala
+                        if(loggedIn){
+                            user = request.getUser(); /**the user information saves**/
+                            controller.loginClicked(); /**usern logs in to the program**/
+                        } else{
 
-                            break;
-                        //case for register
-                        case "register":
-                            try {
-                                oos.writeObject(request);
-                                oos.flush();
+                        }
+                    } else if(str.equals("register")){
+                        oos.writeObject(request);
+                        oos.flush();
 
-                                Boolean registered = ois.readBoolean();
-                                //send back result of register to amidala
-                                if(registered){
-                                    user = request.getUser();/**the user information saves**/
-                                   // controller.registerNewUser(userName, email, password);/**registers the user with its information**/
-                                } else{
+                        Boolean registered = ois.readBoolean();
+                        //send back result of register to amidala
+                        if(registered){
+                            user = request.getUser();/**the user information saves**/
+                            // controller.registerNewUser(userName, email, password);/**registers the user with its information**/
+                        } else{
 
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "createAnnons":
-                            try {
-                                oos.writeObject(request);
-                                oos.flush();
+                        }
 
-                                Boolean annonsCreated = ois.readBoolean();
+                    }else if(str.equals("createAnnons")){
+                        oos.writeObject(request);
+                        oos.flush();
 
-                                //send back result of creating the annons to amidala
-                                if(annonsCreated) {
-                                    //annons.setAnnons(request.getAnnons());
-                                    controller.skapaAnnonsClicked();
-                                } else{
-                                    
-                                }
+                        Boolean annonsCreated = ois.readBoolean();
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "search":
-                            try {
-                                oos.writeObject(request);
-                                oos.flush();
+                        //send back result of creating the annons to amidala
+                        if(annonsCreated) {
+                            //annons.setAnnons(request.getAnnons());
+                            controller.skapaAnnonsClicked();
+                        } else{
 
-                                Object tempObject = ois.readObject();
-                                ArrayList<Annons> result;
+                        }
+                    }else if(str.equals("search")){
 
-                                if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
-                                    result = (ArrayList<Annons>) tempObject;
+                        oos.writeObject(request);
+                        oos.flush();
 
-                                }
-                                //send back result of search to amidala
-                                controller.searchClicked();
-                            } catch (IOException | ClassNotFoundException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        default:
-                            break;
+                        Object tempObject = ois.readObject();
+                        ArrayList<Annons> result;
+
+                        if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
+                            result = (ArrayList<Annons>) tempObject;
+
+                        }
+                        //send back result of search to amidala
+                        controller.searchClicked();
+                    } else{
+                        throw new Exception("Could not read request type");
                     }
-
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

@@ -9,7 +9,7 @@ public class Request implements Serializable {
     @Serial
     private static final long serialVersionUID = -8969009813588142777L;
 
-    private static String request = "";
+    private String request = "";
 
     private User user = null;
     private Chat chat = null;
@@ -23,15 +23,13 @@ public class Request implements Serializable {
      * login
      * register
      * */
-    public Request(String requestType, User user){
-        if(requestType == "login") {
-            request = "login";
-            this.user = user;
-
-        }else if (requestType == "register"){
+    public Request(Boolean register, User user){
+        if(register) {
             request = "register";
-            this.user = user;
+        }else{
+            request = "login";
         }
+        this.user = user;
     }
 
     /**

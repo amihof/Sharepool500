@@ -14,11 +14,11 @@ public class RequestFactory {
     }
 
     public void login(User user){
-        client.addToBuffer(new Request("login", user));
+        client.addToBuffer(new Request(false, user));
     }
 
     public void register(User user){
-        client.addToBuffer(new Request("register", user));
+        client.addToBuffer(new Request(true, user));
     }
 }
 

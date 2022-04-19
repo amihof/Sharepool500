@@ -23,21 +23,23 @@ public class Client {
     public Client(Socket s) {
         this.socket = s;
 
-        try{
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-            oos.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         inputHandler = new InputHandler();
         inputListener = new InputListener();
 
 
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);
+
+        try{
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+            oos.flush();
+
+        } catch (IOException e) {
+            inputHandlerThread.interrupt();
+            inputListenerThread.interrupt();
+            e.printStackTrace();
+        }
 
     }
 
@@ -139,18 +141,12 @@ public class Client {
 
         @Override
         public synchronized void run() {
-            try {
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e) {
-                inputHandlerThread.interrupt();
-                inputListenerThread.interrupt();
-                e.printStackTrace();
-            }
-
             Object input = null;
             while (!Thread.interrupted()) {
                 try {
                     input = ois.readObject();
+
+                    System.out.println("i read the request");
 
                     if(input.getClass().isAssignableFrom(Request.class)){
                         inputHandler.addToBuffer((Request) input);

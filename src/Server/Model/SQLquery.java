@@ -40,9 +40,12 @@ public class SQLquery {
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
+
+            System.out.println("Quert prepared and will execute");
             return pstmt.execute();
 
         } catch (Exception p) {
+            System.out.println("query executed and result was false");
             return false;
         }
 

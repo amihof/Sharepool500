@@ -78,6 +78,7 @@ public class Client {
                             }
                             break;
                         case "register":
+                            System.out.println("enter case register");
                             try {
                                 oos.writeBoolean(
                                         sql.register(
@@ -85,6 +86,7 @@ public class Client {
                                                 request.getUser().getEmail(),
                                                 request.getUser().getPassword()));
                                 oos.flush();
+                                System.out.println("query executed and request handled");
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -114,6 +116,7 @@ public class Client {
                             );
                             break;
                         default:
+                            System.out.println("default case and return false");
                             try {
                                 oos.writeBoolean(false);
                                 oos.flush();
@@ -124,6 +127,7 @@ public class Client {
                     }
 
                 } catch (InterruptedException e) {
+                    System.out.println("didnt enter the switch statement. Interrupted thread");
                     e.printStackTrace();
                 }
 

@@ -49,7 +49,7 @@ public class SQLquery {
 
     }
 
-    public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
+    public ArrayList<Annons> search(String searchText, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
 
         PreparedStatement pstmt = null;

@@ -12,9 +12,11 @@ public class MainPanelMinaSidor extends JPanel {
     private Controller controller;
     private MinaSidorPanel minaSidorPanel;
     private TopPanel topPanel;
+    private boolean loggedIn;
 
-    public MainPanelMinaSidor(int width, int height, Controller controller){
+    public MainPanelMinaSidor(int width, int height, Controller controller, boolean loggedIn){
         super(null);
+        this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         this.setSize(width, height);
@@ -22,7 +24,7 @@ public class MainPanelMinaSidor extends JPanel {
         minaSidorPanel = new MinaSidorPanel(width, height-100, controller);
         this.add(minaSidorPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
         this.add(topPanel);
 
     }

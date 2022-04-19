@@ -20,8 +20,11 @@ public class MainPanelAnnons extends JPanel {
     private int i;
     private JPanel listContainer;
 
-    public MainPanelAnnons(int width, int height, Controller controller){
+    private boolean loggedIn;
+
+    public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn){
         super(null);
+        this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         this.setSize(width, height);
@@ -29,7 +32,7 @@ public class MainPanelAnnons extends JPanel {
         annonsPanel = new AnnonsPanel(width, height-100, controller);
         this.add(annonsPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
         this.add(topPanel);
 
     }

@@ -91,4 +91,9 @@ public class Controller
 
     }
 
+    public void login() {
+        this.loggedIn = true;
+        view.dispose();
+        view = new MainFrame(this, loggedIn);
+    }
 }

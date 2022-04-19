@@ -15,9 +15,11 @@ public class MainPanelSkapaAnnons extends JPanel {
     private Controller controller;
     private SkapaAnnonsPanel skapaAnnonsPanel;
     private TopPanel topPanel;
+    private boolean loggedIn;
 
-    public MainPanelSkapaAnnons(int width, int height, Controller controller){
+    public MainPanelSkapaAnnons(int width, int height, Controller controller, boolean loggedIn){
         super(null);
+        this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         this.setSize(width, height);
@@ -25,7 +27,7 @@ public class MainPanelSkapaAnnons extends JPanel {
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
        // this.add(skapaAnnonsPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", true);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
         this.add(topPanel);
 
     }

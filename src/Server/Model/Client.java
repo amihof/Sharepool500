@@ -22,6 +22,17 @@ public class Client {
 
     public Client(Socket s) {
         this.socket = s;
+        Boolean streamWorking;
+        try{
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+            oos.flush();
+            streamWorking = true;
+
+        } catch (IOException e) {
+            streamWorking = false;
+            e.printStackTrace();
+        }
 
         inputHandler = new InputHandler();
         inputListener = new InputListener();
@@ -30,17 +41,10 @@ public class Client {
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);
 
-        try{
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-            oos.flush();
-
-        } catch (IOException e) {
-            inputHandlerThread.interrupt();
-            inputListenerThread.interrupt();
-            e.printStackTrace();
+        if(!streamWorking){
+           inputHandlerThread.interrupt();
+           inputListenerThread.interrupt();
         }
-
     }
 
     private class InputHandler implements Runnable{

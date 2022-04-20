@@ -44,6 +44,7 @@ public class Client {
 
         inputHandler = new InputHandler();
         inputListener = new InputListener();
+        sql = new SQLquery();
 
 
         inputHandlerThread = new Thread(inputHandler);
@@ -124,7 +125,7 @@ public class Client {
                     }
 
                 } catch (IOException | InterruptedException e) {
-                    System.out.println("didnt enter the switch statement. Interrupted thread");
+                    System.out.println("Didn't enter the switch statement. Interrupted thread");
                     e.printStackTrace();
                 }
 

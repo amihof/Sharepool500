@@ -9,7 +9,7 @@ public class Request implements Serializable {
     @Serial
     private static final long serialVersionUID = -8969009813588142777L;
 
-    private String request = "";
+    private String request;
 
     private User user = null;
     private Chat chat = null;

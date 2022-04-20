@@ -94,6 +94,7 @@ public class Controller
     }
 
     public void loggedInOrNot(boolean loggedIn){
+        view.updateLogin(loggedIn);
 
     }
 

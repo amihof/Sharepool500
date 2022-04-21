@@ -130,11 +130,12 @@ public class MainLogin extends JDialog
         loginButton.addActionListener(l-> this.dispose());
         this.add(this.loginButton);
 
-        (this.forgotPassword = new JButton("Jag har glömt mitt lösenord")).setBackground(Color.WHITE);
+        this.forgotPassword = new JButton("Jag har glömt mitt lösenord");
         this.forgotPassword.setBorderPainted(false);
         this.forgotPassword.setLocation(375, 200);
         this.forgotPassword.setSize(375, 30);
         this.forgotPassword.setHorizontalAlignment(0);
+        forgotPassword.setBackground(Color.LIGHT_GRAY);
         this.forgotPassword.setFont(newFont.deriveFont(10.0f));
         this.forgotPassword.setForeground(Color.GRAY);
         this.forgotPassword.setEnabled(true);

@@ -203,4 +203,12 @@ public class MainFrame
         mainLogin.dispose();
 
     }
+
+    public void updateLogin(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+        clearJFrame(controller);
+        updateJFrameHome(controller);
+
+
+    }
 }

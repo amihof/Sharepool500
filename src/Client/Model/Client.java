@@ -95,7 +95,7 @@ public class Client {
                         //send back result of login to amidala
                         if(loggedIn){
                             user = request.getUser(); /**the user information saves**/
-                            controller.loginClicked(); /**usern logs in to the program**/
+                            controller.loggedInOrNot(loggedIn); /**usern logs in to the program**/
                         } else{
 
                         }

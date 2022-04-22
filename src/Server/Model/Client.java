@@ -84,12 +84,14 @@ public class Client {
                     System.out.println(str);
 
                     if (str.equals("login")) {
+                        System.out.println("login request is going to be handled");
                         oos.writeBoolean(
                                 sql.login(
                                         request.getUser().getEmail(),
                                         request.getUser().getPassword())
                         );
                         oos.flush();
+                        System.out.println("query executed and request handled");
                     } else if (str.equals("register")) {
                         System.out.println("register request is going to be handled");
                         oos.writeBoolean(

@@ -23,9 +23,11 @@ public class SQLquery {
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
             pstmt.setString(2, password);
+            System.out.println("Quert prepared and will execute");
             return pstmt.execute();
 
         } catch (Exception p) {
+            System.out.println("query executed and result was false");
             return false;
         }
 

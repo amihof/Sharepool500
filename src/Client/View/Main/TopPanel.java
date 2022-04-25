@@ -1,4 +1,4 @@
-package Client.View.main;
+package Client.View.Main;
 
 import Client.Controller.Controller;
 
@@ -111,7 +111,7 @@ public class TopPanel extends JPanel {
             loggaInRegistrera.setLocation(1025, 37);
             loggaInRegistrera.setSize(200, 40);
             loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
-            loggaInRegistrera.addActionListener(l -> controller.loginClicked());
+            loggaInRegistrera.addActionListener(l -> controller.loginRegisterClicked());
             loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(loggaInRegistrera);
         }

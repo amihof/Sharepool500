@@ -1,6 +1,6 @@
 package Client.View.LoginPage;
 
-import Client.View.main.RoundedPanelExample;
+import Client.View.Main.RoundedPanelExample;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -126,6 +126,7 @@ public class MainLogin extends JDialog
         this.loginButton.setSize(300, 50);
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
+        loginButton.addActionListener(l-> controller.loginClicked());
         loginButton.addActionListener(l-> controller.login());
         loginButton.addActionListener(l-> this.dispose());
         this.add(this.loginButton);

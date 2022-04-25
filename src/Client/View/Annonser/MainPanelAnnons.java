@@ -1,12 +1,9 @@
 package Client.View.Annonser;
 
 import Client.Controller.Controller;
-import Client.View.main.TopPanel;
+import Client.View.Main.TopPanel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainPanelAnnons extends JPanel {
     private int width;

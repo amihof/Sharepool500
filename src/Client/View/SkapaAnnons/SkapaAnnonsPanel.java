@@ -2,7 +2,7 @@ package Client.View.SkapaAnnons;
 
 
 import Client.Controller.Controller;
-import Client.View.main.RoundedPanelExample;
+import Client.View.Main.RoundedPanelExample;
 import Delad.Category;
 
 import javax.imageio.ImageIO;

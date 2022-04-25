@@ -2,7 +2,7 @@ package Client.View.HowItWorks;
 
 import java.awt.Component;
 
-import Client.View.main.TopPanel;
+import Client.View.Main.TopPanel;
 import Client.Controller.Controller;
 import javax.swing.JPanel;
 

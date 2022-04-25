@@ -1,11 +1,6 @@
-package Client.View.main;
+package Client.View.Main;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 

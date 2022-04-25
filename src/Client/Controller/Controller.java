@@ -1,7 +1,7 @@
 package Client.Controller;
 
 import Client.Model.*;
-import Client.View.main.MainFrame;
+import Client.View.Main.MainFrame;
 import Delad.Annons;
 import Delad.Category;
 import Delad.User;
@@ -32,17 +32,15 @@ public class Controller
     }
 
     public void homePage() {
-        view.clearJFrame(this);
-        view.updateJFrameHome(this);
+        view.panelStateChanged("MainPanel");
     }
 
     public void searchClicked() {
-        view.clearJFrame(this);
-        view.updateJFrameAnnons(this);
+        view.panelStateChanged("MainPanelAnnons");
     }
 
     public void loginClicked() {
-        this.view.loginButtonClicked(this);
+        requestFactory.login(user);
     }
 
     public void andraUppgifterClicked() {
@@ -50,18 +48,17 @@ public class Controller
     }
 
     public void saFungerarDetClicked() {
-        this.view.clearJFrame(this);
-        view.updateJFrame(this);
+        view.panelStateChanged("MainPanelSFD");
+       /* this.view.clearJFrame(this);
+        view.updateJFrame(this);*/
     }
 
     public void minaSidorClicked() {
-        view.clearJFrame(this);
-        view.updateJFrameMinaSidor(this);
+        view.panelStateChanged("MainPanelMinaSidor");
     }
 
     public void skapaAnnonsClicked() {
-        view.clearJFrame(this);
-        view.updateJFrameSkapaAnnons(this);
+        view.panelStateChanged("MainPanelSkapaAnnons");
 
     }
 
@@ -102,5 +99,9 @@ public class Controller
         this.loggedIn = true;
         view.dispose();
         view = new MainFrame(this, loggedIn);
+    }
+
+    public void loginRegisterClicked() {
+        view.loginButtonClicked(this);
     }
 }

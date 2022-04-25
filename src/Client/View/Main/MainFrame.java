@@ -1,8 +1,6 @@
-package Client.View.main;
+package Client.View.Main;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import Client.View.Annonser.AnnonsPanel;
 import Client.View.Annonser.MainPanelAnnons;
@@ -16,7 +14,6 @@ import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Client.View.SkapaAnnons.SkapaAnnonsPanel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class MainFrame
 {
@@ -40,11 +37,38 @@ public class MainFrame
 
     private JPanel listContainer;
 
+    private JPanel cards;
+
+
     public MainFrame(final Controller controller, boolean loggedIn) {
         this.loggedIn = loggedIn;
-        
+        frame = new JFrame();
+        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn);
+        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn);
         this.controller = controller;
-        this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller, loggedIn);
+        CardLayout cardLayout = new CardLayout();
+        frame.setLayout(cardLayout);
+        frame.setPreferredSize(new Dimension(this.width, this.height));
+        cards = new JPanel(new CardLayout());
+        cards.add(new MainPanel(width, height, controller, loggedIn), "MainPanel");
+        cards.add(new MainPanelSFD(width, height, controller, loggedIn), "MainPanelSFD");
+        cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn), "MainPanelMinaSidor");
+        cards.add(new MainPanelSkapaAnnons(width, height, controller, loggedIn), "MainPanelSkapaAnnons");
+       // cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
+        addScroll();
+
+        cardLayout.show(frame.getContentPane(), "MainPanel");
+
+        frame.add(cards);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.pack();
+
+        frame.setVisible(true);
+
+        this.controller = controller;
+       /* this.mainPanelSFD = new MainPanelSFD(this.width, this.height, controller, loggedIn);
         this.mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn);
         this.mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn);
         this.mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller, loggedIn);
@@ -55,7 +79,7 @@ public class MainFrame
         this.frame.setDefaultCloseOperation(3);
         this.frame.pack();
         this.frame.setVisible(true);
-        this.frame.add((Component)this.mainPanel);
+        this.frame.add((Component)this.mainPanel);*/
     }
 
     public void loginButtonClicked(final Controller controller) {
@@ -135,7 +159,7 @@ public class MainFrame
         this.frame.pack();
         this.frame.setVisible(true);
         this.frame.setContentPane(topPanel);
-        addScroll(skapaAnnonsPanel,width, height-100);
+        addScroll();
         this.frame.revalidate();
         this.frame.repaint();
 
@@ -159,7 +183,7 @@ public class MainFrame
         this.frame.repaint();
     }
 
-    public void addScroll(JPanel jPanel, int w, int h) {
+    public void addScroll() {
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
 
         final JScrollPane scrollPanel = new JScrollPane(
@@ -171,7 +195,8 @@ public class MainFrame
                 (int)(skapaAnnonsPanel.getPreferredSize().getHeight()+500)));
         scrollPanel.setBounds(0, 100, width, height-100);
         scrollPanel.setBorder(BorderFactory.createEmptyBorder());
-        frame.add(scrollPanel);
+        scrollPanel.add(topPanel);
+        cards.add(scrollPanel, "MainPanelAnnons");
     }
 
     public void addAnnonserPanel(){
@@ -203,4 +228,18 @@ public class MainFrame
         mainLogin.dispose();
 
     }
+
+    public void updateLogin(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+        /*clearJFrame(controller);
+        updateJFrameHome(controller);*/
+
+
+    }
+
+    public void panelStateChanged(String newPanel) {
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        cl.show(cards, newPanel);
+    }
+
 }

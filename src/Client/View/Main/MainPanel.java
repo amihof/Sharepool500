@@ -1,4 +1,4 @@
-package Client.View.main;
+package Client.View.Main;
 
 import Client.Controller.Controller;
 import Client.View.Hem.StartPanel;

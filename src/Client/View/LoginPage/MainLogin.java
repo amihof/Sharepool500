@@ -1,6 +1,6 @@
 package Client.View.LoginPage;
 
-import Client.View.main.RoundedPanelExample;
+import Client.View.Main.RoundedPanelExample;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -126,15 +126,17 @@ public class MainLogin extends JDialog
         this.loginButton.setSize(300, 50);
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
+        loginButton.addActionListener(l-> controller.loginClicked());
         loginButton.addActionListener(l-> controller.login());
         loginButton.addActionListener(l-> this.dispose());
         this.add(this.loginButton);
 
-        (this.forgotPassword = new JButton("Jag har glömt mitt lösenord")).setBackground(Color.WHITE);
+        this.forgotPassword = new JButton("Jag har glömt mitt lösenord");
         this.forgotPassword.setBorderPainted(false);
         this.forgotPassword.setLocation(375, 200);
         this.forgotPassword.setSize(375, 30);
         this.forgotPassword.setHorizontalAlignment(0);
+        forgotPassword.setBackground(Color.LIGHT_GRAY);
         this.forgotPassword.setFont(newFont.deriveFont(10.0f));
         this.forgotPassword.setForeground(Color.GRAY);
         this.forgotPassword.setEnabled(true);

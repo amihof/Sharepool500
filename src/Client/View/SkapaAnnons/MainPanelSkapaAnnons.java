@@ -1,12 +1,9 @@
 package Client.View.SkapaAnnons;
 
 import Client.Controller.Controller;
-import Client.View.main.TopPanel;
+import Client.View.Main.TopPanel;
 
 import javax.swing.*;
-import java.awt.*;
-
-import static java.awt.Color.black;
 
 public class MainPanelSkapaAnnons extends JPanel {
 

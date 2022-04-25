@@ -1,7 +1,7 @@
 package Client.View.MinaSidorPage;
 
 import Client.Controller.Controller;
-import Client.View.main.RoundedPanelExample;
+import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;

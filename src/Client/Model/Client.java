@@ -105,6 +105,7 @@ public class Client {
                         oos.flush();
 
                         Boolean registered = ois.readBoolean();
+                        System.out.println(registered);
                         //send back result of register to amidala
                         if(registered){
                             user = request.getUser();/**the user information saves**/

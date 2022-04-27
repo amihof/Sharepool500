@@ -98,8 +98,9 @@ public class Client {
                                 request.getUser().getUsername(),
                                 request.getUser().getEmail(),
                                 request.getUser().getPassword());
-                        System.out.println(result);
+
                         oos.writeBoolean(result);
+                        System.out.println(result);
                         oos.flush();
                         System.out.println("query executed and request handled");
 

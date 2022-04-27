@@ -24,7 +24,8 @@ public class SQLquery {
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             System.out.println("Quert prepared and will execute");
-            return pstmt.execute();
+            pstmt.execute();
+            return true;
 
         } catch (Exception p) {
             System.out.println("login attempt failed");
@@ -45,7 +46,8 @@ public class SQLquery {
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
-            return pstmt.execute();
+            pstmt.execute();
+            return true;
 
         } catch (Exception p) {
             System.out.println("registeration attempt failed");

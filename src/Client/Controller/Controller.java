@@ -39,7 +39,8 @@ public class Controller
         view.panelStateChanged("MainPanelAnnons");
     }
 
-    public void loginClicked() {
+    public void loginClicked(String email, String password) {
+        user = new User(email, password);
         requestFactory.login(user);
     }
 
@@ -96,7 +97,6 @@ public class Controller
     }
 
     public void login() {
-        this.loggedIn = true;
         view.dispose();
         view = new MainFrame(this, loggedIn);
     }

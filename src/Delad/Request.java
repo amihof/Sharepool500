@@ -9,12 +9,12 @@ public class Request implements Serializable {
 
     private String request;
 
-    private User user = null;
-    private Chat chat = null;
-    private Message msg = null;
-    private Annons annons = null;
-    private Loan loan = null;
-    private Search search = null;
+    private User user;
+    private Chat chat;
+    private Message msg;
+    private Annons annons;
+    private Loan loan;
+    private Search search;
 
     /**
      * This constructor is used to create a request for:

@@ -93,6 +93,7 @@ public class Client {
 
                         Boolean loggedIn = ois.readBoolean(); /**sees if its logged in**/
                         //send back result of login to amidala
+                        System.out.println(loggedIn);
                         if(loggedIn){
                             user = request.getUser(); /**the user information saves**/
                             controller.loggedInOrNot(loggedIn); /**usern logs in to the program**/

@@ -32,6 +32,7 @@ public class MainFrame
     private RedigeraUppgifter redigeraUppgifter;
     private AnnonsPanel annonsPanel;
     private JPanel newAnnonsPanel;
+    private JScrollPane scrollPanel;
 
     private boolean loggedIn;
 
@@ -53,9 +54,11 @@ public class MainFrame
         cards.add(new MainPanel(width, height, controller, loggedIn), "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn), "MainPanelSFD");
         cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn), "MainPanelMinaSidor");
-        cards.add(new MainPanelSkapaAnnons(width, height, controller, loggedIn), "MainPanelSkapaAnnons");
+       // cards.add(new MainPanelSkapaAnnons(width, height, controller, loggedIn), "MainPanelSkapaAnnons");
+        cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
        // cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
         addScroll();
+        cards.add(scrollPanel, "MainPanelSkapaAnnons");
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
 
@@ -186,17 +189,16 @@ public class MainFrame
     public void addScroll() {
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
 
-        final JScrollPane scrollPanel = new JScrollPane(
+        scrollPanel = new JScrollPane(
                 skapaAnnonsPanel,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
         skapaAnnonsPanel.setPreferredSize(new Dimension((int) skapaAnnonsPanel.getPreferredSize().getWidth(),
-                (int)(skapaAnnonsPanel.getPreferredSize().getHeight()+500)));
-        scrollPanel.setBounds(0, 100, width, height-100);
+                (int)(skapaAnnonsPanel.getPreferredSize().getHeight()+100)));
+        scrollPanel.setBounds(0, 0, width, height);
         scrollPanel.setBorder(BorderFactory.createEmptyBorder());
         scrollPanel.add(topPanel);
-        cards.add(scrollPanel, "MainPanelAnnons");
     }
 
     public void addAnnonserPanel(){

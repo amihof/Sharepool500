@@ -1,7 +1,5 @@
 package Delad;
 
-import Delad.*;
-
 import java.io.Serial;
 import java.io.Serializable;
 

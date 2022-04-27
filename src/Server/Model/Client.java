@@ -94,11 +94,12 @@ public class Client {
                         System.out.println("query executed and request handled");
                     } else if (str.equals("register")) {
                         System.out.println("register request is going to be handled");
-                        oos.writeBoolean(
-                                sql.register(
-                                        request.getUser().getUsername(),
-                                        request.getUser().getEmail(),
-                                        request.getUser().getPassword()));
+                        Boolean result  = sql.register(
+                                request.getUser().getUsername(),
+                                request.getUser().getEmail(),
+                                request.getUser().getPassword());
+                        System.out.println(result);
+                        oos.writeBoolean(result);
                         oos.flush();
                         System.out.println("query executed and request handled");
 
@@ -152,7 +153,9 @@ public class Client {
                         inputHandler.addToBuffer((Request) input);
                     } else {
                         System.out.println(input.getClass().toString());
-                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol");
+                        inputHandlerThread.interrupt();
+                        inputListenerThread.interrupt();
+                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol and thus disconnected");
                     }
 
                 } catch (EOFException e) {

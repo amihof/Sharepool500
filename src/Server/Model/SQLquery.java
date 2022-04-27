@@ -27,7 +27,7 @@ public class SQLquery {
             return pstmt.execute();
 
         } catch (Exception p) {
-            System.out.println("query executed and result was false");
+            System.out.println("login attempt failed");
             return false;
         }
 
@@ -48,6 +48,7 @@ public class SQLquery {
             return pstmt.execute();
 
         } catch (Exception p) {
+            System.out.println("registeration attempt failed");
             return false;
         }
 
@@ -80,6 +81,7 @@ public class SQLquery {
             return result;
 
         } catch (Exception p) {
+            System.out.println("no result found");
             return null;
         }
 
@@ -103,6 +105,7 @@ public class SQLquery {
             return pstmt.execute();
 
         } catch (Exception p) {
+            System.out.println("couldn't create an annons");
             return false;
         }
 

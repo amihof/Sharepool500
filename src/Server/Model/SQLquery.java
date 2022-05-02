@@ -1,5 +1,5 @@
 package Server.Model;
-
+//kommentarer saknas
 import Delad.Annons;
 import Delad.Category;
 
@@ -18,7 +18,7 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_login(?,?)";
+            String QUERY = "call procedure_login(?,?)"; //kommentera vad ?,? ska föreställa, det är svår och förstå
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
@@ -37,14 +37,14 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_create_user(?,?,?)";
+            String QUERY = "call procedure_create_user(?,?,?)";  //kommentera vad ?,?,? ska föreställa, det är svår och förstå
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
 
-            System.out.println("Quert prepared and will execute");
+            System.out.println("Query prepared and will execute ");
             return pstmt.execute();
 
         } catch (Exception p) {
@@ -84,7 +84,7 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         try {
             String QUERY = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
-                    "VALUES('%s', '%s', '%s');");
+                    "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
 
             pstmt = con.prepareStatement(QUERY);
 
@@ -96,7 +96,5 @@ public class SQLquery {
 
 
     }
-
-
 
 }

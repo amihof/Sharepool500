@@ -1,5 +1,5 @@
 package Server.Model;
-
+//kommentarer saknas
 import Delad.Annons;
 import Delad.Category;
 
@@ -18,7 +18,7 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_login(?,?)";
+            String QUERY = "call procedure_login(?,?)"; //kommentera vad ?,? ska föreställa, det är svår och förstå
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
@@ -40,14 +40,18 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_create_user(?,?,?)";
+            String QUERY = "call procedure_create_user(?,?,?)";  //kommentera vad ?,?,? ska föreställa, det är svår och förstå
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, password);
+
             pstmt.execute();
             return true;
+
+            //System.out.println("Query prepared and will execute ");
+            //return pstmt.execute();
 
         } catch (Exception p) {
             System.out.println("registeration attempt failed");
@@ -94,15 +98,20 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
+
             String QUERY = "call procedure_create_annons(?,?,?,?,?)";
 
-            pstmt = con.prepareStatement(QUERY);
+            String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
+                    "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
+
+
+            pstmt = con.prepareStatement(QUERY1);
             pstmt.setString(1, productName);
             pstmt.setString(2, productDescription);
             pstmt.setString(3, productCategory.toString());
             pstmt.setString(4, publisherEmail);
             pstmt.setBoolean(5, renting);
-            pstmt = con.prepareStatement(QUERY);
+            pstmt = con.prepareStatement(QUERY1);
 
             return pstmt.execute();
 
@@ -113,7 +122,5 @@ public class SQLquery {
 
 
     }
-
-
 
 }

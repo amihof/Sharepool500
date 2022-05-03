@@ -14,6 +14,7 @@ import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Client.View.SkapaAnnons.SkapaAnnonsPanel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MainFrame
 {
@@ -58,7 +59,7 @@ public class MainFrame
         cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
        // cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
         addScroll();
-        cards.add(scrollPanel, "MainPanelSkapaAnnons");
+        //cards.add(scrollPanel, "MainPanelSkapaAnnons");
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
 
@@ -82,18 +83,43 @@ public class MainFrame
     }
 
     public void addScroll() {
-        skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
+        /*skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
+        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn);
+        topPanel.setLayout(new GridBagLayout());
 
-        scrollPanel = new JScrollPane(
-                skapaAnnonsPanel,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
+        JScrollPane scrollPaneCenter = new JScrollPane(skapaAnnonsPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
+        JPanel panelContainer = new JPanel(new BorderLayout(3,3));
+        panelContainer.setBorder(new EmptyBorder(5,5,5,5));
+        panelContainer.add(topPanel,BorderLayout.NORTH);
+        panelContainer.add(scrollPaneCenter,BorderLayout.CENTER);
+        panelContainer.add(skapaAnnonsPanel,BorderLayout.SOUTH);*/
+
+
+        //scrollPanel = new JScrollPane();
+        skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
+
+
+        JScrollPane scrollPanel = new JScrollPane(skapaAnnonsPanel,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
         skapaAnnonsPanel.setPreferredSize(new Dimension((int) skapaAnnonsPanel.getPreferredSize().getWidth(),
                 (int)(skapaAnnonsPanel.getPreferredSize().getHeight()+100)));
-        scrollPanel.setBounds(0, 0, width, height);
+        scrollPanel.setBounds(0, 100, width, height-100);
         scrollPanel.setBorder(BorderFactory.createEmptyBorder());
-        scrollPanel.add(topPanel);
+        scrollPanel.setViewportView(skapaAnnonsPanel);
+
+        JPanel panelContainer = new JPanel(new GridLayout(2,1));
+        panelContainer.setBorder(BorderFactory.createEmptyBorder());
+        panelContainer.add(topPanel, BorderLayout.NORTH);
+        panelContainer.add(scrollPanel, BorderLayout.CENTER);
+
+        cards.add(panelContainer, "MainPanelSkapaAnnons");
+
+
     }
 
     public void addAnnons(){

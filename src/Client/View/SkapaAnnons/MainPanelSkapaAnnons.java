@@ -4,6 +4,7 @@ import Client.Controller.Controller;
 import Client.View.Main.TopPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainPanelSkapaAnnons extends JPanel {
 

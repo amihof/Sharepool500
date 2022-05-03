@@ -73,8 +73,8 @@ public class Client {
         }
 
         /**In this method exist several switch statements
-          to hanndle is kind of request. The requests are
-               Strings taken from the request class**/
+         to hanndle is kind of request. The requests are
+         Strings taken from the request class**/
         @Override
         public synchronized void run() {
             Object o = null;
@@ -147,7 +147,7 @@ public class Client {
                         controller.searchClicked();
                         //the informationen is send to the controller
                         //and the user can seacrh for an add
-                        
+
 
                     } else{
                         throw new Exception("Could not read request type");

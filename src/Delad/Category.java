@@ -1,5 +1,8 @@
 package Delad;
 
+/**This class/enum consist every category for
+ * the user to choose when uploading an add**/
+
 public enum Category {
 
         Kategori,

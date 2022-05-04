@@ -13,12 +13,19 @@ public class SQLquery {
 
     }
 
+    /**
+     *
+     * @param email is the username types in as input to login
+     * @param password is the password
+     * @return returns true if the login is successful
+     */
+
     public boolean login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_login(?,?)"; //kommentera vad ?,? ska föreställa, det är svår och förstå
+            String QUERY = "call procedure_login(?,?)"; // Första parameter ? är email och andra ? är password av registrerad användare
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
@@ -35,12 +42,20 @@ public class SQLquery {
 
     }
 
+    /**
+     *
+     * @param username is the username the user chooses as input when the user signs up on the website
+     * @param email is the email
+     * @param password is the password
+     * @return returns true if the registration is complete
+     */
+
     public boolean register(String username,String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_create_user(?,?,?)";  //kommentera vad ?,?,? ska föreställa, det är svår och förstå
+            String QUERY = "call procedure_create_user(?,?,?)"; // 3 parameters for user input
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, username);
@@ -61,7 +76,14 @@ public class SQLquery {
 
     }
 
-    // To do date
+    /**
+     *
+     * @param productname is the parameter where the user searches for a type of object
+     * @param category is the category the user chooses in the drop down list when searching for something
+     * @param fromDate not done yet
+     * @param toDate not done yet
+     * @return
+     */
 
     public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
@@ -93,13 +115,23 @@ public class SQLquery {
 
     }
 
+    /**
+     *
+     * @param productName is the users input for the name of the product he wishes to create an annons for
+     * @param productDescription is the description
+     * @param productCategory the category from the drop down list
+     * @param publisherEmail the users email
+     * @param renting this is a boolean which determines what type of annons it is, true for lending out, false if borrow
+     * @return returns true if sucess
+     */
+
     public boolean createAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
 
-            String QUERY = "call procedure_create_annons(?,?,?,?,?)";
+            String QUERY = "call procedure_create_annons(?,?,?,?,?)"; // 5 parameters from the user
 
            // String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
            //         "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?

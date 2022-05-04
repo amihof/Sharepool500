@@ -22,7 +22,7 @@ public class Controller
     private Annons annons;
 
     public Controller() {
-        loggedIn = true;
+        loggedIn = false;
         MainFrame view = new MainFrame(this, loggedIn);
         this.view = view;
         System.out.println("view färdig");

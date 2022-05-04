@@ -2,6 +2,7 @@ package Server.Model;
 //kommentarer saknas
 import Delad.Annons;
 import Delad.Category;
+import Delad.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,18 +57,14 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_create_user(?,?,?)"; // 3 parameters for user input
+            String QUERY = "call procedure_create_user(?,?,?,?)";
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, username);
-            pstmt.setString(2, email);
-            pstmt.setString(3, password);
-
-            pstmt.execute();
-            return true;
-
-            //System.out.println("Query prepared and will execute ");
-            //return pstmt.execute();
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, username);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            return pstmt.execute();
 
         } catch (Exception p) {
             System.out.println("registeration attempt failed");
@@ -84,17 +81,18 @@ public class SQLquery {
      * @return
      */
 
-    //oanvända parametrar
     public ArrayList<Annons> search(String productname, Category category) {
+
+    //oanvända parametrar
         Connection con = Server.getCon();
 
 
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "SELECT  product.name, product.description, annons.owner_email FROM product_type " +
+            String QUERY = "SELECT  product.name, product.description, annons.owner_email,renting FROM product_type " +
                     "INNER JOIN product ON  product_type.id = product.product_type_id " +
                     "INNER JOIN annons ON product.id = annons.p_id " +
-                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%';";
+                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%' AND annons.;";
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1,category.toString());
@@ -106,6 +104,9 @@ public class SQLquery {
             while (resultSet.next()) {
                 //result.add(new Annons(resultSet.getString(1),category.valueOf(resultSet.getString(2)),));
                 //bortkommenterad kod
+
+                result.add(new Annons(resultSet.getString(1),resultSet.getString(2), category,
+                        new User(resultSet.getString(3)),resultSet.getBoolean(4)));
             }
             return result;
 
@@ -154,5 +155,4 @@ public class SQLquery {
 
 
     }
-
 }

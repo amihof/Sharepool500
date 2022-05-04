@@ -1,5 +1,6 @@
 package Delad;
 
+import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
 /**This class represents each add which is created**/
@@ -7,11 +8,22 @@ public class Annons implements Serializable {
     @Serial
     private static final long serialVersionUID = 5403016831143700756L;
 
-    private User publisher;
-    private String productName;
-    private String productDescription;
-    private Category productCategory;
-    private boolean renting;
+    private final User publisher;
+    private final String productName;
+    private final String productDescription;
+    private final Category productCategory;
+    private final boolean renting;
+    private final ImageIcon clientPicture;
+    private int annonsId;
+
+    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting, ImageIcon clientPicture) {
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productCategory = productCategory;
+        this.publisher = publisher;
+        this.renting  = renting;
+        this.clientPicture = clientPicture;
+    }
 
     /**@constructor to create a new add to upload
      * @param productName is the products name
@@ -28,6 +40,7 @@ public class Annons implements Serializable {
         this.productCategory = productCategory;
         this.publisher = publisher;
         this.renting  = renting;
+        this.clientPicture = null;
     }
 
     /**@return productName**/

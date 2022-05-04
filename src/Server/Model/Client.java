@@ -131,11 +131,8 @@ public class Client {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),
                                 request.getSearch().getCategory()
-
                         ));
-                        
-                        );
-                        ;
+
                     } else {
                         System.out.println("default case and return false");
                         oos.writeBoolean(false);

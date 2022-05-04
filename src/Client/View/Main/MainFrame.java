@@ -48,7 +48,7 @@ public class MainFrame
     public MainFrame(final Controller controller, boolean loggedIn) {
         this.loggedIn = loggedIn;
         frame = new JFrame();
-        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn, this);
+        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn, this, frame);
         topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
         this.controller = controller;
         CardLayout cardLayout = new CardLayout();
@@ -58,7 +58,7 @@ public class MainFrame
         cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
         cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn, this), "MainPanelMinaSidor");
-        cards.add(new MainPanelAnnons(width, height, controller, loggedIn, this), "MainPanelAnnons");
+        cards.add(new MainPanelAnnons(width, height, controller, loggedIn, this, frame), "MainPanelAnnons");
         addScroll(this);
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
@@ -101,19 +101,10 @@ public class MainFrame
 
     }
 
-    public void addAnnons(){
-        OneAnnons newAnnons = new OneAnnons();
-
-    }
-
     public void dispose() {
         frame.dispose();
         mainLogin.dispose();
 
-    }
-
-    public void updateLogin(boolean loggedIn) {
-        this.loggedIn = loggedIn;
     }
 
     public void panelStateChanged(String newPanel) {

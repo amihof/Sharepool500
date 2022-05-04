@@ -80,9 +80,9 @@ public class SQLquery {
      * @param category is the category the user chooses in the drop down list when searching for something
      * @return
      */
+
     public ArrayList<Annons> search(String productname, Category category) {
 
-    //oanvända parametrar
         
 
     //oanvända parametrar

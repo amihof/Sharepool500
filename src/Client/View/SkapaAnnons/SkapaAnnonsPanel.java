@@ -48,7 +48,6 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
 
         this.setUp();
         createAndInitiateComboBox();
-        addPicture();
         addActionEvent();
     }
 
@@ -156,7 +155,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
                         radioButtonText = temp.getText();
                     }
                 }
-                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), controller.getEmail(), radioButtonText == "Hyrs ut" ? true : false);
+                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), controller.getEmail(), radioButtonText == "Hyrs ut" ? true : false, getClientPicture());
             }
         });
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
@@ -187,10 +186,6 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
                         int index = cmbCategories.getSelectedIndex();
             }
         });
-    }
-
-    public void addPicture(){
-
     }
 
     public void addActionEvent() {
@@ -232,6 +227,16 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         picLabel.setIcon(clientPicture);
         add(picLabel);
 
+        setClientPicture(clientPicture);
+
+        return clientPicture;
+    }
+
+    public void setClientPicture(ImageIcon clientPicture){
+        this.clientPicture = clientPicture;
+    }
+
+    public ImageIcon getClientPicture(){
         return clientPicture;
     }
 

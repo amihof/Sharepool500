@@ -101,17 +101,17 @@ public class SQLquery {
 
             String QUERY = "call procedure_create_annons(?,?,?,?,?)";
 
-            String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
-                    "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
+           // String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
+           //         "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
 
 
-            pstmt = con.prepareStatement(QUERY1);
+            pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, productName);
             pstmt.setString(2, productDescription);
             pstmt.setString(3, productCategory.toString());
             pstmt.setString(4, publisherEmail);
             pstmt.setBoolean(5, renting);
-            pstmt = con.prepareStatement(QUERY1);
+            pstmt = con.prepareStatement(QUERY);
 
             return pstmt.execute();
 

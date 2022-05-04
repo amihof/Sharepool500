@@ -1,5 +1,6 @@
 package Client.Model;
 
+import Delad.Annons;
 import Delad.Request;
 import Delad.User;
 
@@ -28,5 +29,7 @@ public class RequestFactory {
     public void register(User user){
         client.addToBuffer(new Request(true, user));
     }
+
+    public  void createAnnons(Annons annons){client.addToBuffer(new Request(annons));}
 }
 

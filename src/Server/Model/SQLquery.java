@@ -56,18 +56,14 @@ public class SQLquery {
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "call procedure_create_user(?,?,?)"; // 3 parameters for user input
+            String QUERY = "call procedure_create_user(?,?,?,?)";
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, username);
-            pstmt.setString(2, email);
-            pstmt.setString(3, password);
-
-            pstmt.execute();
-            return true;
-
-            //System.out.println("Query prepared and will execute ");
-            //return pstmt.execute();
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, username);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            return pstmt.execute();
 
         } catch (Exception p) {
             System.out.println("registeration attempt failed");

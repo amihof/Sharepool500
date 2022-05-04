@@ -108,14 +108,6 @@ public class Controller
     }
 
     /**
-     * getter for username
-     * @return the current users username
-     */
-    public String getUserName(){
-        return userName;
-    }
-
-    /**
      * getter for email
      * @return the current users email
      */
@@ -123,18 +115,7 @@ public class Controller
         return email;
     }
 
-    /**
-     * getter for password
-     * @return the current users password
-     */
-    public String getPassword(){
-        return password;
-    }
 
-    /**
-     * getter for categories
-     * @return the current chosen category
-     */
     public Category[] getCategoriesValues() {
         return Category.values();
     }

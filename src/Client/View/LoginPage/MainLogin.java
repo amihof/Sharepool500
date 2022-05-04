@@ -189,7 +189,7 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
-        registerUser.addActionListener(l -> controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText()));
+        registerUser.addActionListener(l -> controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText()));
         registerUser.addActionListener(l-> this.dispose());
         this.add(this.registerUser);
 

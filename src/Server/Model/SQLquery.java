@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class SQLquery {
 
+    //tom konstruktor
     public SQLquery(){
 
     }
@@ -55,8 +56,9 @@ public class SQLquery {
 
     }
 
-    // To do date
+    // To do date //tar bort
 
+    //oanvända parametrar
     public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
 
@@ -77,6 +79,7 @@ public class SQLquery {
             Annons tempAnnons;
             while (resultSet.next()) {
                 //result.add(new Annons(resultSet.getString(1),category.valueOf(resultSet.getString(2)),));
+                //bortkommenterad kod
             }
             return result;
 
@@ -87,11 +90,14 @@ public class SQLquery {
 
     }
 
+    //för lång rad
+    //kommentera vad gör creatAnnons
     public boolean createAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
+            //förklara mer vilka paramtrar förväntas
             String QUERY = "call procedure_create_annons(?,?,?,?,?)";
 
             pstmt = con.prepareStatement(QUERY);

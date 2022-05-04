@@ -5,10 +5,9 @@ import Delad.Annons;
 import Delad.Buffer;
 import Delad.Request;
 import Delad.User;
-import org.apache.tomcat.jni.Socket;
-import org.apache.tomcat.jni.Thread;
 
 import java.io.*;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,7 +131,7 @@ public class Client {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),
                                 request.getSearch().getCategory()
-                        );
+                        ));
                         
                     } else {
                         System.out.println("default case and return false");

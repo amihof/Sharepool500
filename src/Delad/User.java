@@ -2,6 +2,7 @@ package Delad;
 
 import java.io.Serial;
 import java.io.Serializable;
+/**This class represents each user**/
 
 public class User implements Serializable {
     @Serial

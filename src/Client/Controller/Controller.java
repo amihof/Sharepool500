@@ -67,16 +67,6 @@ public class Controller
         requestFactory.register(new User(userName, email, password));
     }
 
-    public String getUserName(){
-        return userName;
-    }
-    public String getEmail(){
-        return email;
-    }
-    public String getPassword(){
-        return password;
-    }
-
     public Category[] getCategoriesValues() {
         return Category.values();
     }

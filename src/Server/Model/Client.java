@@ -14,7 +14,13 @@ import java.util.HashMap;
 
 import static java.nio.charset.StandardCharsets.*;
 
+/**
+ * Server.Model.Client is an object representing a client connected to the server
+ * The class is responsible for listing to and handling request sent by the client
+ * It has two private inner classes: inputHandler and inputLister
+ * When the client disconnects the class will terminate automatically*/
 public class Client {
+    //clientUserHashMap identifies the different clients as users when logged in
     private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
 
 
@@ -28,8 +34,12 @@ public class Client {
     private InputListener inputListener;
     private final Thread inputHandlerThread, inputListenerThread;
 
-    public Client(Socket s) {
-        this.socket = s;
+    /**
+     * When a client connects to the server a socket is used to communicate via TCP
+     * The constructor is responsible for: setting up the communication streams between the client and the server
+     * @param socket is the communication path, passed by the server upon acceptance of connection*/
+    public Client(Socket socket) {
+        this.socket = socket;
         Boolean streamWorking;
         try {
             oos = new ObjectOutputStream(socket.getOutputStream());
@@ -60,6 +70,8 @@ public class Client {
         }
     }
 
+    /**
+     * InputHandler is responsible for managing the incoming request and sending back a response*/
     private class InputHandler implements Runnable {
         private Buffer<Request> inputBuffer;
 
@@ -116,12 +128,13 @@ public class Client {
                         );
                         oos.flush();
                     } else if (str.equals("search")) {
-                        ArrayList<Annons> result = sql.search(
+                        oos.writeObject(sql.search(
                                 request.getSearch().getText(),
                                 request.getSearch().getCategory(),
                                 request.getSearch().getFromDate(),
                                 request.getSearch().getToDate()
-                        );
+                        ));
+                        oos.flush();
                     } else {
                         System.out.println("default case and return false");
                         oos.writeBoolean(false);
@@ -137,6 +150,9 @@ public class Client {
         }
     }
 
+    /**
+     * InputHandler is responsible for listening for incoming request from a specific client
+     * adding them to the a buffer to be read by the inputHandler of said client*/
     private class InputListener implements Runnable {
 
         @Override

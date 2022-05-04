@@ -150,8 +150,9 @@ public class SQLquery {
 
             return pstmt.execute();
 
-        } catch (Exception p) {
+        } catch (Exception e) {
             System.out.println("couldn't create an annons");
+            e.printStackTrace();
             return false;
         }
 

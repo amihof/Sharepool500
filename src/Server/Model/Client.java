@@ -122,7 +122,7 @@ public class Client {
                                         request.getAnnons().getProductName(),
                                         request.getAnnons().getProductDescription(),
                                         request.getAnnons().getProductCategory(),
-                                        request.getUser().getEmail(),
+                                        request.getAnnons().getPublisher().getEmail(),
                                         request.getAnnons().getRenting()
                                 )
                         );

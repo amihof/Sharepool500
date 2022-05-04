@@ -1,6 +1,7 @@
 package Client.View.Hem;
 
 import Client.Controller.Controller;
+import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class StartPanel extends JPanel {
     private JTextField kategori;
     private JTextField datum;
     private JComboBox cmbCategories;
+    private MainFrame view;
 
     /**
      * setting up the panel and setting the colors.
@@ -31,8 +33,9 @@ public class StartPanel extends JPanel {
      * @param height the height of the panel
      * @param controller the controller class that this panel needs to function
      */
-    public StartPanel(int width, int height, Controller controller){
+    public StartPanel(int width, int height, Controller controller, MainFrame view){
         this.setLayout(null);
+        this.view = view;
         this.controller = controller;
 
         roundedPanelExample = new RoundedPanelExample();
@@ -71,7 +74,7 @@ public class StartPanel extends JPanel {
         searchRuta.setSize(300, 50);
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
-        searchRuta.addActionListener(l -> controller.searchClicked());
+        searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
         this.add(searchRuta);
 
         //måste lägga till en actionlistener
@@ -124,9 +127,10 @@ public class StartPanel extends JPanel {
 
         cmbCategories = new JComboBox(controller.getCategoriesValues());
         cmbCategories.setSelectedIndex(0);
-        cmbCategories.setBounds(140,310,300,100);
-        cmbCategories.setFont(newFont.deriveFont(20.0F));
-        cmbCategories.setPreferredSize(new Dimension(500,100));
+        cmbCategories.setBounds(140,310,300,50);
+        cmbCategories.setFont(newFont.deriveFont(15.0F));
+        cmbCategories.setPreferredSize(new Dimension(300,50));
+        cmbCategories.setMinimumSize(new Dimension(300, 100));
         this.add(cmbCategories);
         cmbCategories.addItemListener(new ItemListener()
         {

@@ -21,9 +21,11 @@ public class TopPanel extends JPanel {
     private Boolean loggedIn;
     private JButton skapaAnnonsButton;
     private JButton minaSidorButton;
+    private MainFrame view;
 
-    public TopPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn){
+    public TopPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn, MainFrame view){
         this.setLayout(null);
+        this.view = view;
         this.loggedIn = loggedIn;
         this.controller = controller;
         this.whichPage = whichPage;
@@ -60,7 +62,7 @@ public class TopPanel extends JPanel {
         hem.setHorizontalAlignment(JLabel.CENTER);
         hem.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         hem.setEnabled(true);
-        hem.addActionListener(l -> controller.homePage());
+        hem.addActionListener(l -> view.panelStateChanged("MainPanel"));
         this.add(hem);
 
         saFungerarDet = new JButton("Så fungerar det");
@@ -69,7 +71,7 @@ public class TopPanel extends JPanel {
         saFungerarDet.setLocation(350, 48);
         saFungerarDet.setSize(180, 30);
         saFungerarDet.setHorizontalAlignment(JLabel.LEFT);
-        saFungerarDet.addActionListener(l -> controller.saFungerarDetClicked());
+        saFungerarDet.addActionListener(l -> view.panelStateChanged("MainPanelSFD"));
         saFungerarDet.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(saFungerarDet);
 
@@ -89,7 +91,7 @@ public class TopPanel extends JPanel {
             minaSidorButton.setLocation(1050, 37);
             minaSidorButton.setSize(175, 40);
             minaSidorButton.setHorizontalAlignment(JLabel.CENTER);
-            minaSidorButton.addActionListener(l -> controller.minaSidorClicked());
+            minaSidorButton.addActionListener(l -> view.panelStateChanged("MainPanelMinaSidor"));
             minaSidorButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(minaSidorButton);
 
@@ -99,7 +101,7 @@ public class TopPanel extends JPanel {
             skapaAnnonsButton.setLocation(850, 37);
             skapaAnnonsButton.setSize(175, 40);
             skapaAnnonsButton.setHorizontalAlignment(JLabel.CENTER);
-            skapaAnnonsButton.addActionListener(l -> controller.skapaAnnonsClicked());
+            skapaAnnonsButton.addActionListener(l -> view.panelStateChanged("MainPanelSkapaAnnons"));
             skapaAnnonsButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(skapaAnnonsButton);
 
@@ -111,7 +113,7 @@ public class TopPanel extends JPanel {
             loggaInRegistrera.setLocation(1025, 37);
             loggaInRegistrera.setSize(200, 40);
             loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
-            loggaInRegistrera.addActionListener(l -> controller.loginRegisterClicked());
+            loggaInRegistrera.addActionListener(l -> view.loginButtonClicked());
             loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(loggaInRegistrera);
         }

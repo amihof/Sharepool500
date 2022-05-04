@@ -135,7 +135,6 @@ public class Client {
 
                         if(annonsCreated) {
                             //annons.setAnnons(request.getAnnons());
-                            controller.skapaAnnonsClicked();
                             //the information is sent to the controller
                             //and an add is created
 
@@ -155,7 +154,6 @@ public class Client {
                         if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
                             result = (ArrayList<Annons>) tempObject;
                         }
-                        controller.searchClicked();
                         //the information is sent to the controller
                         //and the user can search for an add
 

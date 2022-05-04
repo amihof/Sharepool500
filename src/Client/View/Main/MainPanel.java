@@ -15,6 +15,7 @@ public class MainPanel extends JPanel {
     private int width;
     private int height;
     private boolean loggedIn;
+    private MainFrame view;
 
     /**
      * setting up the main panel. Sets up different panels depending on where the user is
@@ -22,17 +23,18 @@ public class MainPanel extends JPanel {
      * @param height the height of the panel
      * @param controller is needed for it to function
      */
-    public MainPanel(int width, int height, Controller controller, boolean loggedIn) {
+    public MainPanel(int width, int height, Controller controller, boolean loggedIn, MainFrame view) {
         super(null);
+        this.view = view;
         this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         setSize(width, height);
 
-        startPanel = new StartPanel(width, height-100, controller);
+        startPanel = new StartPanel(width, height-100, controller, view);
         this.add(startPanel);
 
-        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn);
+        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, view);
         this.add(topPanel);
 
     }

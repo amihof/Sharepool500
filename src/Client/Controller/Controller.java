@@ -55,20 +55,6 @@ public class Controller
     public void registerNewUser(String userName, String email, String password) {
         requestFactory.register(new User(userName, email, password));
     }
-
-    /**
-     * getter for email
-     * @return the current users email
-     */
-    public String getEmail(){
-        return email;
-    }
-
-
-    public Category[] getCategoriesValues() {
-        return Category.values();
-    }
-
     /**
      * when "Skapa annons" is clicked in the SkapaAnnonsPanel, this method tells view that
      * a new annons is trying to get made.
@@ -102,4 +88,13 @@ public class Controller
     public void couldNotLogin() {
         view.couldNotLogin();
     }
+
+    //--GETTERS and SETTERS--//
+    public String getEmail(){
+        return email;
+    }
+    public Category[] getCategoriesValues() {
+        return Category.values();
+    }
+
 }

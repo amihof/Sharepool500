@@ -2,6 +2,7 @@ package Delad;
 
 import java.io.Serial;
 import java.io.Serializable;
+/**This class represents each type of request**/
 
 public class Request implements Serializable {
     @Serial

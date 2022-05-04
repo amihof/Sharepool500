@@ -81,9 +81,10 @@ public class SQLquery {
      * @return
      */
 
-
     public ArrayList<Annons> search(String productname, Category category) {
 
+    //oanvända parametrar
+    public ArrayList<Annons> search(String productname, Category category) {
         Connection con = Server.getCon();
 
 

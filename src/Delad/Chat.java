@@ -3,6 +3,7 @@ package Delad;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Stack;
+/**This class represents each chat**/
 
 public class Chat implements Serializable {
     @Serial
@@ -14,6 +15,8 @@ public class Chat implements Serializable {
     private String annonsId;
     private String requester_email;
 
+    /**@param annonsId the id
+     * @param requester_email the email of the requester**/
     public Chat(String annonsId, String requester_email){
 
     }

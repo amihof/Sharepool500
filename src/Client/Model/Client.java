@@ -101,8 +101,8 @@ public class Client {
                             // and the user logs in to the program
 
                         } else{
+                            controller.couldNotLogin();
                             throw new Exception("Could not log in ");
-
 
                         }
                     } else if(str.equals("register")){ ////the request type is register

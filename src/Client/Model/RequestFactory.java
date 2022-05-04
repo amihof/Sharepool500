@@ -18,16 +18,14 @@ public class RequestFactory {
         this.client = client;
     }
 
-    /**This function creates new request is created
-     * and added to the inputBuffer-buffer in Client-class
-     * @param user represents each user**/
+    /**This function creates a log-in request
+     * @param user contains the email and password of the user attempting to log in**/
     public void login(User user){
         client.addToBuffer(new Request(false, user));
     }
 
-    /**When the user wants to register a new request is created
-     * and added to the inputBuffer-buffer in Client-class
-     * @param user represents each user**/
+    /**This function creates a register-new-user request
+     * @param user contains the username, email and password of the user to be registered**/
     public void register(User user){
         client.addToBuffer(new Request(true, user));
     }

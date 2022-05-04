@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * StartPanel is the view that the user sees when they first enter the website. Its under the "Hem" button.
@@ -21,6 +23,7 @@ public class StartPanel extends JPanel {
     private JTextField search;
     private JTextField kategori;
     private JTextField datum;
+    private JComboBox cmbCategories;
 
     /**
      * setting up the panel and setting the colors.
@@ -39,6 +42,7 @@ public class StartPanel extends JPanel {
 
         this.setSize(width, height);
         setLocation(0,100);
+        createAndInitiateComboBox();
         setUp();
 
     }
@@ -108,56 +112,30 @@ public class StartPanel extends JPanel {
             }
         });*/
 
-        //borde ändras till en lista
-        //måste lägga till en actionlistener
-        kategori = new RoundedPanelExample.RoundedTextField(20);
-        kategori.setText("Kategori");
-        kategori.setLocation(140, 310);
-        kategori.setSize(140, 50);
-        kategori.setFont(newFont.deriveFont(15.0F));
-        kategori.setHorizontalAlignment(JLabel.LEFT);
-        kategori.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (kategori.getText().equals("") || kategori.getText().equals("Kategori")) {
-                    kategori.setText("");
-                }
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (kategori.getText().equals("")){
-                    kategori.setText("Kategori");
-
-                }
-            }
-        });
-        this.add(kategori);
-
-        //datumen borde ändras till en lista/kalender istället.
-        //Måste lägga till en actionlistener
-        datum = new RoundedPanelExample.RoundedTextField(20);
-        datum.setText("Datum");
-        datum.setLocation(300, 310);
-        datum.setSize(140, 50);
-        datum.setFont(newFont.deriveFont(15.0F));
-        datum.setHorizontalAlignment(JLabel.LEFT);
-        datum.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (datum.getText().equals("") || datum.getText().equals("Datum")) {
-                    datum.setText("");
-                }
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (datum.getText().equals("")){
-                    datum.setText("Datum");
-
-                }
-            }
-        });
-        this.add(datum);
-
         this.add(RoundedPanelExample.roundedPanelExample());
 
 
+    }
+
+    private void createAndInitiateComboBox()
+    {
+        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
+        Font newFont = myFont.deriveFont(25.0F);
+
+        cmbCategories = new JComboBox(controller.getCategoriesValues());
+        cmbCategories.setSelectedIndex(0);
+        cmbCategories.setBounds(140,310,300,100);
+        cmbCategories.setFont(newFont.deriveFont(20.0F));
+        cmbCategories.setPreferredSize(new Dimension(500,100));
+        this.add(cmbCategories);
+        cmbCategories.addItemListener(new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                Object obj = cmbCategories.getSelectedItem();
+                int index = cmbCategories.getSelectedIndex();
+            }
+        });
     }
 }

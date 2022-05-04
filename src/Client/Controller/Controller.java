@@ -44,7 +44,7 @@ public class Controller
      * @param password is the password that the user typed in
      */
     public void loginClicked(String email, String password) {
-        user = new User(email, password);
+        this.user = new User(email, password);
         requestFactory.login(user);
     }
 
@@ -95,6 +95,10 @@ public class Controller
     }
     public Category[] getCategoriesValues() {
         return Category.values();
+    }
+
+    public void registerNewAnnons(String productName, String productDescription, Category productCategory, Boolean renting) {
+        requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
     }
 
 }

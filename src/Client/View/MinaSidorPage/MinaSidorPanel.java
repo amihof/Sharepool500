@@ -1,6 +1,7 @@
 package Client.View.MinaSidorPage;
 
 import Client.Controller.Controller;
+import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
@@ -22,9 +23,11 @@ public class MinaSidorPanel extends JPanel {
     private JButton laneHistorikButton;
     private JButton changePasswordButton;
     private JButton raderaKontoButton;
+    private MainFrame view;
 
-    public MinaSidorPanel(int width, int height, Controller controller) {
+    public MinaSidorPanel(int width, int height, Controller controller, MainFrame view) {
         this.setLayout(null);
+        this.view = view;
         this.controller = controller;
         Color myNewColor = new Color(245, 221, 204);
         this.setBackground(myNewColor);
@@ -98,7 +101,7 @@ public class MinaSidorPanel extends JPanel {
         changeUppgifterButton.setLocation(300, 390);
         changeUppgifterButton.setSize(225, 50);
         changeUppgifterButton.setHorizontalAlignment(JLabel.CENTER);
-        changeUppgifterButton.addActionListener(l -> controller.andraUppgifterClicked());
+        changeUppgifterButton.addActionListener(l -> view.andraUppgifterClicked());
         changeUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(22.0F));
         this.add(changeUppgifterButton);
 

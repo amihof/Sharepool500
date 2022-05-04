@@ -5,9 +5,10 @@ import Delad.Annons;
 import Delad.Buffer;
 import Delad.Request;
 import Delad.User;
+import org.apache.tomcat.jni.Socket;
+import org.apache.tomcat.jni.Thread;
 
 import java.io.*;
-import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +37,7 @@ public class Client {
 
     /**
      * When a client connects to the server a socket is used to communicate via TCP
-     * The constructor is responsible for: setting up the communication streams between the client and the server
+     * The constructor is responsible fsor: setting up the communication streams between the client and the server
      * @param socket is the communication path, passed by the server upon acceptance of connection*/
     public Client(Socket socket) {
         this.socket = socket;

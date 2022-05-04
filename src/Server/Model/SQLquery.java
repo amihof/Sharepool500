@@ -92,7 +92,7 @@ public class SQLquery {
             String QUERY = "SELECT  product.name, product.description, annons.owner_email,renting FROM product_type " +
                     "INNER JOIN product ON  product_type.id = product.product_type_id " +
                     "INNER JOIN annons ON product.id = annons.p_id " +
-                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%' AND annons.;";
+                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%';";
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1,category.toString());

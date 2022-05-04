@@ -32,6 +32,8 @@ public class RedigeraUppgifter extends JDialog {
         final Font myFont = new Font("Shree Devanagari 714", 0, 18);
         final Font newFont = myFont.deriveFont(25.0f);
 
+        Color orangeColor = new Color (225, 143, 107);
+
         final Color greenColor = new Color(167, 203, 156, 255);
         (this.andraUppgifterLabel = new JLabel("Redigera profil")).setLocation(30, 10);
         this.andraUppgifterLabel.setSize(375, 50);
@@ -66,7 +68,7 @@ public class RedigeraUppgifter extends JDialog {
         this.add(this.eMailField);
 
 
-        (this.registerNewUserName = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
+        (this.registerNewUserName = (JButton)new RoundedPanelExample.CircleBtn("Bekräfta nytt användarnamn")).setBackground(orangeColor);
         this.registerNewUserName.setBorderPainted(false);
         this.registerNewUserName.setLocation(38, 300);
         this.registerNewUserName.setSize(300, 50);
@@ -75,7 +77,7 @@ public class RedigeraUppgifter extends JDialog {
         //registerNewUserName.addActionListener(l -> controller.registerNewUser(userNameField.getText(),eMailField.getText()));
         this.add(this.registerNewUserName);
 
-        (this.registerNewEmail = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
+        (this.registerNewEmail = (JButton)new RoundedPanelExample.CircleBtn("Bekräfta ny e-post")).setBackground(orangeColor);
         this.registerNewEmail.setBorderPainted(false);
         this.registerNewEmail.setLocation(413, 300);
         this.registerNewEmail.setSize(300, 50);

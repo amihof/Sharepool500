@@ -4,6 +4,7 @@ import Client.Controller.Controller;
 import Client.View.Main.TopPanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainPanelSkapaAnnons extends JPanel {
 
@@ -22,7 +23,7 @@ public class MainPanelSkapaAnnons extends JPanel {
         this.setSize(width, height);
 
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
-       // this.add(skapaAnnonsPanel);
+        this.add(skapaAnnonsPanel);
 
         topPanel = new TopPanel(width, height, controller, "0", loggedIn);
         this.add(topPanel);

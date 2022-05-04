@@ -4,8 +4,7 @@ import Client.View.Main.RoundedPanelExample;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.JPanel;
 import Client.Controller.Controller;
 import javax.swing.JButton;
@@ -62,6 +61,21 @@ public class MainLogin extends JDialog
         this.userNameField.setSize(300, 40);
         this.userNameField.setFont(newFont.deriveFont(15.0f));
         this.userNameField.setHorizontalAlignment(2);
+        userNameField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (userNameField.getText().equals("") || userNameField.getText().equals("Användarnamn")) {
+                    userNameField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (userNameField.getText().equals("")){
+                    userNameField.setText("Användarnamn");
+
+                }
+            }
+        });
+
         this.add(this.userNameField);
 
         (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
@@ -69,6 +83,20 @@ public class MainLogin extends JDialog
         this.eMailField.setSize(300, 40);
         this.eMailField.setFont(newFont.deriveFont(15.0f));
         this.eMailField.setHorizontalAlignment(2);
+        eMailField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (eMailField.getText().equals("") || eMailField.getText().equals("E-post")) {
+                    eMailField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (eMailField.getText().equals("")){
+                    eMailField.setText("E-post");
+
+                }
+            }
+        });
         this.add(this.eMailField);
 
         (this.passwordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
@@ -76,6 +104,20 @@ public class MainLogin extends JDialog
         this.passwordField.setSize(300, 40);
         this.passwordField.setFont(newFont.deriveFont(15.0f));
         this.passwordField.setHorizontalAlignment(2);
+        passwordField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (passwordField.getText().equals("") || passwordField.getText().equals("Lösenord")) {
+                    passwordField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (passwordField.getText().equals("")){
+                    passwordField.setText("Lösenord");
+
+                }
+            }
+        });
         this.add(this.passwordField);
 
         (this.upprepaPasswordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Upprepa lösenord");
@@ -83,6 +125,20 @@ public class MainLogin extends JDialog
         this.upprepaPasswordField.setSize(300, 40);
         this.upprepaPasswordField.setFont(newFont.deriveFont(15.0f));
         this.upprepaPasswordField.setHorizontalAlignment(2);
+        upprepaPasswordField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (upprepaPasswordField.getText().equals("") || eMailField.getText().equals("Upprepa lösenord")) {
+                    upprepaPasswordField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (upprepaPasswordField.getText().equals("")){
+                    upprepaPasswordField.setText("Upprepa lösenord");
+
+                }
+            }
+        });
         this.add(this.upprepaPasswordField);
 
         (this.eMailLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
@@ -90,6 +146,20 @@ public class MainLogin extends JDialog
         this.eMailLoginField.setSize(300, 40);
         this.eMailLoginField.setFont(newFont.deriveFont(15.0f));
         this.eMailLoginField.setHorizontalAlignment(2);
+        eMailField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (eMailField.getText().equals("") || eMailField.getText().equals("E-post")) {
+                    eMailField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (eMailField.getText().equals("")){
+                    eMailField.setText("E-post");
+
+                }
+            }
+        });
         this.add(this.eMailLoginField);
 
         (this.passwordLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
@@ -105,17 +175,6 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
-        registerUser.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               // if (passwordField == upprepaPasswordField && eMailField != null && userNameField != null){
-                    controller.registerNewUser(eMailField.getText(), userNameField.getText(), passwordField.getText());
-               // }
-                //else{
-                //    System.out.println("error");
-                //}
-            }
-        });
-
         registerUser.addActionListener(l -> controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText()));
         registerUser.addActionListener(l-> this.dispose());
         this.add(this.registerUser);
@@ -149,4 +208,5 @@ public class MainLogin extends JDialog
         this.add(this.streck);
 
     }
+
 }

@@ -23,9 +23,9 @@ public class Request implements Serializable {
      * */
     public Request(Boolean register, User user){
         if(register) {
-            request = "register";
+            this.request = "register";
         }else{
-            request = "login";
+            this.request = "login";
         }
         this.user = user;
     }

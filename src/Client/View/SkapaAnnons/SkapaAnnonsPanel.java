@@ -155,7 +155,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
                         radioButtonText = temp.getText();
                     }
                 }
-                controller.newAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), controller.getEmail(), radioButtonText == "Hyrs ut" ? true : false, getClientPicture());
+                controller.registerNewAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), radioButtonText == "Hyrs ut" ? true : false);
             }
         });
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));

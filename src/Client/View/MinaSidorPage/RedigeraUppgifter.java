@@ -16,6 +16,7 @@ public class RedigeraUppgifter extends JDialog {
     private JTextField eMailField;
     private JButton registerNewUserName;
     private JButton registerNewEmail;
+    private String whichPage;
 
     public RedigeraUppgifter(Controller controller) {
         final Color myNewColor = new Color(245, 221, 204);
@@ -35,7 +36,7 @@ public class RedigeraUppgifter extends JDialog {
         Color orangeColor = new Color (225, 143, 107);
 
         final Color greenColor = new Color(167, 203, 156, 255);
-        (this.andraUppgifterLabel = new JLabel("Redigera profil")).setLocation(30, 10);
+        (this.andraUppgifterLabel = new JLabel("Redigera profil")).setLocation(30, 20);
         this.andraUppgifterLabel.setSize(375, 50);
         this.andraUppgifterLabel.setFont(newFont.deriveFont(30.0f));
         andraUppgifterLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -44,27 +45,27 @@ public class RedigeraUppgifter extends JDialog {
         (this.userNameLabel = new JLabel("Användarnamn")).setLocation(38, 100);
         this.userNameLabel.setSize(375, 100);
         this.userNameLabel.setFont(newFont.deriveFont(20.0f));
-        this.userNameLabel.setHorizontalAlignment(0);
+        this.userNameLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(this.userNameLabel);
 
-        (this.emailLabel = new JLabel("exempel@epost.com")).setLocation(375, 100);
+        (this.emailLabel = new JLabel("exempel@epost.com")).setLocation(413, 100);
         this.emailLabel.setSize(375, 100);
         this.emailLabel.setFont(newFont.deriveFont(20.0f));
-        this.emailLabel.setHorizontalAlignment(0);
+        this.emailLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(this.emailLabel);
 
         (this.userNameField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Nytt användarnamn");
-        this.userNameField.setLocation(38, 250);
+        this.userNameField.setLocation(38, 175);
         this.userNameField.setSize(300, 40);
         this.userNameField.setFont(newFont.deriveFont(15.0f));
-        this.userNameField.setHorizontalAlignment(0);
+        this.userNameField.setHorizontalAlignment(JTextField.LEFT);
         this.add(this.userNameField);
 
         (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Ny e-post");
-        this.eMailField.setLocation(413, 160);
+        this.eMailField.setLocation(413, 175);
         this.eMailField.setSize(300, 40);
         this.eMailField.setFont(newFont.deriveFont(15.0f));
-        this.eMailField.setHorizontalAlignment(0);
+        this.eMailField.setHorizontalAlignment(JTextField.LEFT);
         this.add(this.eMailField);
 
 

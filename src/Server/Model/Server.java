@@ -7,8 +7,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**Server class is the class responsible for:
+ * 1. connecting to the database
+ * 2. listening for new client
+ * 3. creating an client instance to handle the new client*/
 public class Server {
 
+    //Connection to the database am3087 in pgserver.mau.se
     private static Connection con; {
         String url = "jdbc:postgresql://pgserver.mau.se:5432/am3087";
         String conID = "am3087";
@@ -21,21 +26,21 @@ public class Server {
             try {
                 throw new SQLException(e.getMessage());
             } catch (SQLException ex) {
+                con = null;
                 ex.printStackTrace();
             }
         }
 
     }
 
-    public static Connection getCon(){
-        return con;
-    }
-
     private ServerSocket ss;
     private int port = 725;
 
     private ClientConnector connector;
+    private Thread clientConnectorThread;
 
+
+    /***/
     public Server() {
         try {
             ss = new ServerSocket(port);
@@ -51,6 +56,9 @@ public class Server {
             connector = new ClientConnector();
             Thread t = new Thread(connector);
             t.start();
+        }
+        if(getCon() == null){
+
         }
     }
 
@@ -70,5 +78,11 @@ public class Server {
 
     }
 
+
+    /**static method to get the connection to the database from all aprts of the server
+     * @return con is the connection established to the database */
+    public static Connection getCon(){
+        return con;
+    }
 
 }

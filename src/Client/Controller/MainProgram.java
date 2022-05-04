@@ -5,6 +5,10 @@ package Client.Controller;
  * */
 public class MainProgram {
 
+
+    /**
+     * MainProgram is the entry method to run the program
+     * */
     public static void main(String[] args) {
         Controller controller = new Controller();
     }

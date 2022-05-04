@@ -52,7 +52,9 @@ public class Client {
 
     }
 
-    /**This method adds the request in RequestFactory to the buffer**/
+    /**This method adds the request from RequestFactory to the buffer in the
+     * InputHandler class (the thread class)
+     *@param request is the request receive from the request class**/
 
     public void addToBuffer(Request request){
         inputHandler.addToBuffer(request);
@@ -68,7 +70,9 @@ public class Client {
             inputBuffer = new Buffer<>();
         }
 
-        /**In this method the requests adds to the buffer**/
+        /**In this method the requests adds to the buffer
+         *@param request is the request receive from the Request class
+        **/
         public void addToBuffer(Request request){
             inputBuffer.put(request);
         }

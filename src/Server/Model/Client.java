@@ -130,11 +130,9 @@ public class Client {
                     } else if (str.equals("search")) {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),
-                                request.getSearch().getCategory(),
-                                request.getSearch().getFromDate(),
-                                request.getSearch().getToDate()
-                        ));
-                        oos.flush();
+                                request.getSearch().getCategory()
+                        );
+                        
                     } else {
                         System.out.println("default case and return false");
                         oos.writeBoolean(false);

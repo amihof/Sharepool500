@@ -40,7 +40,7 @@ public class Server {
     private Thread clientConnectorThread;
 
 
-    /***/
+    /**The constructor creates a server port that can accept sockets from new clients */
     public Server() {
         try {
             ss = new ServerSocket(port);
@@ -51,6 +51,7 @@ public class Server {
 
     }
 
+    /**sets ut the client connector and interrupts it if the connection to the database fails. terminating the server*/
     public void setUp() {
 
         if(getCon() == null){
@@ -64,6 +65,7 @@ public class Server {
         }
     }
 
+    /**Client connector class is a runnable class intended to be run by a thread, listening for new clients*/
     private class ClientConnector implements Runnable {
 
         @Override

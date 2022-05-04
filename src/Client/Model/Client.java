@@ -29,8 +29,9 @@ public class Client {
     private InputHandler inputHandler;
     private final Thread inputHandlerThread;
 
-    public Client(int proxy, String ip) {
+    public Client(int proxy, String ip, Controller controller) {
         System.out.println("client starta");
+        this.controller = controller;
         this.proxy = proxy;
         this.ip = ip;
         try { //a try catch to handle the connection

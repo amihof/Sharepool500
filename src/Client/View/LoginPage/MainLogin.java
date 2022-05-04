@@ -127,7 +127,7 @@ public class MainLogin extends JDialog
         this.upprepaPasswordField.setHorizontalAlignment(2);
         upprepaPasswordField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (upprepaPasswordField.getText().equals("") || eMailField.getText().equals("Upprepa lösenord")) {
+                if (upprepaPasswordField.getText().equals("") || upprepaPasswordField.getText().equals("Upprepa lösenord")) {
                     upprepaPasswordField.setText("");
                 }
             }
@@ -146,16 +146,16 @@ public class MainLogin extends JDialog
         this.eMailLoginField.setSize(300, 40);
         this.eMailLoginField.setFont(newFont.deriveFont(15.0f));
         this.eMailLoginField.setHorizontalAlignment(2);
-        eMailField.addFocusListener(new FocusListener() {
+        eMailLoginField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (eMailField.getText().equals("") || eMailField.getText().equals("E-post")) {
-                    eMailField.setText("");
+                if (eMailLoginField.getText().equals("") || eMailLoginField.getText().equals("E-post")) {
+                    eMailLoginField.setText("");
                 }
             }
 
             public void focusLost(FocusEvent e) {
-                if (eMailField.getText().equals("")){
-                    eMailField.setText("E-post");
+                if (eMailLoginField.getText().equals("")){
+                    eMailLoginField.setText("E-post");
 
                 }
             }
@@ -167,6 +167,20 @@ public class MainLogin extends JDialog
         this.passwordLoginField.setSize(300, 40);
         this.passwordLoginField.setFont(newFont.deriveFont(15.0f));
         this.passwordLoginField.setHorizontalAlignment(2);
+        passwordLoginField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (passwordLoginField.getText().equals("") || passwordLoginField.getText().equals("Lösenord")) {
+                    passwordLoginField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (passwordLoginField.getText().equals("")){
+                    passwordLoginField.setText("Lösenord");
+
+                }
+            }
+        });
         this.add(this.passwordLoginField);
 
         (this.registerUser = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);

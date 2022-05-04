@@ -44,21 +44,23 @@ public class Server {
     public Server() {
         try {
             ss = new ServerSocket(port);
-            start();
+            setUp();
         } catch (IOException e){
             e.printStackTrace();
         }
 
     }
 
-    public synchronized void start() {
+    public void setUp() {
+
+        if(getCon() == null){
+            clientConnectorThread.interrupt();
+        }
+
         if (connector == null) {
             connector = new ClientConnector();
-            Thread t = new Thread(connector);
-            t.start();
-        }
-        if(getCon() == null){
-
+            clientConnectorThread= new Thread(connector);
+            clientConnectorThread.start();
         }
     }
 

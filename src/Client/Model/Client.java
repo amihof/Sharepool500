@@ -82,7 +82,7 @@ public class Client {
                 Request request = null;
                 String str = null;
                 try {
-                    request = inputBuffer.get(); //recivies the request from the buffer
+                    request = inputBuffer.get(); //receives the request from the buffer
                     str = request.getRequest();
 
                     if(str.equals("login")){ //the request type is login
@@ -93,8 +93,8 @@ public class Client {
                         if(loggedIn){
                             user = request.getUser(); //the user information saves
                             controller.loggedInOrNot(loggedIn);
-                            //the informationen is send to the controller
-                            // and the usern logs in to the program
+                            //the information is sent to the controller
+                            // and the user logs in to the program
 
                         } else{
                             throw new Exception("Could not read log in ");
@@ -125,8 +125,8 @@ public class Client {
                         if(annonsCreated) {
                             //annons.setAnnons(request.getAnnons());
                             controller.skapaAnnonsClicked();
-                            //the informationen is send to the controller
-                            //and a add is created
+                            //the information is sent to the controller
+                            //and an add is created
 
                         } else{
                             throw new Exception("Could not read create an add ");
@@ -145,8 +145,8 @@ public class Client {
                             result = (ArrayList<Annons>) tempObject;
                         }
                         controller.searchClicked();
-                        //the informationen is send to the controller
-                        //and the user can seacrh for an add
+                        //the information is sent to the controller
+                        //and the user can search for an add
 
 
                     } else{

@@ -38,22 +38,6 @@ public class Controller
     }
 
     /**
-     * when the "Hem" button on the top panel is clicked, this method sends to view that the
-     * state of the mainPanel has changed to MainPanel.
-     */
-    public void homePage() {
-        view.panelStateChanged("MainPanel");
-    }
-
-    /**
-     * when the "Sök" button is clicked on the "Hem" panel, this method sends to view that the
-     * state of the mainPanel has changed to MainPanelAnnons.
-     */
-    public void searchClicked() {
-        view.panelStateChanged("MainPanelAnnons");
-    }
-
-    /**
      * when the user clicks "Logga in" on the login panel, this method creates a new user with the
      * parameters that is sent in, and also creates a request factory with that user.
      * @param email is the email that the user typed in
@@ -65,61 +49,12 @@ public class Controller
     }
 
     /**
-     * when the user clicks "Ändra uppgifter" in the Mina sidor panel, this method tells view that
-     * the user has clicked this button and starts a method in view.
-     */
-    public void andraUppgifterClicked() {
-        view.andraUppgifterClicked(this);
-    }
-
-    /**
-     * when the user clicks "Så fungerar det" on the top panel, this method tells view that the
-     * state of main panel has changed to "MainPanelSFD"
-     */
-    public void saFungerarDetClicked() {
-        view.panelStateChanged("MainPanelSFD");
-       /* this.view.clearJFrame(this);
-        view.updateJFrame(this);*/
-    }
-
-    /**
-     * when the user clicks "Mina sidor" on the top panel, this method tells view that the
-     * state of main panel has changed to "MainPanelMinaSidor"
-     */
-    public void minaSidorClicked() {
-        view.panelStateChanged("MainPanelMinaSidor");
-    }
-
-    /**
-     * when the user clicks "Skapa annons" on the top panel, this method tells view that the
-     * state of main panel has changed to "MainPanelSkapaAnnons"
-     */
-    public void skapaAnnonsClicked() {
-        view.panelStateChanged("MainPanelSkapaAnnons");
-
-    }
-
-    /**
      * when the user clicks "Registrera användare" on the login/register panel, this method makes a
      * request at requestfactory to register a new user.
      */
     public void registerNewUser(String userName, String email, String password) {
         requestFactory.register(new User(userName, email, password));
     }
-
-    /**
-     * getter for email
-     * @return the current users email
-     */
-    public String getEmail(){
-        return email;
-    }
-
-
-    public Category[] getCategoriesValues() {
-        return Category.values();
-    }
-
     /**
      * when "Skapa annons" is clicked in the SkapaAnnonsPanel, this method tells view that
      * a new annons is trying to get made.
@@ -129,9 +64,9 @@ public class Controller
      * @param publisherEmail the users email
      * @param renting ??
      */
-    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting) {
+    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting, ImageIcon clientPicture) {
 
-        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting);
+        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting, clientPicture);
 
     }
 
@@ -147,17 +82,19 @@ public class Controller
     }
 
     /**
-     * when "Login/register" button is clicked, this method tells that to view.
-     */
-    public void loginRegisterClicked() {
-        view.loginButtonClicked(this);
-    }
-
-    /**
      * when a user fails to login, this method tells view that the user failed to log in and displays
      * a jdialog. 
      */
     public void couldNotLogin() {
         view.couldNotLogin();
     }
+
+    //--GETTERS and SETTERS--//
+    public String getEmail(){
+        return email;
+    }
+    public Category[] getCategoriesValues() {
+        return Category.values();
+    }
+
 }

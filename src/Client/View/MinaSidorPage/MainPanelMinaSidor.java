@@ -1,6 +1,7 @@
 package Client.View.MinaSidorPage;
 
 import Client.Controller.Controller;
+import Client.View.Main.MainFrame;
 import Client.View.Main.TopPanel;
 
 import javax.swing.*;
@@ -13,18 +14,20 @@ public class MainPanelMinaSidor extends JPanel {
     private MinaSidorPanel minaSidorPanel;
     private TopPanel topPanel;
     private boolean loggedIn;
+    private MainFrame view;
 
-    public MainPanelMinaSidor(int width, int height, Controller controller, boolean loggedIn){
+    public MainPanelMinaSidor(int width, int height, Controller controller, boolean loggedIn, MainFrame view){
         super(null);
+        this.view = view;
         this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         this.setSize(width, height);
 
-        minaSidorPanel = new MinaSidorPanel(width, height-100, controller);
+        minaSidorPanel = new MinaSidorPanel(width, height-100, controller, view);
         this.add(minaSidorPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", loggedIn);
+        topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
         this.add(topPanel);
 
     }

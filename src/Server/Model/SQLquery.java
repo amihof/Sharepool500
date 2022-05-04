@@ -2,6 +2,7 @@ package Server.Model;
 //kommentarer saknas
 import Delad.Annons;
 import Delad.Category;
+import Delad.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -77,19 +78,20 @@ public class SQLquery {
      *
      * @param productname is the parameter where the user searches for a type of object
      * @param category is the category the user chooses in the drop down list when searching for something
-     * @param fromDate not done yet
-     * @param toDate not done yet
      * @return
      */
 
+    public ArrayList<Annons> search(String productname, Category category) {
+
+        
+
     //oanvända parametrar
-    public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
         Connection con = Server.getCon();
 
 
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "SELECT  product.name, product.description, annons.owner_email FROM product_type " +
+            String QUERY = "SELECT  product.name, product.description, annons.owner_email,renting FROM product_type " +
                     "INNER JOIN product ON  product_type.id = product.product_type_id " +
                     "INNER JOIN annons ON product.id = annons.p_id " +
                     "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%';";
@@ -104,6 +106,9 @@ public class SQLquery {
             while (resultSet.next()) {
                 //result.add(new Annons(resultSet.getString(1),category.valueOf(resultSet.getString(2)),));
                 //bortkommenterad kod
+
+                result.add(new Annons(resultSet.getString(1),resultSet.getString(2), category,
+                        new User(resultSet.getString(3)),resultSet.getBoolean(4)));
             }
             return result;
 
@@ -152,5 +157,4 @@ public class SQLquery {
 
 
     }
-
 }

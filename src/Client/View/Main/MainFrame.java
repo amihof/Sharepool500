@@ -48,18 +48,18 @@ public class MainFrame
     public MainFrame(final Controller controller, boolean loggedIn) {
         this.loggedIn = loggedIn;
         frame = new JFrame();
-        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn);
-        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn);
+        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn, this, frame);
+        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
         this.controller = controller;
         CardLayout cardLayout = new CardLayout();
         frame.setLayout(cardLayout);
         frame.setPreferredSize(new Dimension(this.width, this.height));
         cards = new JPanel(new CardLayout());
-        cards.add(new MainPanel(width, height, controller, loggedIn), "MainPanel");
-        cards.add(new MainPanelSFD(width, height, controller, loggedIn), "MainPanelSFD");
-        cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn), "MainPanelMinaSidor");
-        cards.add(new MainPanelAnnons(width, height, controller, loggedIn), "MainPanelAnnons");
-        addScroll();
+        cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
+        cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
+        cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn, this), "MainPanelMinaSidor");
+        cards.add(new MainPanelAnnons(width, height, controller, loggedIn, this, frame), "MainPanelAnnons");
+        addScroll(this);
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
 
@@ -74,16 +74,16 @@ public class MainFrame
         this.controller = controller;
     }
 
-    public void loginButtonClicked(final Controller controller) {
+    public void loginButtonClicked() {
         this.mainLogin = new MainLogin(controller);
     }
 
-    public void andraUppgifterClicked(final Controller controller) {
+    public void andraUppgifterClicked() {
         this.redigeraUppgifter = new RedigeraUppgifter(controller);
     }
 
-    public void addScroll() {
-        mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width,height,controller,loggedIn);
+    public void addScroll(MainFrame view) {
+        mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width,height,controller,loggedIn,view);
 
         JScrollPane scrollPanel = new JScrollPane(mainPanelSkapaAnnons,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -101,19 +101,10 @@ public class MainFrame
 
     }
 
-    public void addAnnons(){
-        OneAnnons newAnnons = new OneAnnons();
-
-    }
-
     public void dispose() {
         frame.dispose();
         mainLogin.dispose();
 
-    }
-
-    public void updateLogin(boolean loggedIn) {
-        this.loggedIn = loggedIn;
     }
 
     public void panelStateChanged(String newPanel) {

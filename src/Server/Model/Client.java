@@ -36,7 +36,7 @@ public class Client {
 
     /**
      * When a client connects to the server a socket is used to communicate via TCP
-     * The constructor is responsible for: setting up the communication streams between the client and the server
+     * The constructor is responsible fsor: setting up the communication streams between the client and the server
      * @param socket is the communication path, passed by the server upon acceptance of connection*/
     public Client(Socket socket) {
         this.socket = socket;
@@ -130,11 +130,9 @@ public class Client {
                     } else if (str.equals("search")) {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),
-                                request.getSearch().getCategory(),
-                                request.getSearch().getFromDate(),
-                                request.getSearch().getToDate()
+                                request.getSearch().getCategory()
                         ));
-                        oos.flush();
+
                     } else {
                         System.out.println("default case and return false");
                         oos.writeBoolean(false);

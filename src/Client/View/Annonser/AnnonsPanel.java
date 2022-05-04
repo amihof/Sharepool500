@@ -6,6 +6,7 @@ import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class AnnonsPanel extends JPanel {
     private int width;
@@ -20,10 +21,15 @@ public class AnnonsPanel extends JPanel {
     private JButton buttonCircle;
     private JLabel searchLabel;
     private JLabel hyrsUtLabel;
+    private JPanel thisPanel;
+    private JFrame frame;
+
+    private static HashMap<Integer, Box> msgTracker = new HashMap<>();
 
 
-    public AnnonsPanel(int width, int height, Controller controller){
+    public AnnonsPanel(int width, int height, Controller controller, JFrame frame){
         this.setLayout(null);
+        this.thisPanel = new JPanel();
         this.controller = controller;
         Color myNewColor = new Color(245, 221, 204);
         this.setBackground(myNewColor);
@@ -45,8 +51,6 @@ public class AnnonsPanel extends JPanel {
 
         Color myNewColor = new Color(245, 221, 204);
         Color greenColor = new Color (167, 203, 156, 255);
-
-        //måste lägga till en actionlistener
 
         search = new RoundedPanelExample.RoundedTextField(20);
         search.setText("Vad vill du hyra?");
@@ -91,27 +95,55 @@ public class AnnonsPanel extends JPanel {
         this.add(buttonCircle);
         this.add(buttonCircle2);
 
-       /* hyrsUtLabel = new JLabel("Hyrs ut");
-        hyrsUtLabel.setLocation(240, 60);
-        hyrsUtLabel.setSize(300, 50);
-        hyrsUtLabel.setFont(newFont.deriveFont(20.0F));
-        hyrsUtLabel.setHorizontalAlignment(JLabel.LEFT);
-        this.add(hyrsUtLabel);
-
-        searchLabel = new JLabel("Sökes");
-        searchLabel.setLocation(440, 60);
-        searchLabel.setSize(300, 50);
-        searchLabel.setFont(newFont.deriveFont(20.0F));
-        searchLabel.setHorizontalAlignment(JLabel.LEFT);
-        this.add(searchLabel);*/
-
-        /*JPanel testtest = new JPanel();
-        OneAnnons annonser = new OneAnnons();
-        testtest.add(annonser);
-        testtest.setSize(500, 500);
-        testtest.setLocation(255, 95);
-        this.add(testtest);*/
+        thisPanel.setOpaque(false);
+        thisPanel.setMinimumSize(new Dimension(width, height));
+        thisPanel.setBackground(Color.DARK_GRAY);
+        thisPanel.setLayout(new BoxLayout(thisPanel, BoxLayout.Y_AXIS));
+        thisPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
+
+    public synchronized void receive(String username, int msgId, String txt, final ImageIcon attachedPicture) {
+        Box box = Box.createHorizontalBox();
+        msgTracker.put(msgId, box);
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                box.setMinimumSize(new Dimension(800, 150));
+                box.setPreferredSize(new Dimension(900, 150));
+
+                TextArea lblText = new TextArea("< " + username + " > : " + txt);
+                lblText.setEditable(false);
+                lblText.setFont(new Font("Serif", Font.PLAIN, 12));
+                lblText.setMinimumSize(new Dimension(600, 20));
+                lblText.setMaximumSize(new Dimension(600, 150));
+                box.add(lblText, LEFT_ALIGNMENT);
+
+                JLabel lblPic = new JLabel();
+                lblPic.setMinimumSize(new Dimension(100, 150));
+                lblPic.setMaximumSize(new Dimension(100, 150));
+                if (attachedPicture != null) {
+                    Image image = attachedPicture.getImage();
+                    image = image.getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH);
+                    ImageIcon attachedPictureEdited = new ImageIcon(image);
+                    lblPic.setIcon(attachedPictureEdited);
+                }
+                box.add(lblPic, RIGHT_ALIGNMENT);
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                thisPanel.add(box);
+                thisPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+                thisPanel.revalidate();
+                thisPanel.repaint();
+                frame.revalidate();
+            }
+        };
+        worker.execute();
+    }
+
 
 }

@@ -5,6 +5,8 @@ import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * StartPanel is the view that the user sees when they first enter the website. Its under the "Hem" button.
@@ -83,6 +85,20 @@ public class StartPanel extends JPanel {
         search.setSize(300, 50);
         search.setFont(newFont.deriveFont(15.0F));
         search.setHorizontalAlignment(JLabel.LEFT);
+        search.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (search.getText().equals("") || search.getText().equals("Vad vill du hyra?")) {
+                    search.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (search.getText().equals("")){
+                    search.setText("Vad vill du hyra?");
+
+                }
+            }
+        });
         this.add(search);
         /*search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -100,6 +116,20 @@ public class StartPanel extends JPanel {
         kategori.setSize(140, 50);
         kategori.setFont(newFont.deriveFont(15.0F));
         kategori.setHorizontalAlignment(JLabel.LEFT);
+        kategori.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (kategori.getText().equals("") || kategori.getText().equals("Kategori")) {
+                    kategori.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (kategori.getText().equals("")){
+                    kategori.setText("Kategori");
+
+                }
+            }
+        });
         this.add(kategori);
 
         //datumen borde ändras till en lista/kalender istället.
@@ -110,6 +140,20 @@ public class StartPanel extends JPanel {
         datum.setSize(140, 50);
         datum.setFont(newFont.deriveFont(15.0F));
         datum.setHorizontalAlignment(JLabel.LEFT);
+        datum.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (datum.getText().equals("") || datum.getText().equals("Datum")) {
+                    datum.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (datum.getText().equals("")){
+                    datum.setText("Datum");
+
+                }
+            }
+        });
         this.add(datum);
 
         this.add(RoundedPanelExample.roundedPanelExample());

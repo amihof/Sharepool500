@@ -145,7 +145,6 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
         postAnnons.setLocation(50, 930);
         postAnnons.setSize(230, 50);
         postAnnons.setHorizontalAlignment(JLabel.CENTER);
-        postAnnons.addActionListener(l -> controller.uploadAnnons());
         postAnnons.addActionListener(this);
         postAnnons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {

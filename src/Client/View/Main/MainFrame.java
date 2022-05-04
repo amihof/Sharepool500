@@ -1,6 +1,8 @@
 package Client.View.Main;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import Client.View.Annonser.AnnonsPanel;
 import Client.View.Annonser.MainPanelAnnons;
@@ -34,6 +36,7 @@ public class MainFrame
     private AnnonsPanel annonsPanel;
     private JPanel newAnnonsPanel;
     private JScrollPane scrollPanel;
+    private JDialog d;
 
     private boolean loggedIn;
 
@@ -111,7 +114,6 @@ public class MainFrame
 
     public void updateLogin(boolean loggedIn) {
         this.loggedIn = loggedIn;
-
     }
 
     public void panelStateChanged(String newPanel) {
@@ -119,4 +121,20 @@ public class MainFrame
         cl.show(cards, newPanel);
     }
 
+    public void couldNotLogin() {
+        d = new JDialog(frame , "Dialog Example", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Could not login. Username or password wrong"));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+    }
 }

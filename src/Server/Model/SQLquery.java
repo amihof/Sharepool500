@@ -121,14 +121,14 @@ public class SQLquery {
 
     /**
      *
-     * @param productName is the users input for the name of the product he wishes to create an annons for
-     * @param productDescription is the description
+     * @param annons_title is the users input for the name of the product he wishes to create an annons for
+     * @param annons_description is the description
      * @param productCategory the category from the drop down list
      * @param publisherEmail the users email
      * @param renting this is a boolean which determines what type of annons it is, true for lending out, false if borrow
      * @return returns true if sucess
      */
-    public boolean createAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting){
+    public boolean createAnnons(String annons_title, String annons_description, Category productCategory, String publisherEmail, Boolean renting){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -141,8 +141,8 @@ public class SQLquery {
 
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, productName);
-            pstmt.setString(2, productDescription);
+            pstmt.setString(1, annons_title);
+            pstmt.setString(2, annons_description);
             pstmt.setString(3, productCategory.toString());
             pstmt.setString(4, publisherEmail);
             pstmt.setBoolean(5, renting);

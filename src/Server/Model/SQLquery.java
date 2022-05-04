@@ -81,13 +81,11 @@ public class SQLquery {
      *
      * @param productname is the parameter where the user searches for a type of object
      * @param category is the category the user chooses in the drop down list when searching for something
-     * @param fromDate not done yet
-     * @param toDate not done yet
      * @return
      */
 
     //oanvända parametrar
-    public ArrayList<Annons> search(String productname, Category category, Date fromDate, Date toDate) {
+    public ArrayList<Annons> search(String productname, Category category) {
         Connection con = Server.getCon();
 
 

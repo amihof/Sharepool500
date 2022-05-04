@@ -12,15 +12,25 @@ public class User implements Serializable {
     private String password;
     private String email;
 
+    /**@param email
+     **/
     public User(String email) {
         this.email = email;
     }
 
+
+    /**@param email
+     * @param password
+     **/
     public User(String email, String password) {
         this.password = password;
         this.email = email;
     }
 
+    /**@param username
+     * @param email
+     * @param password
+     **/
     public User(String username, String email, String password){
         this.username = username;
         this.password = password;
@@ -31,6 +41,9 @@ public class User implements Serializable {
         return username.hashCode();
     }
 
+    /**@param obj
+     * @return username
+     **/
     public boolean equals(Object obj) {
         if(obj!=null && obj instanceof User)
             return username.equals(((User)obj).getUsername());

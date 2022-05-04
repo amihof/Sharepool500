@@ -118,9 +118,7 @@ public class Client {
                     } else if (str.equals("search")) {
                         ArrayList<Annons> result = sql.search(
                                 request.getSearch().getText(),
-                                request.getSearch().getCategory(),
-                                request.getSearch().getFromDate(),
-                                request.getSearch().getToDate()
+                                request.getSearch().getCategory()
                         );
                     } else {
                         System.out.println("default case and return false");

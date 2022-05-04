@@ -78,9 +78,9 @@ public class Controller
      * @param publisherEmail the users email
      * @param renting ??
      */
-    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting) {
+    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting, ImageIcon clientPicture) {
 
-        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting);
+        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting, clientPicture);
 
     }
 

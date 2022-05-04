@@ -21,7 +21,7 @@ public class MainPanelAnnons extends JPanel {
     private boolean loggedIn;
     private MainFrame view;
 
-    public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view){
+    public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view, JFrame frame){
         super(null);
         this.view = view;
         this.loggedIn = loggedIn;
@@ -29,7 +29,7 @@ public class MainPanelAnnons extends JPanel {
         this.height = height;
         this.setSize(width, height);
 
-        annonsPanel = new AnnonsPanel(width, height-100, controller);
+        annonsPanel = new AnnonsPanel(width, height-100, controller, frame);
         this.add(annonsPanel);
 
         topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);

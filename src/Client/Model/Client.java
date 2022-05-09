@@ -123,6 +123,7 @@ public class Client {
                             user = request.getUser();//the user information saves
                             // controller.registerNewUser(userName, email, password);/**registers the user with its information**/
                         } else{
+                            controller.couldNotRegister();
                             throw new Exception("Could not register ");
 
                         }

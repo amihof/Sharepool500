@@ -6,6 +6,8 @@ import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.HashMap;
 
 public class AnnonsPanel extends JPanel {
@@ -58,6 +60,19 @@ public class AnnonsPanel extends JPanel {
         search.setSize(600, 40);
         search.setFont(newFont.deriveFont(20.0F));
         search.setHorizontalAlignment(JLabel.LEFT);
+        search.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (search.getText().equals("Vad vill du hyra?")){
+                    search.setText("");
+                }
+            }
+            public void focusLost(FocusEvent e) {
+                if (search.getText().equals("")){
+                    search.setText("Vad vill du hyra?");
+
+                }
+            }
+        });
         this.add(search);
 
         typAvAnnonsLabel = new JLabel("Typ av annons: ");
@@ -91,7 +106,6 @@ public class AnnonsPanel extends JPanel {
         buttonCircle2.setFont(newFont.deriveFont(20.0F));
         buttonCircle2.setBackground(myNewColor);
 
-
         this.add(buttonCircle);
         this.add(buttonCircle2);
 
@@ -103,47 +117,8 @@ public class AnnonsPanel extends JPanel {
 
     }
 
-    public synchronized void receive(String username, int msgId, String txt, final ImageIcon attachedPicture) {
-        Box box = Box.createHorizontalBox();
-        msgTracker.put(msgId, box);
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                box.setMinimumSize(new Dimension(800, 150));
-                box.setPreferredSize(new Dimension(900, 150));
-
-                TextArea lblText = new TextArea("< " + username + " > : " + txt);
-                lblText.setEditable(false);
-                lblText.setFont(new Font("Serif", Font.PLAIN, 12));
-                lblText.setMinimumSize(new Dimension(600, 20));
-                lblText.setMaximumSize(new Dimension(600, 150));
-                box.add(lblText, LEFT_ALIGNMENT);
-
-                JLabel lblPic = new JLabel();
-                lblPic.setMinimumSize(new Dimension(100, 150));
-                lblPic.setMaximumSize(new Dimension(100, 150));
-                if (attachedPicture != null) {
-                    Image image = attachedPicture.getImage();
-                    image = image.getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH);
-                    ImageIcon attachedPictureEdited = new ImageIcon(image);
-                    lblPic.setIcon(attachedPictureEdited);
-                }
-                box.add(lblPic, RIGHT_ALIGNMENT);
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                thisPanel.add(box);
-                thisPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-
-                thisPanel.revalidate();
-                thisPanel.repaint();
-                frame.revalidate();
-            }
-        };
-        worker.execute();
+    public void updateSearchTextField(String newSearch){
+        search.setText(newSearch);
     }
-
 
 }

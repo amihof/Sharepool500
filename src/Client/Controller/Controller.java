@@ -55,20 +55,6 @@ public class Controller
     public void registerNewUser(String userName, String email, String password) {
         requestFactory.register(new User(userName, email, password));
     }
-    /**
-     * when "Skapa annons" is clicked in the SkapaAnnonsPanel, this method tells view that
-     * a new annons is trying to get made.
-     * @param productName the product name the user typed in
-     * @param productDescription the description the user typed in
-     * @param productCategory the category the user typed in
-     * @param publisherEmail the users email
-     * @param renting ??
-     */
-    public void newAnnons(String productName, String productDescription, Category productCategory, String publisherEmail, Boolean renting, ImageIcon clientPicture) {
-
-        annons = new Annons(productName, productDescription, productCategory, new User(publisherEmail), renting, clientPicture);
-
-    }
 
     /**
      * when the user successfully loggs in, this method disposes the old view and creates
@@ -93,6 +79,7 @@ public class Controller
     public String getEmail(){
         return email;
     }
+
     public Category[] getCategoriesValues() {
         return Category.values();
     }
@@ -101,4 +88,7 @@ public class Controller
         requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
     }
 
+    public void couldNotRegister() {
+        view.couldNotRegister();
+    }
 }

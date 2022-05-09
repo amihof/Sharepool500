@@ -6,11 +6,12 @@ import java.awt.event.ActionListener;
 
 import Client.View.Annonser.AnnonsPanel;
 import Client.View.Annonser.MainPanelAnnons;
-import Client.View.Annonser.OneAnnons;
 import Client.View.HowItWorks.MainPanelSFD;
 import Client.View.LoginPage.MainLogin;
 import Client.Controller.Controller;
+import Client.View.MessagePage.MainPanelMessages;
 import Client.View.MinaSidorPage.MainPanelMinaSidor;
+import Client.View.MinaSidorPage.MinaSidorPanel;
 import Client.View.MinaSidorPage.RedigeraUppgifter;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Client.View.SkapaAnnons.SkapaAnnonsPanel;
@@ -37,6 +38,7 @@ public class MainFrame
     private JPanel newAnnonsPanel;
     private JScrollPane scrollPanel;
     private JDialog d;
+    private MinaSidorPanel minaSidorPanel;
 
     private boolean loggedIn;
 
@@ -44,13 +46,14 @@ public class MainFrame
 
     private JPanel cards;
 
-
     public MainFrame(final Controller controller, boolean loggedIn) {
         this.loggedIn = loggedIn;
         frame = new JFrame();
-        mainPanelAnnons = new MainPanelAnnons(width, height, controller, loggedIn, this, frame);
+        mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, true, this);
+        mainPanelAnnons = new MainPanelAnnons(width,height,controller,true,this, frame);
         topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
         this.controller = controller;
+
         CardLayout cardLayout = new CardLayout();
         frame.setLayout(cardLayout);
         frame.setPreferredSize(new Dimension(this.width, this.height));
@@ -58,7 +61,8 @@ public class MainFrame
         cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
         cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn, this), "MainPanelMinaSidor");
-        cards.add(new MainPanelAnnons(width, height, controller, loggedIn, this, frame), "MainPanelAnnons");
+        cards.add(mainPanelAnnons, "MainPanelAnnons");
+        cards.add(new MainPanelMessages(width, height, controller, loggedIn, this), "MainPanelMessages");
         addScroll(this);
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
@@ -112,6 +116,14 @@ public class MainFrame
         cl.show(cards, newPanel);
     }
 
+    public void minaSidorPanelStateChanged(String text) {
+        mainPanelMinaSidor.getMinaSidorPanel().panelStateChanged(text);
+    }
+
+    public void minaSidorTextSizeChanged(String text) {
+        mainPanelMinaSidor.getLeftPanel().textSizeChanged(text);
+    }
+
     public void couldNotLogin() {
         d = new JDialog(frame , "Dialog Example", true);
         d.setLayout( new FlowLayout() );
@@ -123,9 +135,31 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Could not login. Username or password wrong"));
+        d.add( new JLabel ("Användarnamn och lösenord matchar inte "));
+
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
+    }
+
+    public void couldNotRegister() {
+        d = new JDialog(frame , "Fel", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("E-postadressen du angav används redan."));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+    }
+
+    public void updateTextFieldAnnonsPanel(String newText) {
+        mainPanelAnnons.getAnnonsPanel().updateSearchTextField(newText);
     }
 }

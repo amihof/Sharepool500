@@ -81,6 +81,7 @@ public class TopPanel extends JPanel {
         meddelanden.setLocation(525, 48);
         meddelanden.setSize(150, 30);
         meddelanden.setHorizontalAlignment(JLabel.LEFT);
+        meddelanden.addActionListener(l -> view.panelStateChanged("MainPanelMessages"));
         meddelanden.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(meddelanden);
 
@@ -130,7 +131,7 @@ public class TopPanel extends JPanel {
             whichPageColor.setLocation(350, 95);
             whichPageColor.setBackground(myNewColor);
             this.add(whichPageColor);
-        } else if ("Meddelanden".equals(whichPage)) {
+        } else if ("Messages".equals(whichPage)) {
             whichPageColor = new JPanel();
             whichPageColor.setSize(140, 5);
             whichPageColor.setLocation(525, 95);

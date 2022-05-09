@@ -75,6 +75,7 @@ public class StartPanel extends JPanel {
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
         searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
+        searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
         this.add(searchRuta);
 
         //måste lägga till en actionlistener
@@ -107,16 +108,7 @@ public class StartPanel extends JPanel {
             }
         });
         this.add(search);
-        /*search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ((JTextField) e.getSource()).setEnabled(false);
-                setPlayerName(playerNameTextField.getText());
-                controller.updateHighScoreName(playerNameTextField.getText());
-            }
-        });*/
-
         this.add(RoundedPanelExample.roundedPanelExample());
-
 
     }
 

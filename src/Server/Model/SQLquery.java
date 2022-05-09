@@ -1,8 +1,6 @@
 package Server.Model;
 //kommentarer saknas
-import Delad.Annons;
-import Delad.Category;
-import Delad.User;
+import Delad.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -158,4 +156,52 @@ public class SQLquery {
 
 
     }
+
+    public boolean createChat(Chat chat){
+
+        Connection con = Server.getCon();
+        PreparedStatement pstmt = null;
+        try {
+
+            String QUERY = "call procedure_create_chat(?,?)";
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setInt(1, chat.getAnnonsId());
+            pstmt.setString(2, chat.getRequester_email());
+            return pstmt.execute();
+
+        } catch (Exception e) {
+            System.out.println("couldn't create an chat");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean createMessage(Message message){
+
+        Connection con = Server.getCon();
+        PreparedStatement pstmt = null;
+        try {
+
+            String QUERY = "call procedure_create_chat(?,?)";
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setInt(1, message.getCurrID()); // Correct?
+            pstmt.setString(2, message.getText());
+
+            return pstmt.execute();
+
+        } catch (Exception e) {
+            System.out.println("couldn't create a message");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    // To do
+   // public boolean createLoan(){
+
+
+   // }
+
+
+
+
 }

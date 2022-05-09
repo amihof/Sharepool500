@@ -12,12 +12,21 @@ public class Chat implements Serializable {
     private int id;
     private Stack<Message> messages;
 
-    private String annonsId;
+    private int annonsId;
     private String requester_email;
 
     /**@param annonsId the id
      * @param requester_email the email of the requester**/
-    public Chat(String annonsId, String requester_email){
+    public Chat(Integer annonsId, String requester_email){
+        this.annonsId=annonsId;
+        this.requester_email=requester_email;
+    }
 
+    public int getAnnonsId() {
+        return annonsId;
+    }
+
+    public String getRequester_email() {
+        return requester_email;
     }
 }

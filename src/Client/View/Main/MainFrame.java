@@ -77,7 +77,7 @@ public class MainFrame
      * the user to login or register a new user
      */
     public void loginOrRegisterButtonClicked() {
-        this.mainLogin = new MainLogin(controller);
+        this.mainLogin = new MainLogin(controller, this);
     }
 
     /**
@@ -215,5 +215,39 @@ public class MainFrame
 
     public void updateAnnonserSeen(ArrayList<String> nameListAnnonser) {
         mainPanelAnnons.getDisplayAnnonser().addNewAnnonsTest(nameListAnnonser);
+    }
+
+    public void wrongPasswordOrUsername() {
+        d = new JDialog(frame , "Fel uppgifter", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Användarnamn eller lösenord fel."));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+    }
+
+    public void accountMade() {
+        d = new JDialog(frame , "Konto skapats", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Konto registrerat"));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
     }
 }

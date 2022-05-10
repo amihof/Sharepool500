@@ -1,5 +1,6 @@
 package Client.View.LoginPage;
 
+import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
 
 import java.awt.Font;
@@ -34,14 +35,16 @@ public class MainLogin extends JDialog
     private JTextField passwordLoginField;
 
     private Controller controller;
+    private MainFrame view;
 
     /**
      * creating the JDialog
      * @param controller so we can call methods in the controller
      */
-    public MainLogin(final Controller controller) {
+    public MainLogin(final Controller controller, MainFrame view) {
         final Color myNewColor = new Color(245, 221, 204);
         this.controller = controller;
+        this.view = view;
         this.setVisible(true);
         this.setBackground(myNewColor);
         this.setLayout(null);
@@ -203,8 +206,21 @@ public class MainLogin extends JDialog
         this.registerUser.setSize(300, 50);
         this.registerUser.setFont(newFont.deriveFont(15.0f));
         this.registerUser.setHorizontalAlignment(0);
-        registerUser.addActionListener(l -> controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText()));
-        registerUser.addActionListener(l-> this.dispose());
+        registerUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(userNameField.getText().length() > 16 || !passwordField.getText().equals(upprepaPasswordField.getText())){
+                    view.wrongPasswordOrUsername();
+                }
+                else{
+                    controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText());
+                    view.accountMade();
+                    dispose();
+                }
+            }
+
+        });
+
         this.add(this.registerUser);
 
         (this.loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);

@@ -154,6 +154,10 @@ public class Client {
 
                         if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
                             result = (ArrayList<Annons>) tempObject;
+
+                            System.out.println(result);
+
+                            controller.seeSearchedAnnons(result);
                         }
                         //the information is sent to the controller
                         //and the user can search for an add

@@ -4,9 +4,11 @@ import Client.Model.*;
 import Client.View.Main.MainFrame;
 import Delad.Annons;
 import Delad.Category;
+import Delad.Search;
 import Delad.User;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Controller
 {
@@ -94,5 +96,22 @@ public class Controller
 
     public void annonsMade() {
         view.annonsMade();
+    }
+
+    public void searchedClicked(String text, Category productCategory) {
+        requestFactory.searchAnnons(new Search(text, productCategory));
+    }
+
+    public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
+        ArrayList<String> nameListAnnonser = new ArrayList<>();
+        //String[] nameListAnnonser = new String[0];
+
+        for (Annons a : searchedAnnonsList)
+        {
+            nameListAnnonser.add(a.getProductName());
+        }
+        //String[] newArrayTest = nameListAnnonser.toArray(new String[searchedAnnonsList.size()]);
+
+        view.updateAnnonserSeen(nameListAnnonser);
     }
 }

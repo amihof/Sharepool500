@@ -44,4 +44,8 @@ public class MainPanelAnnons extends JPanel {
     public AnnonsPanel getAnnonsPanel() {
         return annonsPanel;
     }
+
+    public DisplayAnnonser getDisplayAnnonser(){
+        return displayAnnonser;
+    }
 }

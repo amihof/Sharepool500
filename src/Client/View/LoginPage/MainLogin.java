@@ -213,6 +213,7 @@ public class MainLogin extends JDialog
         this.loginButton.setSize(300, 50);
         this.loginButton.setFont(newFont.deriveFont(15.0f));
         this.loginButton.setHorizontalAlignment(0);
+
         loginButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
        // loginButton.addActionListener(l-> controller.login());
         loginButton.addActionListener(l-> this.dispose());

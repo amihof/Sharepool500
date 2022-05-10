@@ -3,6 +3,7 @@ package Client.View.Hem;
 import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
+import Delad.Category;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,8 +75,10 @@ public class StartPanel extends JPanel {
         searchRuta.setSize(300, 50);
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
-        searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
+        searchRuta.addActionListener(l -> controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem()));
         searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
+        searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
+
         this.add(searchRuta);
 
         searchText = new JLabel("Sök efter annons");

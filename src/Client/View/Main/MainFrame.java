@@ -3,6 +3,7 @@ package Client.View.Main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import Client.View.Annonser.MainPanelAnnons;
 import Client.View.HowItWorks.MainPanelSFD;
@@ -210,5 +211,9 @@ public class MainFrame
      */
     public void updateTextFieldAnnonsPanel(String newText) {
         mainPanelAnnons.getAnnonsPanel().updateSearchTextField(newText);
+    }
+
+    public void updateAnnonserSeen(ArrayList<String> nameListAnnonser) {
+        mainPanelAnnons.getDisplayAnnonser().addNewAnnonsTest(nameListAnnonser);
     }
 }

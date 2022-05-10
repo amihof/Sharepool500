@@ -87,14 +87,12 @@ public class SQLquery {
 
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "SELECT  product.name, product.description, annons.owner_email,renting FROM product_type " +
-                    "INNER JOIN product ON  product_type.id = product.product_type_id " +
-                    "INNER JOIN annons ON product.id = annons.p_id " +
-                    "WHERE product_type.name LIKE '%?%' AND product.name LIKE '%?%';";
+            String QUERY = "SELECT  annons_title, annons_description,owner_email from annons" +
+                    "WHERE annons_title LIKE '%?%' AND annons_description LIKE '%?%'";
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1,category.toString());
-            pstmt.setString(2,productname);
+            pstmt.setString(1,productname);
+            pstmt.setString(2,category.toString());
             ResultSet resultSet = pstmt.executeQuery();
 
             ArrayList<Annons> result = null;
@@ -190,6 +188,7 @@ public class SQLquery {
         } catch (Exception e) {
             System.out.println("couldn't create a message");
             e.printStackTrace();
+            e.printStackTrace(System.err);
             return false;
         }
     }

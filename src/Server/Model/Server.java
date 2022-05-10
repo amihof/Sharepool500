@@ -34,7 +34,7 @@ public class Server {
     }
 
     private ServerSocket ss;
-    private int port = 725;
+    private int port = 1050;
 
     private ClientConnector connector;
     private Thread clientConnectorThread;

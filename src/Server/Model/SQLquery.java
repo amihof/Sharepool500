@@ -81,8 +81,6 @@ public class SQLquery {
 
     public ArrayList<Annons> search(String productname, Category category) {
 
-        
-
     //oanvända parametrar
         Connection con = Server.getCon();
 
@@ -136,7 +134,6 @@ public class SQLquery {
 
            // String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
            //         "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
-
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, annons_title);

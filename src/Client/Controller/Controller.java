@@ -32,7 +32,7 @@ public class Controller
         MainFrame view = new MainFrame(this, loggedIn);
         this.view = view;
         System.out.println("view färdig");
-        client = new Client(725,"127.0.0.1", this);
+        client = new Client(1050,"127.0.0.1", this);
         System.out.println("client färdig");
         requestFactory = new RequestFactory(client);
     }

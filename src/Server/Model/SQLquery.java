@@ -88,7 +88,7 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         try {
             String QUERY = "SELECT  annons_title, annons_description,owner_email from annons" +
-                    "WHERE annons_title LIKE '%?%' AND annons_description LIKE '%?%'";
+                    "WHERE annons_title LIKE '%?%' or annons_description LIKE '%?%'";
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1,productname);

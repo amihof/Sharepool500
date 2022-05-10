@@ -133,7 +133,6 @@ public class Client {
                         oos.flush(); //makes sure the request is written
 
                         Boolean annonsCreated = ois.readBoolean(); //checks if the add iss created
-
                         if(annonsCreated) {
                             //annons.setAnnons(request.getAnnons());
                             //the information is sent to the controller

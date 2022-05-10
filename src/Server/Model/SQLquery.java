@@ -130,18 +130,19 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         try {
 
-            String QUERY = "call procedure_create_annons(?,?,?,?,?)"; // 5 parameters from the user
+            String QUERY = "call procedure_create_annons(?,?,?,?,?,?)"; // 6 parameters from the user
 
            // String QUERY1 = String.format("INSERT INTO \"annons\" (+default+, "+publisherEmail+", password) " +
            //         "VALUES('%s', '%s', '%s');"); //vilka values ska insertas? vad ska default vara?
 
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1, annons_title);
-            pstmt.setString(2, annons_description);
-            pstmt.setString(3, productCategory.toString());
-            pstmt.setString(4, publisherEmail);
-            pstmt.setBoolean(5, renting);
-            pstmt = con.prepareStatement(QUERY);
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, annons_title);
+            pstmt.setString(3, annons_description);
+            pstmt.setString(4, productCategory.toString());
+            pstmt.setString(5, publisherEmail);
+            pstmt.setBoolean(6, true);
+
 
             return pstmt.execute();
 

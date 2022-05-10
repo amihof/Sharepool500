@@ -156,6 +156,7 @@ public class SkapaAnnonsPanel extends JPanel implements ActionListener {
                     }
                 }
                 controller.registerNewAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), radioButtonText == "Hyrs ut" ? true : false);
+                System.out.println("test");
             }
         });
         postAnnons.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));

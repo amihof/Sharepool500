@@ -132,6 +132,7 @@ public class Client {
                                 request.getSearch().getText(),
                                 request.getSearch().getCategory()
                         ));
+                        System.out.println("search worked");
 
                     } else {
                         System.out.println("default case and return false");

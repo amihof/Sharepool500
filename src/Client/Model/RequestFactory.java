@@ -2,6 +2,7 @@ package Client.Model;
 
 import Delad.Annons;
 import Delad.Request;
+import Delad.Search;
 import Delad.User;
 
 import java.util.ArrayList;
@@ -31,5 +32,9 @@ public class RequestFactory {
     }
 
     public void createAnnons(Annons annons){client.addToBuffer(new Request(annons));}
+
+    public void searchAnnons(Search search){
+        client.addToBuffer(new Request(search));
+    }
 }
 

@@ -22,10 +22,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     private static Map<String, ImageIcon> imageMap;
     private JList list;
-    private String[] nameList;
-    private int n = 1;
-
-    private ArrayList<String> newList = new ArrayList<String>();
+    private String[] nameList = new String[2];
 
 
     public DisplayAnnonser(int width, int height, Controller controller){
@@ -34,9 +31,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         this.controller = controller;
         this.width = width-40;
         this.height = height;
-        addNewAnnons("annons123");
-        addNewAnnons("nyannons2");
-        addNewAnnons("högstuppannons");
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
         setLocation(0, 250);
@@ -50,6 +44,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     public void setUp(){
         //String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
+        String[] nameList = getAnnonserList();
         imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());
@@ -146,11 +141,20 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         }
     }*/
 
-    public void addNewAnnons(String newAnnonsName){
+   /* public void addNewAnnons(String newAnnonsName){
         this.n += 1;
         newList.add(newAnnonsName);
 
         nameList =  newList.toArray(new String[0]);
 
+    }*/
+
+    public void addNewAnnonsTest(ArrayList<String> annonserSearchedFor){
+        this.nameList = annonserSearchedFor.toArray(new String[annonserSearchedFor.size()]);
+        System.out.println(nameList);
+    }
+
+    private String[] getAnnonserList() {
+        return nameList;
     }
 }

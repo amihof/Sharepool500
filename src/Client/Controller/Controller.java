@@ -91,4 +91,8 @@ public class Controller
     public void couldNotRegister() {
         view.couldNotRegister();
     }
+
+    public void annonsMade() {
+        view.annonsMade();
+    }
 }

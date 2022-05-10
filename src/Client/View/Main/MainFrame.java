@@ -185,6 +185,26 @@ public class MainFrame
     }
 
     /**
+     * a popup that tells the user that an annons is made
+     */
+    public void annonsMade() {
+        d = new JDialog(frame , "Annons skapad", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Annonsen har skapats."));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+    }
+
+    /**
      * updates the text field in annonsPanel based on what u searched for on the homepage
      * @param newText is the text the user searched for
      */

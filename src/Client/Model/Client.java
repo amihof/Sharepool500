@@ -135,6 +135,7 @@ public class Client {
                         Boolean annonsCreated = ois.readBoolean(); //checks if the add iss created
 
                         if(annonsCreated) {
+                            controller.annonsMade();
                             //annons.setAnnons(request.getAnnons());
                             //the information is sent to the controller
                             //and an add is created

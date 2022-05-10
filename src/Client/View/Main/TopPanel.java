@@ -10,19 +10,30 @@ import java.awt.*;
  */
 public class TopPanel extends JPanel {
     private JLabel sharePoolLogo;
+    private JPanel whichPageColor;
+    private String whichPage;
+    private Boolean loggedIn;
+
     private JButton hem;
     private JButton saFungerarDet;
     private JButton meddelanden;
     private JButton loggaInRegistrera;
-    private RoundedPanelExample roundedPanelExample;
-    private Controller controller;
-    private JPanel whichPageColor;
-    private String whichPage;
-    private Boolean loggedIn;
     private JButton skapaAnnonsButton;
     private JButton minaSidorButton;
+
+    private RoundedPanelExample roundedPanelExample;
+    private Controller controller;
     private MainFrame view;
 
+    /**
+     * creates the TopPanel
+     * @param width is the width of the panel
+     * @param height is the height of the panel
+     * @param controller the controller variable so we can call methods in the controller
+     * @param whichPage which page is clicked, home, how it works or messages
+     * @param loggedIn if the user is logged in or not
+     * @param view the view variable so we can call methods in the MainFrame
+     */
     public TopPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn, MainFrame view){
         this.setLayout(null);
         this.view = view;
@@ -37,6 +48,9 @@ public class TopPanel extends JPanel {
         setUp();
     }
 
+    /**
+     * setting up the TopPanel
+     */
     public void setUp(){
 
         Color myNewColor = new Color (225, 143, 107);
@@ -114,7 +128,7 @@ public class TopPanel extends JPanel {
             loggaInRegistrera.setLocation(1025, 37);
             loggaInRegistrera.setSize(200, 40);
             loggaInRegistrera.setHorizontalAlignment(JLabel.CENTER);
-            loggaInRegistrera.addActionListener(l -> view.loginButtonClicked());
+            loggaInRegistrera.addActionListener(l -> view.loginOrRegisterButtonClicked());
             loggaInRegistrera.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(loggaInRegistrera);
         }

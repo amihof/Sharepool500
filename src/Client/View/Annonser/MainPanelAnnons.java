@@ -5,7 +5,6 @@ import Client.View.Main.MainFrame;
 import Client.View.Main.TopPanel;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainPanelAnnons extends JPanel {
     private int width;
@@ -21,7 +20,7 @@ public class MainPanelAnnons extends JPanel {
 
     private boolean loggedIn;
     private MainFrame view;
-    private OneAnnons oneAnnons;
+    private DisplayAnnonser displayAnnonser;
 
     public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view, JFrame frame){
         super(null);
@@ -34,8 +33,8 @@ public class MainPanelAnnons extends JPanel {
         annonsPanel = new AnnonsPanel(width, height-100, controller, frame);
         this.add(annonsPanel);
 
-        oneAnnons = new OneAnnons(width, height, controller);
-        this.add(oneAnnons);
+        displayAnnonser = new DisplayAnnonser(width, height, controller);
+        this.add(displayAnnonser);
 
         topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
         this.add(topPanel);

@@ -6,14 +6,24 @@ import javax.swing.JLabel;
 import Client.Controller.Controller;
 import javax.swing.JPanel;
 
+/**
+ * The panel that shows when you click "Hur fungerar det"
+ */
 public class SFDPanel extends JPanel
 {
     private Controller controller;
+
     private JLabel titleText;
     private JLabel hyraUtTitle;
     private JLabel hyrautText;
     private JLabel beskrivningText;
 
+    /**
+     * creating the panel that shows the information about how Sharepool works.
+     * @param width the width of the panel
+     * @param height the height of the panel
+     * @param controller the controller variable so we can call methods in the controller
+     */
     public SFDPanel(int width, int height, Controller controller) {
         this.setLayout(null);
         this.controller = controller;
@@ -24,6 +34,9 @@ public class SFDPanel extends JPanel
         this.setUp();
     }
 
+    /**
+     * setting up the panel
+     */
     public void setUp() {
         Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
         Font newFont = myFont.deriveFont(25.0F);

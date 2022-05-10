@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
+/**
+ * a class to make a button that has rounded corners
+ */
 public class CircleButton extends JButton {
 
     private boolean mousePressed = false;

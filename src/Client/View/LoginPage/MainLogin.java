@@ -12,22 +12,33 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JDialog;
 
+/**
+ * the JDialog that pops up when you click the Login/register button
+ */
 public class MainLogin extends JDialog
 {
+    private JPanel streck;
+
     private JLabel registrera;
     private JLabel loggaIn;
+
+    private JButton loginButton;
+    private JButton forgotPassword;
+    private JButton registerUser;
+
     private JTextField userNameField;
     private JTextField eMailField;
     private JTextField passwordField;
     private JTextField upprepaPasswordField;
     private JTextField eMailLoginField;
     private JTextField passwordLoginField;
-    private JButton registerUser;
-    private Controller controller;
-    private JButton loginButton;
-    private JButton forgotPassword;
-    private JPanel streck;
 
+    private Controller controller;
+
+    /**
+     * creating the JDialog
+     * @param controller so we can call methods in the controller
+     */
     public MainLogin(final Controller controller) {
         final Color myNewColor = new Color(245, 221, 204);
         this.controller = controller;
@@ -39,6 +50,9 @@ public class MainLogin extends JDialog
         this.setUp();
     }
 
+    /**
+     * setting up the MainLogin/register dialog
+     */
     public void setUp() {
         final Font myFont = new Font("Shree Devanagari 714", 0, 18);
         final Font newFont = myFont.deriveFont(25.0f);

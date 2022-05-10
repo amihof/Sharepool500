@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class OneAnnons extends JPanel implements ListSelectionListener {
+public class DisplayAnnonser extends JPanel implements ListSelectionListener {
     private JPanel annonserView = new JPanel();
     private Controller controller;
     private int width;
@@ -28,13 +28,15 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
     private ArrayList<String> newList = new ArrayList<String>();
 
 
-    public OneAnnons(int width, int height, Controller controller){
+    public DisplayAnnonser(int width, int height, Controller controller){
         this.setLayout(null);
         backgroundColor = new Color(245, 221, 204);
         this.controller = controller;
         this.width = width-40;
         this.height = height;
         addNewAnnons("annons123");
+        addNewAnnons("nyannons2");
+        addNewAnnons("högstuppannons");
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
         setLocation(0, 250);
@@ -147,8 +149,6 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
     public void addNewAnnons(String newAnnonsName){
         this.n += 1;
         newList.add(newAnnonsName);
-        newList.add("Hej");
-        newList.add("Annons");
 
         nameList =  newList.toArray(new String[0]);
 

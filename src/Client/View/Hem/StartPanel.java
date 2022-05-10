@@ -111,6 +111,9 @@ public class StartPanel extends JPanel {
 
     }
 
+    /**
+     * creates and initiates the combo box
+     */
     private void createAndInitiateComboBox()
     {
         Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);

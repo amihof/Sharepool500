@@ -151,7 +151,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     public void addNewAnnonsTest(ArrayList<String> annonserSearchedFor){
         this.nameList = annonserSearchedFor.toArray(new String[annonserSearchedFor.size()]);
-        System.out.println(nameList+"f");
+        System.out.println(nameList);
     }
 
     private String[] getAnnonserList() {

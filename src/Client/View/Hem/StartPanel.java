@@ -78,7 +78,6 @@ public class StartPanel extends JPanel {
         searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
         this.add(searchRuta);
 
-        //måste lägga till en actionlistener
         searchText = new JLabel("Sök efter annons");
         searchText.setLocation(140, 160);
         searchText.setSize(600, 100);
@@ -119,10 +118,9 @@ public class StartPanel extends JPanel {
 
         cmbCategories = new JComboBox(controller.getCategoriesValues());
         cmbCategories.setSelectedIndex(0);
-        cmbCategories.setBounds(140,310,300,50);
+        cmbCategories.setBounds(140,310,300,30);
         cmbCategories.setFont(newFont.deriveFont(15.0F));
-        cmbCategories.setPreferredSize(new Dimension(300,50));
-        cmbCategories.setMinimumSize(new Dimension(300, 100));
+        cmbCategories.setPreferredSize(new Dimension(300,30));
         this.add(cmbCategories);
         cmbCategories.addItemListener(new ItemListener()
         {

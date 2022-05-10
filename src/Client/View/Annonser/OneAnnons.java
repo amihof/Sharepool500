@@ -8,6 +8,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -21,6 +22,10 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
 
     private static Map<String, ImageIcon> imageMap;
     private JList list;
+    private String[] nameList;
+    private int n = 1;
+
+    private ArrayList<String> newList = new ArrayList<String>();
 
 
     public OneAnnons(int width, int height, Controller controller){
@@ -29,6 +34,7 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
         this.controller = controller;
         this.width = width-40;
         this.height = height;
+        addNewAnnons("annons123");
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
         setLocation(0, 250);
@@ -41,7 +47,7 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
     }
 
     public void setUp(){
-        String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
+        //String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
         imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());
@@ -121,5 +127,30 @@ public class OneAnnons extends JPanel implements ListSelectionListener {
         }
 
         return map;
+    }
+
+    /*public void addNewAnnonsImage(){
+        Map<String, ImageIcon> map = new HashMap<>();
+        try {
+
+            ImageIcon imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/UvHN4.png")); // load the image to a imageIcon
+            Image image = imageIcon.getImage(); // transform it
+            Image newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+            map.put("Annons", new ImageIcon(newimg));
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }*/
+
+    public void addNewAnnons(String newAnnonsName){
+        this.n += 1;
+        newList.add(newAnnonsName);
+        newList.add("Hej");
+        newList.add("Annons");
+
+        nameList =  newList.toArray(new String[0]);
+
     }
 }

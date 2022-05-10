@@ -31,10 +31,9 @@ public class Annons implements Serializable {
      * something about the add if the user wishes to
      * @param productCategory is the category
      * @param publisher is the user who has uploaded the add
-     * @param renting is a boolean which returns the true
      * or false depending on  if it is renting or not
      * **/
-    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting) {
+    public Annons(String productName, String productDescription, Category productCategory, User publisher, boolean renting) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;

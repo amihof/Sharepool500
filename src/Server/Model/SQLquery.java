@@ -87,27 +87,36 @@ public class SQLquery {
 
         PreparedStatement pstmt = null;
         try {
-            String QUERY = "SELECT  annons_title, annons_description,owner_email from annons" +
-                    "WHERE annons_title LIKE '%?%' or annons_description LIKE '%?%'";
+            String QUERY = "SELECT  annons_title, annons_description,owner_email,renting from annons A\n" +
+                    "JOIN product_type P\n" +
+                    "ON A.product_type = P.id\n" +
+                    "WHERE P.name = '"+category+"'\n" +
+                    "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
 
-            pstmt = con.prepareStatement(QUERY);
-            pstmt.setString(1,productname);
-            pstmt.setString(2,category.toString());
-            ResultSet resultSet = pstmt.executeQuery();
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(QUERY);
 
-            ArrayList<Annons> result = null;
+            ArrayList<Annons> result = new ArrayList<>();
             Annons tempAnnons;
+            User tempuser;
             while (resultSet.next()) {
-                //result.add(new Annons(resultSet.getString(1),category.valueOf(resultSet.getString(2)),));
-                //bortkommenterad kod
+                int i=0;
+                i=i+1;
+                tempuser= new User(resultSet.getString(3));
 
-                result.add(new Annons(resultSet.getString(1),resultSet.getString(2), category,
-                        new User(resultSet.getString(3)),resultSet.getBoolean(4)));
+                tempAnnons = new Annons(resultSet.getString(1),
+                        resultSet.getString(2),category,tempuser,
+                        resultSet.getBoolean(4));
+                result.add(tempAnnons);
+               System.out.println(result.get(0).getProductName());
             }
             return result;
 
-        } catch (Exception p) {
+        } catch (Exception e) {
             System.out.println("no result found");
+
+
+            e.printStackTrace();
             return null;
         }
 

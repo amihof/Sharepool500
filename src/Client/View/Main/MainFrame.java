@@ -47,8 +47,8 @@ public class MainFrame
         this.controller = controller;
         frame = new JFrame();
 
-        mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, true, this);
-        mainPanelAnnons = new MainPanelAnnons(width,height,controller,true,this, frame);
+        mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn, this);
+        mainPanelAnnons = new MainPanelAnnons(width,height,controller,loggedIn,this, frame);
         topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
 
         CardLayout cardLayout = new CardLayout(); //cardlayout that has all the panels in it so when you click on a button it switches the visible panel

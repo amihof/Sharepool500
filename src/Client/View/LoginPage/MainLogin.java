@@ -214,8 +214,8 @@ public class MainLogin extends JDialog
                 }
                 else{
                     controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText());
-                    view.accountMade();
                     dispose();
+                    view.accountMade();
                 }
             }
 

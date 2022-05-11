@@ -1,6 +1,9 @@
 package Client.View.Annonser;
 
 import Client.Controller.Controller;
+import Client.View.Main.MainFrame;
+import Client.View.OneAnnons.MainPanelOneAnnons;
+import Delad.Annons;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,29 +25,36 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     private static Map<String, ImageIcon> imageMap;
     private JList list;
-    private String[] nameList = new String[2];
+    private String[] nameList;
+
+    private ArrayList<Annons> searchedAnnonsList;
+
+    private MainPanelOneAnnons mainPanelOneAnnons;
+
+    private String productName;
+    private String productDescription;
+    private String productCategory;
+    private String productPublisher;
+
+    private MainFrame view;
 
 
-    public DisplayAnnonser(int width, int height, Controller controller){
+    public DisplayAnnonser(int width, int height, Controller controller, MainFrame view){
         this.setLayout(null);
         backgroundColor = new Color(245, 221, 204);
+        this.view = view;
         this.controller = controller;
         this.width = width-40;
         this.height = height;
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
         setLocation(0, 250);
-        setUp();
-        annonserView.setSize(width, 1000);
-        annonserView.setLocation(0,0);
-        annonserView.setBackground(backgroundColor);
-        this.add(annonserView,BorderLayout.CENTER);
 
     }
 
     public void setUp(){
         //String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
-        String[] nameList = getAnnonserList();
+        //String[] nameList = getAnnonserList();
         imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());
@@ -67,8 +77,22 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
-        System.out.println(list.getSelectedIndex());
         System.out.println(list.getSelectedValue());
+        productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
+        productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
+        productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
+        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
+
+        System.out.println(productName);
+                System.out.println(productCategory);
+
+                        System.out.println(productDescription);
+
+                                System.out.println(productPublisher);
+
+        mainPanelOneAnnons = new MainPanelOneAnnons(width+40, height, productName, productCategory, productDescription, productPublisher, view);
+        view.displayOneAnnons(mainPanelOneAnnons);
+
         /*controller.setFriendName(String.valueOf(list.getSelectedValue()));
         controller.clearChat();*/
 
@@ -126,35 +150,27 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         return map;
     }
 
-    /*public void addNewAnnonsImage(){
-        Map<String, ImageIcon> map = new HashMap<>();
-        try {
+    public void addNewAnnonsTest(ArrayList<Annons> searchedAnnonsList){
+        ArrayList<String> nameListAnnonser = new ArrayList<>();
+        this.searchedAnnonsList = searchedAnnonsList;
 
-            ImageIcon imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/UvHN4.png")); // load the image to a imageIcon
-            Image image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            map.put("Annons", new ImageIcon(newimg));
-
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        for (Annons a : searchedAnnonsList)
+        {
+            nameListAnnonser.add(a.getProductName());
         }
-    }*/
 
-   /* public void addNewAnnons(String newAnnonsName){
-        this.n += 1;
-        newList.add(newAnnonsName);
+        this.nameList = nameListAnnonser.toArray(new String[0]);
+        System.out.println(nameListAnnonser);
 
-        nameList =  newList.toArray(new String[0]);
+        for (int i = 0; i < nameList.length; i++){
+            System.out.println(nameList[i]);
+        }
 
-    }*/
-
-    public void addNewAnnonsTest(ArrayList<String> annonserSearchedFor){
-        this.nameList = annonserSearchedFor.toArray(new String[annonserSearchedFor.size()]);
-        System.out.println(nameList);
+        setUp();
+        annonserView.setSize(width, 1000);
+        annonserView.setLocation(0,0);
+        annonserView.setBackground(backgroundColor);
+        this.add(annonserView,BorderLayout.CENTER);
     }
 
-    private String[] getAnnonserList() {
-        return nameList;
-    }
 }

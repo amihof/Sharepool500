@@ -12,7 +12,9 @@ import Client.Controller.Controller;
 import Client.View.MessagePage.MainPanelMessages;
 import Client.View.MinaSidorPage.MainPanelMinaSidor;
 import Client.View.MinaSidorPage.RedigeraUppgifter;
+import Client.View.OneAnnons.MainPanelOneAnnons;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
+import Delad.Annons;
 
 import javax.swing.*;
 
@@ -48,7 +50,6 @@ public class MainFrame
         frame = new JFrame();
 
         mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn, this);
-        mainPanelAnnons = new MainPanelAnnons(width,height,controller,loggedIn,this, frame);
         topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
 
         CardLayout cardLayout = new CardLayout(); //cardlayout that has all the panels in it so when you click on a button it switches the visible panel
@@ -59,7 +60,6 @@ public class MainFrame
         cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
         cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn, this), "MainPanelMinaSidor");
-        cards.add(mainPanelAnnons, "MainPanelAnnons");
         cards.add(new MainPanelMessages(width, height, controller, loggedIn, this), "MainPanelMessages");
         addScroll(this);
 
@@ -213,8 +213,12 @@ public class MainFrame
         mainPanelAnnons.getAnnonsPanel().updateSearchTextField(newText);
     }
 
-    public void updateAnnonserSeen(ArrayList<String> nameListAnnonser) {
+    public void updateAnnonserSeen(ArrayList<Annons> nameListAnnonser) {
+        mainPanelAnnons = new MainPanelAnnons(width,height,controller,loggedIn,this, frame);
+
         mainPanelAnnons.getDisplayAnnonser().addNewAnnonsTest(nameListAnnonser);
+        cards.add(mainPanelAnnons, "MainPanelAnnons");
+        panelStateChanged("MainPanelAnnons");
     }
 
     public void wrongPasswordOrUsername() {
@@ -249,5 +253,10 @@ public class MainFrame
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
+    }
+
+    public void displayOneAnnons(MainPanelOneAnnons mainPanelOneAnnons) {
+        cards.add(mainPanelOneAnnons, "MainPanelOneAnnons");
+        panelStateChanged("MainPanelOneAnnons");
     }
 }

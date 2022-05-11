@@ -7,10 +7,7 @@ import Delad.Category;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 /**
  * StartPanel is the view that the user sees when they first enter the website. Its under the "Hem" button.
@@ -75,9 +72,26 @@ public class StartPanel extends JPanel {
         searchRuta.setSize(300, 50);
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
-        searchRuta.addActionListener(l -> controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem()));
-        searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
-        searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
+        //searchRuta.addActionListener(l -> controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem()));
+       // searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
+        //searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
+        //searchRuta.addActionListener(l -> view.searchedClicked());
+        searchRuta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (search.getText().equals("Vad vill du hyra?")){
+                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem());
+                    view.panelStateChanged("MainPanelAnnons");
+                }
+                else{
+                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem());
+                    view.panelStateChanged("MainPanelAnnons");
+                }
+
+            }
+
+        });
+
 
         this.add(searchRuta);
 

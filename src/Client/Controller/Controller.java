@@ -24,7 +24,7 @@ public class Controller
     private User user;
 
     private Annons annons;
-
+    private ArrayList<Annons> searchedAnnonsList;
     /**
      * loggedIn is false because you are not logged in when you start the program.
      * view, client and request factory is initialized
@@ -104,6 +104,7 @@ public class Controller
 
     public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
+        this.searchedAnnonsList = searchedAnnonsList;
         //String[] nameListAnnonser = new String[0];
 
         for (Annons a : searchedAnnonsList)
@@ -112,6 +113,10 @@ public class Controller
         }
         //String[] newArrayTest = nameListAnnonser.toArray(new String[searchedAnnonsList.size()]);
 
-        view.updateAnnonserSeen(nameListAnnonser);
+        view.updateAnnonserSeen(searchedAnnonsList);
+    }
+
+    public ArrayList<Annons> getSearchedAnnonsList(){
+        return getSearchedAnnonsList();
     }
 }

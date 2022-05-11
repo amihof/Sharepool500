@@ -155,7 +155,9 @@ public class Client {
                         if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)){
                             result = (ArrayList<Annons>) tempObject;
 
-                            System.out.println(result.get(0).getProductName()+"?!");
+                            System.out.println("Client - result arrayen");
+                           // System.out.println(result.get(0).getProductName()+"?!");
+                            System.out.println(result);
 
                             controller.seeSearchedAnnons(result);
                         }

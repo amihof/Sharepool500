@@ -14,18 +14,17 @@ public class User implements Serializable {
 
     /**@param email
      **/
-    public User(String email) {
+    public User(String email,String username) {
         this.email = email;
+        this.username=username;
+
     }
 
 
     /**@param email
      * @param password
      **/
-    public User(String email, String password) {
-        this.password = password;
-        this.email = email;
-    }
+
 
     /**@param username
      * @param email

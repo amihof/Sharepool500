@@ -85,13 +85,17 @@ public class SQLquery {
 
         try {
             if(category.toString()=="Kategori"){
-                QUERY = "SELECT  annons_title, annons_description,owner_email,renting from annons\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting from annons A\n" +
+                        "JOIN users U\n" +
+                        "ON U.email = A.owner_email\n" +
                         "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
             }
             else{
-                QUERY = "SELECT  annons_title, annons_description,owner_email,renting from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting from annons A\n" +
                         "JOIN product_type P\n" +
                         "ON A.product_type = P.id\n" +
+                        "JOIN users U\n" +
+                        "ON U.email = A.owner_email\n" +
                         "WHERE P.name like '%"+category+"%'\n" +
                         "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
             }
@@ -106,11 +110,11 @@ public class SQLquery {
             while (resultSet.next()) {
                 int i=0; //remove
                 i=i+1; //remove
-                tempuser= new User(resultSet.getString(3));
+                tempuser= new User(resultSet.getString(3),resultSet.getString(4));
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,
-                        resultSet.getBoolean(4));
+                        resultSet.getBoolean(5));
                 result.add(tempAnnons);
                System.out.println(result.get(0).getProductName());
             }

@@ -6,12 +6,9 @@ import Client.View.Main.RoundedPanelExample;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.*;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 import Client.Controller.Controller;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JDialog;
 
 /**
  * the JDialog that pops up when you click the Login/register button
@@ -33,6 +30,8 @@ public class MainLogin extends JDialog
     private JTextField upprepaPasswordField;
     private JTextField eMailLoginField;
     private JTextField passwordLoginField;
+
+    private JPasswordField passwordField2;
 
     private Controller controller;
     private MainFrame view;
@@ -116,7 +115,12 @@ public class MainLogin extends JDialog
         });
         this.add(this.eMailField);
 
-        (this.passwordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
+
+        /**
+         * ÄNDRA LÖSENORDET SÅ DET INTE SYNS NÄR MAN SKRIVER IN DET!!!!!!!!! MEN DET SKA STÅ
+         * PASSWORD OM INGET ÄR SKRIVET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+        (this.passwordField = (JTextField) new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
         this.passwordField.setLocation(38, 220);
         this.passwordField.setSize(300, 40);
         this.passwordField.setFont(newFont.deriveFont(15.0f));

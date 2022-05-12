@@ -101,6 +101,7 @@ public class Client {
                         if(loggedIn){
                             user = request.getUser(); //the user information saves
                             controller.loggedInOrNot(loggedIn);
+                            controller.loggedInInfo(user);
                             //the information is sent to the controller
                             // and the user logs in to the program
 

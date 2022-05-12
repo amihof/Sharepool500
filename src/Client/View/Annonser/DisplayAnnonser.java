@@ -44,7 +44,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         backgroundColor = new Color(245, 221, 204);
         this.view = view;
         this.controller = controller;
-        this.width = width-40;
+        this.width = width;
         this.height = height;
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
@@ -65,7 +65,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         list.setFixedCellWidth(width-60);
 
         JScrollPane scroll = new JScrollPane(list);
-        scroll.setPreferredSize(new Dimension(width+40, 430));
+        scroll.setPreferredSize(new Dimension(width, 430));
         scroll.setBackground(backgroundColor);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
 
@@ -81,15 +81,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
         productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
         productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
-        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
-
-        System.out.println(productName);
-                System.out.println(productCategory);
-
-                        System.out.println(productDescription);
-
-                                System.out.println(productPublisher);
-
+        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
         mainPanelOneAnnons = new MainPanelOneAnnons(width+40, height, productName, productCategory, productDescription, productPublisher, view);
         view.displayOneAnnons(mainPanelOneAnnons);
 

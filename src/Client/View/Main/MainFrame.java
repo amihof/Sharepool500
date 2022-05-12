@@ -15,6 +15,7 @@ import Client.View.MinaSidorPage.RedigeraUppgifter;
 import Client.View.OneAnnons.MainPanelOneAnnons;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Delad.Annons;
+import Delad.User;
 
 import javax.swing.*;
 
@@ -59,7 +60,7 @@ public class MainFrame
 
         cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
-        cards.add(new MainPanelMinaSidor(width, height, controller, loggedIn, this), "MainPanelMinaSidor");
+        cards.add(mainPanelMinaSidor, "MainPanelMinaSidor");
         cards.add(new MainPanelMessages(width, height, controller, loggedIn, this), "MainPanelMessages");
         addScroll(this);
 
@@ -84,8 +85,8 @@ public class MainFrame
      * when you click on "Ändra uppgifter" on the Mina Sidor panel, this creates a new RedigeraUppgifter
      * which is a jdialog that allows you to change your information
      */
-    public void andraUppgifterClicked() {
-        this.redigeraUppgifter = new RedigeraUppgifter(controller);
+    public void andraUppgifterClicked(String userUsername, String userEmail) {
+        this.redigeraUppgifter = new RedigeraUppgifter(controller, userUsername, userEmail);
     }
 
     /**
@@ -258,5 +259,9 @@ public class MainFrame
     public void displayOneAnnons(MainPanelOneAnnons mainPanelOneAnnons) {
         cards.add(mainPanelOneAnnons, "MainPanelOneAnnons");
         panelStateChanged("MainPanelOneAnnons");
+    }
+
+    public void loggedInInfo(User user) {
+        mainPanelMinaSidor.getMinaSidorPanel().updateUserInfo(user);
     }
 }

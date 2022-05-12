@@ -5,6 +5,8 @@ import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class RedigeraUppgifter extends JDialog {
 
@@ -17,8 +19,10 @@ public class RedigeraUppgifter extends JDialog {
     private JButton registerNewUserName;
     private JButton registerNewEmail;
     private String whichPage;
+    private String userUsername;
+    private String userEmail;
 
-    public RedigeraUppgifter(Controller controller) {
+    public RedigeraUppgifter(Controller controller, String userUsername, String userEmail) {
         final Color myNewColor = new Color(245, 221, 204);
         this.controller = controller;
         this.setVisible(true);
@@ -26,6 +30,8 @@ public class RedigeraUppgifter extends JDialog {
         this.setLayout(null);
         this.setModalityType(ModalityType.APPLICATION_MODAL);
         this.setBounds(100, 100, 750, 450);
+        this.userUsername = userUsername;
+        this.userEmail = userEmail;
         this.setUp();
     }
 
@@ -42,13 +48,13 @@ public class RedigeraUppgifter extends JDialog {
         andraUppgifterLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(this.andraUppgifterLabel);
 
-        (this.userNameLabel = new JLabel("Användarnamn")).setLocation(38, 100);
+        (this.userNameLabel = new JLabel("Ange nytt användarnamn")).setLocation(38, 100);
         this.userNameLabel.setSize(375, 100);
         this.userNameLabel.setFont(newFont.deriveFont(20.0f));
         this.userNameLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(this.userNameLabel);
 
-        (this.emailLabel = new JLabel("exempel@epost.com")).setLocation(413, 100);
+        (this.emailLabel = new JLabel("Ange ny e-post")).setLocation(413, 100);
         this.emailLabel.setSize(375, 100);
         this.emailLabel.setFont(newFont.deriveFont(20.0f));
         this.emailLabel.setHorizontalAlignment(JLabel.LEFT);
@@ -59,6 +65,20 @@ public class RedigeraUppgifter extends JDialog {
         this.userNameField.setSize(300, 40);
         this.userNameField.setFont(newFont.deriveFont(15.0f));
         this.userNameField.setHorizontalAlignment(JTextField.LEFT);
+        userNameField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (userNameField.getText().equals("") || userNameField.getText().equals("Nytt användarnamn")) {
+                    userNameField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (userNameField.getText().equals("")){
+                    userNameField.setText("Nytt användarnamn");
+
+                }
+            }
+        });
         this.add(this.userNameField);
 
         (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Ny e-post");
@@ -66,6 +86,20 @@ public class RedigeraUppgifter extends JDialog {
         this.eMailField.setSize(300, 40);
         this.eMailField.setFont(newFont.deriveFont(15.0f));
         this.eMailField.setHorizontalAlignment(JTextField.LEFT);
+        eMailField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (eMailField.getText().equals("") || eMailField.getText().equals("Ny e-post")) {
+                    eMailField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (eMailField.getText().equals("")){
+                    eMailField.setText("Ny e-post");
+
+                }
+            }
+        });
         this.add(this.eMailField);
 
 

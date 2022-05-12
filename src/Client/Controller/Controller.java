@@ -119,4 +119,8 @@ public class Controller
     public ArrayList<Annons> getSearchedAnnonsList(){
         return getSearchedAnnonsList();
     }
+
+    public void loggedInInfo(User user) {
+        view.loggedInInfo(user);
+    }
 }

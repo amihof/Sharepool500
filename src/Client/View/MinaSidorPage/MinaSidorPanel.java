@@ -3,6 +3,7 @@ package Client.View.MinaSidorPage;
 import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
+import Delad.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +27,7 @@ public class MinaSidorPanel extends JPanel {
     private String whichPage;
     private JPanel cards;
     private JPanel kontoUppgifter;
-    private JPanel minaAnnonser;
+    private MinaAnnonserPage minaAnnonser;
     private JPanel laneHistorik;
     private JPanel bytLosenord;
     private JPanel raderaKonto;
@@ -38,6 +39,12 @@ public class MinaSidorPanel extends JPanel {
     private Font myFontBold;
     private Font newFontBold;
 
+    private String userEmail;
+    private String userUserName;
+    private String userPassword;
+
+    private int width;
+    private int height;
 
     public MinaSidorPanel(int width, int height, Controller controller, MainFrame view, String whichPage) {
         this.setLayout(null);
@@ -51,6 +58,8 @@ public class MinaSidorPanel extends JPanel {
         myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
         newFontBold = myFontBold.deriveFont(25.0F);
 
+        this.width = width;
+        this.height = height;
         this.whichPage = whichPage;
         this.view = view;
         this.controller = controller;
@@ -69,12 +78,6 @@ public class MinaSidorPanel extends JPanel {
         kontoUppgifter.setSize(width, height);
         kontoUppgifter.setLocation(250, 100);
         kontoUppgifter.setBounds(250,100,width, height);
-
-        minaAnnonser = new JPanel();
-        minaAnnonser.setLayout(null);
-        minaAnnonser.setBackground(backgroundColor);
-        minaAnnonser.setSize(width, height);
-        minaAnnonser.setLocation(250, 100);
 
         laneHistorik = new JPanel();
         laneHistorik.setLayout(null);
@@ -123,60 +126,54 @@ public class MinaSidorPanel extends JPanel {
     }
 
     private void makeMinaAnnonser() {
-        cards.add(minaAnnonser, "MinaAnnonser");
+        minaAnnonser = new MinaAnnonserPage(width, height, view);
 
+        cards.add(minaAnnonser, "MinaAnnonser");
     }
 
     private void makeKontoUppgifter() {
         kontoLabel = new JLabel("Konto");
-        kontoLabel.setLocation(300, 30);
+        kontoLabel.setLocation(30, 30);
         kontoLabel.setSize(150, 50);
         kontoLabel.setFont(newFont.deriveFont(40.0F));
         kontoLabel.setHorizontalAlignment(JLabel.LEFT);
         kontoUppgifter.add(kontoLabel);
 
-        userNameLabel = new JLabel("Användarnamn");
-        userNameLabel.setLocation(300, 80);
+        userNameLabel = new JLabel(userUserName);
+        userNameLabel.setLocation(30, 80);
         userNameLabel.setSize(200, 30);
         userNameLabel.setFont(newFont.deriveFont(22.0F));
         userNameLabel.setHorizontalAlignment(JLabel.LEFT);
         kontoUppgifter.add(userNameLabel);
 
         uppgifterLabel = new JLabel("Uppgifter");
-        uppgifterLabel.setLocation(300, 220);
+        uppgifterLabel.setLocation(30, 220);
         uppgifterLabel.setSize(150, 30);
         uppgifterLabel.setFont(newFontBold.deriveFont(22.0F));
         uppgifterLabel.setHorizontalAlignment(JLabel.LEFT);
         kontoUppgifter.add(uppgifterLabel);
 
-        userNameLabel2 = new JLabel("Användarnamn");
-        userNameLabel2.setLocation(300, 260);
+        userNameLabel2 = new JLabel(userUserName);
+        userNameLabel2.setLocation(30, 260);
         userNameLabel2.setSize(200, 30);
         userNameLabel2.setFont(newFont.deriveFont(22.0F));
         userNameLabel2.setHorizontalAlignment(JLabel.LEFT);
         kontoUppgifter.add(userNameLabel2);
 
-        emailLabel = new JLabel("exempel@email.com");
-        emailLabel.setLocation(300, 300);
+        emailLabel = new JLabel(userEmail);
+        emailLabel.setLocation(30, 300);
         emailLabel.setSize(400, 30);
         emailLabel.setFont(newFont.deriveFont(22.0F));
         emailLabel.setHorizontalAlignment(JLabel.LEFT);
         kontoUppgifter.add(emailLabel);
 
-        phoneNumberLabel = new JLabel("072 123 45 67");
-        phoneNumberLabel.setLocation(300, 340);
-        phoneNumberLabel.setSize(250, 30);
-        phoneNumberLabel.setFont(newFont.deriveFont(22.0F));
-        phoneNumberLabel.setHorizontalAlignment(JLabel.LEFT);
-        kontoUppgifter.add(phoneNumberLabel);
-
         changeUppgifterButton = new RoundedPanelExample.CircleBtn("Ändra uppgifter");
-        changeUppgifterButton.setBackground(backgroundColor);
+        changeUppgifterButton.setBackground(orangeColor);
         changeUppgifterButton.setBorderPainted(false);
-        changeUppgifterButton.setLocation(300, 390);
+        changeUppgifterButton.setLocation(30, 390);
         changeUppgifterButton.setSize(225, 50);
         changeUppgifterButton.setHorizontalAlignment(JLabel.CENTER);
-        changeUppgifterButton.addActionListener(l -> view.andraUppgifterClicked());
+        changeUppgifterButton.addActionListener(l -> view.andraUppgifterClicked(userUserName, userEmail));
         changeUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(22.0F));
         kontoUppgifter.add(changeUppgifterButton);
 
@@ -186,21 +183,12 @@ public class MinaSidorPanel extends JPanel {
     public void panelStateChanged(String panel) {
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, panel);
-/*
-        kontoUppgifter.setVisible(false);
-        minaAnnonser.setVisible(false);
-        laneHistorik.setVisible(false);
-        bytLosenord.setVisible(false);
-        raderaKonto.setVisible(false);
+    }
 
-        switch (panel) {
-            case "Kontouppgifter" -> kontoUppgifter.setVisible(true);
-            case "MinaAnnonser" -> minaAnnonser.setVisible(true);
-            case "LåneHistorik" -> laneHistorik.setVisible(true);
-            case "BytLösenord" -> bytLosenord.setVisible(true);
-            case "RaderaKonto" -> raderaKonto.setVisible(true);
-        }
-
- */
+    public void updateUserInfo(User user) {
+        this.userEmail = user.getEmail();
+        this.userUserName = user.getUsername();
+        this.userPassword = user.getPassword();
+        makeKontoUppgifter();
     }
 }

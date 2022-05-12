@@ -12,8 +12,11 @@ public class User implements Serializable {
     private String password;
     private String email;
 
-    /**@param email
+    /**@param username
      **/
+    public User(String username){
+        this.username=username;
+    }
 
 
     /**@param email

@@ -110,7 +110,7 @@ public class SQLquery {
             while (resultSet.next()) {
                 int i=0; //remove
                 i=i+1; //remove
-                tempuser= new User(resultSet.getString(3),resultSet.getString(4));
+                tempuser= new User(resultSet.getString(4));
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,

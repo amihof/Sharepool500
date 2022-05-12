@@ -81,7 +81,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
         productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
         productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
-        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
+        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
         mainPanelOneAnnons = new MainPanelOneAnnons(width+40, height, productName, productCategory, productDescription, productPublisher, view);
         view.displayOneAnnons(mainPanelOneAnnons);
 

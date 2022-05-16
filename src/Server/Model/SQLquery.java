@@ -185,32 +185,32 @@ public class SQLquery {
         }
     }
 
-    public String getEmail(String email){
+    public String getUsername(String email){
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         String QUERY;
-        String emailtemp="";
+        String usernametemp="";
         ArrayList<String> userInfo = new ArrayList<>();
 
         try {
-            QUERY = "SELECT email from users U\n" +
+            QUERY = "SELECT username from users U\n" +
                     "WHERE "+email+"=U.email";
 
             Statement stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery(QUERY);
 
             while(resultSet.next()){
-                emailtemp=resultSet.getString(1);
+                usernametemp=resultSet.getString(1);
             }
 
-            return emailtemp;
+            return usernametemp;
 
         } catch (Exception e) {
             System.out.println("couldn't create an chat");
             e.printStackTrace();
 
         }
-        return emailtemp;
+        return usernametemp;
     }
 
     public boolean createMessage(Message message){

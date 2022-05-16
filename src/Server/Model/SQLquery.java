@@ -1,5 +1,6 @@
 package Server.Model;
 //kommentarer saknas
+
 import Delad.*;
 
 import java.sql.*;

@@ -5,6 +5,8 @@ import Delad.Request;
 import Delad.Search;
 import Delad.User;
 
+/**@Author Evan Ebdo**/
+
 import java.util.ArrayList;
 
 /**
@@ -31,8 +33,14 @@ public class RequestFactory {
         client.addToBuffer(new Request(true, user));
     }
 
+    /**@param annons is an object of Annons class
+     * A anons is created here and added to the buffer in client
+     * then a new anons - request is created **/
     public void createAnnons(Annons annons){client.addToBuffer(new Request(annons));}
 
+    /**@param search is an objekt of Searh class
+     * A search is created here and added to the buffer in client
+     *  then a new search - request is created **/
     public void searchAnnons(Search search){
         client.addToBuffer(new Request(search));
     }

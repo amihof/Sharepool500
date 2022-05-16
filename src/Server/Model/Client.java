@@ -1,6 +1,4 @@
 package Server.Model;
-
-
 import Delad.Annons;
 import Delad.Buffer;
 import Delad.Request;

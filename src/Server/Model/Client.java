@@ -1,6 +1,7 @@
 package Server.Model;
 
 
+import Delad.Annons;
 import Delad.Buffer;
 import Delad.Request;
 import Delad.User;
@@ -95,7 +96,6 @@ public class Client {
          * The method gets a Request object from the buffer and using the identifier requestType : String
          * The respective method is called from the sql : SQLQuery
          * The response is sent back to the client using the TCP communication (ois and oos streams)
-         * @param request the request send by the client to be handled by the server
          * */
         @Override
         public synchronized void run() {

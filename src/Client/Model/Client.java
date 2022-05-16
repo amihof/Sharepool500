@@ -13,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**@Author Evan Ebdo**/
+
 public class Client {
 
     private Controller controller;
@@ -20,7 +22,7 @@ public class Client {
     private Annons annons;
 
     private Socket socket;
-    private int proxy;
+    private int port;
     private String ip;
 
     private ObjectOutputStream oos;
@@ -29,15 +31,20 @@ public class Client {
     private InputHandler inputHandler;
     private final Thread inputHandlerThread;
 
-    public Client(int proxy, String ip, Controller controller) {
+    /**Connection between client and server**/
+    /**@param port is the port for the connection
+     * @param ip is the IP address
+     * @param controller a Controller reference **/
+
+    public Client(int port, String ip, Controller controller) {
         System.out.println("client starta");
         this.controller = controller;
-        this.proxy = proxy;
+        this.port = port;
         this.ip = ip;
         try { //a try catch to handle the connection
-            socket  = new Socket(ip, proxy);
-            ois = new ObjectInputStream(socket.getInputStream());
-            oos = new ObjectOutputStream(socket.getOutputStream());
+            socket  = new Socket(ip, port);
+            ois = new ObjectInputStream(socket.getInputStream()); //connected
+            oos = new ObjectOutputStream(socket.getOutputStream());//connected
             oos.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +67,7 @@ public class Client {
         inputHandler.addToBuffer(request);
     }
 
+    /**in this class we implement Runnable**/
     private class InputHandler implements Runnable{
         private Buffer<Request> inputBuffer;
 
@@ -101,6 +109,7 @@ public class Client {
                             user = request.getUser(); //the user information saves
                             controller.loggedInOrNot(username);
                             controller.loggedInInfo(user);
+                            controller.loggedInOrNot(loggedIn);
                             //the information is sent to the controller
                             // and the user logs in to the program
 

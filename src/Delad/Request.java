@@ -9,6 +9,7 @@ public class Request implements Serializable {
     private static final long serialVersionUID = -8969009813588142777L;
 
     private String request;
+    private String email;
 
     private User user;
     private Chat chat;
@@ -50,6 +51,12 @@ public class Request implements Serializable {
         request = "search";
         this.search = search;
     }
+
+    public Request(String email){
+        request = "getUsername";
+        this.email = email;
+    }
+
 
     public String getRequest() {
         return request;

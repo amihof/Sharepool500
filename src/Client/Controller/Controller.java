@@ -9,6 +9,10 @@ import Delad.User;
 
 import java.util.ArrayList;
 
+/**
+ * The controller class is the link between view and model
+ * @Author Amidala Hoffmén
+ */
 public class Controller
 {
     private MainFrame view;
@@ -21,7 +25,6 @@ public class Controller
     /**
      * this constructor is called when the program starts. It creates a new MainFrame, Client and
      * RequestFactory
-     * @Author Amidala Hoffmén
      */
     public Controller() {
         this.view = new MainFrame(this, false);
@@ -40,7 +43,12 @@ public class Controller
         requestFactory.login(user);
     }
 
+    /**
+     * gets the info of the logged in user
+     * @param user is the user that is logged in
+     */
     public void loggedInInfo(User user) {
+
         view.loggedInInfo(user);
     }
 
@@ -69,27 +77,55 @@ public class Controller
         requestFactory.register(new User(userName, email, password));
     }
 
+    /**
+     * if the user could not register, this method calls a method in view that shows an error message
+     */
     public void couldNotRegister() {
         view.couldNotRegister();
     }
 
+    /**
+     * getter
+     * @return category
+     */
     public Category[] getCategoriesValues() {
         return Category.values();
     }
 
+    /**
+     * this method is called when someone is making a new Annons. is sends the parameters of the annons
+     * from view to requestfactory
+     * @param productName the title of the annons
+     * @param productDescription the description of the product
+     * @param productCategory the category of the product
+     * @param renting ?
+     */
     public void registerNewAnnons(String productName, String productDescription, Category productCategory, Boolean renting) {
         requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
     }
 
-
+    /**
+     * this method calls a method in view that tells the user that their annons is made
+     */
     public void annonsMade() {
         view.annonsMade();
     }
 
+    /**
+     * when the user click search, this method is called and takes the parameters from view and sends
+     * into requestfactory to create a new search request.
+     * @param text the text the user searched for
+     * @param productCategory the category the user searched for
+     */
     public void searchedClicked(String text, Category productCategory) {
         requestFactory.searchAnnons(new Search(text, productCategory));
     }
 
+    /**
+     * this method takes the arraylist of all annonser that matched the search terms the user used and
+     * sends them into view to show the user
+     * @param searchedAnnonsList the list of all annonser that matched the search terms
+     */
     public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
         this.searchedAnnonsList = searchedAnnonsList;

@@ -21,24 +21,22 @@ import javax.swing.*;
 
 /**
  * the main frame of the program
+ * @Author Amidala Hoffmén
  */
 public class MainFrame
 {
-    private int width = 1280;
-    private int height = 1920;
-    private boolean loggedIn;
+    private final int width = 1280;
+    private final int height = 1920;
+    private final boolean loggedIn;
 
-    private JFrame frame;
-    private Controller controller;
+    private final JFrame frame;
+    private final Controller controller;
     private MainLogin mainLogin;
     private MainPanelAnnons mainPanelAnnons;
-    private MainPanelMinaSidor mainPanelMinaSidor;
-    private MainPanelSkapaAnnons mainPanelSkapaAnnons;
-    private TopPanel topPanel;
-    private RedigeraUppgifter redigeraUppgifter;
+    private final MainPanelMinaSidor mainPanelMinaSidor;
 
     private JDialog d;
-    private JPanel cards;
+    private final JPanel cards;
 
     /**
      * the constructor that is called when the GUI starts up.
@@ -51,7 +49,6 @@ public class MainFrame
         frame = new JFrame();
 
         mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn, this);
-        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, this);
 
         CardLayout cardLayout = new CardLayout(); //cardlayout that has all the panels in it so when you click on a button it switches the visible panel
         frame.setLayout(cardLayout);
@@ -86,7 +83,7 @@ public class MainFrame
      * which is a jdialog that allows you to change your information
      */
     public void andraUppgifterClicked(String userUsername, String userEmail) {
-        this.redigeraUppgifter = new RedigeraUppgifter(controller, userUsername, userEmail);
+        new RedigeraUppgifter(controller, userUsername, userEmail);
     }
 
     /**
@@ -94,7 +91,7 @@ public class MainFrame
      * @param view so you can call methods in view
      */
     public void addScroll(MainFrame view) {
-        mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width,height,controller,loggedIn,view);
+        MainPanelSkapaAnnons mainPanelSkapaAnnons = new MainPanelSkapaAnnons(width, height, controller, loggedIn, view);
 
         JScrollPane scrollPanel = new JScrollPane(mainPanelSkapaAnnons,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -215,9 +212,9 @@ public class MainFrame
     }
 
     public void updateAnnonserSeen(ArrayList<Annons> nameListAnnonser) {
-        mainPanelAnnons = new MainPanelAnnons(width,height,controller,loggedIn,this, frame);
+        mainPanelAnnons = new MainPanelAnnons(width,height,controller,loggedIn,this);
 
-        mainPanelAnnons.getDisplayAnnonser().addNewAnnonsTest(nameListAnnonser);
+        mainPanelAnnons.getDisplayAnnonser().addNewAnnons(nameListAnnonser);
         cards.add(mainPanelAnnons, "MainPanelAnnons");
         panelStateChanged("MainPanelAnnons");
     }

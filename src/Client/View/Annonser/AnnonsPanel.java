@@ -1,59 +1,46 @@
 package Client.View.Annonser;
 
 import Client.Controller.Controller;
-import Client.View.Main.CircleButton;
 import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.HashMap;
 
+/**
+ * The panel that lets the user search for an annons
+ * @Author Amidala Hoffmén
+ */
 public class AnnonsPanel extends JPanel {
-    private int width;
-    private int height;
-    private Controller controller;
     private JTextField search;
-    private JLabel typAvAnnonsLabel;
-    private JLabel sortAfterText;
-    private JButton buttonCircle2;
-    private RoundedPanelExample roundedPanelExample;
-    private CircleButton circleButton;
-    private JButton buttonCircle;
-    private JLabel searchLabel;
-    private JLabel hyrsUtLabel;
-    private JPanel thisPanel;
-    private JFrame frame;
+    private final JPanel thisPanel;
+    private final Color backgroundColor;
+    private final Font newFont;
 
-    private static HashMap<Integer, Box> msgTracker = new HashMap<>();
-
-
-    public AnnonsPanel(int width, int height, Controller controller, JFrame frame){
+    /**
+     * the constructor that sets the size and location of the panel
+     * @param width the width of the panel
+     */
+    public AnnonsPanel(int width){
         this.setLayout(null);
+
+        backgroundColor = new Color(245, 221, 204);
+        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
+        newFont = myFont.deriveFont(25.0F);
+
         this.thisPanel = new JPanel();
-        this.controller = controller;
-        Color myNewColor = new Color(245, 221, 204);
-        this.setBackground(myNewColor);
+        this.setBackground(backgroundColor);
         this.setSize(width, 150);
         this.setLocation(0, 100);
-
-        RoundedPanelExample roundedPanelExample = new RoundedPanelExample();
-        CircleButton circleButton = new CircleButton("");
-        this.circleButton = circleButton;
-        this.roundedPanelExample = roundedPanelExample;
 
         setUp();
     }
 
+    /**
+     * setting up the panel
+     */
     public void setUp(){
-
-        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
-        Font newFont = myFont.deriveFont(25.0F);
-
-        Color myNewColor = new Color(245, 221, 204);
-        Color greenColor = new Color (167, 203, 156, 255);
-
         search = new RoundedPanelExample.RoundedTextField(20);
         search.setText("Vad vill du hyra?");
         search.setLocation(30, 20);
@@ -75,14 +62,14 @@ public class AnnonsPanel extends JPanel {
         });
         this.add(search);
 
-        typAvAnnonsLabel = new JLabel("Typ av annons: ");
+        JLabel typAvAnnonsLabel = new JLabel("Typ av annons: ");
         typAvAnnonsLabel.setLocation(30, 60);
         typAvAnnonsLabel.setSize(300, 50);
         typAvAnnonsLabel.setFont(newFont.deriveFont(20.0F));
         typAvAnnonsLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(typAvAnnonsLabel);
 
-        sortAfterText = new JLabel("Sortera efter");
+        JLabel sortAfterText = new JLabel("Sortera efter");
         sortAfterText.setLocation(30, 90);
         sortAfterText.setSize(300, 50);
         sortAfterText.setFont(newFont.deriveFont(15.0F));
@@ -100,17 +87,16 @@ public class AnnonsPanel extends JPanel {
 
         buttonCircle.setText("Hyrs ut");
         buttonCircle.setFont(newFont.deriveFont(20.0F));
-        buttonCircle.setBackground(myNewColor);
+        buttonCircle.setBackground(backgroundColor);
 
         buttonCircle2.setText("Sökes");
         buttonCircle2.setFont(newFont.deriveFont(20.0F));
-        buttonCircle2.setBackground(myNewColor);
+        buttonCircle2.setBackground(backgroundColor);
 
         this.add(buttonCircle);
         this.add(buttonCircle2);
 
         thisPanel.setOpaque(false);
-        thisPanel.setMinimumSize(new Dimension(width, height));
         thisPanel.setBackground(Color.DARK_GRAY);
         thisPanel.setLayout(new BoxLayout(thisPanel, BoxLayout.Y_AXIS));
         thisPanel.setBorder(BorderFactory.createLineBorder(Color.black));

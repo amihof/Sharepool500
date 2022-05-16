@@ -6,37 +6,25 @@ import Client.View.Main.TopPanel;
 
 import javax.swing.*;
 
+/**
+ * the main panel of annonser. this panel holds the smaller jpanels
+ * @Author Amidala Hoffmén
+ */
 public class MainPanelAnnons extends JPanel {
-    private int width;
-    private int height;
-    private Controller controller;
-    private AnnonsPanel annonsPanel;
-    private TopPanel topPanel;
+    private final AnnonsPanel annonsPanel;
+    private final DisplayAnnonser displayAnnonser;
 
-    private JScrollPane scrollPane;
-
-    private int i;
-    private JPanel listContainer;
-
-    private boolean loggedIn;
-    private MainFrame view;
-    private DisplayAnnonser displayAnnonser;
-
-    public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view, JFrame frame){
+    public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view){
         super(null);
-        this.view = view;
-        this.loggedIn = loggedIn;
-        this.width = width;
-        this.height = height;
         this.setSize(width, height);
 
-        annonsPanel = new AnnonsPanel(width, height-100, controller, frame);
+        annonsPanel = new AnnonsPanel(width);
         this.add(annonsPanel);
 
-        displayAnnonser = new DisplayAnnonser(width, height, controller, view);
+        displayAnnonser = new DisplayAnnonser(width, height, view);
         this.add(displayAnnonser);
 
-        topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
+        TopPanel topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
         this.add(topPanel);
 
     }

@@ -9,13 +9,6 @@ import javax.swing.*;
  * the main panel that changes depending on the situation
  */
 public class MainPanel extends JPanel {
-    private JPanel colorPanel;
-    private TopPanel topPanel;
-    private StartPanel startPanel;
-    private int width;
-    private int height;
-    private boolean loggedIn;
-    private MainFrame view;
 
     /**
      * setting up the main panel. Sets up different panels depending on where the user is
@@ -25,16 +18,12 @@ public class MainPanel extends JPanel {
      */
     public MainPanel(int width, int height, Controller controller, boolean loggedIn, MainFrame view) {
         super(null);
-        this.view = view;
-        this.loggedIn = loggedIn;
-        this.width = width;
-        this.height = height;
         setSize(width, height);
 
-        startPanel = new StartPanel(width, height-100, controller, view);
+        StartPanel startPanel = new StartPanel(width, height - 100, controller, view);
         this.add(startPanel);
 
-        topPanel = new TopPanel(width, height, controller, "Hem", loggedIn, view);
+        TopPanel topPanel = new TopPanel(width, height, "Hem", loggedIn, view);
         this.add(topPanel);
 
     }

@@ -9,17 +9,10 @@ import javax.swing.*;
  * when you need to make a panel with rounded corners
  */
 public class RoundedPanelExample{
-    private JLabel searchText;
-    private JTextField search;
-    private JTextField kategori;
-    private JTextField datum;
-    private JButton searchRuta;
 
     public static JPanel roundedPanelExample()
     {
         Color myNewColor = new Color (225, 143, 107);
-
-        Color greenColor = new Color (167, 203, 156, 255);
 
         JPanel p1 = new RoundedPanel(20, myNewColor);
         p1.setBounds(120,160,350,300);

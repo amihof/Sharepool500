@@ -7,35 +7,25 @@ import Delad.Category;
 import Delad.Search;
 import Delad.User;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Controller
 {
     private MainFrame view;
-    private String password;
-    private String email;
-    private String userName;
     private RequestFactory requestFactory;
     private Client client;
 
-    private boolean loggedIn;
-
     private User user;
 
-    private Annons annons;
     private ArrayList<Annons> searchedAnnonsList;
     /**
-     * loggedIn is false because you are not logged in when you start the program.
-     * view, client and request factory is initialized
+     * this constructor is called when the program starts. It creates a new MainFrame, Client and
+     * RequestFactory
+     * @Author Amidala Hoffmén
      */
     public Controller() {
-        loggedIn = false;
-        MainFrame view = new MainFrame(this, loggedIn);
-        this.view = view;
-        System.out.println("view färdig");
+        this.view = new MainFrame(this, false);
         client = new Client(1050,"127.0.0.1", this);
-        System.out.println("client färdig");
         requestFactory = new RequestFactory(client);
     }
 
@@ -50,6 +40,27 @@ public class Controller
         requestFactory.login(user);
     }
 
+    public void loggedInInfo(User user) {
+        view.loggedInInfo(user);
+    }
+
+    /**
+     * when the user successfully loggs in, this method disposes the old view and creates
+     * a new view that the current user is logged in on
+     * if the user fails to login, it tells the view that the user failed to login and displays a
+     * jdialog
+     * @param loggedIn is true if the user is logged in and false if the login failed
+     */
+    public void loggedInOrNot(boolean loggedIn){
+        if (!loggedIn){
+            view.couldNotLogin();
+        }
+        else {
+            view.dispose();
+            view = new MainFrame(this, loggedIn);
+        }
+    }
+
     /**
      * when the user clicks "Registrera användare" on the login/register panel, this method makes a
      * request at requestfactory to register a new user.
@@ -58,28 +69,8 @@ public class Controller
         requestFactory.register(new User(userName, email, password));
     }
 
-    /**
-     * when the user successfully loggs in, this method disposes the old view and creates
-     * a new view that the current user is logged in on
-     * @param loggedIn is true if the user is logged in
-     */
-    public void loggedInOrNot(boolean loggedIn){
-        view.dispose();
-        view = new MainFrame(this, loggedIn);
-
-    }
-
-    /**
-     * when a user fails to login, this method tells view that the user failed to log in and displays
-     * a jdialog. 
-     */
-    public void couldNotLogin() {
-        view.couldNotLogin();
-    }
-
-    //--GETTERS and SETTERS--//
-    public String getEmail(){
-        return email;
+    public void couldNotRegister() {
+        view.couldNotRegister();
     }
 
     public Category[] getCategoriesValues() {
@@ -90,9 +81,6 @@ public class Controller
         requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
     }
 
-    public void couldNotRegister() {
-        view.couldNotRegister();
-    }
 
     public void annonsMade() {
         view.annonsMade();
@@ -105,22 +93,13 @@ public class Controller
     public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
         this.searchedAnnonsList = searchedAnnonsList;
-        //String[] nameListAnnonser = new String[0];
 
         for (Annons a : searchedAnnonsList)
         {
             nameListAnnonser.add(a.getProductName());
         }
-        //String[] newArrayTest = nameListAnnonser.toArray(new String[searchedAnnonsList.size()]);
 
         view.updateAnnonserSeen(searchedAnnonsList);
     }
 
-    public ArrayList<Annons> getSearchedAnnonsList(){
-        return getSearchedAnnonsList();
-    }
-
-    public void loggedInInfo(User user) {
-        view.loggedInInfo(user);
-    }
 }

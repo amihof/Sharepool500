@@ -53,8 +53,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
     }
 
     public void setUp(){
-        //String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
-        //String[] nameList = getAnnonserList();
         imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());

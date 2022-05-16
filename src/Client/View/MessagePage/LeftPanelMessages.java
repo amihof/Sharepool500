@@ -1,13 +1,15 @@
 package Client.View.MessagePage;
 
 import Client.Controller.Controller;
+import Delad.Chat;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.util.ArrayList;
 
-import static java.awt.Color.black;
-
-public class LeftPanelMessages extends JPanel {
+public class LeftPanelMessages extends JPanel implements ListSelectionListener {
     private int width;
     private int height;
     private Controller controller;
@@ -19,6 +21,12 @@ public class LeftPanelMessages extends JPanel {
     private Font myFontBold;
     private Font newFontBold;
     private JLabel meddelandenLabel;
+    private JPanel contactsPanel = new JPanel();
+
+    private JList list;
+    private String[] nameList;
+
+    private ArrayList<Chat> contactsList;
 
     public LeftPanelMessages(int width, int height, Controller controller){
         this.setLayout(null);
@@ -49,5 +57,74 @@ public class LeftPanelMessages extends JPanel {
         meddelandenLabel.setHorizontalAlignment(JLabel.CENTER);
         this.add(meddelandenLabel);
 
+    }
+
+
+    public void setUpContacts(){
+        list = new JList(nameList);
+        list.setCellRenderer(new IconListRenderer());
+
+        list.addListSelectionListener(this);
+
+        list.setFixedCellHeight(220);
+        list.setFixedCellWidth(width-60);
+
+        JScrollPane scroll = new JScrollPane(list);
+        scroll.setPreferredSize(new Dimension(width, 430));
+        scroll.setBackground(backgroundColor);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+
+        this.add(scroll);
+        this.contactsPanel.setVisible(true);
+
+    }
+
+    public void addContactsList(ArrayList<Chat> contactsList){
+        ArrayList<String> nameListContacts = new ArrayList<>();
+        this.contactsList = contactsList;
+
+        for (Chat a : contactsList)
+        {
+            nameListContacts.add(a.getRequester_email());
+        }
+
+        this.nameList = nameListContacts.toArray(new String[0]);
+        System.out.println(nameListContacts);
+
+        for (int i = 0; i < nameList.length; i++){
+            System.out.println(nameList[i]);
+        }
+
+        setUp();
+        contactsPanel.setSize(width, 1000);
+        contactsPanel.setLocation(0,50);
+        contactsPanel.setBackground(backgroundColor);
+        this.add(contactsPanel,BorderLayout.CENTER);
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        list.getSelectedValue();
+        System.out.println(list.getSelectedValue());
+
+    }
+
+    public static class IconListRenderer extends DefaultListCellRenderer {
+
+        Font font = new Font("helvetica", Font.BOLD, 20);
+
+        @Override
+        public Component getListCellRendererComponent(
+                JList list, Object value, int index,
+                boolean isSelected, boolean cellHasFocus) {
+
+            JLabel label = (JLabel) super.getListCellRendererComponent(
+                    list, value, index, isSelected, cellHasFocus);
+            label.setHorizontalTextPosition(JLabel.RIGHT);
+            label.setFont(font);
+            label.setBorder(BorderFactory.createMatteBorder(15,
+                    30, 15, 30, new Color(245, 221, 204)));
+            return label;
+        }
     }
 }

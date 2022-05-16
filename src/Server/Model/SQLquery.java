@@ -24,19 +24,30 @@ public class SQLquery {
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
+        String usernametemp ="";
         try {
             String QUERY = "call procedure_login(?,?)"; // Första parameter ? är email och andra ? är password av registrerad användare
-
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
             pstmt.setString(2, password);
             System.out.println("Quert prepared and will execute");
             pstmt.execute();
-            return "hadi was here";
+
+            QUERY = "SELECT username from users\n" +
+            "WHERE '"+email+"'=email";
+
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(QUERY);
+
+            while(resultSet.next()){
+                usernametemp=resultSet.getString(1);
+            }
+
+            return usernametemp;
 
         } catch (Exception p) {
             System.out.println("login attempt failed");
-            return "";
+            return usernametemp;
         }
 
 

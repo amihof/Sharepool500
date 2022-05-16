@@ -85,13 +85,13 @@ public class SQLquery {
 
         try {
             if(category.toString()=="Kategori"){
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,U.password from annons A\n" +
                         "JOIN users U\n" +
                         "ON U.email = A.owner_email\n" +
                         "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
             }
             else{
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,U.password from annons A\n" +
                         "JOIN product_type P\n" +
                         "ON A.product_type = P.id\n" +
                         "JOIN users U\n" +
@@ -99,8 +99,6 @@ public class SQLquery {
                         "WHERE P.name like '%"+category+"%'\n" +
                         "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
             }
-
-
             Statement stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery(QUERY);
 
@@ -110,13 +108,13 @@ public class SQLquery {
             while (resultSet.next()) {
                 int i=0; //remove
                 i=i+1; //remove
-                tempuser= new User(resultSet.getString(4));
+                tempuser= new User(resultSet.getString(4),resultSet.getString(3),resultSet.getString(6));
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,
                         resultSet.getBoolean(5));
                 result.add(tempAnnons);
-               System.out.println(result.get(0).getProductName());
+               System.out.println(tempuser.getUsername());
             }
             return result;
 
@@ -185,6 +183,34 @@ public class SQLquery {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public String getEmail(String email){
+        Connection con = Server.getCon();
+        PreparedStatement pstmt = null;
+        String QUERY;
+        String emailtemp="";
+        ArrayList<String> userInfo = new ArrayList<>();
+
+        try {
+            QUERY = "SELECT email from users U\n" +
+                    "WHERE "+email+"=U.email";
+
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(QUERY);
+
+            while(resultSet.next()){
+                emailtemp=resultSet.getString(1);
+            }
+
+            return emailtemp;
+
+        } catch (Exception e) {
+            System.out.println("couldn't create an chat");
+            e.printStackTrace();
+
+        }
+        return emailtemp;
     }
 
     public boolean createMessage(Message message){

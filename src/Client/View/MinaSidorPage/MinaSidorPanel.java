@@ -190,5 +190,6 @@ public class MinaSidorPanel extends JPanel {
         this.userUserName = user.getUsername();
         this.userPassword = user.getPassword();
         makeKontoUppgifter();
+        System.out.println(user.getUsername());
     }
 }

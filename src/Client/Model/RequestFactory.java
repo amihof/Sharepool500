@@ -36,5 +36,12 @@ public class RequestFactory {
     public void searchAnnons(Search search){
         client.addToBuffer(new Request(search));
     }
+
+    public void getUsername(String email){
+        client.addToBuffer(new Request(email));
+
+    }
+
+
 }
 

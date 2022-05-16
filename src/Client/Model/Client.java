@@ -95,18 +95,17 @@ public class Client {
                         oos.flush(); //makes sure the request is written
 
 
-                        Boolean loggedIn = ois.readBoolean(); //checks if its logged in**/
-                        System.out.println(loggedIn);
+                        String username = ois.readUTF(); //checks if its logged in**/
 
-                        if(loggedIn){
+                        if(!username.equals("")){
                             user = request.getUser(); //the user information saves
-                            controller.loggedInOrNot(loggedIn);
+                            controller.loggedInOrNot(username);
                             controller.loggedInInfo(user);
                             //the information is sent to the controller
                             // and the user logs in to the program
 
                         } else{
-                            controller.couldNotLogin();
+                            controller.loggedInOrNot(username);
                             throw new Exception("Could not log in ");
 
                         }
@@ -165,6 +164,21 @@ public class Client {
                         //the information is sent to the controller
                         //and the user can search for an add
 
+
+                    } else if(str.equals("getUsername")){
+                        oos.writeObject(request); //sends the request
+                        oos.flush(); //makes sure the request is written
+
+                        Boolean requestSent = ois.readBoolean(); //checks if the add iss created
+                        if(requestSent) {
+                            controller.annonsMade();
+
+
+                        } else{
+                            throw new Exception("Could not create an add ");
+
+
+                        }
 
                     } else{
                         throw new Exception("Could not read request type");

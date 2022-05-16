@@ -7,40 +7,28 @@ import java.awt.*;
 
 /**
  * the top of the GUI. The panel that is at the top and almost never changes, only a few small changes.
+ * @Author Amidala Hoffmén
  */
 public class TopPanel extends JPanel {
-    private JLabel sharePoolLogo;
-    private JPanel whichPageColor;
-    private String whichPage;
-    private Boolean loggedIn;
+    private final String whichPage;
+    private final Boolean loggedIn;
 
-    private JButton hem;
-    private JButton saFungerarDet;
-    private JButton meddelanden;
-    private JButton loggaInRegistrera;
-    private JButton skapaAnnonsButton;
-    private JButton minaSidorButton;
-
-    private RoundedPanelExample roundedPanelExample;
-    private Controller controller;
-    private MainFrame view;
+    private final MainFrame view;
 
     /**
      * creates the TopPanel
      * @param width is the width of the panel
      * @param height is the height of the panel
-     * @param controller the controller variable so we can call methods in the controller
      * @param whichPage which page is clicked, home, how it works or messages
      * @param loggedIn if the user is logged in or not
      * @param view the view variable so we can call methods in the MainFrame
      */
-    public TopPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn, MainFrame view){
+    public TopPanel(int width, int height, String whichPage, boolean loggedIn, MainFrame view){
         this.setLayout(null);
         this.view = view;
         this.loggedIn = loggedIn;
-        this.controller = controller;
         this.whichPage = whichPage;
-        roundedPanelExample = new RoundedPanelExample();
+        RoundedPanelExample roundedPanelExample = new RoundedPanelExample();
 
         this.setBackground(Color.WHITE);
         this.setSize(width, height-500);
@@ -60,7 +48,7 @@ public class TopPanel extends JPanel {
         Font myFont = new Font("Shree Devanagari 714", Font.BOLD, 18);
         Font newFont = myFont.deriveFont(25.0F);
 
-        sharePoolLogo = new JLabel("Sharepool");
+        JLabel sharePoolLogo = new JLabel("Sharepool");
         sharePoolLogo.setLocation(30, 10);
         sharePoolLogo.setSize(600, 100);
         sharePoolLogo.setForeground(myNewColor);
@@ -68,7 +56,7 @@ public class TopPanel extends JPanel {
         sharePoolLogo.setHorizontalAlignment(JLabel.LEFT);
         this.add(sharePoolLogo);
 
-        hem = new JButton("Hem");
+        JButton hem = new JButton("Hem");
         hem.setBackground(Color.WHITE);
         hem.setBorderPainted(false);
         hem.setLocation(250, 48);
@@ -79,7 +67,7 @@ public class TopPanel extends JPanel {
         hem.addActionListener(l -> view.panelStateChanged("MainPanel"));
         this.add(hem);
 
-        saFungerarDet = new JButton("Så fungerar det");
+        JButton saFungerarDet = new JButton("Så fungerar det");
         saFungerarDet.setBackground(Color.WHITE);
         saFungerarDet.setBorderPainted(false);
         saFungerarDet.setLocation(350, 48);
@@ -89,7 +77,7 @@ public class TopPanel extends JPanel {
         saFungerarDet.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(17.0F));
         this.add(saFungerarDet);
 
-        meddelanden = new JButton("Meddelanden");
+        JButton meddelanden = new JButton("Meddelanden");
         meddelanden.setBackground(Color.WHITE);
         meddelanden.setBorderPainted(false);
         meddelanden.setLocation(525, 48);
@@ -100,7 +88,7 @@ public class TopPanel extends JPanel {
         this.add(meddelanden);
 
         if(loggedIn){
-            minaSidorButton = new RoundedPanelExample.CircleBtn("Mina sidor");
+            JButton minaSidorButton = new RoundedPanelExample.CircleBtn("Mina sidor");
             minaSidorButton.setBackground(greenColor);
             minaSidorButton.setBorderPainted(false);
             minaSidorButton.setLocation(1050, 37);
@@ -110,7 +98,7 @@ public class TopPanel extends JPanel {
             minaSidorButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
             this.add(minaSidorButton);
 
-            skapaAnnonsButton = new RoundedPanelExample.CircleBtn("Skapa annons");
+            JButton skapaAnnonsButton = new RoundedPanelExample.CircleBtn("Skapa annons");
             skapaAnnonsButton.setBackground(greenColor);
             skapaAnnonsButton.setBorderPainted(false);
             skapaAnnonsButton.setLocation(850, 37);
@@ -122,7 +110,7 @@ public class TopPanel extends JPanel {
 
         }
         else if(!loggedIn) {
-            loggaInRegistrera = new RoundedPanelExample.CircleBtn("Logga in/Registrera");
+            JButton loggaInRegistrera = new RoundedPanelExample.CircleBtn("Logga in/Registrera");
             loggaInRegistrera.setBackground(greenColor);
             loggaInRegistrera.setBorderPainted(false);
             loggaInRegistrera.setLocation(1025, 37);
@@ -133,6 +121,7 @@ public class TopPanel extends JPanel {
             this.add(loggaInRegistrera);
         }
 
+        JPanel whichPageColor;
         if ("Hem".equals(whichPage)) {
             whichPageColor = new JPanel();
             whichPageColor.setSize(95, 5);

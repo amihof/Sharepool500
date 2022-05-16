@@ -28,7 +28,7 @@ public class MainPanelSkapaAnnons extends JPanel {
         skapaAnnonsPanel = new SkapaAnnonsPanel(width, height-100, controller);
         this.add(skapaAnnonsPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
+        topPanel = new TopPanel(width, height, "0", loggedIn, view);
         this.add(topPanel);
 
     }

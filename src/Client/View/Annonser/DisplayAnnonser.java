@@ -6,7 +6,6 @@ import Client.View.OneAnnons.MainPanelOneAnnons;
 import Delad.Annons;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -14,14 +13,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
+/**
+ * this class is the panel that displays all the annonser that match the users search terms
+ * @Author Amidala Hoffmén
+ */
 public class DisplayAnnonser extends JPanel implements ListSelectionListener {
-    private JPanel annonserView = new JPanel();
-    private Controller controller;
-    private int width;
-    private int height;
-    private Color backgroundColor;
+    private final JPanel annonserView = new JPanel();
+    private final int width;
+    private final int height;
+    private final Color backgroundColor;
 
     private static Map<String, ImageIcon> imageMap;
     private JList list;
@@ -29,21 +30,18 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     private ArrayList<Annons> searchedAnnonsList;
 
-    private MainPanelOneAnnons mainPanelOneAnnons;
+    private final MainFrame view;
 
-    private String productName;
-    private String productDescription;
-    private String productCategory;
-    private String productPublisher;
-
-    private MainFrame view;
-
-
-    public DisplayAnnonser(int width, int height, Controller controller, MainFrame view){
+    /**
+     * sets the bounds of the panel
+     * @param width the width of the panel
+     * @param height the height of the panel
+     * @param view class variable so you can refer to that class
+     */
+    public DisplayAnnonser(int width, int height, MainFrame view){
         this.setLayout(null);
         backgroundColor = new Color(245, 221, 204);
         this.view = view;
-        this.controller = controller;
         this.width = width;
         this.height = height;
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
@@ -52,9 +50,10 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     }
 
+    /**
+     * setting up the panel
+     */
     public void setUp(){
-        //String[] nameList = {"Annons", "Annons2", "Annons3", "Annons4", "Annons5"};
-        //String[] nameList = getAnnonserList();
         imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());
@@ -71,22 +70,17 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
         this.annonserView.add(scroll);
         this.annonserView.setVisible(true);
-
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
-        System.out.println(list.getSelectedValue());
-        productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
-        productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
-        productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
-        productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
-        mainPanelOneAnnons = new MainPanelOneAnnons(width+40, height, productName, productCategory, productDescription, productPublisher, view);
+        String productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
+        String productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
+        String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
+        String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
+        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view);
         view.displayOneAnnons(mainPanelOneAnnons);
-
-        /*controller.setFriendName(String.valueOf(list.getSelectedValue()));
-        controller.clearChat();*/
 
     }
 
@@ -142,7 +136,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         return map;
     }
 
-    public void addNewAnnonsTest(ArrayList<Annons> searchedAnnonsList){
+    public void addNewAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
         this.searchedAnnonsList = searchedAnnonsList;
 
@@ -152,11 +146,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         }
 
         this.nameList = nameListAnnonser.toArray(new String[0]);
-        System.out.println(nameListAnnonser);
-
-        for (int i = 0; i < nameList.length; i++){
-            System.out.println(nameList[i]);
-        }
 
         setUp();
         annonserView.setSize(width, 1000);

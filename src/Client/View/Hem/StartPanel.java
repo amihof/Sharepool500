@@ -12,18 +12,13 @@ import java.awt.event.*;
 /**
  * StartPanel is the view that the user sees when they first enter the website. Its under the "Hem" button.
  * here u search for a product
+ * @Author Amidala Hoffmén
  */
 public class StartPanel extends JPanel {
-    private JLabel welcomeText;
-    private JLabel searchText;
-    private RoundedPanelExample roundedPanelExample;
-    private JButton searchRuta;
-    private Controller controller;
+    private final Controller controller;
     private JTextField search;
-    private JTextField kategori;
-    private JTextField datum;
     private JComboBox cmbCategories;
-    private MainFrame view;
+    private final MainFrame view;
 
     /**
      * setting up the panel and setting the colors.
@@ -36,10 +31,8 @@ public class StartPanel extends JPanel {
         this.view = view;
         this.controller = controller;
 
-        roundedPanelExample = new RoundedPanelExample();
-
-        Color myNewColor = new Color (245, 221, 204);
-        this.setBackground(myNewColor);
+        Color backgroundColor = new Color (245, 221, 204);
+        this.setBackground(backgroundColor);
 
         this.setSize(width, height);
         setLocation(0,100);
@@ -52,30 +45,24 @@ public class StartPanel extends JPanel {
      * setting up all the JLabels and JPanels needed.
      */
     public void setUp(){
-
         Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
         Font newFont = myFont.deriveFont(25.0F);
-
         Color greenColor = new Color (167, 203, 156, 255);
 
-        welcomeText = new JLabel("Välkommen till Sharepool");
+        JLabel welcomeText = new JLabel("Välkommen till Sharepool");
         welcomeText.setLocation(50, 60);
         welcomeText.setSize(600, 100);
         welcomeText.setFont(newFont.deriveFont(40.0F));
         welcomeText.setHorizontalAlignment(JLabel.CENTER);
         this.add(welcomeText);
 
-        searchRuta = new RoundedPanelExample.CircleBtn("Sök");
+        JButton searchRuta = new RoundedPanelExample.CircleBtn("Sök");
         searchRuta.setBackground(greenColor);
         searchRuta.setBorderPainted(false);
         searchRuta.setLocation(140, 380);
         searchRuta.setSize(300, 50);
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
-        //searchRuta.addActionListener(l -> controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem()));
-       // searchRuta.addActionListener(l -> view.updateTextFieldAnnonsPanel(search.getText()));
-        //searchRuta.addActionListener(l -> view.panelStateChanged("MainPanelAnnons"));
-        //searchRuta.addActionListener(l -> view.searchedClicked());
         searchRuta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,18 +78,15 @@ public class StartPanel extends JPanel {
             }
 
         });
-
-
         this.add(searchRuta);
 
-        searchText = new JLabel("Sök efter annons");
+        JLabel searchText = new JLabel("Sök efter annons");
         searchText.setLocation(140, 160);
         searchText.setSize(600, 100);
         searchText.setFont(newFont.deriveFont(30.0F));
         searchText.setHorizontalAlignment(JLabel.LEFT);
         this.add(searchText);
 
-        //måste lägga till en actionlistener
         search = new RoundedPanelExample.RoundedTextField(20);
         search.setText("Vad vill du hyra?");
         search.setLocation(140, 240);
@@ -115,7 +99,6 @@ public class StartPanel extends JPanel {
                     search.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (search.getText().equals("")){
                     search.setText("Vad vill du hyra?");
@@ -125,7 +108,6 @@ public class StartPanel extends JPanel {
         });
         this.add(search);
         this.add(RoundedPanelExample.roundedPanelExample());
-
     }
 
     /**

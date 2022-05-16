@@ -7,35 +7,28 @@ import Delad.Category;
 import Delad.Search;
 import Delad.User;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * The controller class is the link between view and model
+ * @Author Amidala Hoffmén
+ */
 public class Controller
 {
     private MainFrame view;
-    private String password;
-    private String email;
-    private String userName;
     private RequestFactory requestFactory;
     private Client client;
 
-    private boolean loggedIn;
-
     private User user;
 
-    private Annons annons;
     private ArrayList<Annons> searchedAnnonsList;
     /**
-     * loggedIn is false because you are not logged in when you start the program.
-     * view, client and request factory is initialized
+     * this constructor is called when the program starts. It creates a new MainFrame, Client and
+     * RequestFactory
      */
     public Controller() {
-        loggedIn = false;
-        MainFrame view = new MainFrame(this, loggedIn);
-        this.view = view;
-        System.out.println("view färdig");
+        this.view = new MainFrame(this, false);
         client = new Client(1050,"127.0.0.1", this);
-        System.out.println("client färdig");
         requestFactory = new RequestFactory(client);
     }
 
@@ -47,7 +40,35 @@ public class Controller
      */
     public void loginClicked(String email, String password) {
         this.user = new User(email, password);
+        requestFactory.getUsername(user.getEmail());
         requestFactory.login(user);
+    }
+
+    /**
+     * gets the info of the logged in user
+     * @param user is the user that is logged in
+     */
+    public void loggedInInfo(User user) {
+
+        view.loggedInInfo(user);
+    }
+
+    /**
+     * when the user successfully loggs in, this method disposes the old view and creates
+     * a new view that the current user is logged in on
+     * if the user fails to login, it tells the view that the user failed to login and displays a
+     * jdialog
+     * @param username is true if the user is logged in and false if the login failed
+     */
+    public void loggedInOrNot(String username){
+        if (username.equals("")){
+            view.couldNotLogin();
+        }
+        else {
+            view.dispose();
+            view = new MainFrame(this, true);
+            user.setUsername(username);
+        }
     }
 
     /**
@@ -59,68 +80,64 @@ public class Controller
     }
 
     /**
-     * when the user successfully loggs in, this method disposes the old view and creates
-     * a new view that the current user is logged in on
-     * @param loggedIn is true if the user is logged in
+     * if the user could not register, this method calls a method in view that shows an error message
      */
-    public void loggedInOrNot(boolean loggedIn){
-        view.dispose();
-        view = new MainFrame(this, loggedIn);
-
-    }
-
-    /**
-     * when a user fails to login, this method tells view that the user failed to log in and displays
-     * a jdialog. 
-     */
-    public void couldNotLogin() {
-        view.couldNotLogin();
-    }
-
-    //--GETTERS and SETTERS--//
-    public String getEmail(){
-        return email;
-    }
-
-    public Category[] getCategoriesValues() {
-        return Category.values();
-    }
-
-    public void registerNewAnnons(String productName, String productDescription, Category productCategory, Boolean renting) {
-        requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
-    }
-
     public void couldNotRegister() {
         view.couldNotRegister();
     }
 
+    /**
+     * getter
+     * @return category
+     */
+    public Category[] getCategoriesValues() {
+        return Category.values();
+    }
+
+    /**
+     * this method is called when someone is making a new Annons. is sends the parameters of the annons
+     * from view to requestfactory
+     * @param productName the title of the annons
+     * @param productDescription the description of the product
+     * @param productCategory the category of the product
+     * @param renting ?
+     */
+    public void registerNewAnnons(String productName, String productDescription, Category productCategory, Boolean renting) {
+        requestFactory.createAnnons(new Annons(productName, productDescription, productCategory, user, renting));
+    }
+
+    /**
+     * this method calls a method in view that tells the user that their annons is made
+     */
     public void annonsMade() {
         view.annonsMade();
     }
 
+    /**
+     * when the user click search, this method is called and takes the parameters from view and sends
+     * into requestfactory to create a new search request.
+     * @param text the text the user searched for
+     * @param productCategory the category the user searched for
+     */
     public void searchedClicked(String text, Category productCategory) {
         requestFactory.searchAnnons(new Search(text, productCategory));
     }
 
+    /**
+     * this method takes the arraylist of all annonser that matched the search terms the user used and
+     * sends them into view to show the user
+     * @param searchedAnnonsList the list of all annonser that matched the search terms
+     */
     public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
         this.searchedAnnonsList = searchedAnnonsList;
-        //String[] nameListAnnonser = new String[0];
 
         for (Annons a : searchedAnnonsList)
         {
             nameListAnnonser.add(a.getProductName());
         }
-        //String[] newArrayTest = nameListAnnonser.toArray(new String[searchedAnnonsList.size()]);
 
         view.updateAnnonserSeen(searchedAnnonsList);
     }
 
-    public ArrayList<Annons> getSearchedAnnonsList(){
-        return getSearchedAnnonsList();
-    }
-
-    public void loggedInInfo(User user) {
-        view.loggedInInfo(user);
-    }
 }

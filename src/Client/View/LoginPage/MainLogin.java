@@ -235,7 +235,6 @@ public class MainLogin extends JDialog
         this.loginButton.setHorizontalAlignment(0);
 
         loginButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
-       // loginButton.addActionListener(l-> controller.login());
         loginButton.addActionListener(l-> this.dispose());
         this.add(this.loginButton);
 

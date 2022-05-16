@@ -106,7 +106,7 @@ public class Client {
                             // and the user logs in to the program
 
                         } else{
-                            controller.couldNotLogin();
+                            controller.loggedInOrNot(loggedIn);
                             throw new Exception("Could not log in ");
 
                         }

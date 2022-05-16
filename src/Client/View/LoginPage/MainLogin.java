@@ -15,15 +15,6 @@ import Client.Controller.Controller;
  */
 public class MainLogin extends JDialog
 {
-    private JPanel streck;
-
-    private JLabel registrera;
-    private JLabel loggaIn;
-
-    private JButton loginButton;
-    private JButton forgotPassword;
-    private JButton registerUser;
-
     private JTextField userNameField;
     private JTextField eMailField;
     private JTextField passwordField;
@@ -31,21 +22,19 @@ public class MainLogin extends JDialog
     private JTextField eMailLoginField;
     private JTextField passwordLoginField;
 
-    private JPasswordField passwordField2;
-
-    private Controller controller;
-    private MainFrame view;
+    private final Controller controller;
+    private final MainFrame view;
 
     /**
      * creating the JDialog
      * @param controller so we can call methods in the controller
      */
     public MainLogin(final Controller controller, MainFrame view) {
-        final Color myNewColor = new Color(245, 221, 204);
+        final Color backgroundColor = new Color(245, 221, 204);
         this.controller = controller;
         this.view = view;
         this.setVisible(true);
-        this.setBackground(myNewColor);
+        this.setBackground(backgroundColor);
         this.setLayout(null);
         this.setModalityType(ModalityType.APPLICATION_MODAL);
         this.setBounds(100, 100, 750, 450);
@@ -58,19 +47,21 @@ public class MainLogin extends JDialog
     public void setUp() {
         final Font myFont = new Font("Shree Devanagari 714", 0, 18);
         final Font newFont = myFont.deriveFont(25.0f);
-
         final Color greenColor = new Color(167, 203, 156, 255);
-        (this.registrera = new JLabel("Skapa konto")).setLocation(0, 10);
-        this.registrera.setSize(375, 100);
-        this.registrera.setFont(newFont.deriveFont(25.0f));
-        this.registrera.setHorizontalAlignment(0);
-        this.add(this.registrera);
 
-        (this.loggaIn = new JLabel("Logga in")).setLocation(375, 10);
-        this.loggaIn.setSize(375, 100);
-        this.loggaIn.setFont(newFont.deriveFont(25.0f));
-        this.loggaIn.setHorizontalAlignment(0);
-        this.add(this.loggaIn);
+        JLabel registrera;
+        (registrera = new JLabel("Skapa konto")).setLocation(0, 10);
+        registrera.setSize(375, 100);
+        registrera.setFont(newFont.deriveFont(25.0f));
+        registrera.setHorizontalAlignment(0);
+        this.add(registrera);
+
+        JLabel loggaIn;
+        (loggaIn = new JLabel("Logga in")).setLocation(375, 10);
+        loggaIn.setSize(375, 100);
+        loggaIn.setFont(newFont.deriveFont(25.0f));
+        loggaIn.setHorizontalAlignment(0);
+        this.add(loggaIn);
 
         (this.userNameField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Användarnamn");
         this.userNameField.setLocation(38, 100);
@@ -83,11 +74,9 @@ public class MainLogin extends JDialog
                     userNameField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (userNameField.getText().equals("")){
                     userNameField.setText("Användarnamn");
-
                 }
             }
         });
@@ -105,7 +94,6 @@ public class MainLogin extends JDialog
                     eMailField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (eMailField.getText().equals("")){
                     eMailField.setText("E-post");
@@ -114,7 +102,6 @@ public class MainLogin extends JDialog
             }
         });
         this.add(this.eMailField);
-
 
         /**
          * ÄNDRA LÖSENORDET SÅ DET INTE SYNS NÄR MAN SKRIVER IN DET!!!!!!!!! MEN DET SKA STÅ
@@ -131,11 +118,9 @@ public class MainLogin extends JDialog
                     passwordField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (passwordField.getText().equals("")){
                     passwordField.setText("Lösenord");
-
                 }
             }
         });
@@ -152,7 +137,6 @@ public class MainLogin extends JDialog
                     upprepaPasswordField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (upprepaPasswordField.getText().equals("")){
                     upprepaPasswordField.setText("Upprepa lösenord");
@@ -173,11 +157,9 @@ public class MainLogin extends JDialog
                     eMailLoginField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (eMailLoginField.getText().equals("")){
                     eMailLoginField.setText("E-post");
-
                 }
             }
         });
@@ -194,22 +176,21 @@ public class MainLogin extends JDialog
                     passwordLoginField.setText("");
                 }
             }
-
             public void focusLost(FocusEvent e) {
                 if (passwordLoginField.getText().equals("")){
                     passwordLoginField.setText("Lösenord");
-
                 }
             }
         });
         this.add(this.passwordLoginField);
 
-        (this.registerUser = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
-        this.registerUser.setBorderPainted(false);
-        this.registerUser.setLocation(38, 340);
-        this.registerUser.setSize(300, 50);
-        this.registerUser.setFont(newFont.deriveFont(15.0f));
-        this.registerUser.setHorizontalAlignment(0);
+        JButton registerUser;
+        (registerUser = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
+        registerUser.setBorderPainted(false);
+        registerUser.setLocation(38, 340);
+        registerUser.setSize(300, 50);
+        registerUser.setFont(newFont.deriveFont(15.0f));
+        registerUser.setHorizontalAlignment(0);
         registerUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -217,6 +198,7 @@ public class MainLogin extends JDialog
                     view.wrongPasswordOrUsername();
                 }
                 else{
+                    System.out.println(userNameField.getText() + eMailField.getText() + passwordField.getText());
                     controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText());
                     dispose();
                     view.accountMade();
@@ -225,35 +207,37 @@ public class MainLogin extends JDialog
 
         });
 
-        this.add(this.registerUser);
+        this.add(registerUser);
 
-        (this.loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
-        this.loginButton.setBorderPainted(false);
-        this.loginButton.setLocation(413, 340);
-        this.loginButton.setSize(300, 50);
-        this.loginButton.setFont(newFont.deriveFont(15.0f));
-        this.loginButton.setHorizontalAlignment(0);
+        JButton loginButton;
+        (loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
+        loginButton.setBorderPainted(false);
+        loginButton.setLocation(413, 340);
+        loginButton.setSize(300, 50);
+        loginButton.setFont(newFont.deriveFont(15.0f));
+        loginButton.setHorizontalAlignment(0);
 
         loginButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
         loginButton.addActionListener(l-> this.dispose());
-        this.add(this.loginButton);
+        this.add(loginButton);
 
-        this.forgotPassword = new JButton("Jag har glömt mitt lösenord");
-        this.forgotPassword.setBorderPainted(false);
-        this.forgotPassword.setLocation(375, 200);
-        this.forgotPassword.setSize(375, 30);
-        this.forgotPassword.setHorizontalAlignment(0);
+        JButton forgotPassword = new JButton("Jag har glömt mitt lösenord");
+        forgotPassword.setBorderPainted(false);
+        forgotPassword.setLocation(375, 200);
+        forgotPassword.setSize(375, 30);
+        forgotPassword.setHorizontalAlignment(0);
         forgotPassword.setBackground(Color.LIGHT_GRAY);
-        this.forgotPassword.setFont(newFont.deriveFont(10.0f));
-        this.forgotPassword.setForeground(Color.GRAY);
-        this.forgotPassword.setEnabled(true);
-        this.add(this.forgotPassword);
+        forgotPassword.setFont(newFont.deriveFont(10.0f));
+        forgotPassword.setForeground(Color.GRAY);
+        forgotPassword.setEnabled(true);
+        this.add(forgotPassword);
 
-        (this.streck = new JPanel()).setLayout(null);
-        this.streck.setSize(2, 350);
-        this.streck.setLocation(375, 35);
-        this.streck.setBackground(Color.BLACK);
-        this.add(this.streck);
+        JPanel streck;
+        (streck = new JPanel()).setLayout(null);
+        streck.setSize(2, 350);
+        streck.setLocation(375, 35);
+        streck.setBackground(Color.BLACK);
+        this.add(streck);
 
     }
 

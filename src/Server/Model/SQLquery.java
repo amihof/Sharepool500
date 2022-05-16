@@ -185,7 +185,7 @@ public class SQLquery {
         }
     }
 
-    public String getEmail(String email){
+    public String getUsername(String email){
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         String QUERY;
@@ -210,7 +210,7 @@ public class SQLquery {
             e.printStackTrace();
 
         }
-        return emailtemp;
+        return usernametemp;
     }
 
     public boolean createMessage(Message message){

@@ -20,7 +20,7 @@ public class SQLquery {
      * @return returns true if the login is successful
      */
 
-    public boolean login(String email, String password){
+    public String login(String email, String password){
 
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
@@ -32,11 +32,11 @@ public class SQLquery {
             pstmt.setString(2, password);
             System.out.println("Quert prepared and will execute");
             pstmt.execute();
-            return true;
+            return "hadi was here";
 
         } catch (Exception p) {
             System.out.println("login attempt failed");
-            return false;
+            return "";
         }
 
 

@@ -1,18 +1,13 @@
 package Server.Model;
 
 
-import Delad.Annons;
 import Delad.Buffer;
 import Delad.Request;
 import Delad.User;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.nio.charset.StandardCharsets.*;
 
 /**
  * Server.Model.Client is an object representing a client connected to the server
@@ -27,7 +22,6 @@ public class Client {
     private Socket socket;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
-    private InputHandler ih;
 
     private SQLquery sql;
     private InputHandler inputHandler;
@@ -36,12 +30,13 @@ public class Client {
 
     /**
      * When a client connects to the server a socket is used to communicate via TCP
-     * The constructor is responsible fsor: setting up the communication streams between the client and the server
+     * The constructor is responsible for: setting up the communication streams between the client and the server
      * @param socket is the communication path, passed by the server upon acceptance of connection*/
     public Client(Socket socket) {
         this.socket = socket;
-        Boolean streamWorking;
+        Boolean streamWorking; //signaling tool to terminate threads in case of failed attempt to establish streams
         try {
+            //open streams
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
             oos.flush();
@@ -52,18 +47,20 @@ public class Client {
             e.printStackTrace();
         }
 
+        //instantiate the runnable objects
         inputHandler = new InputHandler();
         inputListener = new InputListener();
         sql = new SQLquery();
 
-
+        //instantiate threads run the runnable objects
         inputHandlerThread = new Thread(inputHandler);
         inputListenerThread = new Thread(inputListener);
 
+        //start threads
         inputHandlerThread.start();
         inputListenerThread.start();
 
-
+        //interrupt thread if client disconnects and the streams stop working
         if (!streamWorking) {
             inputHandlerThread.interrupt();
             inputListenerThread.interrupt();
@@ -71,40 +68,58 @@ public class Client {
     }
 
     /**
-     * InputHandler is responsible for managing the incoming request and sending back a response*/
+     * InputHandler is responsible for managing the incoming request and sending back a response
+     * */
     private class InputHandler implements Runnable {
         private Buffer<Request> inputBuffer;
 
+        /**
+         * InputHandler Constructor instantiate a request buffer where requests will be stored
+         * The buffer will synchronize the inputHandler and inputListener
+         * */
         public InputHandler() {
             inputBuffer = new Buffer<>();
         }
 
+        /**
+         * addToBuffer method is a caller method that store request sent by the inputListener
+         * @param request the request send by the client to be handled by the server
+         * */
         public void addToBuffer(Request request) {
             inputBuffer.put(request);
         }
 
 
+        /**
+         * run method is run by inputHandlerThread (multi-threading)
+         * The method gets a Request object from the buffer and using the identifier requestType : String
+         * The respective method is called from the sql : SQLQuery
+         * The response is sent back to the client using the TCP communication (ois and oos streams)
+         * @param request the request send by the client to be handled by the server
+         * */
         @Override
         public synchronized void run() {
             while (!Thread.interrupted()) {
                 Request request = null;
-                String str = null;
+                String requestType = null;
                 try {
+                    // get request : Request from the buffer
                     request = inputBuffer.get();
 
-                    str = request.getRequest();
-                    System.out.println(str);
+                    //get the type of request
+                    requestType = request.getRequest();
 
-                    if (str.equals("login")) {
+                    //The respective method is called from sql : SQLQuery using the identifier requestType : String
+                    if (requestType.equals("login")) {
                         System.out.println("login request is going to be handled");
-                        oos.writeBoolean(
+                        oos.writeUTF(
                                 sql.login(
                                         request.getUser().getEmail(),
                                         request.getUser().getPassword())
                         );
                         oos.flush();
                         System.out.println("query executed and request handled");
-                    } else if (str.equals("register")) {
+                    } else if (requestType.equals("register")) {
                         System.out.println("register request is going to be handled");
                         Boolean result  = sql.register(
                                 request.getUser().getUsername(),
@@ -116,7 +131,7 @@ public class Client {
                         oos.flush();
                         System.out.println("query executed and request handled");
 
-                    } else if (str.equals("createAnnons")) {
+                    } else if (requestType.equals("createAnnons")) {
                         oos.writeBoolean(
                                 sql.createAnnons(
                                         request.getAnnons().getProductName(),
@@ -127,14 +142,22 @@ public class Client {
                                 )
                         );
                         oos.flush();
-                    } else if (str.equals("search")) {
+                    } else if (requestType.equals("search")) {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),
                                 request.getSearch().getCategory()
                         ));
                         System.out.println("search worked");
 
-                    } else {
+                    }else if (requestType.equals("Message")) {
+                        //oos.writeObject(sql.createMessage());
+
+
+                    } else if (requestType.equals("Rate")) {
+                        //oos.writeObject(sql.createMessage());
+
+
+                    }else {
                         System.out.println("default case and return false");
                         oos.writeBoolean(false);
                         oos.flush();
@@ -154,30 +177,37 @@ public class Client {
      * adding them to the a buffer to be read by the inputHandler of said client*/
     private class InputListener implements Runnable {
 
+        /**
+         * run method is run by inputListenerThread (multi-threading)
+         * The method reads a Request object from the connected client
+         * The request is then added to the buffer
+         * The inputListener is responsible for manging the TCP-communication and
+         * in the case of disconnection, the inputListener is responsible for
+         * signaling the termination of the inputListener and inputHandler
+         * */
         @Override
         public synchronized void run() {
             Object input = null;
             while (!Thread.interrupted()) {
                 try {
-                    System.out.println("waiting to read");
 
+                    //The thread is blocked until an object is available to be read
                     input = ois.readObject();
 
-                    System.out.println("i read the request");
-
+                    //check correct format
                     if (input.getClass().isAssignableFrom(Request.class)) {
                         inputHandler.addToBuffer((Request) input);
                     } else {
-                        System.out.println(input.getClass().toString());
                         inputHandlerThread.interrupt();
                         inputListenerThread.interrupt();
-                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not observe communication protocol and thus disconnected");
+                        throw new ClassNotFoundException("Input from " + socket.getInetAddress() + " does not" +
+                                " observe communication protocol and thus disconnected");
                     }
 
                 } catch (EOFException e) {
                     inputHandlerThread.interrupt();
                     inputListenerThread.interrupt();
-                    e.printStackTrace();
+                    System.out.println("Client "  + socket.getInetAddress() + " has disconnected");
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }

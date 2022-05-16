@@ -37,6 +37,6 @@ public class MainPanelSFD extends JPanel
         this.height = height;
         this.setSize(width, height);
         this.add((Component)(this.sfdPanel = new SFDPanel(width, height - 100, controller)));
-        this.add((Component)(this.topPanel = new TopPanel(width, height, controller, "SFD", loggedIn, view)));
+        this.add((Component)(this.topPanel = new TopPanel(width, height, "SFD", loggedIn, view)));
     }
 }

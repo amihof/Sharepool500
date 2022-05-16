@@ -24,7 +24,7 @@ public class MainPanelAnnons extends JPanel {
         displayAnnonser = new DisplayAnnonser(width, height, view);
         this.add(displayAnnonser);
 
-        TopPanel topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
+        TopPanel topPanel = new TopPanel(width, height, "0", loggedIn, view);
         this.add(topPanel);
 
     }

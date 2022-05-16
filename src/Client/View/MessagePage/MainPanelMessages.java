@@ -37,7 +37,7 @@ public class MainPanelMessages extends JPanel {
         chatPanelMessages = new ChatPanelMessages(width-250, height-100, controller);
         this.add(chatPanelMessages);
 
-        topPanel = new TopPanel(width, height, controller, "Messages", loggedIn, view);
+        topPanel = new TopPanel(width, height, "Messages", loggedIn, view);
         this.add(topPanel);
 
     }

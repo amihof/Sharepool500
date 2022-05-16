@@ -28,7 +28,7 @@ public class MainPanelOneAnnons extends JPanel {
         oneAnnons = new OneAnnons(width, height-100, productName, productCategory, productDescription, productPublisher);
         this.add(oneAnnons);
 
-        topPanel = new TopPanel(width, height, controller, "0",loggedIn,view);
+        topPanel = new TopPanel(width, height, "0",loggedIn,view);
         this.add(topPanel);
     }
 }

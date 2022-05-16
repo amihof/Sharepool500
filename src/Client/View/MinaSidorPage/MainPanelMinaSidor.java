@@ -31,7 +31,7 @@ public class MainPanelMinaSidor extends JPanel {
         minaSidorPanel = new MinaSidorPanel(width, height-100, controller, view, "Kontouppgifter");
         this.add(minaSidorPanel);
 
-        topPanel = new TopPanel(width, height, controller, "0", loggedIn, view);
+        topPanel = new TopPanel(width, height, "0", loggedIn, view);
         this.add(topPanel);
 
     }

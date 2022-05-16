@@ -40,6 +40,7 @@ public class Controller
      */
     public void loginClicked(String email, String password) {
         this.user = new User(email, password);
+        requestFactory.getUsername(user.getEmail());
         requestFactory.login(user);
     }
 
@@ -57,15 +58,16 @@ public class Controller
      * a new view that the current user is logged in on
      * if the user fails to login, it tells the view that the user failed to login and displays a
      * jdialog
-     * @param loggedIn is true if the user is logged in and false if the login failed
+     * @param username is true if the user is logged in and false if the login failed
      */
-    public void loggedInOrNot(boolean loggedIn){
-        if (!loggedIn){
+    public void loggedInOrNot(String username){
+        if (username.equals("")){
             view.couldNotLogin();
         }
         else {
             view.dispose();
-            view = new MainFrame(this, loggedIn);
+            view = new MainFrame(this, true);
+            user.setUsername(username);
         }
     }
 

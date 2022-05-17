@@ -105,8 +105,8 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
             label.setIcon(imageMap.get((String) value));
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
-            label.setBorder(BorderFactory.createMatteBorder(15,
-                    30, 15, 30, new Color(245, 221, 204)));
+            label.setBorder(BorderFactory.createMatteBorder(0,
+                    0, 15, 0, new Color(245, 221, 204)));
             return label;
         }
     }
@@ -155,7 +155,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         this.nameList = nameListAnnonser.toArray(new String[0]);
 
         setUp();
-        annonserView.setSize(width, 1000);
+        annonserView.setSize(width, 500);
         annonserView.setLocation(0,0);
         annonserView.setBackground(backgroundColor);
         this.add(annonserView,BorderLayout.CENTER);

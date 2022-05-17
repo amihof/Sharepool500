@@ -62,22 +62,13 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
 
         nameListChat.add("email");
         nameListChat.add("testtest");
-        nameListChat.add("email3");
-        nameListChat.add("email");
-        nameListChat.add("testtestttt");
-        nameListChat.add("email32323");
-        nameListChat.add("email21321");
-        nameListChat.add("testt41423est");
-        nameListChat.add("emai4324235453l3");
-        nameListChat.add("emai143565l");
-        nameListChat.add("test465432test");
-        nameListChat.add("emai324567l3");
+
         this.nameList = nameListChat.toArray(new String[0]);
 
         setUpContacts();
-        contactsPanel.setSize(250, 900);
+        contactsPanel.setSize(250, 500);
         contactsPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        contactsPanel.setLocation(0,100);
+        contactsPanel.setLocation(0,90);
         contactsPanel.setBackground(Color.WHITE);
         this.add(contactsPanel,BorderLayout.CENTER);
 
@@ -91,12 +82,13 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
         list.addListSelectionListener(this);
 
         list.setFixedCellHeight(100);
-        list.setFixedCellWidth(250);
+        list.setFixedCellWidth(230);
 
         JScrollPane scroll = new JScrollPane(list);
-        scroll.setPreferredSize(new Dimension(250, 1000));
+        scroll.setPreferredSize(new Dimension(248, 485));
         scroll.setBackground(Color.WHITE);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
+        scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         this.contactsPanel.add(scroll);
         this.contactsPanel.setVisible(true);
@@ -123,8 +115,8 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
                     list, value, index, isSelected, cellHasFocus);
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
-            label.setBorder(BorderFactory.createMatteBorder(5,
-                    0, 5, 0, new Color (167, 203, 156, 255)));
+            label.setBorder(BorderFactory.createMatteBorder(0,
+                    0, 2, 0, new Color (167, 203, 156, 255)));
             return label;
         }
     }

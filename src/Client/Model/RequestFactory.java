@@ -36,6 +36,5 @@ public class RequestFactory {
         client.addToBuffer(new Request(chat));
     }
 
-
 }
 

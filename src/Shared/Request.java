@@ -39,10 +39,15 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * createAnnons: request to create an instance of an annons in the database
+     * 1. createAnnons: request to create an instance of an annons in the database
+     * 2. deleteAnnons: request to remove an instance of annons (changing onging from true to false in databas)
      * */
-    public Request(Annons annons){
-        request = "createAnnons";
+    public Request(int type, Annons annons){
+        if(type == 1) {
+            request = "createAnnons";
+        }else if(type == 2) {
+            request = "deleteAnnons";
+        }
         this.annons = annons;
     }
 

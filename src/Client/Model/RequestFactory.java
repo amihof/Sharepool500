@@ -30,7 +30,7 @@ public class RequestFactory {
         client.addToBuffer(new Request(2, user));
     }
 
-    public void createAnnons(Annons annons){client.addToBuffer(new Request(annons));}
+    public void createAnnons(Annons annons){client.addToBuffer(new Request(1, annons));}
 
     public void searchAnnons(Search search){
         client.addToBuffer(new Request(search));

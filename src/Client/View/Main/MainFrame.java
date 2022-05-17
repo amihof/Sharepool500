@@ -18,6 +18,7 @@ import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Shared.Annons;
 import Shared.Chat;
 import Shared.User;
+import Shared.Chat;
 
 
 import javax.swing.*;

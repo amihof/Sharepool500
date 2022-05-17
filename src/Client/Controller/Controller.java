@@ -3,7 +3,12 @@ package Client.Controller;
 import Client.Model.*;
 import Client.View.Main.MainFrame;
 
-import Shared.*;
+import Shared.Annons;
+import Shared.Category;
+import Shared.Search;
+import Shared.User;
+import Shared.Chat;
+
 
 import java.util.ArrayList;
 

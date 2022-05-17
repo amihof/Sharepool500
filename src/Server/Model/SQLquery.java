@@ -188,7 +188,8 @@ public class SQLquery {
             pstmt = con.prepareStatement(QUERY);
             pstmt.setInt(1, chat.getAnnonsId());
             pstmt.setString(2, chat.getRequester_email());
-            return pstmt.execute();
+            pstmt.execute();
+            return true;
 
         } catch (Exception e) {
             System.out.println("couldn't create an chat");
@@ -197,33 +198,6 @@ public class SQLquery {
         }
     }
 
-    public String getUsername(String email){
-        Connection con = Server.getCon();
-        PreparedStatement pstmt = null;
-        String QUERY;
-        String usernametemp="";
-        ArrayList<String> userInfo = new ArrayList<>();
-
-        try {
-            QUERY = "SELECT username from users U\n" +
-                    "WHERE "+email+"=U.email";
-
-            Statement stmt = con.createStatement();
-            ResultSet resultSet = stmt.executeQuery(QUERY);
-
-            while(resultSet.next()){
-                usernametemp=resultSet.getString(1);
-            }
-
-            return usernametemp;
-
-        } catch (Exception e) {
-            System.out.println("couldn't create an chat");
-            e.printStackTrace();
-
-        }
-        return usernametemp;
-    }
 
     public boolean createMessage(Message message){
 
@@ -245,6 +219,9 @@ public class SQLquery {
             return false;
         }
     }
+
+
+
 
 
 

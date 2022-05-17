@@ -221,6 +221,17 @@ public class SQLquery {
     }
 
     public ArrayList<Chat> getChat(){
+        Connection con = Server.getCon();
+        String QUERY;
+        try{
+            QUERY =
+            Statement stmt = con.createStatement();
+        }
+            catch(Exception e){
+                System.out.println("didnt get chat");
+                e.printStackTrace();
+                e.printStackTrace(System.err);
+            }
     }
 
 

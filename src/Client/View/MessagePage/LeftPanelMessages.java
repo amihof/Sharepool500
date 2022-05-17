@@ -1,7 +1,7 @@
 package Client.View.MessagePage;
 
 import Client.Controller.Controller;
-import Delad.Chat;
+import Shared.Chat;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

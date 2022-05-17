@@ -1,9 +1,9 @@
 package Server.Model;
 
 
-import Delad.Buffer;
-import Delad.Request;
-import Delad.User;
+import Shared.Buffer;
+import Shared.Request;
+import Shared.User;
 import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;

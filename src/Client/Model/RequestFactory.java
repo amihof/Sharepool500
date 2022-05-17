@@ -1,11 +1,9 @@
 package Client.Model;
 
-import Delad.Annons;
-import Delad.Request;
-import Delad.Search;
-import Delad.User;
-
-import java.util.ArrayList;
+import Shared.Annons;
+import Shared.Request;
+import Shared.Search;
+import Shared.User;
 
 /**
  * The request factory is responsible for constructing request to be sent to the server.

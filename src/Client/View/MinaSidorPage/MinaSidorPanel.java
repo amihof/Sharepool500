@@ -3,7 +3,7 @@ package Client.View.MinaSidorPage;
 import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
-import Delad.User;
+import Shared.User;
 
 import javax.swing.*;
 import java.awt.*;

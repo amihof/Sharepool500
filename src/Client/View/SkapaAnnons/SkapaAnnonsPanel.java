@@ -3,7 +3,7 @@ package Client.View.SkapaAnnons;
 
 import Client.Controller.Controller;
 import Client.View.Main.RoundedPanelExample;
-import Delad.Category;
+import Shared.Category;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

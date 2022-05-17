@@ -14,15 +14,16 @@ public class Annons implements Serializable {
     private final Category productCategory;
     private final boolean renting;
     private final ImageIcon clientPicture;
-    private int annonsId;
+    private int annonsID;
 
-    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting, ImageIcon clientPicture) {
+    public Annons(String productName, String productDescription, Category productCategory, User publisher, Boolean renting, int annonsID) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.publisher = publisher;
         this.renting  = renting;
-        this.clientPicture = clientPicture;
+        this.clientPicture = null;
+        this.annonsID=annonsID;
     }
 
     /**@constructor to create a new add to upload
@@ -65,7 +66,9 @@ public class Annons implements Serializable {
     /**@return renting**/
     public Boolean getRenting(){return renting;}
 
-    public int getAnnonsId() {
-        return annonsId;
+
+    public int getAnnonsID() {
+        return annonsID;
+
     }
 }

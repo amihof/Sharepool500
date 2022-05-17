@@ -46,7 +46,7 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         this.setSize(width, height);
         this.setLocation(0, 100);
-        this.setUp();
+        setUp();
     }
 
     public void setUp(){
@@ -58,6 +58,29 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
         meddelandenLabel.setHorizontalAlignment(JLabel.CENTER);
         this.add(meddelandenLabel);
 
+        ArrayList<String> nameListChat = new ArrayList<>();
+
+        nameListChat.add("email");
+        nameListChat.add("testtest");
+        nameListChat.add("email3");
+        nameListChat.add("email");
+        nameListChat.add("testtestttt");
+        nameListChat.add("email32323");
+        nameListChat.add("email21321");
+        nameListChat.add("testt41423est");
+        nameListChat.add("emai4324235453l3");
+        nameListChat.add("emai143565l");
+        nameListChat.add("test465432test");
+        nameListChat.add("emai324567l3");
+        this.nameList = nameListChat.toArray(new String[0]);
+
+        setUpContacts();
+        contactsPanel.setSize(250, 900);
+        contactsPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        contactsPanel.setLocation(0,100);
+        contactsPanel.setBackground(Color.WHITE);
+        this.add(contactsPanel,BorderLayout.CENTER);
+
     }
 
 
@@ -67,15 +90,15 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
 
         list.addListSelectionListener(this);
 
-        list.setFixedCellHeight(220);
-        list.setFixedCellWidth(width-60);
+        list.setFixedCellHeight(100);
+        list.setFixedCellWidth(250);
 
         JScrollPane scroll = new JScrollPane(list);
-        scroll.setPreferredSize(new Dimension(width, 430));
-        scroll.setBackground(backgroundColor);
+        scroll.setPreferredSize(new Dimension(250, 1000));
+        scroll.setBackground(Color.WHITE);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
 
-        this.add(scroll);
+        this.contactsPanel.add(scroll);
         this.contactsPanel.setVisible(true);
 
     }
@@ -100,8 +123,8 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
                     list, value, index, isSelected, cellHasFocus);
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
-            label.setBorder(BorderFactory.createMatteBorder(15,
-                    30, 15, 30, new Color(245, 221, 204)));
+            label.setBorder(BorderFactory.createMatteBorder(5,
+                    0, 5, 0, new Color (167, 203, 156, 255)));
             return label;
         }
     }
@@ -115,12 +138,16 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
             nameListChat.add(a.getRequester_email());
         }
 
+        nameListChat.add("email");
+        nameListChat.add("testtest");
+        nameListChat.add("email3");
+
         this.nameList = nameListChat.toArray(new String[0]);
 
         setUpContacts();
         contactsPanel.setSize(250, 1000);
-        contactsPanel.setLocation(100,0);
-        contactsPanel.setBackground(backgroundColor);
-        this.add(contactsPanel,BorderLayout.CENTER);
+        contactsPanel.setLocation(0,70);
+        contactsPanel.setBackground(Color.WHITE);
+        this.add(contactsPanel);
     }
 }

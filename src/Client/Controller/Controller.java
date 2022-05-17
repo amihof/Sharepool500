@@ -37,7 +37,6 @@ public class Controller
      */
     public void loginClicked(String email, String password) {
         this.user = new User(email, password);
-        requestFactory.getUsername(user.getEmail());
         requestFactory.login(user);
     }
 
@@ -46,7 +45,6 @@ public class Controller
      * @param user is the user that is logged in
      */
     public void loggedInInfo(User user) {
-
         view.loggedInInfo(user);
     }
 

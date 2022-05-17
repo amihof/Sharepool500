@@ -13,15 +13,14 @@ public class Request implements Serializable {
 
     private User user;
     private Chat chat;
-    private Message msg;
+    private Message message;
     private Annons annons;
-    private Loan loan;
     private Search search;
 
     /**
      * This constructor is used to create a request for:
-     * login
-     * register
+     * login: request to login an existing user
+     * register: request to register a new user
      * */
     public Request(Boolean register, User user){
         if(register) {
@@ -34,8 +33,7 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * createAnnons
-     *
+     * createAnnons: request to create an instance of an annons in the database
      * */
     public Request(Annons annons){
         request = "createAnnons";
@@ -44,23 +42,51 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * search
-     *
+     * updateInfo: request to create an update an instance of a user in the database
+     * */
+    public Request(User user){
+        request = "updateInfo";
+        this.user = user;
+    }
+
+    /**
+     * This constructor is used to create a request for:
+     * search: request to get a list of result from a specified search criteria
      * */
     public Request(Search search){
         request = "search";
         this.search = search;
     }
 
-    public Request(String email) {
-        request = "getUsername";
-        this.email = email;
-    }
-
+    /**
+     * This constructor is used to create a request for:
+     * starChat: request to instantiate an instance of chat between the publisher and requester
+     * openChat:
+     * */
     public Request(Chat chat) {
         request = "startChat";
         this.chat = chat;
     }
+
+    /**
+     * This constructor is used to create a request for:
+     * sendMessage: send a message (sent from the sender to the server)
+     * receiveMessage: receive a message (sent from the server to the recipient client)
+     * */
+    public Request(Boolean sending, Message message) {
+        if(sending) {
+            request = "sendMessage";
+        } else{
+            request = "receiveMessage";
+        }
+        this.message = message;
+    }
+
+
+
+
+
+
 
 
     public String getRequest() {
@@ -72,15 +98,11 @@ public class Request implements Serializable {
     }
 
     public Message getMsg() {
-        return msg;
+        return message;
     }
 
     public Annons getAnnons() {
         return annons;
-    }
-
-    public Loan getLoan() {
-        return loan;
     }
 
     public Chat getChat() {

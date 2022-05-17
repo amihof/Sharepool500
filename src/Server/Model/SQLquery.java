@@ -220,8 +220,8 @@ public class SQLquery {
         }
     }
 
-    public ArrayList<Chat> getChat(){
-    }
+
+
 
 
 

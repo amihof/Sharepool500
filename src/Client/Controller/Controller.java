@@ -140,7 +140,11 @@ public class Controller
      * @param productPublisherEmail the email of the publisher that the user wants to start a chat with
      */
     public void sendMessageClicked(int searchedAnnonsId, String productPublisherEmail) {
-        requestFactory.startChat(new Chat(searchedAnnonsId, productPublisherEmail, user.getEmail()));
+        if (user == null){
+            view.needToLogin();
+        }else{
+            requestFactory.startChat(new Chat(searchedAnnonsId, productPublisherEmail, user.getEmail()));
+        }
     }
 
     public void seeEveryChat(ArrayList<Chat> chatList) {

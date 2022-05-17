@@ -278,4 +278,21 @@ public class MainFrame
         cards.add(mainPanelAnnons, "MainPanelAnnons");
         panelStateChanged("MainPanelAnnons");
     }
+
+    public void needToLogin() {
+        d = new JDialog(frame , "Felmeddelande", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Du måste logga in för att skicka meddelande"));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+    }
 }

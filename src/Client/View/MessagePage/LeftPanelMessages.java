@@ -117,6 +117,12 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
             label.setFont(font);
             label.setBorder(BorderFactory.createMatteBorder(0,
                     0, 2, 0, new Color (167, 203, 156, 255)));
+
+                if (isSelected) {
+                    setBackground(Color.LIGHT_GRAY);
+                    setForeground(Color.BLACK);
+                }
+
             return label;
         }
     }

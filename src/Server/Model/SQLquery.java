@@ -188,7 +188,8 @@ public class SQLquery {
             pstmt = con.prepareStatement(QUERY);
             pstmt.setInt(1, chat.getAnnonsId());
             pstmt.setString(2, chat.getRequester_email());
-            return pstmt.execute();
+            pstmt.execute();
+            return true;
 
         } catch (Exception e) {
             System.out.println("couldn't create an chat");

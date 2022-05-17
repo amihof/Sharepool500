@@ -13,29 +13,33 @@ public class Request implements Serializable {
 
     private User user;
     private Chat chat;
-    private Message msg;
+    private Message message;
     private Annons annons;
-    private Loan loan;
     private Search search;
 
     /**
      * This constructor is used to create a request for:
-     * login
-     * register
+     * 1.login: request to login an existing user
+     * 2. register: request to register a new user
+     * 3. updateInfo: request to create an update an instance of a user in the database
+     * 4. getChats : request to get all instances of chats linked to specific user
      * */
-    public Request(Boolean register, User user){
-        if(register) {
+    public Request(int type, User user){
+        if(type == 1) {
             this.request = "register";
-        }else{
+        }else if(type == 2){
             this.request = "login";
+        }else if (type == 3){
+            request = "updateInfo";
+        } else if (type == 4){
+            request = "getChats";
         }
         this.user = user;
     }
 
     /**
      * This constructor is used to create a request for:
-     * createAnnons
-     *
+     * createAnnons: request to create an instance of an annons in the database
      * */
     public Request(Annons annons){
         request = "createAnnons";
@@ -44,23 +48,46 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * search
-     *
+     * search: request to get a list of result from a specified search criteria
      * */
     public Request(Search search){
         request = "search";
         this.search = search;
     }
 
-    public Request(String email) {
-        request = "getUsername";
-        this.email = email;
-    }
-
-    public Request(Chat chat) {
-        request = "startChat";
+    /**
+     * This constructor is used to create a request for:
+     * starChat: request to instantiate an instance of chat between the publisher and requester
+     * openChat: request to get all the messages and other information of a certainchate
+     * */
+    public Request(Boolean startChat, Chat chat) {
+        if(startChat){
+            request = "startChat";
+        } else{
+            request = "openChat";
+        }
         this.chat = chat;
     }
+
+    /**
+     * This constructor is used to create a request for:
+     * sendMessage: send a message (sent from the sender to the server)
+     * receiveMessage: receive a message (sent from the server to the recipient client)
+     * */
+    public Request(Boolean sending, Message message) {
+        if(sending) {
+            request = "sendMessage";
+        } else{
+            request = "receiveMessage";
+        }
+        this.message = message;
+    }
+
+
+
+
+
+
 
 
     public String getRequest() {
@@ -72,15 +99,11 @@ public class Request implements Serializable {
     }
 
     public Message getMsg() {
-        return msg;
+        return message;
     }
 
     public Annons getAnnons() {
         return annons;
-    }
-
-    public Loan getLoan() {
-        return loan;
     }
 
     public Chat getChat() {

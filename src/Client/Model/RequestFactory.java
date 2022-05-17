@@ -21,13 +21,13 @@ public class RequestFactory {
     /**This function creates a log-in request
      * @param user contains the email and password of the user attempting to log in**/
     public void login(User user){
-        client.addToBuffer(new Request(false, user));
+        client.addToBuffer(new Request(1, user));
     }
 
     /**This function creates a register-new-user request
      * @param user contains the username, email and password of the user to be registered**/
     public void register(User user){
-        client.addToBuffer(new Request(true, user));
+        client.addToBuffer(new Request(2, user));
     }
 
     public void createAnnons(Annons annons){client.addToBuffer(new Request(annons));}
@@ -37,7 +37,10 @@ public class RequestFactory {
     }
 
     public void startChat(Chat chat){
-        client.addToBuffer(new Request(chat));
+        client.addToBuffer(new Request(true, chat));
+    }
+    public void openChat(Chat chat){
+        client.addToBuffer(new Request(false, chat));
     }
 
 }

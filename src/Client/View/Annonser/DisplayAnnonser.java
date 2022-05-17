@@ -1,5 +1,6 @@
 package Client.View.Annonser;
 
+import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.OneAnnons.MainPanelOneAnnons;
 import Shared.Annons;
@@ -84,7 +85,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
         String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
         String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
-        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsId();
+        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsID();
         MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
         view.displayOneAnnons(mainPanelOneAnnons);
 

@@ -1,4 +1,4 @@
-package Delad;
+package Shared;
 
 /**This class/enum consist every category for
  * the user to choose when uploading an add**/

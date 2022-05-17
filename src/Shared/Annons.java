@@ -1,4 +1,4 @@
-package Delad;
+package Shared;
 
 import javax.swing.*;
 import java.io.Serial;

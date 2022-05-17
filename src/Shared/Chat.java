@@ -1,4 +1,4 @@
-package Delad;
+package Shared;
 
 import java.io.Serial;
 import java.io.Serializable;

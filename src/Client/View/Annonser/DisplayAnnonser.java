@@ -32,18 +32,23 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     private final MainFrame view;
 
+    private boolean loggedIn;
+    private Controller controller;
+
     /**
      * sets the bounds of the panel
      * @param width the width of the panel
      * @param height the height of the panel
      * @param view class variable so you can refer to that class
      */
-    public DisplayAnnonser(int width, int height, MainFrame view){
+    public DisplayAnnonser(int width, int height, MainFrame view, boolean loggedIn, Controller controller){
         this.setLayout(null);
         backgroundColor = new Color(245, 221, 204);
         this.view = view;
         this.width = width;
         this.height = height;
+        this.controller = controller;
+        this.loggedIn = loggedIn;
         this.setBorder(BorderFactory.createLineBorder(Color.white, 0));
         this.setSize(width, height);
         setLocation(0, 250);
@@ -79,7 +84,9 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         String productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
         String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
         String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
-        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view);
+        String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
+        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsId();
+        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
         view.displayOneAnnons(mainPanelOneAnnons);
 
     }

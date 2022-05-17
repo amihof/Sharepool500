@@ -41,4 +41,8 @@ public class MainPanelMessages extends JPanel {
         this.add(topPanel);
 
     }
+
+    public LeftPanelMessages getLeftPanelMessages(){
+        return leftPanelMessages;
+    }
 }

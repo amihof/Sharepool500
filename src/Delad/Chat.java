@@ -14,12 +14,14 @@ public class Chat implements Serializable {
 
     private int annonsId;
     private String requester_email;
+    private String userEmail;
 
     /**@param annonsId the id
      * @param requester_email the email of the requester**/
-    public Chat(Integer annonsId, String requester_email){
+    public Chat(Integer annonsId, String requester_email, String userEmail){
         this.annonsId=annonsId;
         this.requester_email=requester_email;
+        this.userEmail = userEmail;
     }
 
     public int getAnnonsId() {
@@ -28,5 +30,9 @@ public class Chat implements Serializable {
 
     public String getRequester_email() {
         return requester_email;
+    }
+
+    public String getUserEmail(){
+        return userEmail;
     }
 }

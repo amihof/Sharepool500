@@ -1,10 +1,7 @@
 package Client.Model;
 
 import Client.Controller.Controller;
-import Delad.Annons;
-import Delad.Buffer;
-import Delad.Request;
-import Delad.User;
+import Delad.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -109,7 +106,7 @@ public class Client {
                             user = request.getUser(); //the user information saves
                             controller.loggedInOrNot(username);
                             controller.loggedInInfo(user);
-                           // controller.loggedInOrNot(loggedIn);
+
                             //the information is sent to the controller
                             // and the user logs in to the program
 
@@ -169,6 +166,10 @@ public class Client {
                             System.out.println(result);
 
                             controller.seeSearchedAnnons(result);
+                        } else{
+
+                            throw new Exception("Could not search ");
+
                         }
                         //the information is sent to the controller
                         //and the user can search for an add
@@ -184,12 +185,32 @@ public class Client {
 
 
                         } else{
-                            throw new Exception("Could not create an add ");
+                            throw new Exception("Could not get username ");
 
 
                         }
 
-                    } else{
+                    } else if(str.equals("startChat")){
+                        oos.writeObject(request);//sends the request
+                        oos.flush(); //makes sure the request is written
+
+                        Object tempObject = ois.readObject();
+                        ArrayList<Chat> result;
+
+                        if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)) {
+                            result = (ArrayList<Chat>) tempObject;
+
+                            System.out.println("Client - result arrayen chatter");
+                            System.out.println(result);
+
+                            controller.seeEveryChat(result);
+
+                        } else{
+                        throw new Exception("Could not start chat ");
+
+                    }
+
+                    }else{
                         throw new Exception("Could not read request type");
                     }
                 } catch (Exception e) {

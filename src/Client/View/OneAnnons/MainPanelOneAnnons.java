@@ -17,15 +17,14 @@ public class MainPanelOneAnnons extends JPanel {
     private TopPanel topPanel;
     private Controller controller;
 
-    public MainPanelOneAnnons(int width, int height, String productName, String productCategory, String productDescription, String productPublisher, MainFrame view){
+    public MainPanelOneAnnons(int width, int height, String productName, String productCategory, String productDescription, String productPublisher, MainFrame view, boolean loggedIn, Controller controller, int searchedAnnonsId, String productPublisherEmail){
         super(null);
         this.view = view;
-        this.loggedIn = loggedIn;
         this.width = width;
         this.height = height;
         this.setSize(width, height);
 
-        oneAnnons = new OneAnnons(width, height-100, productName, productCategory, productDescription, productPublisher);
+        oneAnnons = new OneAnnons(width, height-100, productName, productCategory, productDescription, productPublisher, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
         this.add(oneAnnons);
 
         topPanel = new TopPanel(width, height, "0",loggedIn,view);

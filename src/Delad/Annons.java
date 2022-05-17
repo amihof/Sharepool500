@@ -64,4 +64,8 @@ public class Annons implements Serializable {
 
     /**@return renting**/
     public Boolean getRenting(){return renting;}
+
+    public int getAnnonsId() {
+        return annonsId;
+    }
 }

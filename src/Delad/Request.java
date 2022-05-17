@@ -52,9 +52,14 @@ public class Request implements Serializable {
         this.search = search;
     }
 
-    public Request(String email){
+    public Request(String email) {
         request = "getUsername";
         this.email = email;
+    }
+
+    public Request(Chat chat) {
+        request = "startChat";
+        this.chat = chat;
     }
 
 

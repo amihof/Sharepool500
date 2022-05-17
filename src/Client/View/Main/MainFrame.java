@@ -15,6 +15,7 @@ import Client.View.MinaSidorPage.RedigeraUppgifter;
 import Client.View.OneAnnons.MainPanelOneAnnons;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Delad.Annons;
+import Delad.Chat;
 import Delad.User;
 
 import javax.swing.*;
@@ -34,9 +35,12 @@ public class MainFrame
     private MainLogin mainLogin;
     private MainPanelAnnons mainPanelAnnons;
     private final MainPanelMinaSidor mainPanelMinaSidor;
+    private MainPanelMessages mainPanelMessages;
 
     private JDialog d;
     private final JPanel cards;
+
+    private MainFrame view;
 
     /**
      * the constructor that is called when the GUI starts up.
@@ -68,6 +72,7 @@ public class MainFrame
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
+        this.view = this;
     }
 
     /**
@@ -195,6 +200,7 @@ public class MainFrame
             public void actionPerformed( ActionEvent e )
             {
                 d.setVisible(false);
+                addScroll(view);
             }
         });
         d.add( new JLabel ("Annonsen har skapats."));
@@ -260,5 +266,13 @@ public class MainFrame
 
     public void loggedInInfo(User user) {
         mainPanelMinaSidor.getMinaSidorPanel().updateUserInfo(user);
+    }
+
+    public void updateChatList(ArrayList<Chat> chatList) {
+        mainPanelMessages = new MainPanelMessages(width,height,controller,loggedIn,this);
+
+        mainPanelMessages.getLeftPanelMessages().addNewChat(chatList);
+        cards.add(mainPanelAnnons, "MainPanelAnnons");
+        panelStateChanged("MainPanelAnnons");
     }
 }

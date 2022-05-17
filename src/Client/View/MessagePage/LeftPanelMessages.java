@@ -22,9 +22,10 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
     private Font newFontBold;
     private JLabel meddelandenLabel;
     private JPanel contactsPanel = new JPanel();
+    private String[] nameList;
+    private ArrayList<Chat> chatList;
 
     private JList list;
-    private String[] nameList;
 
     private ArrayList<Chat> contactsList;
 
@@ -79,29 +80,6 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
 
     }
 
-    public void addContactsList(ArrayList<Chat> contactsList){
-        ArrayList<String> nameListContacts = new ArrayList<>();
-        this.contactsList = contactsList;
-
-        for (Chat a : contactsList)
-        {
-            nameListContacts.add(a.getRequester_email());
-        }
-
-        this.nameList = nameListContacts.toArray(new String[0]);
-        System.out.println(nameListContacts);
-
-        for (int i = 0; i < nameList.length; i++){
-            System.out.println(nameList[i]);
-        }
-
-        setUp();
-        contactsPanel.setSize(width, 1000);
-        contactsPanel.setLocation(0,50);
-        contactsPanel.setBackground(backgroundColor);
-        this.add(contactsPanel,BorderLayout.CENTER);
-    }
-
     @Override
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
@@ -126,5 +104,23 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
                     30, 15, 30, new Color(245, 221, 204)));
             return label;
         }
+    }
+
+    public void addNewChat(ArrayList<Chat> chatList) {
+        ArrayList<String> nameListChat = new ArrayList<>();
+        this.chatList = chatList;
+
+        for (Chat a : chatList)
+        {
+            nameListChat.add(a.getRequester_email());
+        }
+
+        this.nameList = nameListChat.toArray(new String[0]);
+
+        setUpContacts();
+        contactsPanel.setSize(250, 1000);
+        contactsPanel.setLocation(100,0);
+        contactsPanel.setBackground(backgroundColor);
+        this.add(contactsPanel,BorderLayout.CENTER);
     }
 }

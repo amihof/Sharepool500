@@ -1,11 +1,15 @@
 package Client.View.MessagePage;
 
 import Client.Controller.Controller;
+import Delad.Annons;
+import Delad.Chat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ChatPanelMessages extends JPanel {
+    private final JPanel contactsView = new JPanel();
     private int width;
     private int height;
     private Controller controller;

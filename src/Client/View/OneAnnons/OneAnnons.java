@@ -1,10 +1,16 @@
 package Client.View.OneAnnons;
 
+import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
+import Delad.Category;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class OneAnnons extends JPanel {
     private Color backgroundColor;
@@ -38,7 +44,12 @@ public class OneAnnons extends JPanel {
 
     private JButton skickaMeddelandeButton;
 
-    public OneAnnons(int width, int height, String productName, String productCategory, String productDescription, String productPublisher){
+    private boolean loggedIn;
+    private Controller controller;
+    private int searchedAnnonsId;
+    private String productPublisherEmail;
+
+    public OneAnnons(int width, int height, String productName, String productCategory, String productDescription, String productPublisher, boolean loggedIn, Controller controller, int searchedAnnonsId, String productPublisherEmail){
         setLayout(null);
         this.backgroundColor = new Color(245, 221, 204);
         this.greenColor = new Color (167, 203, 156, 255);
@@ -55,6 +66,10 @@ public class OneAnnons extends JPanel {
         this.productCategory = productCategory;
         this.productDescription = productDescription;
         this.productPublisher = productPublisher;
+        this.loggedIn = loggedIn;
+        this.controller = controller;
+        this.searchedAnnonsId = searchedAnnonsId;
+        this.productPublisherEmail = productPublisherEmail;
 
         this.whichPage = whichPage;
 
@@ -119,6 +134,13 @@ public class OneAnnons extends JPanel {
         skickaMeddelandeButton.setFont(newFont.deriveFont(20.0F));
         skickaMeddelandeButton.setBackground(orangeColor);
         skickaMeddelandeButton.setHorizontalAlignment(JLabel.CENTER);
+        skickaMeddelandeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.sendMessageClicked(searchedAnnonsId, productPublisherEmail);
+            }
+
+        });
         this.add(skickaMeddelandeButton);
 
 

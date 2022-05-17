@@ -2,10 +2,7 @@ package Client.Controller;
 
 import Client.Model.*;
 import Client.View.Main.MainFrame;
-import Delad.Annons;
-import Delad.Category;
-import Delad.Search;
-import Delad.User;
+import Delad.*;
 
 import java.util.ArrayList;
 
@@ -129,15 +126,21 @@ public class Controller
      * @param searchedAnnonsList the list of all annonser that matched the search terms
      */
     public void seeSearchedAnnons(ArrayList<Annons> searchedAnnonsList){
-        ArrayList<String> nameListAnnonser = new ArrayList<>();
-        this.searchedAnnonsList = searchedAnnonsList;
-
-        for (Annons a : searchedAnnonsList)
-        {
-            nameListAnnonser.add(a.getProductName());
-        }
-
         view.updateAnnonserSeen(searchedAnnonsList);
     }
 
+    /**
+     * this method takes the annons id and email of the publisher of the annons when the user wants
+     * to start a chat with someone.
+     * @param searchedAnnonsId the id of the annons the user wants to start a chat with
+     * @param productPublisherEmail the email of the publisher that the user wants to start a chat with
+     */
+    public void sendMessageClicked(int searchedAnnonsId, String productPublisherEmail) {
+        requestFactory.startChat(new Chat(searchedAnnonsId, productPublisherEmail, user.getEmail()));
+    }
+
+    public void seeEveryChat(ArrayList<Chat> chatList) {
+        view.updateChatList(chatList);
+
+    }
 }

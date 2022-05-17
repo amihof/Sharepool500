@@ -1,9 +1,6 @@
 package Client.Model;
 
-import Delad.Annons;
-import Delad.Request;
-import Delad.Search;
-import Delad.User;
+import Delad.*;
 
 import java.util.ArrayList;
 
@@ -40,6 +37,10 @@ public class RequestFactory {
     public void getUsername(String email){
         client.addToBuffer(new Request(email));
 
+    }
+
+    public void startChat(Chat chat){
+        client.addToBuffer(new Request(chat));
     }
 
 

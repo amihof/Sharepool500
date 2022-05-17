@@ -19,14 +19,20 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * login: request to login an existing user
-     * register: request to register a new user
+     * 1.login: request to login an existing user
+     * 2. register: request to register a new user
+     * 3. updateInfo: request to create an update an instance of a user in the database
+     * 4. getChats : request to get all instances of chats linked to specific user
      * */
-    public Request(Boolean register, User user){
-        if(register) {
+    public Request(int type, User user){
+        if(type == 1) {
             this.request = "register";
-        }else{
+        }else if(type == 2){
             this.request = "login";
+        }else if (type == 3){
+            request = "updateInfo";
+        } else if (type == 4){
+            request = "getChats";
         }
         this.user = user;
     }
@@ -42,15 +48,6 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * updateInfo: request to create an update an instance of a user in the database
-     * */
-    public Request(User user){
-        request = "updateInfo";
-        this.user = user;
-    }
-
-    /**
-     * This constructor is used to create a request for:
      * search: request to get a list of result from a specified search criteria
      * */
     public Request(Search search){
@@ -61,10 +58,14 @@ public class Request implements Serializable {
     /**
      * This constructor is used to create a request for:
      * starChat: request to instantiate an instance of chat between the publisher and requester
-     * openChat:
+     * openChat: request to get all the messages and other information of a certainchate
      * */
-    public Request(Chat chat) {
-        request = "startChat";
+    public Request(Boolean startChat, Chat chat) {
+        if(startChat){
+            request = "startChat";
+        } else{
+            request = "openChat";
+        }
         this.chat = chat;
     }
 

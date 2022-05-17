@@ -159,8 +159,8 @@ public class SQLquery {
 
             pstmt = con.prepareStatement(QUERY);
             pstmt.setBoolean(1, false);
-            pstmt.setString(2, annons_title);
-            pstmt.setString(3, annons_description);
+            pstmt.setString(2, annons_description);
+            pstmt.setString(3, annons_title);
             pstmt.setString(4, productCategory.toString());
             pstmt.setString(5, publisherEmail);
             pstmt.setBoolean(6, true);

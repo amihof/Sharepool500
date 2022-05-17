@@ -93,16 +93,18 @@ public class SQLquery {
     public ArrayList<Annons> search(String productname, Category category) {
         Connection con = Server.getCon();
         String QUERY;
+        int i=0;
+
 
         try {
             if(category.toString()=="Kategori"){
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,U.password from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
                         "JOIN users U\n" +
                         "ON U.email = A.owner_email\n" +
                         "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
             }
             else{
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,U.password from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
                         "JOIN product_type P\n" +
                         "ON A.product_type = P.id\n" +
                         "JOIN users U\n" +
@@ -117,15 +119,15 @@ public class SQLquery {
             Annons tempAnnons;
             User tempuser;
             while (resultSet.next()) {
-                int i=0; //remove
-                i=i+1; //remove
+
                 tempuser= new User(resultSet.getString(4),resultSet.getString(3),resultSet.getString(6));
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,
-                        resultSet.getBoolean(5));
+                        resultSet.getBoolean(5),resultSet.getInt(6));
                 result.add(tempAnnons);
-               System.out.println(tempuser.getUsername());
+               System.out.println(result.get(i).getAnnonsID());
+               i++;
             }
             return result;
 
@@ -244,6 +246,9 @@ public class SQLquery {
             return false;
         }
     }
+
+
+
     // To do
    // public boolean createLoan(){
 

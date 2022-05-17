@@ -2,7 +2,11 @@ package Client.Controller;
 
 import Client.Model.*;
 import Client.View.Main.MainFrame;
-import Delad.*;
+
+import Shared.Annons;
+import Shared.Category;
+import Shared.Search;
+import Shared.User;
 
 import java.util.ArrayList;
 

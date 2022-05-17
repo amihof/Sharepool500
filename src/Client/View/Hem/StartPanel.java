@@ -3,7 +3,7 @@ package Client.View.Hem;
 import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
-import Delad.Category;
+import Shared.Category;
 
 import javax.swing.*;
 import java.awt.*;

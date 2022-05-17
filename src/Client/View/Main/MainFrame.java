@@ -14,9 +14,10 @@ import Client.View.MinaSidorPage.MainPanelMinaSidor;
 import Client.View.MinaSidorPage.RedigeraUppgifter;
 import Client.View.OneAnnons.MainPanelOneAnnons;
 import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
-import Delad.Annons;
-import Delad.Chat;
-import Delad.User;
+
+import Shared.Annons;
+import Shared.User;
+
 
 import javax.swing.*;
 

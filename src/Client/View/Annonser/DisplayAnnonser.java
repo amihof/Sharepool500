@@ -1,9 +1,8 @@
 package Client.View.Annonser;
 
-import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.OneAnnons.MainPanelOneAnnons;
-import Delad.Annons;
+import Shared.Annons;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

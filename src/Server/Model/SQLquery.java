@@ -1,10 +1,9 @@
 package Server.Model;
 //kommentarer saknas
-import Delad.*;
+import Shared.*;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SQLquery {
 

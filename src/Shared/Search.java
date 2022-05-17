@@ -1,11 +1,9 @@
-package Delad;
+package Shared;
 
-
-import Delad.Category;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+
 /**This class represents each search**/
 
 public class Search implements Serializable {

@@ -26,9 +26,9 @@ public class Request implements Serializable {
      * */
     public Request(int type, User user){
         if(type == 1) {
-            this.request = "register";
-        }else if(type == 2){
             this.request = "login";
+        }else if(type == 2){
+            this.request = "register";
         }else if (type == 3){
             request = "updateInfo";
         } else if (type == 4){
@@ -63,7 +63,7 @@ public class Request implements Serializable {
     /**
      * This constructor is used to create a request for:
      * starChat: request to instantiate an instance of chat between the publisher and requester
-     * openChat: request to get all the messages and other information of a certainchate
+     * openChat: request to get all the messages and other information of a certain chat
      * */
     public Request(Boolean startChat, Chat chat) {
         if(startChat){

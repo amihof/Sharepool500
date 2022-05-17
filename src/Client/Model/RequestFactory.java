@@ -32,11 +32,6 @@ public class RequestFactory {
         client.addToBuffer(new Request(search));
     }
 
-    public void getUsername(String email){
-        client.addToBuffer(new Request(email));
-
-    }
-
     public void startChat(Chat chat){
         client.addToBuffer(new Request(chat));
     }

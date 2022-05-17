@@ -20,8 +20,8 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * login
-     * register
+     * login: request to login an existing user
+     * register: request to register a new user
      * */
     public Request(Boolean register, User user){
         if(register) {
@@ -34,8 +34,7 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * createAnnons
-     *
+     * createAnnons: request to create an instance of an annons in the database
      * */
     public Request(Annons annons){
         request = "createAnnons";
@@ -44,23 +43,44 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * search
-     *
+     * updateInfo: request to create an update an instance of a user in the database
+     * */
+    public Request(User user){
+        request = "updateInfo";
+        this.user = user;
+    }
+
+    /**
+     * This constructor is used to create a request for:
+     * search: request to get a list of result from a specified search criteria
      * */
     public Request(Search search){
         request = "search";
         this.search = search;
     }
 
-    public Request(String email) {
-        request = "getUsername";
-        this.email = email;
-    }
-
+    /**
+     * This constructor is used to create a request for:
+     * starChat: request to instantiate an instance of chat between the publisher and requester
+     * */
     public Request(Chat chat) {
         request = "startChat";
         this.chat = chat;
     }
+
+    /**
+     * This constructor is used to create a request for:
+     * starChat: request to instantiate an instance of chat between the publisher and requester
+     * */
+    public Request(Chat chat) {
+        request = "startChat";
+        this.chat = chat;
+    }
+
+
+
+
+
 
 
     public String getRequest() {

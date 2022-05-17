@@ -6,6 +6,8 @@ import Shared.Annons;
 import Shared.Buffer;
 import Shared.Request;
 import Shared.User;
+import Shared.Chat;
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -207,7 +207,7 @@ public class SQLquery {
 
             String QUERY = "call procedure_create_chat(?,?)";
             pstmt = con.prepareStatement(QUERY);
-            pstmt.setInt(1, message.getCurrID()); // Correct?
+            pstmt.setInt(1, message.getId()); // id ska genereras av databsen inte motsatsen
             pstmt.setString(2, message.getText());
 
             return pstmt.execute();
@@ -219,6 +219,7 @@ public class SQLquery {
             return false;
         }
     }
+
 
     public ArrayList<Chat> getChat(){
         Connection con = Server.getCon();
@@ -233,16 +234,5 @@ public class SQLquery {
                 e.printStackTrace(System.err);
             }
     }
-
-
-
-    // To do
-   // public boolean createLoan(){
-
-
-   // }
-
-
-
 
 }

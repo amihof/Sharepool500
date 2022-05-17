@@ -1,5 +1,6 @@
 package Client.View.Annonser;
 
+import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.OneAnnons.MainPanelOneAnnons;
 import Shared.Annons;
@@ -84,7 +85,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
         String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
         String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
-        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsId();
+        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsID();
         MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
         view.displayOneAnnons(mainPanelOneAnnons);
 
@@ -104,8 +105,8 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
             label.setIcon(imageMap.get((String) value));
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
-            label.setBorder(BorderFactory.createMatteBorder(15,
-                    30, 15, 30, new Color(245, 221, 204)));
+            label.setBorder(BorderFactory.createMatteBorder(0,
+                    0, 15, 0, new Color(245, 221, 204)));
             return label;
         }
     }
@@ -154,7 +155,7 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         this.nameList = nameListAnnonser.toArray(new String[0]);
 
         setUp();
-        annonserView.setSize(width, 1000);
+        annonserView.setSize(width, 500);
         annonserView.setLocation(0,0);
         annonserView.setBackground(backgroundColor);
         this.add(annonserView,BorderLayout.CENTER);

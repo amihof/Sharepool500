@@ -148,7 +148,13 @@ public class Client {
                         ));
                         System.out.println("search worked");
 
-                    }else if (requestType.equals("Message")) {
+                    }else if (requestType.equals("createChat")) {
+                        oos.writeObject(sql.createChat(
+                                request.getChat()
+                        ));
+
+
+                    }else if (requestType.equals("sendMessage")) {
                         //oos.writeObject(sql.createMessage());
 
 

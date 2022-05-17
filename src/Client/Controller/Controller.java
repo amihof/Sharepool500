@@ -7,6 +7,8 @@ import Shared.Annons;
 import Shared.Category;
 import Shared.Search;
 import Shared.User;
+import Shared.Chat;
+
 
 import java.util.ArrayList;
 
@@ -41,7 +43,6 @@ public class Controller
      */
     public void loginClicked(String email, String password) {
         this.user = new User(email, password);
-        requestFactory.getUsername(user.getEmail());
         requestFactory.login(user);
     }
 
@@ -50,7 +51,6 @@ public class Controller
      * @param user is the user that is logged in
      */
     public void loggedInInfo(User user) {
-
         view.loggedInInfo(user);
     }
 

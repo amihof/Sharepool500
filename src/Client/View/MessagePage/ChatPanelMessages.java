@@ -1,8 +1,8 @@
 package Client.View.MessagePage;
 
 import Client.Controller.Controller;
-import Delad.Annons;
-import Delad.Chat;
+import Shared.Annons;
+import Shared.Chat;
 
 import javax.swing.*;
 import java.awt.*;

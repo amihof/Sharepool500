@@ -13,9 +13,8 @@ public class Request implements Serializable {
 
     private User user;
     private Chat chat;
-    private Message msg;
+    private Message message;
     private Annons annons;
-    private Loan loan;
     private Search search;
 
     /**
@@ -62,6 +61,7 @@ public class Request implements Serializable {
     /**
      * This constructor is used to create a request for:
      * starChat: request to instantiate an instance of chat between the publisher and requester
+     * openChat:
      * */
     public Request(Chat chat) {
         request = "startChat";
@@ -70,12 +70,18 @@ public class Request implements Serializable {
 
     /**
      * This constructor is used to create a request for:
-     * starChat: request to instantiate an instance of chat between the publisher and requester
+     * sendMessage: send a message (sent from the sender to the server)
+     * receiveMessage: receive a message (sent from the server to the recipient client)
      * */
-    public Request(Chat chat) {
-        request = "startChat";
-        this.chat = chat;
+    public Request(Boolean sending, Message message) {
+        if(sending) {
+            request = "sendMessage";
+        } else{
+            request = "receiveMessage";
+        }
+        this.message = message;
     }
+
 
 
 
@@ -92,15 +98,11 @@ public class Request implements Serializable {
     }
 
     public Message getMsg() {
-        return msg;
+        return message;
     }
 
     public Annons getAnnons() {
         return annons;
-    }
-
-    public Loan getLoan() {
-        return loan;
     }
 
     public Chat getChat() {

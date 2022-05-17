@@ -2,10 +2,7 @@ package Client.Model;
 
 import Client.Controller.Controller;
 
-import Shared.Annons;
-import Shared.Buffer;
-import Shared.Request;
-import Shared.User;
+import Shared.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

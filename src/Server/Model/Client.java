@@ -157,8 +157,8 @@ public class Client {
                     }else if (requestType.equals("updatePassword")) {
                         oos.writeBoolean(sql.updatePassword(
                                 clientUserHashMap.get(Client.this).getEmail(),
-                                clientUserHashMap.get(Client.this).getPassword(),
-                                request.getUser().getPassword()
+                                request.getUser().getPassword(), //the new password
+                                request.getUser().getEmail() //the old password for confirmation
                         ));
                     }else if (requestType.equals("deleteUser")) {
                         oos.writeBoolean(sql.deleteUser(

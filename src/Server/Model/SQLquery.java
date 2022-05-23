@@ -78,8 +78,6 @@ public class SQLquery {
             System.out.println("registeration attempt failed");
             return false;
         }
-
-
     }
 
     /**
@@ -225,7 +223,10 @@ public class SQLquery {
         Connection con = Server.getCon();
         String QUERY;
         try{
-            QUERY =
+            QUERY = "select C.annonsid,C.email_requester,A.owner_email from chat C\n" +
+                    "join annons A\n" +
+                    "ON C.annonsid = A.id" +
+                    "WHERE A.owner_email="
             Statement stmt = con.createStatement();
         }
             catch(Exception e){

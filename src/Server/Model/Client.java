@@ -129,7 +129,7 @@ public class Client {
                                 request.getUser().getPassword()
                                 ));
                         oos.flush();
-                        unsentMessages.put(new User(request.getUser().getUsername(),
+                        notifications.put(new User(request.getUser().getUsername(),
                                 request.getUser().getEmail(),
                                 request.getUser().getPassword()),
                                 0);
@@ -157,11 +157,13 @@ public class Client {
                     }else if (requestType.equals("updatePassword")) {
                         oos.writeBoolean(sql.updatePassword(
                                 clientUserHashMap.get(Client.this).getEmail(),
+                                clientUserHashMap.get(Client.this).getPassword(),
                                 request.getUser().getPassword()
                         ));
                     }else if (requestType.equals("deleteUser")) {
                         oos.writeBoolean(sql.deleteUser(
-                                clientUserHashMap.get(Client.this).getEmail()
+                                clientUserHashMap.get(Client.this).getEmail(),
+                                clientUserHashMap.get(Client.this).getPassword()
                         ));
                     } else if (requestType.equals("search")) {
                         oos.writeObject(sql.search(

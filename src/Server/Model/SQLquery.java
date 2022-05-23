@@ -228,10 +228,10 @@ public class SQLquery {
         return false;
     }
 
-    public boolean updatePassword(String email, String password) {
+    public boolean updatePassword(String email, String password, String s) {
     }
 
-    public boolean deleteUser(String email) {
+    public boolean deleteUser(String email, String password) {
     }
 
 

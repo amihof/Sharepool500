@@ -238,19 +238,50 @@ public class SQLquery {
                 e.printStackTrace();
                 e.printStackTrace(System.err);
             }
+        return null;
     }
 
     public boolean updateUsername(String email, String username) {
+        Connection con = Server.getCon();
+        String QUERY = "call procedure_update_user_name(?,?,?)";
+        PreparedStatement pstmt = null;
 
+        try{
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, email);
+            pstmt.setString(3, username);
 
-
-
-
-        return false;
+            return pstmt.execute();
+        }
+        catch(Exception e){
+            System.out.println("update username didnt work");
+            e.printStackTrace();
+            e.printStackTrace(System.err);
+            return false;
+        }
     }
 
-    public boolean updatePassword(String email, String password) {
-        return false;
+    public boolean updatePassword(String email, String password_new,String password_old) {
+        Connection con = Server.getCon();
+        String QUERY = "call procedure_update_user_password(?,?,?)";
+        PreparedStatement pstmt = null;
+
+        try{
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, email);
+            pstmt.setString(3, password_new);
+            pstmt.setString(4, password_old);
+
+            return pstmt.execute();
+        }
+        catch(Exception e){
+            System.out.println("update password didnt work");
+            e.printStackTrace();
+            e.printStackTrace(System.err);
+            return false;
+        }
     }
 
     public boolean deleteUser(String email) {

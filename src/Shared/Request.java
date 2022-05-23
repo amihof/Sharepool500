@@ -36,14 +36,19 @@ public class Request implements Serializable {
             request = "updateEmail";
         }else if (type == 4){
             request = "updateUsername";
-        }else if (type == 5){
-            request = "updatePassowrd";
-        }else if(type == 6) {
+        }else if(type == 5) {
             request = "deleteUser";
-        }else if (type == 7){
+        }else if (type == 6){
             request = "getChats";
         }
         this.user = user;
+    }
+
+    public Request(int type, String oldStr, String newStr){
+        if (type == 1){
+            request = "updatePassowrd";
+            user = new User(oldStr, newStr);
+        }
     }
 
     /**

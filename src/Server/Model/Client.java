@@ -2,11 +2,14 @@ package Server.Model;
 
 
 import Shared.Buffer;
+import Shared.Message;
 import Shared.Request;
 import Shared.User;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Queue;
 
 
 /**
@@ -17,6 +20,7 @@ import java.util.HashMap;
 public class Client {
     //clientUserHashMap identifies the different clients as users when logged in
     private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
+    private static HashMap<User, Integer> notifications = new HashMap<>(); //not implemented fully
 
 
     private Socket socket;
@@ -110,7 +114,6 @@ public class Client {
 
                     //The respective method is called from sql : SQLQuery using the identifier requestType : String
                     if (requestType.equals("login")) {
-                        System.out.println("login request is going to be handled");
                         oos.writeUTF(
                                 sql.login(
                                         request.getUser().getEmail(),
@@ -119,19 +122,17 @@ public class Client {
                         oos.flush();
                         clientUserHashMap.put(Client.this, new User(request.getUser().getEmail(),
                                 request.getUser().getPassword()));
-                        System.out.println("query executed and request handled");
                     } else if (requestType.equals("register")) {
-                        System.out.println("register request is going to be handled");
-                        Boolean result  = sql.register(
+                        oos.writeBoolean(sql.register(
                                 request.getUser().getUsername(),
                                 request.getUser().getEmail(),
-                                request.getUser().getPassword());
-
-                        oos.writeBoolean(result);
-                        System.out.println(result);
+                                request.getUser().getPassword()
+                                ));
                         oos.flush();
-                        System.out.println("query executed and request handled");
-
+                        notifications.put(new User(request.getUser().getUsername(),
+                                request.getUser().getEmail(),
+                                request.getUser().getPassword()),
+                                0);
                     } else if (requestType.equals("createAnnons")) {
                         oos.writeBoolean(
                                 sql.createAnnons(
@@ -156,11 +157,13 @@ public class Client {
                     }else if (requestType.equals("updatePassword")) {
                         oos.writeBoolean(sql.updatePassword(
                                 clientUserHashMap.get(Client.this).getEmail(),
+                                clientUserHashMap.get(Client.this).getPassword(),
                                 request.getUser().getPassword()
                         ));
                     }else if (requestType.equals("deleteUser")) {
                         oos.writeBoolean(sql.deleteUser(
-                                clientUserHashMap.get(Client.this).getEmail()
+                                clientUserHashMap.get(Client.this).getEmail(),
+                                clientUserHashMap.get(Client.this).getPassword()
                         ));
                     } else if (requestType.equals("search")) {
                         oos.writeObject(sql.search(

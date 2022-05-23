@@ -218,6 +218,10 @@ public class SQLquery {
         }
     }
 
+    public boolean updateEmail(String oldEmail, String newEmail) {
+        return false;
+    }
+
 
     public ArrayList<Chat> getChat(){
         Connection con = Server.getCon();
@@ -226,7 +230,7 @@ public class SQLquery {
             QUERY = "select C.annonsid,C.email_requester,A.owner_email from chat C\n" +
                     "join annons A\n" +
                     "ON C.annonsid = A.id" +
-                    "WHERE A.owner_email="
+                    "WHERE A.owner_email=";
             Statement stmt = con.createStatement();
         }
             catch(Exception e){
@@ -235,5 +239,24 @@ public class SQLquery {
                 e.printStackTrace(System.err);
             }
     }
+
+    public boolean updateUsername(String email, String username) {
+
+
+
+
+
+        return false;
+    }
+
+    public boolean updatePassword(String email, String password) {
+        return false;
+    }
+
+    public boolean deleteUser(String email) {
+        return false;
+    }
+
+
 
 }

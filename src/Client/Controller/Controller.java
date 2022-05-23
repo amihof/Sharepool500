@@ -120,8 +120,8 @@ public class Controller
      * @param text the text the user searched for
      * @param productCategory the category the user searched for
      */
-    public void searchedClicked(String text, Category productCategory) {
-        requestFactory.searchAnnons(new Search(text, productCategory));
+    public void searchedClicked(String text, Category productCategory, City productCity) {
+        requestFactory.searchAnnons(new Search(text, productCategory, productCity));
     }
 
     /**
@@ -160,10 +160,21 @@ public class Controller
 
     }
 
+    public void updatePassword(String text) {
+
+    }
+
     /**
      * the user logs out
      */
     public void loggaUt() {
         new Controller();
+    }
+
+    /**
+     * the users account gets deleted
+     */
+    public void deleteAccount() {
+
     }
 }

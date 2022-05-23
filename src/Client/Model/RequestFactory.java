@@ -1,10 +1,6 @@
 package Client.Model;
 
-import Shared.Annons;
-import Shared.Request;
-import Shared.Search;
-import Shared.User;
-import Shared.Chat;
+import Shared.*;
 
 /**
  * The request factory is responsible for constructing request to be sent to the server.

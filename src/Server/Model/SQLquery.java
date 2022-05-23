@@ -262,7 +262,7 @@ public class SQLquery {
         }
     }
 
-    public boolean updatePassword(String email, String password_new,String password_old) {
+    public boolean updatePassword(String email, String password_new, String password_old) {
         Connection con = Server.getCon();
         String QUERY = "call procedure_update_user_password(?,?,?)";
         PreparedStatement pstmt = null;
@@ -285,6 +285,7 @@ public class SQLquery {
     }
 
     public boolean deleteUser(String email, String password) {
+
         return false;
     }
 

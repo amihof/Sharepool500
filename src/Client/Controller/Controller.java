@@ -160,8 +160,8 @@ public class Controller
 
     }
 
-    public void updatePassword(String text) {
-
+    public void updatePassword(String oldPassword, String currentPassword) {
+        
     }
 
     /**

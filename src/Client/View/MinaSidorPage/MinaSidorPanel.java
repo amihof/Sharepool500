@@ -198,7 +198,7 @@ public class MinaSidorPanel extends JPanel {
         saveChanges.setSize(200, 40);
         saveChanges.setFont(newFont.deriveFont(15.0f));
         saveChanges.setHorizontalAlignment(0);
-        saveChanges.addActionListener(l -> controller.updatePassword(newPasswordField.getText()));
+        saveChanges.addActionListener(l -> controller.updatePassword(newPasswordField.getText(), currentPasswordField.getText()));
         bytLosenord.add(saveChanges);
 
         cards.add(bytLosenord, "BytLösenord");

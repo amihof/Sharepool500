@@ -1,12 +1,9 @@
 package Client.View.MessagePage;
 
 import Client.Controller.Controller;
-import Shared.Annons;
-import Shared.Chat;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class ChatPanelMessages extends JPanel {
     private final JPanel contactsView = new JPanel();

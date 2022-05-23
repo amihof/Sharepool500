@@ -21,8 +21,11 @@ public class Request implements Serializable {
      * This constructor is used to create a request for:
      * 1.login: request to login an existing user
      * 2. register: request to register a new user
-     * 3. updateInfo: request to create an update an instance of a user in the database
-     * 4. getChats : request to get all instances of chats linked to specific user
+     * 3. updateEmail: request to update an instance of a user in the database
+     * 4. updateEmail: request to update an instance of a user in the database
+     * 5. updateEmail: request to update an instance of a user in the database
+     * 6  deleteUser: request to delete an instance of a user in the database
+     * 7. getChats : request to get all instances of chats linked to specific user
      * */
     public Request(int type, User user){
         if(type == 1) {
@@ -30,8 +33,14 @@ public class Request implements Serializable {
         }else if(type == 2){
             this.request = "register";
         }else if (type == 3){
-            request = "updateInfo";
-        } else if (type == 4){
+            request = "updateEmail";
+        }else if (type == 4){
+            request = "updateUsername";
+        }else if (type == 5){
+            request = "updatePassowrd";
+        }else if(type == 6) {
+            request = "deleteUser";
+        }else if (type == 7){
             request = "getChats";
         }
         this.user = user;
@@ -87,11 +96,6 @@ public class Request implements Serializable {
         }
         this.message = message;
     }
-
-
-
-
-
 
 
 

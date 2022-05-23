@@ -13,6 +13,7 @@ public class Search implements Serializable {
 
     private String text = "";
     private Category category = null;
+    private
 
 
     /**@param text

@@ -284,8 +284,25 @@ public class SQLquery {
         }
     }
 
-    public boolean deleteUser(String email) {
-        return false;
+    public boolean deleteUser(String email, String password) {
+        Connection con = Server.getCon();
+        String QUERY = "call procedure_delete_user(?,?,?)";
+        PreparedStatement pstmt = null;
+
+        try{
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, email);
+            pstmt.setString(3, password);
+
+            return pstmt.execute();
+        }
+        catch(Exception e){
+            System.out.println("update password didnt work");
+            e.printStackTrace();
+            e.printStackTrace(System.err);
+            return false;
+        }
     }
 
 

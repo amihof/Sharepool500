@@ -17,11 +17,12 @@ public class LeftPanel extends JPanel{
 
     private JButton kontoUppgifterButton;
     private JButton minaAnnonserButton;
-    private JButton laneHistorikButton;
+    private JButton loggaUtButton;
     private JButton changePasswordButton;
     private JButton raderaKontoButton;
     private MainFrame view;
     private String whichPage;
+    private Controller controller;
 
     public LeftPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn, MainFrame view){
         this.backgroundColor = new Color(245, 221, 204);
@@ -36,6 +37,7 @@ public class LeftPanel extends JPanel{
         this.whichPage = whichPage;
 
         this.view = view;
+        this.controller = controller;
 
         this.setLayout(null);
         this.setSize(250, 980);
@@ -71,22 +73,10 @@ public class LeftPanel extends JPanel{
         minaAnnonserButton.addActionListener(l -> view.minaSidorTextSizeChanged("MinaAnnonser"));
         this.add(minaAnnonserButton);
 
-        laneHistorikButton = new JButton("Lånehistorik");
-        laneHistorikButton.setBackground(greenColor);
-        laneHistorikButton.setBorderPainted(false);
-        laneHistorikButton.setLocation(10, 110);
-        laneHistorikButton.setSize(250, 30);
-        laneHistorikButton.setHorizontalAlignment(JLabel.LEFT);
-        laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
-        laneHistorikButton.setEnabled(true);
-        laneHistorikButton.addActionListener(l -> view.minaSidorPanelStateChanged("LåneHistorik"));
-        laneHistorikButton.addActionListener(l -> view.minaSidorTextSizeChanged("LåneHistorik"));
-        this.add(laneHistorikButton);
-
         changePasswordButton = new JButton("Byt lösenord");
         changePasswordButton.setBackground(greenColor);
         changePasswordButton.setBorderPainted(false);
-        changePasswordButton.setLocation(10, 150);
+        changePasswordButton.setLocation(10, 110);
         changePasswordButton.setSize(250, 30);
         changePasswordButton.setHorizontalAlignment(JLabel.LEFT);
         changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
@@ -98,7 +88,7 @@ public class LeftPanel extends JPanel{
         raderaKontoButton = new JButton("Radera konto");
         raderaKontoButton.setBackground(greenColor);
         raderaKontoButton.setBorderPainted(false);
-        raderaKontoButton.setLocation(10, 190);
+        raderaKontoButton.setLocation(10, 150);
         raderaKontoButton.setSize(250, 30);
         raderaKontoButton.setHorizontalAlignment(JLabel.LEFT);
         raderaKontoButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
@@ -106,13 +96,24 @@ public class LeftPanel extends JPanel{
         raderaKontoButton.addActionListener(l -> view.minaSidorPanelStateChanged("RaderaKonto"));
         raderaKontoButton.addActionListener(l -> view.minaSidorTextSizeChanged("RaderaKonto"));
         this.add(raderaKontoButton);
+
+        loggaUtButton = new JButton("Logga ut");
+        loggaUtButton.setBackground(greenColor);
+        loggaUtButton.setBorderPainted(false);
+        loggaUtButton.setLocation(10, 190);
+        loggaUtButton.setSize(250, 30);
+        loggaUtButton.setHorizontalAlignment(JLabel.LEFT);
+        loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
+        loggaUtButton.setEnabled(true);
+        loggaUtButton.addActionListener(l -> controller.loggaUt());
+        this.add(loggaUtButton);
     }
 
     public void textSizeChanged(String whichPage){
         if ("Kontouppgifter".equals(whichPage)){
             kontoUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
             minaAnnonserButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
-            laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
+            loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             raderaKontoButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
 
@@ -120,12 +121,12 @@ public class LeftPanel extends JPanel{
         else if ("MinaAnnonser".equals(whichPage)){
             minaAnnonserButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
             kontoUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
-            laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
+            loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             raderaKontoButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
         }
-        else if ("LåneHistorik".equals(whichPage)){
-            laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
+        else if ("LoggaUt".equals(whichPage)){
+            loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
             kontoUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             minaAnnonserButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
@@ -135,14 +136,14 @@ public class LeftPanel extends JPanel{
             changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
             kontoUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             minaAnnonserButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
-            laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
+            loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             raderaKontoButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
         }
         else if ("RaderaKonto".equals(whichPage)){
             raderaKontoButton.setFont(new Font("Shree Devanagari 714", Font.BOLD, 18).deriveFont(22.0F));
             kontoUppgifterButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             minaAnnonserButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
-            laneHistorikButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
+            loggaUtButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
             changePasswordButton.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 18).deriveFont(22.0F));
         }
     }

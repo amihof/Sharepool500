@@ -3,11 +3,7 @@ package Client.Controller;
 import Client.Model.*;
 import Client.View.Main.MainFrame;
 
-import Shared.Annons;
-import Shared.Category;
-import Shared.Search;
-import Shared.User;
-import Shared.Chat;
+import Shared.*;
 
 
 import java.util.ArrayList;
@@ -95,6 +91,10 @@ public class Controller
         return Category.values();
     }
 
+    public City[] getCitiesValues() {
+        return City.values();
+    }
+
     /**
      * this method is called when someone is making a new Annons. is sends the parameters of the annons
      * from view to requestfactory
@@ -140,11 +140,30 @@ public class Controller
      * @param productPublisherEmail the email of the publisher that the user wants to start a chat with
      */
     public void sendMessageClicked(int searchedAnnonsId, String productPublisherEmail) {
-        requestFactory.startChat(new Chat(searchedAnnonsId, productPublisherEmail, user.getEmail()));
+        if (user == null){
+            view.needToLogin();
+        }else{
+            requestFactory.startChat(new Chat(searchedAnnonsId, productPublisherEmail, user.getEmail()));
+        }
     }
 
     public void seeEveryChat(ArrayList<Chat> chatList) {
         view.updateChatList(chatList);
 
+    }
+
+    public void updateUsername(String text) {
+
+    }
+
+    public void updateEmail(String text) {
+
+    }
+
+    /**
+     * the user logs out
+     */
+    public void loggaUt() {
+        new Controller();
     }
 }

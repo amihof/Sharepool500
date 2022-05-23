@@ -39,6 +39,7 @@ public class RequestFactory {
     public void startChat(Chat chat){
         client.addToBuffer(new Request(true, chat));
     }
+
     public void openChat(Chat chat){
         client.addToBuffer(new Request(false, chat));
     }

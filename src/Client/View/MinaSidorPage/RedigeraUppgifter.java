@@ -15,7 +15,7 @@ public class RedigeraUppgifter extends JDialog {
     private JLabel userNameLabel;
     private JLabel emailLabel;
     private JTextField userNameField;
-    private JTextField eMailField;
+    private JTextField emailField;
     private JButton registerNewUserName;
     private JButton registerNewEmail;
     private String whichPage;
@@ -81,26 +81,26 @@ public class RedigeraUppgifter extends JDialog {
         });
         this.add(this.userNameField);
 
-        (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Ny e-post");
-        this.eMailField.setLocation(413, 175);
-        this.eMailField.setSize(300, 40);
-        this.eMailField.setFont(newFont.deriveFont(15.0f));
-        this.eMailField.setHorizontalAlignment(JTextField.LEFT);
-        eMailField.addFocusListener(new FocusListener() {
+        (this.emailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Ny e-post");
+        this.emailField.setLocation(413, 175);
+        this.emailField.setSize(300, 40);
+        this.emailField.setFont(newFont.deriveFont(15.0f));
+        this.emailField.setHorizontalAlignment(JTextField.LEFT);
+        emailField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (eMailField.getText().equals("") || eMailField.getText().equals("Ny e-post")) {
-                    eMailField.setText("");
+                if (emailField.getText().equals("") || emailField.getText().equals("Ny e-post")) {
+                    emailField.setText("");
                 }
             }
 
             public void focusLost(FocusEvent e) {
-                if (eMailField.getText().equals("")){
-                    eMailField.setText("Ny e-post");
+                if (emailField.getText().equals("")){
+                    emailField.setText("Ny e-post");
 
                 }
             }
         });
-        this.add(this.eMailField);
+        this.add(this.emailField);
 
 
         (this.registerNewUserName = (JButton)new RoundedPanelExample.CircleBtn("Bekräfta nytt användarnamn")).setBackground(orangeColor);
@@ -109,7 +109,7 @@ public class RedigeraUppgifter extends JDialog {
         this.registerNewUserName.setSize(300, 50);
         this.registerNewUserName.setFont(newFont.deriveFont(15.0f));
         this.registerNewUserName.setHorizontalAlignment(0);
-        //registerNewUserName.addActionListener(l -> controller.registerNewUser(userNameField.getText(),eMailField.getText()));
+        registerNewUserName.addActionListener(l -> controller.updateUsername(userNameField.getText()));
         this.add(this.registerNewUserName);
 
         (this.registerNewEmail = (JButton)new RoundedPanelExample.CircleBtn("Bekräfta ny e-post")).setBackground(orangeColor);
@@ -118,6 +118,7 @@ public class RedigeraUppgifter extends JDialog {
         this.registerNewEmail.setSize(300, 50);
         this.registerNewEmail.setFont(newFont.deriveFont(15.0f));
         this.registerNewEmail.setHorizontalAlignment(0);
+        registerNewUserName.addActionListener(l -> controller.updateEmail(emailField.getText()));
         this.add(this.registerNewEmail);
     }
 }

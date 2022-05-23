@@ -5,7 +5,7 @@ package Shared;
 
 public enum Category {
 
-        Kategori,
+        Välj_kategori,
         Bygg_och_verktyg,
         Båt,
         Elektronik,

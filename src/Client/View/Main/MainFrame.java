@@ -18,7 +18,6 @@ import Client.View.SkapaAnnons.MainPanelSkapaAnnons;
 import Shared.Annons;
 import Shared.Chat;
 import Shared.User;
-import Shared.Chat;
 
 
 import javax.swing.*;
@@ -39,6 +38,7 @@ public class MainFrame
     private MainPanelAnnons mainPanelAnnons;
     private final MainPanelMinaSidor mainPanelMinaSidor;
     private MainPanelMessages mainPanelMessages;
+    private MainPanel mainPanel;
 
     private JDialog d;
     private final JPanel cards;
@@ -56,13 +56,14 @@ public class MainFrame
         frame = new JFrame();
 
         mainPanelMinaSidor = new MainPanelMinaSidor(width, height, controller, loggedIn, this);
+        mainPanel = new MainPanel(width, height, controller, loggedIn, this);
 
         CardLayout cardLayout = new CardLayout(); //cardlayout that has all the panels in it so when you click on a button it switches the visible panel
         frame.setLayout(cardLayout);
         frame.setPreferredSize(new Dimension(this.width, this.height));
         cards = new JPanel(new CardLayout());
 
-        cards.add(new MainPanel(width, height, controller, loggedIn, this), "MainPanel");
+        cards.add(mainPanel, "MainPanel");
         cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
         cards.add(mainPanelMinaSidor, "MainPanelMinaSidor");
         cards.add(new MainPanelMessages(width, height, controller, loggedIn, this), "MainPanelMessages");
@@ -130,6 +131,11 @@ public class MainFrame
      * @param newPanel is the new panel that should currently be visible
      */
     public void panelStateChanged(String newPanel) {
+        if (newPanel.equals("MainPanel")){
+            this.mainPanel = new MainPanel(width, height, controller, loggedIn, this);
+            cards.add(mainPanel, "MainPanel");
+        }
+
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, newPanel);
     }

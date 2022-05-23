@@ -33,4 +33,8 @@ public class Search implements Serializable {
     public Category getCategory() {
         return category;
     }
+
+    public City getCity(){
+        return city;
+    }
 }

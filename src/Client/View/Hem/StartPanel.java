@@ -4,6 +4,7 @@ import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
 import Shared.Category;
+import Shared.City;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ public class StartPanel extends JPanel {
     private JTextField search;
     private JComboBox cmbCategories;
     private final MainFrame view;
+    private JComboBox cmbCities;
 
     /**
      * setting up the panel and setting the colors.
@@ -37,6 +39,7 @@ public class StartPanel extends JPanel {
         this.setSize(width, height);
         setLocation(0,100);
         createAndInitiateComboBox();
+        createAndInitiateComboBoxCities();
         setUp();
 
     }
@@ -67,11 +70,11 @@ public class StartPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (search.getText().equals("Vad vill du hyra?")){
-                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem());
+                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
                     view.panelStateChanged("MainPanelAnnons");
                 }
                 else{
-                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem());
+                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
                     view.panelStateChanged("MainPanelAnnons");
                 }
 
@@ -120,7 +123,7 @@ public class StartPanel extends JPanel {
 
         cmbCategories = new JComboBox(controller.getCategoriesValues());
         cmbCategories.setSelectedIndex(0);
-        cmbCategories.setBounds(140,310,300,30);
+        cmbCategories.setBounds(140,300,300,25);
         cmbCategories.setFont(newFont.deriveFont(15.0F));
         cmbCategories.setPreferredSize(new Dimension(300,30));
         this.add(cmbCategories);
@@ -131,6 +134,29 @@ public class StartPanel extends JPanel {
             {
                 Object obj = cmbCategories.getSelectedItem();
                 int index = cmbCategories.getSelectedIndex();
+            }
+        });
+    }
+
+    private void createAndInitiateComboBoxCities()
+    {
+        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
+        Font newFont = myFont.deriveFont(25.0F);
+
+        cmbCities = new JComboBox(controller.getCitiesValues());
+        cmbCities.setSelectedIndex(0);
+        cmbCities.setBounds(140,335,300,25);
+        cmbCities.setFont(newFont.deriveFont(15.0F));
+        cmbCities.setPreferredSize(new Dimension(300,30));
+
+        this.add(cmbCities);
+        cmbCities.addItemListener(new ItemListener()
+        {
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                Object obj = cmbCities.getSelectedItem();
+                int index = cmbCities.getSelectedIndex();
             }
         });
     }

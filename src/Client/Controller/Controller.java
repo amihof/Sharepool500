@@ -3,11 +3,7 @@ package Client.Controller;
 import Client.Model.*;
 import Client.View.Main.MainFrame;
 
-import Shared.Annons;
-import Shared.Category;
-import Shared.Search;
-import Shared.User;
-import Shared.Chat;
+import Shared.*;
 
 
 import java.util.ArrayList;
@@ -95,6 +91,10 @@ public class Controller
         return Category.values();
     }
 
+    public City[] getCitiesValues() {
+        return City.values();
+    }
+
     /**
      * this method is called when someone is making a new Annons. is sends the parameters of the annons
      * from view to requestfactory
@@ -120,8 +120,8 @@ public class Controller
      * @param text the text the user searched for
      * @param productCategory the category the user searched for
      */
-    public void searchedClicked(String text, Category productCategory) {
-        requestFactory.searchAnnons(new Search(text, productCategory));
+    public void searchedClicked(String text, Category productCategory, City productCity) {
+        requestFactory.searchAnnons(new Search(text, productCategory, productCity));
     }
 
     /**
@@ -149,6 +149,32 @@ public class Controller
 
     public void seeEveryChat(ArrayList<Chat> chatList) {
         view.updateChatList(chatList);
+
+    }
+
+    public void updateUsername(String text) {
+
+    }
+
+    public void updateEmail(String text) {
+
+    }
+
+    public void updatePassword(String text) {
+
+    }
+
+    /**
+     * the user logs out
+     */
+    public void loggaUt() {
+        new Controller();
+    }
+
+    /**
+     * the users account gets deleted
+     */
+    public void deleteAccount() {
 
     }
 }

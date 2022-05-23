@@ -10,6 +10,7 @@ public class MinaAnnonserPage extends JPanel {
     private Color backgroundColor;
     private Color greenColor;
     private Color orangeColor;
+    private JPanel cards;
 
     private Font myFont;
     private Font myFontBold;
@@ -35,11 +36,18 @@ public class MinaAnnonserPage extends JPanel {
 
         this.view = view;
 
+        CardLayout cardLayout = new CardLayout();
+        this.setLayout(cardLayout);
+
+        cards = new JPanel(cardLayout);
+
         this.setBackground(backgroundColor);
         this.setSize(width, height);
         this.setLocation(250, 100);
 
         setUp();
+
+        cardLayout.show(cards, "AktivaAnnonser");
     }
 
     private void setUp() {
@@ -56,7 +64,9 @@ public class MinaAnnonserPage extends JPanel {
         aktivaAnnonser.setLocation(30, 100);
         aktivaAnnonser.setSize(200, 40);
         aktivaAnnonser.setHorizontalAlignment(JLabel.CENTER);
-        //aktivaAnnonser.addActionListener(l -> view.loginOrRegisterButtonClicked());
+        aktivaAnnonser.setEnabled(false);
+        aktivaAnnonser.addActionListener(l -> gamlaAnnonser.setEnabled(true));
+        aktivaAnnonser.addActionListener(l -> aktivaAnnonser.setEnabled(false));
         aktivaAnnonser.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(aktivaAnnonser);
 
@@ -66,7 +76,8 @@ public class MinaAnnonserPage extends JPanel {
         gamlaAnnonser.setLocation(330, 100);
         gamlaAnnonser.setSize(200, 40);
         gamlaAnnonser.setHorizontalAlignment(JLabel.CENTER);
-        //gamlaAnnonser.addActionListener(l -> view.loginOrRegisterButtonClicked());
+        gamlaAnnonser.addActionListener(l -> aktivaAnnonser.setEnabled(true));
+        gamlaAnnonser.addActionListener(l -> gamlaAnnonser.setEnabled(false));
         gamlaAnnonser.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(gamlaAnnonser);
 

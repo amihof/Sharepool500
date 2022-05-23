@@ -4,6 +4,7 @@ import Client.Controller.Controller;
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
 import Shared.Category;
+import Shared.City;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,11 +70,11 @@ public class StartPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (search.getText().equals("Vad vill du hyra?")){
-                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem());
+                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
                     view.panelStateChanged("MainPanelAnnons");
                 }
                 else{
-                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem());
+                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
                     view.panelStateChanged("MainPanelAnnons");
                 }
 

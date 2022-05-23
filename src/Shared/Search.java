@@ -13,15 +13,16 @@ public class Search implements Serializable {
 
     private String text = "";
     private Category category = null;
-    private
+    private City city = null;
 
 
     /**@param text
      * @param category
      **/
-    public Search(String text, Category category) {
+    public Search(String text, Category category, City city) {
         this.text = text;
         this.category = category;
+        this.city = city;
     }
 
     public String getText() {
@@ -30,5 +31,9 @@ public class Search implements Serializable {
 
     public Category getCategory() {
         return category;
+    }
+
+    public City getCity(){
+        return city;
     }
 }

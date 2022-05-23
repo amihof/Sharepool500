@@ -7,6 +7,8 @@ import Shared.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class MinaSidorPanel extends JPanel {
 
@@ -18,17 +20,11 @@ public class MinaSidorPanel extends JPanel {
     private JLabel emailLabel;
     private JLabel phoneNumberLabel;
     private JButton changeUppgifterButton;
-    private JButton kontoUppgifterButton;
-    private JButton minaAnnonserButton;
-    private JButton laneHistorikButton;
-    private JButton changePasswordButton;
-    private JButton raderaKontoButton;
     private MainFrame view;
     private String whichPage;
     private JPanel cards;
     private JPanel kontoUppgifter;
     private MinaAnnonserPage minaAnnonser;
-    private JPanel laneHistorik;
     private JPanel bytLosenord;
     private JPanel raderaKonto;
     private Color greenColor;
@@ -79,12 +75,6 @@ public class MinaSidorPanel extends JPanel {
         kontoUppgifter.setLocation(250, 100);
         kontoUppgifter.setBounds(250,100,width, height);
 
-        laneHistorik = new JPanel();
-        laneHistorik.setLayout(null);
-        laneHistorik.setBackground(backgroundColor);
-        laneHistorik.setSize(width, height);
-        laneHistorik.setLocation(250, 100);
-
         bytLosenord = new JPanel();
         bytLosenord.setLayout(null);
         bytLosenord.setBackground(backgroundColor);
@@ -107,22 +97,111 @@ public class MinaSidorPanel extends JPanel {
     private void setUp() {
         makeKontoUppgifter();
         makeMinaAnnonser();
-        makeLaneHistorik();
         makeBytLosenord();
         makeRaderaKonto();
 
     }
 
     private void makeRaderaKonto() {
+        JLabel raderaKontoLabel = new JLabel("Radera konto");
+        raderaKontoLabel.setLocation(30, 30);
+        raderaKontoLabel.setSize(300, 50);
+        raderaKontoLabel.setFont(newFont.deriveFont(40.0F));
+        raderaKontoLabel.setHorizontalAlignment(JLabel.LEFT);
+        raderaKonto.add(raderaKontoLabel);
+
+        JLabel raderaKontoText = new JLabel("För att radera ditt konto, skriv in ditt lösenord");
+        raderaKontoText.setLocation(30, 90);
+        raderaKontoText.setSize(500, 50);
+        raderaKontoText.setFont(newFont.deriveFont(20.0F));
+        raderaKontoText.setHorizontalAlignment(JLabel.LEFT);
+        raderaKonto.add(raderaKontoText);
+
+        JTextField enterPasswordDeleteAccount = new RoundedPanelExample.RoundedTextField(20);
+        enterPasswordDeleteAccount.setText("");
+        enterPasswordDeleteAccount.setLocation(490, 90);
+        enterPasswordDeleteAccount.setSize(400, 40);
+        enterPasswordDeleteAccount.setFont(newFont.deriveFont(15.0f));
+        enterPasswordDeleteAccount.setHorizontalAlignment(JTextField.LEFT);
+        raderaKonto.add(enterPasswordDeleteAccount);
+
+        JButton deleteAccountButton = new RoundedPanelExample.CircleBtn("Radera mitt konto");
+        deleteAccountButton.setBackground(orangeColor);
+        deleteAccountButton.setBorderPainted(false);
+        deleteAccountButton.setLocation(30, 150);
+        deleteAccountButton.setSize(200, 40);
+        deleteAccountButton.setFont(newFont.deriveFont(15.0f));
+        deleteAccountButton.setHorizontalAlignment(0);
+        // deleteAccountButton.addActionListener(l -> controller.updateEmail(newPasswordField.getText()));
+        raderaKonto.add(deleteAccountButton);
+
         cards.add(raderaKonto, "RaderaKonto");
     }
 
     private void makeBytLosenord() {
-        cards.add(bytLosenord, "BytLösenord");
-    }
+        JLabel passwordLabel = new JLabel("Byt lösenord");
+        passwordLabel.setLocation(30, 30);
+        passwordLabel.setSize(300, 50);
+        passwordLabel.setFont(newFont.deriveFont(40.0F));
+        passwordLabel.setHorizontalAlignment(JLabel.LEFT);
+        bytLosenord.add(passwordLabel);
 
-    private void makeLaneHistorik() {
-        cards.add(laneHistorik, "LåneHistorik");
+        JLabel currentPassword = new JLabel("Aktuellt lösenord");
+        currentPassword.setLocation(30, 90);
+        currentPassword.setSize(220, 50);
+        currentPassword.setFont(newFont.deriveFont(20.0F));
+        currentPassword.setHorizontalAlignment(JLabel.RIGHT);
+        bytLosenord.add(currentPassword);
+
+        JLabel newPassword = new JLabel("Nytt lösenord");
+        newPassword.setLocation(30, 150);
+        newPassword.setSize(220, 50);
+        newPassword.setFont(newFont.deriveFont(20.0F));
+        newPassword.setHorizontalAlignment(JLabel.RIGHT);
+        bytLosenord.add(newPassword);
+
+        JLabel newPasswordAgain = new JLabel("Upprepa nytt lösenord");
+        newPasswordAgain.setLocation(30, 210);
+        newPasswordAgain.setSize(220, 50);
+        newPasswordAgain.setFont(newFont.deriveFont(20.0F));
+        newPasswordAgain.setHorizontalAlignment(JLabel.RIGHT);
+        bytLosenord.add(newPasswordAgain);
+
+        JTextField currentPasswordField = new RoundedPanelExample.RoundedTextField(20);
+        currentPasswordField.setText("");
+        currentPasswordField.setLocation(260, 90);
+        currentPasswordField.setSize(300, 40);
+        currentPasswordField.setFont(newFont.deriveFont(15.0f));
+        currentPasswordField.setHorizontalAlignment(JTextField.LEFT);
+        bytLosenord.add(currentPasswordField);
+
+        JTextField newPasswordField = new RoundedPanelExample.RoundedTextField(20);
+        newPasswordField.setText("");
+        newPasswordField.setLocation(260, 150);
+        newPasswordField.setSize(300, 40);
+        newPasswordField.setFont(newFont.deriveFont(15.0f));
+        newPasswordField.setHorizontalAlignment(JTextField.LEFT);
+        bytLosenord.add(newPasswordField);
+
+        JTextField repeatPasswordField = new RoundedPanelExample.RoundedTextField(20);
+        repeatPasswordField.setText("");
+        repeatPasswordField.setLocation(260, 210);
+        repeatPasswordField.setSize(300, 40);
+        repeatPasswordField.setFont(newFont.deriveFont(15.0f));
+        repeatPasswordField.setHorizontalAlignment(JTextField.LEFT);
+        bytLosenord.add(repeatPasswordField);
+
+        JButton saveChanges = new RoundedPanelExample.CircleBtn("Spara ändringar");
+        saveChanges.setBackground(orangeColor);
+        saveChanges.setBorderPainted(false);
+        saveChanges.setLocation(30, 270);
+        saveChanges.setSize(200, 40);
+        saveChanges.setFont(newFont.deriveFont(15.0f));
+        saveChanges.setHorizontalAlignment(0);
+       // saveChanges.addActionListener(l -> controller.updateEmail(newPasswordField.getText()));
+        bytLosenord.add(saveChanges);
+
+        cards.add(bytLosenord, "BytLösenord");
     }
 
     private void makeMinaAnnonser() {
@@ -190,6 +269,5 @@ public class MinaSidorPanel extends JPanel {
         this.userUserName = user.getUsername();
         this.userPassword = user.getPassword();
         makeKontoUppgifter();
-        System.out.println(user.getUsername());
     }
 }

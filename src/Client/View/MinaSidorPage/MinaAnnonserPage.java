@@ -19,6 +19,7 @@ public class MinaAnnonserPage extends JPanel {
     private JButton gamlaAnnonser;
     private MainFrame view;
     private JLabel minaAnnonserLabel;
+    private JPanel aktivaAnnonserPanel;
 
     public MinaAnnonserPage(int width, int height, MainFrame view){
         this.setLayout(null);
@@ -69,6 +70,13 @@ public class MinaAnnonserPage extends JPanel {
         gamlaAnnonser.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
         this.add(gamlaAnnonser);
 
+    }
+
+    public void makeAktivaAnnonserPanel(){
+        aktivaAnnonserPanel.setLayout(null);
+        aktivaAnnonserPanel.setBackground(backgroundColor);
+        //aktivaAnnonserPanel.setSize();
+        aktivaAnnonserPanel.setLocation(250, 100);
     }
 
 }

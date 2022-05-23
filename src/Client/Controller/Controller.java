@@ -3,11 +3,7 @@ package Client.Controller;
 import Client.Model.*;
 import Client.View.Main.MainFrame;
 
-import Shared.Annons;
-import Shared.Category;
-import Shared.Search;
-import Shared.User;
-import Shared.Chat;
+import Shared.*;
 
 
 import java.util.ArrayList;
@@ -95,6 +91,10 @@ public class Controller
         return Category.values();
     }
 
+    public City[] getCitiesValues() {
+        return City.values();
+    }
+
     /**
      * this method is called when someone is making a new Annons. is sends the parameters of the annons
      * from view to requestfactory
@@ -150,5 +150,20 @@ public class Controller
     public void seeEveryChat(ArrayList<Chat> chatList) {
         view.updateChatList(chatList);
 
+    }
+
+    public void updateUsername(String text) {
+
+    }
+
+    public void updateEmail(String text) {
+
+    }
+
+    /**
+     * the user logs out
+     */
+    public void loggaUt() {
+        new Controller();
     }
 }

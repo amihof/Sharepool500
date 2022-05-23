@@ -117,6 +117,8 @@ public class Client {
                                         request.getUser().getPassword())
                         );
                         oos.flush();
+                        clientUserHashMap.put(Client.this, new User(request.getUser().getEmail(),
+                                request.getUser().getPassword()));
                         System.out.println("query executed and request handled");
                     } else if (requestType.equals("register")) {
                         System.out.println("register request is going to be handled");
@@ -141,6 +143,25 @@ public class Client {
                                 )
                         );
                         oos.flush();
+                    } else if (requestType.equals("updateEmail")) {
+                        oos.writeBoolean(sql.updateEmail(
+                                clientUserHashMap.get(Client.this).getEmail(),
+                                request.getUser().getEmail()
+                        ));
+                    }else if (requestType.equals("updateUsername")) {
+                        oos.writeBoolean(sql.updateUsername(
+                                clientUserHashMap.get(Client.this).getEmail(),
+                                request.getUser().getUsername()
+                        ));
+                    }else if (requestType.equals("updatePassword")) {
+                        oos.writeBoolean(sql.updatePassword(
+                                clientUserHashMap.get(Client.this).getEmail(),
+                                request.getUser().getPassword()
+                        ));
+                    }else if (requestType.equals("deleteUser")) {
+                        oos.writeBoolean(sql.deleteUser(
+                                clientUserHashMap.get(Client.this).getEmail()
+                        ));
                     } else if (requestType.equals("search")) {
                         oos.writeObject(sql.search(
                                 request.getSearch().getText(),

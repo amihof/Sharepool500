@@ -18,6 +18,7 @@ public class Search implements Serializable {
 
     /**@param text
      * @param category
+     * @param city
      **/
     public Search(String text, Category category, City city) {
         this.text = text;

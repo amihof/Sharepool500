@@ -220,9 +220,19 @@ public class SQLquery {
         }
     }
 
+    public boolean updateEmail(String oldEmail, String newEmail) {
+        return false;
+    }
 
+    public boolean updateUsername(String email, String username) {
+        return false;
+    }
 
+    public boolean updatePassword(String email, String password) {
+    }
 
+    public boolean deleteUser(String email) {
+    }
 
 
     // To do

@@ -160,10 +160,21 @@ public class Controller
 
     }
 
+    public void updatePassword(String text) {
+
+    }
+
     /**
      * the user logs out
      */
     public void loggaUt() {
         new Controller();
+    }
+
+    /**
+     * the users account gets deleted
+     */
+    public void deleteAccount() {
+
     }
 }

@@ -132,7 +132,7 @@ public class MinaSidorPanel extends JPanel {
         deleteAccountButton.setSize(200, 40);
         deleteAccountButton.setFont(newFont.deriveFont(15.0f));
         deleteAccountButton.setHorizontalAlignment(0);
-        // deleteAccountButton.addActionListener(l -> controller.updateEmail(newPasswordField.getText()));
+        deleteAccountButton.addActionListener(l -> controller.deleteAccount());
         raderaKonto.add(deleteAccountButton);
 
         cards.add(raderaKonto, "RaderaKonto");
@@ -198,7 +198,7 @@ public class MinaSidorPanel extends JPanel {
         saveChanges.setSize(200, 40);
         saveChanges.setFont(newFont.deriveFont(15.0f));
         saveChanges.setHorizontalAlignment(0);
-       // saveChanges.addActionListener(l -> controller.updateEmail(newPasswordField.getText()));
+        saveChanges.addActionListener(l -> controller.updatePassword(newPasswordField.getText()));
         bytLosenord.add(saveChanges);
 
         cards.add(bytLosenord, "BytLösenord");

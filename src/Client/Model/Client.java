@@ -159,13 +159,10 @@ public class Client {
 
                         }
 
-                    } else if(str.equals("showAnnons")){
+                    } else if(str.equals("showAnnons")) {
                         oos.writeObject(request);
                         oos.flush();
-                        else{
-                            throw new Exception("Could not show Add ");
 
-                        }
                     }
                     else if(str.equals("updateUsername")){ ////the request type is register
                         oos.writeObject(request); //sends the request

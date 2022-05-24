@@ -174,7 +174,7 @@ public class Client {
 
                     }else if (requestType.equals("showAnnons")) {
                         oos.writeObject(sql.showAnnons(
-                                request.getAnnons().getAnnonsID() //t
+                                request.getAnnons().getAnnonsID()
                         ));
                     }
                     else if (requestType.equals("createChat")) {

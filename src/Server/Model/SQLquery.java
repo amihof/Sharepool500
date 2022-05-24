@@ -324,5 +324,7 @@ public class SQLquery {
     }
 
 
-
+    public Object showAnnons(int annonsID) {
+        return annonsID;
+    }
 }

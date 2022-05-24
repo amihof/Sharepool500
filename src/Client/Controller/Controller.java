@@ -152,11 +152,11 @@ public class Controller
 
     }
 
-    public void updateUsername(String text) {
+    public void updateUsername(String username) {
 
     }
 
-    public void updateEmail(String text) {
+    public void updateEmail(String email) {
 
     }
 

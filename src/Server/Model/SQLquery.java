@@ -219,6 +219,25 @@ public class SQLquery {
     }
 
     public boolean updateEmail(String oldEmail, String newEmail) {
+        Connection con = Server.getCon();
+        String QUERY = "call procedure_update_user_email(?,?,?)";
+        PreparedStatement pstmt = null;
+
+        try{
+            pstmt = con.prepareStatement(QUERY);
+            pstmt.setBoolean(1, false);
+            pstmt.setString(2, oldEmail);
+            pstmt.setString(3, newEmail);
+
+            return pstmt.execute();
+        }
+        catch(Exception e){
+            System.out.println("update username didnt work");
+            e.printStackTrace();
+            e.printStackTrace(System.err);
+            return false;
+        }
+
         return false;
     }
 

@@ -46,10 +46,10 @@ public class Request implements Serializable {
      * This constructor is used to create a request for:
      * 1. updatePassword: request to update an instance of a user in the database
      * */
-    public Request(int type, String oldStr, String newStr){
+    public Request(int type, String oldValue, String newValue){
         if (type == 1){
             request = "updatePassowrd";
-            user = new User(oldStr, newStr);
+            user = new User(oldValue, newValue);
         }
     }
 

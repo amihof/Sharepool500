@@ -107,14 +107,13 @@ public class MainFrame
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         mainPanelSkapaAnnons.setPreferredSize(new Dimension((int) mainPanelSkapaAnnons.getPreferredSize().getWidth(),
-                (int)(mainPanelSkapaAnnons.getPreferredSize().getHeight()-700)));
-        scrollPanel.setBounds(0, 100, width, height-500);
+                (int)(mainPanelSkapaAnnons.getPreferredSize().getHeight()-1100)));
+        scrollPanel.setBounds(0, 100, width, 700);
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         scrollPanel.setBorder(BorderFactory.createEmptyBorder());
         scrollPanel.setViewportView(mainPanelSkapaAnnons);
 
         cards.add(scrollPanel, "MainPanelSkapaAnnons");
-
 
     }
 

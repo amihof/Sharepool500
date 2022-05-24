@@ -9,9 +9,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -59,7 +57,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
      * setting up the panel
      */
     public void setUp(){
-        imageMap = createImageMap(nameList);
         list = new JList(nameList);
         list.setCellRenderer(new IconListRenderer());
 
@@ -111,38 +108,10 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
         }
     }
 
-    private Map<String, ImageIcon> createImageMap(String[] list) {
-        Map<String, ImageIcon> map = new HashMap<>();
-        try {
-
-            ImageIcon imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/UvHN4.png")); // load the image to a imageIcon
-            Image image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            map.put("Annons", new ImageIcon(newimg));
-
-            imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/s89ON.png")); // load the image to a imageIcon
-            image = imageIcon.getImage(); // transform it
-            newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            map.put("Annons2", new ImageIcon(newimg));
-
-            imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/QEK2o.png")); // load the image to a imageIcon
-            image = imageIcon.getImage(); // transform it
-            newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            map.put("Annons3", new ImageIcon(newimg));
-
-            imageIcon = new ImageIcon(new URL("http://i.stack.imgur.com/f4T4l.png")); // load the image to a imageIcon
-            image = imageIcon.getImage(); // transform it
-            newimg = image.getScaledInstance(250, 200,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-            map.put("Annons4", new ImageIcon(newimg));
-
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return map;
-    }
-
+    /**
+     * if a new annons is made, this method is called to update the list of annonser.
+     * @param searchedAnnonsList the new list of annonser
+     */
     public void addNewAnnons(ArrayList<Annons> searchedAnnonsList){
         ArrayList<String> nameListAnnonser = new ArrayList<>();
         this.searchedAnnonsList = searchedAnnonsList;

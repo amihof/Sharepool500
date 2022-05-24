@@ -26,7 +26,7 @@ public class Controller
      * RequestFactory
      */
     public Controller() {
-        this.view = new MainFrame(this, false);
+        this.view = new MainFrame(this, true);
         client = new Client(1050,"127.0.0.1", this);
         requestFactory = new RequestFactory(client);
     }
@@ -152,18 +152,32 @@ public class Controller
 
     }
 
+    /**
+     * updates the users username
+     * @param username the new username the user wants to have
+     */
     public void updateUsername(String username) {
         User newUser = new User();
         newUser.setUsername(username);
         requestFactory.changeUsername(newUser);
     }
 
+    /**
+     * updates the users email
+     * @param email the new email the user wants to have
+     */
     public void updateEmail(String email) {
         User newUser = new User();
         newUser.setEmail(email);
         requestFactory.changeEmail(newUser);
     }
 
+    /**
+     * updates the users password to the new password they chose, if the current password the user
+     * typed in matches the current password in the database
+     * @param newPassword the new password the user wants
+     * @param currentPassword the users current password
+     */
     public void updatePassword(String newPassword, String currentPassword) {
         requestFactory.changePassword(currentPassword, newPassword);
     }

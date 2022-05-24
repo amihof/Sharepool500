@@ -238,7 +238,7 @@ public class SQLquery {
             return false;
         }
 
-        return false;
+
     }
 
 

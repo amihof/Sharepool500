@@ -153,11 +153,15 @@ public class Controller
     }
 
     public void updateUsername(String username) {
-
+        User newUser = new User();
+        newUser.setUsername(username);
+        requestFactory.changeUsername(newUser);
     }
 
     public void updateEmail(String email) {
-
+        User newUser = new User();
+        newUser.setEmail(email);
+        requestFactory.changeEmail(newUser);
     }
 
     public void updatePassword(String newPassword, String currentPassword) {
@@ -174,7 +178,9 @@ public class Controller
     /**
      * the users account gets deleted
      */
-    public void deleteAccount() {
+    public void deleteAccount(String password) {
+        User newUser = new User(user.getEmail(),password);
+        //skicka till requestfactory(ny request(newuser)
 
     }
 }

@@ -160,8 +160,8 @@ public class Controller
 
     }
 
-    public void updatePassword(String oldPassword, String currentPassword) {
-        
+    public void updatePassword(String newPassword, String currentPassword) {
+        requestFactory.changePassword(currentPassword, newPassword);
     }
 
     /**

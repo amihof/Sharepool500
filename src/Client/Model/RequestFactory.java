@@ -46,5 +46,13 @@ public class RequestFactory {
         client.addToBuffer(new Request(1, oldPassword, newPassword));
     }
 
+   /* public void changeEmail(String oldEmail, String newEmail){
+        client.addToBuffer(new Request(2, oldEmail, newEmail));
+    }
+
+    public void changeUsername(String email, String newUsername){
+        client.addToBuffer(new Request(3, email, newUsername));
+    }*/
+
 }
 

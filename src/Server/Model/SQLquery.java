@@ -323,6 +323,7 @@ public class SQLquery {
     }
 
 
+
     public ArrayList<Annons> showAnnons(User user) {
         Connection con = Server.getCon();
         String email = user.getEmail();
@@ -356,9 +357,6 @@ public class SQLquery {
             e.printStackTrace();
             e.printStackTrace(System.err);
         }
-
-
-
 
         return null;
             }

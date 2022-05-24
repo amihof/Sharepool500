@@ -109,6 +109,7 @@ public class SQLquery {
                         "WHERE P.name like '%"+category+"%'\n" +
                         "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
                 System.out.println("Andra sök");
+                System.out.println(category.toString());
             }
             Statement stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery(QUERY);
@@ -333,7 +334,7 @@ public class SQLquery {
         String QUERY;
         try{
             QUERY = "SELECT  annons_title, annons_description,P.name,owner_email,U.username,renting,A.id from annons A\n" +
-                    "JOIN product_type P U\n" +
+                    "JOIN product_type P\n" +
                     "ON A.product_type = P.id\n" +
                     "WHERE A.owner_email='"+email+"'";
             Statement stmt = con.createStatement();

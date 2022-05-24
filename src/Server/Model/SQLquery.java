@@ -343,11 +343,11 @@ public class SQLquery {
             while (resultSet.next()) {
                 Category category = Category.valueOf(resultSet.getString(3));
 
-                tempuser= new User(resultSet.getString(5),resultSet.getString(4),resultSet.getString(6));
+                tempuser= new User(resultSet.getString(4),resultSet.getString(5),"");
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,
-                        resultSet.getBoolean(5),resultSet.getInt(7));
+                        resultSet.getBoolean(5));
                 result.add(tempAnnons);
             }
             return result;

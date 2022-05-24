@@ -63,23 +63,6 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         minaAnnonserLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(minaAnnonserLabel);
 
-        ArrayList<String> nameListAnnonser = new ArrayList<>();
-
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtest");
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtest");
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtest");
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtest");
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtestsista");
-
-
-        this.nameList = nameListAnnonser.toArray(new String[0]);
-
-        setUpAnnonser();
         aktivaAnnonserPanel.setSize(width-310, 400);
         aktivaAnnonserPanel.setBounds(30,100,width-310,400);
         aktivaAnnonserPanel.setBackground(Color.WHITE);

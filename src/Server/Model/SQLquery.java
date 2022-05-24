@@ -264,7 +264,7 @@ public class SQLquery {
 
     public boolean updatePassword(String email, String password_new, String password_old) {
         Connection con = Server.getCon();
-        String QUERY = "call procedure_update_user_password(?,?,?)";
+        String QUERY = "call procedure_update_user_password(?,?,?,?)";
         PreparedStatement pstmt = null;
 
         try{

@@ -101,10 +101,9 @@ public class Client {
                     request = inputBuffer.get(); //receives the request from the buffer
                     str = request.getRequest();
 
+                    oos.writeObject(request); //sends the request
+                    oos.flush(); //makes sure the request is written
                     if(str.equals("login")){ //the request type is login
-                        oos.writeObject(request); //sends the request
-                        oos.flush(); //makes sure the request is written
-
 
                         String username = ois.readUTF(); //checks if its logged in**/
 
@@ -150,6 +149,7 @@ public class Client {
                         //checks if the user is registered
 
                         if(updated){
+
 
                         } else{
                             controller.couldNotRegister();
@@ -197,12 +197,13 @@ public class Client {
                         //the information is sent to the controller
                         //and the user can search for an add
 
-
+                        oos.writeObject(request); //sends the request
+                        oos.flush(); //makes sure the request is written
                     } else if(str.equals("getUsername")){
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written
 
-                        Boolean requestSent = ois.readBoolean(); //checks if the add iss created
+                        Boolean requestSent = ois.readBoolean(); //checks if the add is created
                         if(requestSent) {
                             controller.annonsMade();
 
@@ -212,10 +213,10 @@ public class Client {
 
 
                         }
-
-                    } else if(str.equals("startChat")){
                         oos.writeObject(request);//sends the request
                         oos.flush(); //makes sure the request is written
+                    } else if(str.equals("startChat")){
+
 
                         Object tempObject = ois.readObject();
                         ArrayList<Chat> result;

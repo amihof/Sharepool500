@@ -1,6 +1,7 @@
 package Client.Model;
 
 import Shared.*;
+/**@Author Evan Ebdo**/
 
 /**
  * The request factory is responsible for constructing request to be sent to the server.
@@ -44,6 +45,12 @@ public class RequestFactory {
 
     public void changePassword(String oldPassword, String newPassword){
         client.addToBuffer(new Request(1, oldPassword, newPassword));
+    }
+    public void changeUsername(String oldUsername, String newUsername){
+        client.addToBuffer(new Request(4, oldUsername, newUsername));
+    }
+    public void changeEmail(String oldEmail, String newEmail){
+        client.addToBuffer(new Request(3, oldEmail, newEmail));
     }
 
    /* public void changeEmail(String oldEmail, String newEmail){

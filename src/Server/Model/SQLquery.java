@@ -93,7 +93,7 @@ public class SQLquery {
         int i=0;
 
         try {
-            if(category.toString()=="Välj kategori"){
+            if(category.toString().equals("Välj kategori")){
                 QUERY = "SELECT  annons_title, annons_description,owneremail,U.username,renting,A.id from annons A\n" +
                         "JOIN users U\n" +
                         "ON U.email = A.owneremail\n" +

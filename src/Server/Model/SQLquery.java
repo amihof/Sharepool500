@@ -98,17 +98,17 @@ public class SQLquery {
 
         try {
             if(category.toString()=="Kategori"){
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owneremail,U.username,renting,A.id from annons A\n" +
                         "JOIN users U\n" +
-                        "ON U.email = A.owner_email\n" +
+                        "ON U.email = A.owneremail\n" +
                         "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
             }
             else{
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
+                QUERY = "SELECT  annons_title, annons_description,owneremail,U.username,renting,A.id from annons A\n" +
                         "JOIN product_type P\n" +
                         "ON A.product_type = P.id\n" +
                         "JOIN users U\n" +
-                        "ON U.email = A.owner_email\n" +
+                        "ON U.email = A.owneremail\n" +
                         "WHERE P.name like '%"+category+"%'\n" +
                         "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
             }

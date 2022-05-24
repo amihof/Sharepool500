@@ -19,9 +19,9 @@ import java.util.Queue;
  * When the client disconnects the class will terminate automatically*/
 public class Client {
     //clientUserHashMap identifies the different clients as users when logged in
-    private static HashMap<Client, User> clientUserHashMap = new HashMap<>();
+    private static HashMap<User, Client> clientUserHashMap = new HashMap<>();
     private static HashMap<User, Integer> notifications = new HashMap<>(); //not implemented fully
-
+    private User user = null;
 
     private Socket socket;
     private ObjectOutputStream oos;
@@ -120,8 +120,8 @@ public class Client {
                                         request.getUser().getPassword())
                         );
                         oos.flush();
-                        clientUserHashMap.put(Client.this, new User(request.getUser().getEmail(),
-                                request.getUser().getPassword()));
+                        user = request.getUser();
+                        clientUserHashMap.put(user, Client.this);
                     } else if (requestType.equals("register")) {
                         oos.writeBoolean(sql.register(
                                 request.getUser().getUsername(),
@@ -129,10 +129,7 @@ public class Client {
                                 request.getUser().getPassword()
                                 ));
                         oos.flush();
-                        notifications.put(new User(request.getUser().getUsername(),
-                                request.getUser().getEmail(),
-                                request.getUser().getPassword()),
-                                0);
+                        notifications.put(user, 0); //create a notification counter for every user;
                     } else if (requestType.equals("createAnnons")) {
                         oos.writeBoolean(
                                 sql.createAnnons(
@@ -146,24 +143,24 @@ public class Client {
                         oos.flush();
                     } else if (requestType.equals("updateEmail")) {
                         oos.writeBoolean(sql.updateEmail(
-                                clientUserHashMap.get(Client.this).getEmail(),
+                                user.getEmail(),
                                 request.getUser().getEmail()
                         ));
                     }else if (requestType.equals("updateUsername")) {
                         oos.writeBoolean(sql.updateUsername(
-                                clientUserHashMap.get(Client.this).getEmail(),
+                                user.getEmail(),
                                 request.getUser().getUsername()
                         ));
                     }else if (requestType.equals("updatePassword")) {
                         oos.writeBoolean(sql.updatePassword(
-                                clientUserHashMap.get(Client.this).getEmail(),
+                                user.getEmail(),
                                 request.getUser().getPassword(), //the new password
                                 request.getUser().getEmail() //the old password for confirmation
                         ));
                     }else if (requestType.equals("deleteUser")) {
                         oos.writeBoolean(sql.deleteUser(
-                                clientUserHashMap.get(Client.this).getEmail(),
-                                clientUserHashMap.get(Client.this).getPassword()
+                                user.getEmail(),
+                                request.getUser().getPassword()
                         ));
                     } else if (requestType.equals("search")) {
                         oos.writeObject(sql.search(
@@ -234,8 +231,13 @@ public class Client {
                     }
 
                 } catch (EOFException e) {
+                    //disconnect user
                     inputHandlerThread.interrupt();
                     inputListenerThread.interrupt();
+                    if(user != null && clientUserHashMap.containsKey(user)){
+                        clientUserHashMap.put(user, null);
+                        user = null;
+                    }
                     System.out.println("Client "  + socket.getInetAddress() + " has disconnected");
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();

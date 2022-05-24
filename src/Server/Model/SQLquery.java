@@ -93,11 +93,12 @@ public class SQLquery {
         int i=0;
 
         try {
-            if(category.toString()=="Kategori"){
-                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
+            if(category.toString()=="Välj kategori"){
+                QUERY = "SELECT  annons_title, annons_description,owneremail,U.username,renting,A.id from annons A\n" +
                         "JOIN users U\n" +
-                        "ON U.email = A.owner_email\n" +
-                        "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
+                        "ON U.email = A.owneremail\n" +
+                        "WHERE A.annons_title LIKE '%%'  or A.annons_description LIKE '%%'";
+                System.out.println("Kategori sök");
             }
             else{
                 QUERY = "SELECT  annons_title, annons_description,owneremail,U.username,renting,A.id from annons A\n" +
@@ -107,6 +108,7 @@ public class SQLquery {
                         "ON U.email = A.owneremail\n" +
                         "WHERE P.name like '%"+category+"%'\n" +
                         "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
+                System.out.println("Andra sök");
             }
             Statement stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery(QUERY);
@@ -122,7 +124,7 @@ public class SQLquery {
                         resultSet.getString(2),category,tempuser,
                         resultSet.getBoolean(5),resultSet.getInt(6));
                 result.add(tempAnnons);
-               System.out.println(result.get(i).getAnnonsID());
+               System.out.println(result.get(i).getPublisher().getPassword());
                i++;
             }
             return result;

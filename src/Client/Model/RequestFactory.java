@@ -42,5 +42,9 @@ public class RequestFactory {
         client.addToBuffer(new Request(false, chat));
     }
 
+    public void changePassword(String oldPassword, String newPassword){
+        client.addToBuffer(new Request(1, oldPassword, newPassword));
+    }
+
 }
 

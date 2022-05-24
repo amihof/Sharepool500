@@ -155,13 +155,13 @@ public class Controller
     public void updateUsername(String username) {
         User newUser = new User();
         newUser.setUsername(username);
-        //skicka till requestfactory(ny request(newuser)
+        requestFactory.changeUsername(newUser);
     }
 
     public void updateEmail(String email) {
         User newUser = new User();
         newUser.setEmail(email);
-        //skicka till requestfactory(ny request(newuser)
+        requestFactory.changeEmail(newUser);
     }
 
     public void updatePassword(String newPassword, String currentPassword) {

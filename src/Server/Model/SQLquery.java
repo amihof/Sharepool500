@@ -338,14 +338,15 @@ public class SQLquery {
             ArrayList<Annons> result = new ArrayList<>();
             Annons tempAnnons;
             User tempuser;
+
             while (resultSet.next()) {
                 Category category = Category.valueOf(resultSet.getString(3));
 
-                tempuser= new User(resultSet.getString(4),resultSet.getString(3),resultSet.getString(6));
+                tempuser= new User(resultSet.getString(5),resultSet.getString(4),resultSet.getString(6));
 
                 tempAnnons = new Annons(resultSet.getString(1),
                         resultSet.getString(2),category,tempuser,
-                        resultSet.getBoolean(5),resultSet.getInt(6));
+                        resultSet.getBoolean(5),resultSet.getInt(7));
                 result.add(tempAnnons);
             }
             return result;

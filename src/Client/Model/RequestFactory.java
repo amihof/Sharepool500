@@ -43,15 +43,24 @@ public class RequestFactory {
         client.addToBuffer(new Request(false, chat));
     }
 
+    /**this method is for a request of type changePassword,
+     * a new request of changePassword is added to the buffer**/
     public void changePassword(String oldPassword, String newPassword){
         client.addToBuffer(new Request(1, oldPassword, newPassword));
     }
+    /**this method is for a request of type changeUsername,
+     * a new request of changeUsername is added to the buffer**/
     public void changeUsername(String oldUsername, String newUsername){
         client.addToBuffer(new Request(4, oldUsername, newUsername));
     }
+    /**this method is for a request of type changeEmail,
+     * a new request of changeEmail is added to the buffer**/
     public void changeEmail(String oldEmail, String newEmail){
         client.addToBuffer(new Request(3, oldEmail, newEmail));
     }
+    /*public void deleteAnnons(){
+        client
+    }*/
 
    /* public void changeEmail(String oldEmail, String newEmail){
         client.addToBuffer(new Request(2, oldEmail, newEmail));

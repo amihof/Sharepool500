@@ -62,8 +62,8 @@ public class RequestFactory {
         client.addToBuffer(new Request(2, annons));
     }
 
-    public void showAnnons(Annons annons){
-        client.addToBuffer(new Request(7, annons));
+    public void showAnnons(User user){
+        client.addToBuffer(new Request(7, user));
     }
 
 }

@@ -30,12 +30,7 @@ public class SkapaAnnonsPanel extends JPanel {
     private JTextField rubrikTextField;
     private JTextArea beskrivningTextField;
     private JButton postAnnons;
-    private JButton uploadPic;
     private JLabel picLabel = new JLabel();
-    private ImageIcon clientPicture;
-    private JRadioButton j1;
-    private JRadioButton j2;
-    private ButtonGroup G;
     private String radioButtonText = null;
     private JComboBox cmbCities;
 
@@ -117,16 +112,7 @@ public class SkapaAnnonsPanel extends JPanel {
         postAnnons.setHorizontalAlignment(JLabel.CENTER);
         postAnnons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Enumeration<AbstractButton> allRadioButton=G.getElements();
-                while(allRadioButton.hasMoreElements())
-                {
-                    JRadioButton temp=(JRadioButton)allRadioButton.nextElement();
-                    if(temp.isSelected())
-                    {
-                        radioButtonText = temp.getText();
-                    }
-                }
-                controller.registerNewAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(), radioButtonText == "Hyrs ut" ? true : false);
+                controller.registerNewAnnons(rubrikTextField.getText(), beskrivningTextField.getText(), (Category) cmbCategories.getSelectedItem(),true);
                 System.out.println("test");
             }
         });

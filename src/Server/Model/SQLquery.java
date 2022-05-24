@@ -1,5 +1,4 @@
 package Server.Model;
-//kommentarer saknas
 import Shared.*;
 
 import java.sql.*;
@@ -29,7 +28,7 @@ public class SQLquery {
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
             pstmt.setString(2, password);
-            System.out.println("Quert prepared and will execute");
+            System.out.println("Query prepared and will execute");
             pstmt.execute();
 
             QUERY = "SELECT username from users\n" +

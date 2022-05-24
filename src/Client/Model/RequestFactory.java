@@ -58,9 +58,9 @@ public class RequestFactory {
     public void changeEmail(String oldEmail, String newEmail){
         client.addToBuffer(new Request(3, oldEmail, newEmail));
     }
-    /*public void deleteAnnons(){
-        client
-    }*/
+    public void deleteAnnons(Annons annons){
+        client.addToBuffer(new Request(2, annons));
+    }
 
    /* public void changeEmail(String oldEmail, String newEmail){
         client.addToBuffer(new Request(2, oldEmail, newEmail));

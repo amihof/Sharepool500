@@ -88,6 +88,9 @@ public class Client {
             inputBuffer.put(request);
         }
 
+        public void removeFromBuffer(Request request){
+            //inputBuffer.
+        }
         /**In this method exist several switch statements
          to hanndle is kind of request. The requests are
          Strings taken from the request class**/

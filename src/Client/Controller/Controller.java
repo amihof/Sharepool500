@@ -157,7 +157,7 @@ public class Controller
     }
 
     public void updateEmail(String email) {
-
+        new User(email);
     }
 
     public void updatePassword(String newPassword, String currentPassword) {

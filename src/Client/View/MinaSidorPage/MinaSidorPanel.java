@@ -270,4 +270,8 @@ public class MinaSidorPanel extends JPanel {
         this.userPassword = user.getPassword();
         makeKontoUppgifter();
     }
+
+    public MinaAnnonserPage getMinaAnnonserPage(){
+        return minaAnnonser;
+    }
 }

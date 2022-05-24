@@ -149,7 +149,7 @@ public class SQLquery {
      * @return returns true if sucess
      */
     public boolean createAnnons(String annons_title, String annons_description, Category productCategory, String publisherEmail, Boolean renting){
-
+        boolean kek=false;
         Connection con = Server.getCon();
         PreparedStatement pstmt = null;
         try {
@@ -167,16 +167,17 @@ public class SQLquery {
             pstmt.setString(5, publisherEmail);
             pstmt.setBoolean(6, true);
 
+            if(pstmt.execute()){
+                kek =true;
+            }
 
-            return pstmt.execute();
 
         } catch (Exception e) {
             System.out.println("couldn't create an annons");
             e.printStackTrace();
-            return false;
+            return kek;
         }
-
-
+        return kek;
     }
 
     public boolean createChat(Chat chat){

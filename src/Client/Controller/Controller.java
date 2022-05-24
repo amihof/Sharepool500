@@ -174,7 +174,8 @@ public class Controller
     /**
      * the users account gets deleted
      */
-    public void deleteAccount() {
+    public void deleteAccount(String password) {
+        
 
     }
 }

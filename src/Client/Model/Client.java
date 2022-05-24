@@ -140,6 +140,40 @@ public class Client {
 
                         }
 
+                    }else if(str.equals("updateEmail")){ ////the request type is register
+                        oos.writeObject(request); //sends the request
+                        oos.flush(); //makes sure the request is written
+
+
+                        Boolean updated = ois.readBoolean();
+                        System.out.println(updated);
+                        //checks if the user is registered
+
+                        if(updated){
+
+                        } else{
+                            controller.couldNotRegister();
+                            throw new Exception("Could not register ");
+
+                        }
+
+                    }else if(str.equals("updateUsername")){ ////the request type is register
+                        oos.writeObject(request); //sends the request
+                        oos.flush(); //makes sure the request is written
+
+
+                        Boolean updated = ois.readBoolean();
+                        System.out.println(updated);
+                        //checks if the user is registered
+
+                        if(updated){
+
+                        } else{
+                            controller.couldNotRegister();
+                            throw new Exception("Could not register ");
+
+                        }
+
                     }else if(str.equals("updatePassword")){ ////the request type is register
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written

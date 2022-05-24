@@ -88,6 +88,9 @@ public class Client {
             inputBuffer.put(request);
         }
 
+        public void removeFromBuffer(Request request){
+            //inputBuffer.
+        }
         /**In this method exist several switch statements
          to hanndle is kind of request. The requests are
          Strings taken from the request class**/
@@ -156,7 +159,12 @@ public class Client {
 
                         }
 
-                    }else if(str.equals("updateUsername")){ ////the request type is register
+                    } else if(str.equals("showAnnons")) {
+                        oos.writeObject(request);
+                        oos.flush();
+
+                    }
+                    else if(str.equals("updateUsername")){ ////the request type is register
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written
 

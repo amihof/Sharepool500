@@ -58,17 +58,9 @@ public class RequestFactory {
     public void changeEmail(User newUser){
         client.addToBuffer(new Request(3, newUser));
     }
-    /*public void deleteAnnons(){
-        client
-    }*/
-
-   /* public void changeEmail(String oldEmail, String newEmail){
-        client.addToBuffer(new Request(2, oldEmail, newEmail));
+    public void deleteAnnons(Annons annons){
+        client.addToBuffer(new Request(2, annons));
     }
-
-    public void changeUsername(String email, String newUsername){
-        client.addToBuffer(new Request(3, email, newUsername));
-    }*/
 
 }
 

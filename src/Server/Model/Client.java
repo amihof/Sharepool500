@@ -172,7 +172,12 @@ public class Client {
                         ));
                         System.out.println("search worked");
 
-                    }else if (requestType.equals("createChat")) {
+                    }else if (requestType.equals("showAnnons")) {
+                        oos.writeObject(sql.showAnnons(
+                                request.getAnnons().getAnnonsID()
+                        ));
+                    }
+                    else if (requestType.equals("createChat")) {
                         oos.writeObject(sql.createChat(
                                 request.getChat()
                         ));

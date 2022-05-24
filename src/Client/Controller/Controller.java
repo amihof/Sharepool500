@@ -197,4 +197,8 @@ public class Controller
         //skicka till requestfactory(ny request(newuser)
 
     }
+
+    public void seeUserAnnonser(ArrayList<Annons> userAnnonser){
+        view.updateUserAnnonser(userAnnonser);
+    }
 }

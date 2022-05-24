@@ -188,4 +188,5 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         this.add(aktivaAnnonserPanel);
     }
 
+
 }

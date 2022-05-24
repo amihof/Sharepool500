@@ -9,7 +9,6 @@ public class Request implements Serializable {
     private static final long serialVersionUID = -8969009813588142777L;
 
     private String request;
-    private String email;
 
     private User user;
     private Chat chat;
@@ -22,8 +21,7 @@ public class Request implements Serializable {
      * 1.login: request to login an existing user
      * 2. register: request to register a new user
      * 3. updateEmail: request to update an instance of a user in the database
-     * 4. updateEmail: request to update an instance of a user in the database
-     * 5. updateEmail: request to update an instance of a user in the database
+     * 4. updateUsername: request to update an instance of a user in the database
      * 6  deleteUser: request to delete an instance of a user in the database
      * 7. getChats : request to get all instances of chats linked to specific user
      * */
@@ -44,6 +42,10 @@ public class Request implements Serializable {
         this.user = user;
     }
 
+    /**
+     * This constructor is used to create a request for:
+     * 1. updatePassword: request to update an instance of a user in the database
+     * */
     public Request(int type, String oldStr, String newStr){
         if (type == 1){
             request = "updatePassowrd";

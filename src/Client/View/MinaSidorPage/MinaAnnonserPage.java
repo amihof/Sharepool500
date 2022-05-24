@@ -177,7 +177,6 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
 
         nameListAnnonser.add("email");
         nameListAnnonser.add("testtest");
-        nameListAnnonser.add("email3");
 
         this.nameList = nameListAnnonser.toArray(new String[0]);
 

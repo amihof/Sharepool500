@@ -26,7 +26,7 @@ public class Controller
      * RequestFactory
      */
     public Controller() {
-        this.view = new MainFrame(this, true);
+        this.view = new MainFrame(this, false);
         client = new Client(1050,"127.0.0.1", this);
         requestFactory = new RequestFactory(client);
     }
@@ -200,5 +200,9 @@ public class Controller
 
     public void seeUserAnnonser(ArrayList<Annons> userAnnonser){
         view.updateUserAnnonser(userAnnonser);
+    }
+
+    public void minaAnnonserClicked(){
+       // requestFactory.searchAnnons(new Search(text, productCategory, productCity));
     }
 }

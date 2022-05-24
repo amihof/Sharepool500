@@ -92,7 +92,6 @@ public class SQLquery {
         String QUERY;
         int i=0;
 
-
         try {
             if(category.toString()=="Kategori"){
                 QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
@@ -133,7 +132,53 @@ public class SQLquery {
             e.printStackTrace();
             return null;
         }
+    }
 
+    public ArrayList<Annons> getUsersAnnonser(String productname, Category category) {
+        Connection con = Server.getCon();
+        String QUERY;
+        int i=0;
+
+        try {
+            if(category.toString()=="Kategori"){
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
+                        "JOIN users U\n" +
+                        "ON U.email = A.owner_email\n" +
+                        "WHERE annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%'";
+            }
+            else{
+                QUERY = "SELECT  annons_title, annons_description,owner_email,U.username,renting,A.id from annons A\n" +
+                        "JOIN product_type P\n" +
+                        "ON A.product_type = P.id\n" +
+                        "JOIN users U\n" +
+                        "ON U.email = A.owner_email\n" +
+                        "WHERE P.name like '%"+category+"%'\n" +
+                        "and (annons_title LIKE '%"+productname+"%'  or annons_description LIKE '%"+productname+"%')";
+            }
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery(QUERY);
+
+            ArrayList<Annons> result = new ArrayList<>();
+            Annons tempAnnons;
+            User tempuser;
+            while (resultSet.next()) {
+
+                tempuser= new User(resultSet.getString(4),resultSet.getString(3),resultSet.getString(6));
+
+                tempAnnons = new Annons(resultSet.getString(1),
+                        resultSet.getString(2),category,tempuser,
+                        resultSet.getBoolean(5),resultSet.getInt(6));
+                result.add(tempAnnons);
+                System.out.println(result.get(i).getAnnonsID());
+                i++;
+            }
+            return result;
+
+        } catch (Exception e) {
+            System.out.println("no result found");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -322,7 +367,5 @@ public class SQLquery {
             return false;
         }
     }
-
-
 
 }

@@ -50,13 +50,13 @@ public class RequestFactory {
     }
     /**this method is for a request of type changeUsername,
      * a new request of changeUsername is added to the buffer**/
-    public void changeUsername(String oldUsername, String newUsername){
-        client.addToBuffer(new Request(4, oldUsername, newUsername));
+    public void changeUsername(User newUser){
+        client.addToBuffer(new Request(4, newUser));
     }
     /**this method is for a request of type changeEmail,
      * a new request of changeEmail is added to the buffer**/
-    public void changeEmail(String oldEmail, String newEmail){
-        client.addToBuffer(new Request(3, oldEmail, newEmail));
+    public void changeEmail(User newUser){
+        client.addToBuffer(new Request(3, newUser));
     }
     /*public void deleteAnnons(){
         client

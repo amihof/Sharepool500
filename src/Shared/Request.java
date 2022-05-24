@@ -38,9 +38,8 @@ public class Request implements Serializable {
             request = "deleteUser";
         }else if (type == 6) {
             request = "getChats";
-        /*}else if (type == 7){
-            request = "updatePassword";
-        }*/
+        }else if (type == 7){
+            request = "showAnnons";
         }
         this.user = user;
     }

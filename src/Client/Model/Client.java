@@ -160,8 +160,22 @@ public class Client {
                         }
 
                     } else if(str.equals("showAnnons")) {
-                        oos.writeObject(request);
-                        oos.flush();
+                        oos.writeObject(request);//sends the request
+                        oos.flush(); //makes sure the request is written
+
+                        Object tempObject = ois.readObject();
+                        ArrayList<Annons> result;
+
+                        if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)) {
+                            result = (ArrayList<Annons>) tempObject;
+
+                            System.out.println("Client - result arrayen user annonser");
+                            // System.out.println(result.get(0).getProductName()+"?!");
+                            System.out.println(result);
+
+                            controller.seeUserAnnonser(result);
+                        }
+
 
                     }
                     else if(str.equals("updateUsername")){ ////the request type is register

@@ -203,6 +203,6 @@ public class Controller
     }
 
     public void minaAnnonserClicked(){
-       // requestFactory.showAnnons(user);
+        requestFactory.showAnnons(user);
     }
 }

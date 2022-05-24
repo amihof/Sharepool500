@@ -99,7 +99,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
             JLabel label = (JLabel) super.getListCellRendererComponent(
                     list, value, index, isSelected, cellHasFocus);
-            label.setIcon(imageMap.get((String) value));
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
             label.setBorder(BorderFactory.createMatteBorder(0,

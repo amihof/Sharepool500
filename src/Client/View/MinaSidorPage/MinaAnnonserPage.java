@@ -2,7 +2,8 @@ package Client.View.MinaSidorPage;
 
 import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
-import Shared.Chat;
+import Client.View.OneAnnons.MainPanelOneAnnons;
+import Shared.Annons;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,32 +13,30 @@ import java.util.ArrayList;
 
 public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     private Color backgroundColor;
+    private Color redColor;
     private Color greenColor;
     private Color orangeColor;
-    private JPanel cards;
 
     private Font myFont;
     private Font myFontBold;
     private Font newFont;
     private Font newFontBold;
-    private JButton aktivaAnnonser;
-    private JButton gamlaAnnonser;
     private MainFrame view;
     private JLabel minaAnnonserLabel;
 
     private JPanel aktivaAnnonserPanel = new JPanel();
     private String[] nameList;
-    private ArrayList<Chat> chatList;
-    private JList list;
+    private ArrayList<Annons> annonsList;
 
     private int width;
-
-    private JPanel annonserPanels = new JPanel();
+    private ArrayList<String> nameListAnnonser;
+    private JList list;
 
     public MinaAnnonserPage(int width, int height, MainFrame view){
         this.setLayout(null);
 
         this.backgroundColor = new Color(245, 221, 204);
+        this.redColor = new Color(236, 66, 66);
         this.greenColor = new Color (167, 203, 156, 255);
         this.orangeColor = new Color (225, 143, 107);
 
@@ -49,22 +48,11 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         this.view = view;
         this.width = width;
 
-        CardLayout cardLayout = new CardLayout();
-        annonserPanels.setLayout(cardLayout);
-        annonserPanels.setBounds(30,160,width-310,600);
-        annonserPanels.setBackground(Color.RED);
-        this.add(annonserPanels);
-        cards = new JPanel(cardLayout);
-
-        annonserPanels.add(cards);
-
         this.setBackground(backgroundColor);
         this.setSize(width, height);
         this.setLocation(250, 100);
 
         setUp();
-
-        cardLayout.show(cards, "AktivaAnnonser");
     }
 
     private void setUp() {
@@ -75,43 +63,30 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         minaAnnonserLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(minaAnnonserLabel);
 
-        aktivaAnnonser = new RoundedPanelExample.CircleBtn("Aktiva annonser");
-        aktivaAnnonser.setBackground(orangeColor);
-        aktivaAnnonser.setBorderPainted(false);
-        aktivaAnnonser.setLocation(30, 100);
-        aktivaAnnonser.setSize(200, 40);
-        aktivaAnnonser.setHorizontalAlignment(JLabel.CENTER);
-        aktivaAnnonser.setEnabled(false);
-        aktivaAnnonser.addActionListener(l -> gamlaAnnonser.setEnabled(true));
-        aktivaAnnonser.addActionListener(l -> aktivaAnnonser.setEnabled(false));
-        aktivaAnnonser.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
-        this.add(aktivaAnnonser);
-
-        gamlaAnnonser = new RoundedPanelExample.CircleBtn("Gamla annonser");
-        gamlaAnnonser.setBackground(orangeColor);
-        gamlaAnnonser.setBorderPainted(false);
-        gamlaAnnonser.setLocation(330, 100);
-        gamlaAnnonser.setSize(200, 40);
-        gamlaAnnonser.setHorizontalAlignment(JLabel.CENTER);
-        gamlaAnnonser.addActionListener(l -> aktivaAnnonser.setEnabled(true));
-        gamlaAnnonser.addActionListener(l -> gamlaAnnonser.setEnabled(false));
-        gamlaAnnonser.setFont(new Font("Shree Devanagari 714", Font.PLAIN, 20).deriveFont(17.0F));
-        this.add(gamlaAnnonser);
-
-        ArrayList<String> nameListChat = new ArrayList<>();
-
-        nameListChat.add("email");
-        nameListChat.add("testtest");
-
-        this.nameList = nameListChat.toArray(new String[0]);
-
-        setUpAnnonser();
-        aktivaAnnonserPanel.setSize(250, 500);
-        aktivaAnnonserPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        aktivaAnnonserPanel.setLocation(0,90);
+        aktivaAnnonserPanel.setSize(width-310, 400);
+        aktivaAnnonserPanel.setBounds(30,100,width-310,400);
         aktivaAnnonserPanel.setBackground(Color.WHITE);
+        this.add(aktivaAnnonserPanel);
 
-        cards.add(aktivaAnnonserPanel, "AktivaAnnonser");
+        JButton seeAnnonsButton = new RoundedPanelExample.CircleBtn("Redigera annons");
+        seeAnnonsButton.setBackground(greenColor);
+        seeAnnonsButton.setBorderPainted(false);
+        seeAnnonsButton.setLocation(30, 520);
+        seeAnnonsButton.setSize(200, 50);
+        seeAnnonsButton.setFont(newFont.deriveFont(15.0f));
+        seeAnnonsButton.setHorizontalAlignment(0);
+       //seeAnnonsButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
+        this.add(seeAnnonsButton);
+
+        JButton deleteAnnonsButton = new RoundedPanelExample.CircleBtn("Radera annons");
+        deleteAnnonsButton.setBackground(redColor);
+        deleteAnnonsButton.setBorderPainted(false);
+        deleteAnnonsButton.setLocation(250, 520);
+        deleteAnnonsButton.setSize(200, 50);
+        deleteAnnonsButton.setFont(newFont.deriveFont(15.0f));
+        deleteAnnonsButton.setHorizontalAlignment(0);
+        //deleteAnnonsButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
+        this.add(deleteAnnonsButton);
 
     }
 
@@ -122,10 +97,10 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         list.addListSelectionListener(this);
 
         list.setFixedCellHeight(100);
-        list.setFixedCellWidth(width-312);
+        list.setFixedCellWidth(width-328);
 
         JScrollPane scroll = new JScrollPane(list);
-        scroll.setPreferredSize(new Dimension(width-310, 600));
+        scroll.setPreferredSize(new Dimension(width-310, 400));
         scroll.setBackground(Color.WHITE);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
@@ -138,6 +113,14 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
+        /*String productName = nameListAnnonser.get(list.getSelectedIndex()).getProductName();
+        String productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
+        String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
+        String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
+        String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
+        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsID();
+        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
+        view.displayOneAnnons(mainPanelOneAnnons);*/
 
     }
 
@@ -166,26 +149,26 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         }
     }
 
-    public void addNewChat(ArrayList<Chat> chatList) {
-        ArrayList<String> nameListChat = new ArrayList<>();
-        this.chatList = chatList;
+    public void addNewAnnons(ArrayList<Annons> annonsList) {
+        nameListAnnonser = new ArrayList<>();
+        this.annonsList = annonsList;
 
-        for (Chat a : chatList)
+        for (Annons a : annonsList)
         {
-            nameListChat.add(a.getRequester_email());
+            nameListAnnonser.add(a.getProductName());
         }
 
-        nameListChat.add("email");
-        nameListChat.add("testtest");
-        nameListChat.add("email3");
+        nameListAnnonser.add("email");
+        nameListAnnonser.add("testtest");
 
-        this.nameList = nameListChat.toArray(new String[0]);
+        this.nameList = nameListAnnonser.toArray(new String[0]);
 
         setUpAnnonser();
         aktivaAnnonserPanel.setSize(width-310, 600);
-        aktivaAnnonserPanel.setLocation(0,70);
+        aktivaAnnonserPanel.setLocation(0,100);
         aktivaAnnonserPanel.setBackground(Color.WHITE);
-        cards.add(aktivaAnnonserPanel, "AktivaAnnonser");
+        this.add(aktivaAnnonserPanel);
     }
+
 
 }

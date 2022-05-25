@@ -118,7 +118,7 @@ public class RedigeraUppgifter extends JDialog {
         this.registerNewEmail.setSize(300, 50);
         this.registerNewEmail.setFont(newFont.deriveFont(15.0f));
         this.registerNewEmail.setHorizontalAlignment(0);
-        registerNewUserName.addActionListener(l -> controller.updateEmail(emailField.getText()));
+        registerNewEmail.addActionListener(l -> controller.updateEmail(emailField.getText()));
         this.add(this.registerNewEmail);
     }
 }

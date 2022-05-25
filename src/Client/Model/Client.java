@@ -88,6 +88,9 @@ public class Client {
             inputBuffer.put(request);
         }
 
+        public void removeFromBuffer(Request request){
+            //inputBuffer.
+        }
         /**In this method exist several switch statements
          to hanndle is kind of request. The requests are
          Strings taken from the request class**/
@@ -101,10 +104,11 @@ public class Client {
                     request = inputBuffer.get(); //receives the request from the buffer
                     str = request.getRequest();
 
+                    oos.writeObject(request); //sends the request
+                    oos.flush(); //makes sure the request is written
                     if(str.equals("login")){ //the request type is login
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written
-
 
                         String username = ois.readUTF(); //checks if its logged in**/
 
@@ -157,7 +161,26 @@ public class Client {
 
                         }
 
-                    }else if(str.equals("updateUsername")){ ////the request type is register
+                    } else if(str.equals("showAnnons")) {
+                        oos.writeObject(request);//sends the request
+                        oos.flush(); //makes sure the request is written
+
+                        Object tempObject = ois.readObject();
+                        ArrayList<Annons> result;
+
+                        if(tempObject != null && Objects.requireNonNull(tempObject).getClass().isAssignableFrom(ArrayList.class)) {
+                            result = (ArrayList<Annons>) tempObject;
+
+                            System.out.println("Client - result arrayen user annonser");
+                            // System.out.println(result.get(0).getProductName()+"?!");
+                            System.out.println(result);
+
+                            controller.seeUserAnnonser(result);
+                        }
+
+
+                    }
+                    else if(str.equals("updateUsername")){ ////the request type is register
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written
 
@@ -184,6 +207,7 @@ public class Client {
                         //checks if the user is registered
 
                         if(updated){
+
 
                         } else{
                             controller.couldNotRegister();
@@ -231,12 +255,12 @@ public class Client {
                         //the information is sent to the controller
                         //and the user can search for an add
 
-
+                        
                     } else if(str.equals("getUsername")){
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written
 
-                        Boolean requestSent = ois.readBoolean(); //checks if the add iss created
+                        Boolean requestSent = ois.readBoolean(); //checks if the add is created
                         if(requestSent) {
                             controller.annonsMade();
 

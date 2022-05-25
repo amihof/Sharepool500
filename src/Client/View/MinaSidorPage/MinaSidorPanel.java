@@ -132,7 +132,7 @@ public class MinaSidorPanel extends JPanel {
         deleteAccountButton.setSize(200, 40);
         deleteAccountButton.setFont(newFont.deriveFont(15.0f));
         deleteAccountButton.setHorizontalAlignment(0);
-        deleteAccountButton.addActionListener(l -> controller.deleteAccount());
+        deleteAccountButton.addActionListener(l -> controller.deleteAccount(enterPasswordDeleteAccount.getText()));
         raderaKonto.add(deleteAccountButton);
 
         cards.add(raderaKonto, "RaderaKonto");
@@ -269,5 +269,9 @@ public class MinaSidorPanel extends JPanel {
         this.userUserName = user.getUsername();
         this.userPassword = user.getPassword();
         makeKontoUppgifter();
+    }
+
+    public MinaAnnonserPage getMinaAnnonserPage(){
+        return minaAnnonser;
     }
 }

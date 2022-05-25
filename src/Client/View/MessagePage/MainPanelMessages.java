@@ -31,11 +31,11 @@ public class MainPanelMessages extends JPanel {
         this.setSize(width, height);
 
 
-        leftPanelMessages = new LeftPanelMessages(250, height-100, controller);
-        this.add(leftPanelMessages);
-
         chatPanelMessages = new ChatPanelMessages(width-250, height-100, controller);
         this.add(chatPanelMessages);
+
+        leftPanelMessages = new LeftPanelMessages(250, height-100, controller);
+        this.add(leftPanelMessages);
 
         topPanel = new TopPanel(width, height, "Messages", loggedIn, view);
         this.add(topPanel);

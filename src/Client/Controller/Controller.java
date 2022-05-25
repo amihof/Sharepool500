@@ -152,14 +152,32 @@ public class Controller
 
     }
 
+    /**
+     * updates the users username
+     * @param username the new username the user wants to have
+     */
     public void updateUsername(String username) {
-
+        User newUser = new User();
+        newUser.setUsername(username);
+        requestFactory.changeUsername(newUser);
     }
 
+    /**
+     * updates the users email
+     * @param email the new email the user wants to have
+     */
     public void updateEmail(String email) {
-
+        User newUser = new User();
+        newUser.setEmail(email);
+        requestFactory.changeEmail(newUser);
     }
 
+    /**
+     * updates the users password to the new password they chose, if the current password the user
+     * typed in matches the current password in the database
+     * @param newPassword the new password the user wants
+     * @param currentPassword the users current password
+     */
     public void updatePassword(String newPassword, String currentPassword) {
         requestFactory.changePassword(currentPassword, newPassword);
     }
@@ -174,7 +192,17 @@ public class Controller
     /**
      * the users account gets deleted
      */
-    public void deleteAccount() {
+    public void deleteAccount(String password) {
+        User newUser = new User(user.getEmail(),password);
+        //skicka till requestfactory(ny request(newuser)
 
+    }
+
+    public void seeUserAnnonser(ArrayList<Annons> userAnnonser){
+        view.updateUserAnnonser(userAnnonser);
+    }
+
+    public void minaAnnonserClicked(){
+        requestFactory.showAnnons(user);
     }
 }

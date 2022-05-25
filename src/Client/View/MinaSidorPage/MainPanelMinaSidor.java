@@ -1,6 +1,7 @@
 package Client.View.MinaSidorPage;
 
 import Client.Controller.Controller;
+import Client.View.Annonser.DisplayAnnonser;
 import Client.View.Main.MainFrame;
 import Client.View.Main.TopPanel;
 
@@ -42,5 +43,9 @@ public class MainPanelMinaSidor extends JPanel {
 
     public LeftPanel getLeftPanel(){
         return leftPanel;
+    }
+
+    public MinaAnnonserPage getMinaAnnonserPage() {
+        return minaSidorPanel.getMinaAnnonserPage();
     }
 }

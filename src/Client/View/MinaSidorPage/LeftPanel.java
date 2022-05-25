@@ -71,6 +71,7 @@ public class LeftPanel extends JPanel{
         minaAnnonserButton.setEnabled(true);
         minaAnnonserButton.addActionListener(l -> view.minaSidorPanelStateChanged("MinaAnnonser"));
         minaAnnonserButton.addActionListener(l -> view.minaSidorTextSizeChanged("MinaAnnonser"));
+        minaAnnonserButton.addActionListener(l -> controller.minaAnnonserClicked());
         this.add(minaAnnonserButton);
 
         changePasswordButton = new JButton("Byt lösenord");

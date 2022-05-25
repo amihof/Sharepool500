@@ -36,7 +36,7 @@ public class MainFrame
     private final Controller controller;
     private MainLogin mainLogin;
     private MainPanelAnnons mainPanelAnnons;
-    private final MainPanelMinaSidor mainPanelMinaSidor;
+    private MainPanelMinaSidor mainPanelMinaSidor;
     private MainPanelMessages mainPanelMessages;
     private MainPanel mainPanel;
 
@@ -107,14 +107,13 @@ public class MainFrame
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         mainPanelSkapaAnnons.setPreferredSize(new Dimension((int) mainPanelSkapaAnnons.getPreferredSize().getWidth(),
-                (int)(mainPanelSkapaAnnons.getPreferredSize().getHeight()-700)));
-        scrollPanel.setBounds(0, 100, width, height-500);
+                (int)(mainPanelSkapaAnnons.getPreferredSize().getHeight()-1100)));
+        scrollPanel.setBounds(0, 100, width, 700);
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         scrollPanel.setBorder(BorderFactory.createEmptyBorder());
         scrollPanel.setViewportView(mainPanelSkapaAnnons);
 
         cards.add(scrollPanel, "MainPanelSkapaAnnons");
-
 
     }
 
@@ -300,5 +299,13 @@ public class MainFrame
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
+    }
+
+    public void updateUserAnnonser(ArrayList<Annons> userAnnonser) {
+        mainPanelMinaSidor = new MainPanelMinaSidor(width,height,controller,loggedIn,this);
+
+        mainPanelMinaSidor.getMinaAnnonserPage().addNewAnnons(userAnnonser);
+        cards.add(mainPanelMinaSidor, "MainPanelMinaSidor");
+        panelStateChanged("MainPanelMinaSidor");
     }
 }

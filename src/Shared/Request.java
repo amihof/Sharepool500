@@ -46,7 +46,7 @@ public class Request implements Serializable {
 
     public Request(int type, String oldStr, String newStr){
         if (type == 1){
-            request = "updatePassowrd";
+            request = "updatePassword";
             user = new User(oldStr, newStr);
         }
     }

@@ -48,4 +48,5 @@ public class MainPanelMinaSidor extends JPanel {
     public MinaAnnonserPage getMinaAnnonserPage() {
         return minaSidorPanel.getMinaAnnonserPage();
     }
+
 }

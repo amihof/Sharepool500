@@ -205,4 +205,12 @@ public class Controller
     public void minaAnnonserClicked(){
         requestFactory.showAnnons(user);
     }
+
+    public void usernameUpdated() {
+        view.usernameUpdated();
+    }
+
+    public void emailUpdated(){
+        view.emailUpdated();
+    }
 }

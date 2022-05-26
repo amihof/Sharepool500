@@ -158,13 +158,10 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
             nameListAnnonser.add(a.getProductName());
         }
 
-        nameListAnnonser.add("email");
-        nameListAnnonser.add("testtest");
-
         this.nameList = nameListAnnonser.toArray(new String[0]);
 
         setUpAnnonser();
-        aktivaAnnonserPanel.setSize(width-310, 600);
+        aktivaAnnonserPanel.setSize(width-310, 400);
         aktivaAnnonserPanel.setLocation(0,100);
         aktivaAnnonserPanel.setBackground(Color.WHITE);
         this.add(aktivaAnnonserPanel);

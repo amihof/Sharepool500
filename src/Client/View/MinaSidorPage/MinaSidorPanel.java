@@ -42,6 +42,8 @@ public class MinaSidorPanel extends JPanel {
     private int width;
     private int height;
 
+    private CardLayout cardLayout;
+
     public MinaSidorPanel(int width, int height, Controller controller, MainFrame view, String whichPage) {
         this.setLayout(null);
 
@@ -63,7 +65,7 @@ public class MinaSidorPanel extends JPanel {
         this.setSize(width, height);
         this.setLocation(250, 100);
 
-        CardLayout cardLayout = new CardLayout();
+        cardLayout = new CardLayout();
         this.setLayout(cardLayout);
 
         cards = new JPanel(cardLayout);
@@ -87,7 +89,6 @@ public class MinaSidorPanel extends JPanel {
         raderaKonto.setSize(width, height);
         raderaKonto.setLocation(250, 100);
 
-        this.setUp();
 
         cardLayout.show(cards, "Kontouppgifter");
 
@@ -95,7 +96,6 @@ public class MinaSidorPanel extends JPanel {
     }
 
     private void setUp() {
-        makeKontoUppgifter();
         makeMinaAnnonser();
         makeBytLosenord();
         makeRaderaKonto();
@@ -257,6 +257,11 @@ public class MinaSidorPanel extends JPanel {
         kontoUppgifter.add(changeUppgifterButton);
 
         cards.add(kontoUppgifter, "Kontouppgifter");
+
+        makeMinaAnnonser();
+        makeBytLosenord();
+        makeRaderaKonto();
+
     }
 
     public void panelStateChanged(String panel) {
@@ -273,5 +278,9 @@ public class MinaSidorPanel extends JPanel {
 
     public MinaAnnonserPage getMinaAnnonserPage(){
         return minaAnnonser;
+    }
+
+    public void updateKontouppgifter() {
+        userNameLabel.setText(userUserName);
     }
 }

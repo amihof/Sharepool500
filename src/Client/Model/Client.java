@@ -152,6 +152,8 @@ public class Client {
                         //checks if the user is registered
 
                         if(updated){
+                            controller.emailUpdated();
+
 
                         } else{
                             controller.couldNotRegister();
@@ -188,6 +190,7 @@ public class Client {
                         //checks if the user is registered
 
                         if(updated){
+                            controller.usernameUpdated();
 
                         } else{
                             controller.couldNotRegister();

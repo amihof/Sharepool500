@@ -302,10 +302,45 @@ public class MainFrame
     }
 
     public void updateUserAnnonser(ArrayList<Annons> userAnnonser) {
-        mainPanelMinaSidor = new MainPanelMinaSidor(width,height,controller,loggedIn,this);
+        //mainPanelMinaSidor = new MainPanelMinaSidor(width,height,controller,loggedIn,this);
 
         mainPanelMinaSidor.getMinaAnnonserPage().addNewAnnons(userAnnonser);
         cards.add(mainPanelMinaSidor, "MainPanelMinaSidor");
         panelStateChanged("MainPanelMinaSidor");
+    }
+
+    public void usernameUpdated() {
+        d = new JDialog(frame , "Meddelande", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("Användarnamn har ändrats. Logga ut och in för att se ändringar"));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
+
+    }
+
+    public void emailUpdated(){
+        d = new JDialog(frame , "Meddelande", true);
+        d.setLayout( new FlowLayout() );
+        JButton b = new JButton ("OK");
+        b.addActionListener ( new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e )
+            {
+                d.setVisible(false);
+            }
+        });
+        d.add( new JLabel ("E-post har uppdaterats. Logga ut och in för att se ändringar"));
+        d.add(b);
+        d.setSize(300,150);
+        d.setVisible(true);
     }
 }

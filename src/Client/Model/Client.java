@@ -103,9 +103,7 @@ public class Client {
                 try {
                     request = inputBuffer.get(); //receives the request from the buffer
                     str = request.getRequest();
-
-                    oos.writeObject(request); //sends the request
-                    oos.flush(); //makes sure the request is written
+                    
                     if(str.equals("login")){ //the request type is login
                         oos.writeObject(request); //sends the request
                         oos.flush(); //makes sure the request is written

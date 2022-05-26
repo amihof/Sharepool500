@@ -15,6 +15,7 @@ public class Request implements Serializable {
     private Message message;
     private Annons annons;
     private Search search;
+    private String email;
 
     /**
      * This constructor is used to create a request for:
@@ -42,6 +43,11 @@ public class Request implements Serializable {
             request = "showAnnons";
         }
         this.user = user;
+    }
+
+    public Request(String email){
+        request = "getUsername";
+        this.email = email;
     }
 
     /**

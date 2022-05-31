@@ -169,8 +169,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Användarnamn och lösenord matchar inte "));
-
+        JLabel label = new JLabel ("Användarnamn och lösenord matchar inte ");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -190,7 +191,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("E-postadressen du angav används redan."));
+        JLabel label = new JLabel ("E-postadressen du angav används redan.");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -211,7 +214,9 @@ public class MainFrame
                 addScroll(view);
             }
         });
-        d.add( new JLabel ("Annonsen har skapats."));
+        JLabel label = new JLabel ("Annonsen har skapats.");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -244,7 +249,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Användarnamn eller lösenord fel."));
+        JLabel label = new JLabel ("Användarnamn eller lösenord fel.");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -261,7 +268,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Konto registrerat"));
+        JLabel label = new JLabel ("Konto registrerat");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -295,7 +304,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Du måste logga in för att skicka meddelande"));
+        JLabel label = new JLabel ("Du måste logga in för att skicka meddelande");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -312,6 +323,7 @@ public class MainFrame
     public void usernameUpdated() {
         d = new JDialog(frame , "Meddelande", true);
         d.setLayout( new FlowLayout() );
+        d.setForeground(Color.RED);
         JButton b = new JButton ("OK");
         b.addActionListener ( new ActionListener()
         {
@@ -320,7 +332,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("Användarnamn har ändrats. Logga ut och in för att se ändringar"));
+        JLabel label = new JLabel ("Användarnamn har ändrats. Logga ut och in för att se ändringar");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
@@ -338,7 +352,9 @@ public class MainFrame
                 d.setVisible(false);
             }
         });
-        d.add( new JLabel ("E-post har uppdaterats. Logga ut och in för att se ändringar"));
+        JLabel label = new JLabel ("E-post har uppdaterats. Logga ut och in för att se ändringar");
+        label.setForeground(Color.RED);
+        d.add(label);
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);

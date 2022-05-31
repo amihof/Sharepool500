@@ -2,14 +2,11 @@ package Server.Model;
 
 
 import Shared.Buffer;
-import Shared.Message;
 import Shared.Request;
 import Shared.User;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Queue;
 
 
 /**
@@ -27,7 +24,7 @@ public class Client {
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
 
-    private SQLquery sql;
+    private SqlQuery sql;
     private InputHandler inputHandler;
     private InputListener inputListener;
     private final Thread inputHandlerThread, inputListenerThread;
@@ -54,7 +51,7 @@ public class Client {
         //instantiate the runnable objects
         inputHandler = new InputHandler();
         inputListener = new InputListener();
-        sql = new SQLquery();
+        sql = new SqlQuery();
 
         //instantiate threads run the runnable objects
         inputHandlerThread = new Thread(inputHandler);

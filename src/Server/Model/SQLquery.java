@@ -4,10 +4,9 @@ import Shared.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class SQLquery {
+public class SqlQuery {
 
-    //tom konstruktor
-    public SQLquery(){
+    public SqlQuery(){
 
     }
 
@@ -24,7 +23,7 @@ public class SQLquery {
         PreparedStatement pstmt = null;
         String usernametemp ="";
         try {
-            String QUERY = "call procedure_login(?,?)"; // Första parameter ? är email och andra ? är password av registrerad användare
+            String QUERY = "call procedure_login(?,?)";
             pstmt = con.prepareStatement(QUERY);
             pstmt.setString(1, email);
             pstmt.setString(2, password);

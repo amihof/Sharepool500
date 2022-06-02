@@ -10,7 +10,8 @@ import java.sql.SQLException;
 /**Server class is the class responsible for:
  * 1. connecting to the database
  * 2. listening for new client
- * 3. creating an client instance to handle the new client*/
+ * 3. creating an client instance to handle the new client
+ * @author Hadi Saghir */
 public class Server {
 
     //Connection to the database am3087 in pgserver.mau.se

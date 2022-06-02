@@ -4,6 +4,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+/**This class is a buffer used in the interfaces of the both the client and server side
+ * @author hadisaghir
+ * **/
 public class Buffer<T> implements Serializable {
     @Serial
     private static final long serialVersionUID = -689559181872181133L;

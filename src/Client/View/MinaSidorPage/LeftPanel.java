@@ -11,34 +11,19 @@ import java.awt.*;
  * @Author Amidala Hoffmén
  */
 public class LeftPanel extends JPanel{
-    private Color backgroundColor;
-    private Color greenColor;
-    private Color orangeColor;
-    private Font myFont;
-    private Font newFont;
-    private Font myFontBold;
-    private Font newFontBold;
+    private final Color greenColor;
 
     private JButton kontoUppgifterButton;
     private JButton minaAnnonserButton;
     private JButton loggaUtButton;
     private JButton changePasswordButton;
     private JButton raderaKontoButton;
-    private MainFrame view;
-    private String whichPage;
-    private Controller controller;
+    private final MainFrame view;
+    private final Controller controller;
 
-    public LeftPanel(int width, int height, Controller controller, String whichPage, boolean loggedIn, MainFrame view){
-        this.backgroundColor = new Color(245, 221, 204);
+    public LeftPanel(Controller controller, MainFrame view){
+
         this.greenColor = new Color (167, 203, 156, 255);
-        this.orangeColor = new Color (225, 143, 107);
-
-        myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
-        newFont = myFont.deriveFont(25.0F);
-        myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
-        newFontBold = myFontBold.deriveFont(25.0F);
-
-        this.whichPage = whichPage;
 
         this.view = view;
         this.controller = controller;

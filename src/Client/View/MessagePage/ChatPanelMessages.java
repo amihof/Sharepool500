@@ -1,10 +1,8 @@
 package Client.View.MessagePage;
 
-import Client.Controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,23 +11,23 @@ import java.time.format.DateTimeFormatter;
  * @Author Amidala Hoffmén
  */
 public class ChatPanelMessages extends JPanel {
-    private final JPanel contactsView = new JPanel();
-    private int width;
-    private int height;
-    private Controller controller;
+
+    private final int width;
+
+    private final int height;
     private JTextArea chatArea;
-    private JScrollPane scroll;
     private JTextField messageTextField;
-    private JPanel test;
+    private final JPanel test;
 
 
-    public ChatPanelMessages(int width, int height, Controller controller){
+    public ChatPanelMessages(int width, int height){
         this.setLayout(null);
-        this.controller = controller;
         final Color myNewColor = new Color(245, 221, 204);
         this.setBackground(myNewColor);
         this.setSize(width, height-100);
         this.setLocation(250, 100);
+        this.width = width;
+        this.height = height;
 
         test = new JPanel();
         test.setLayout(null);
@@ -45,7 +43,6 @@ public class ChatPanelMessages extends JPanel {
 
     public void setUp(){
         chatArea = new JTextArea(20, 30);
-        scroll = new JScrollPane(chatArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         chatArea.setLayout(new BorderLayout());
         chatArea.setSize(500, 555);
@@ -71,19 +68,17 @@ public class ChatPanelMessages extends JPanel {
         messageTextField.requestFocusInWindow();
         messageTextField.setVisible(true);
         test.add(messageTextField);
-        messageTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                LocalDateTime now = LocalDateTime.now();
-                if (messageTextField.getText().length() < 1) {
-                    // do nothing
-                } else {
-                    chatArea.append("<" + "username" + ":" + dtf.format(now) + ">:  " + messageTextField.getText()
-                            + "\n");
-                    messageTextField.setText("");
-                }
-                messageTextField.requestFocusInWindow();
+        messageTextField.addActionListener(e -> {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            if (messageTextField.getText().length() < 1) {
+                // do nothing
+            } else {
+                chatArea.append("<" + "username" + ":" + dtf.format(now) + ">:  " + messageTextField.getText()
+                        + "\n");
+                messageTextField.setText("");
             }
+            messageTextField.requestFocusInWindow();
         });
 
         test.setVisible(true);

@@ -1,8 +1,6 @@
 package Client.View.MinaSidorPage;
 
-import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
-import Client.View.OneAnnons.MainPanelOneAnnons;
 import Shared.Annons;
 
 import javax.swing.*;
@@ -16,40 +14,27 @@ import java.util.ArrayList;
  * @Author Amidala Hoffmén
  */
 public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
-    private Color backgroundColor;
-    private Color redColor;
-    private Color greenColor;
-    private Color orangeColor;
+    private final Color redColor;
+    private final Color greenColor;
 
-    private Font myFont;
-    private Font myFontBold;
-    private Font newFont;
-    private Font newFontBold;
-    private MainFrame view;
-    private JLabel minaAnnonserLabel;
+    private final Font newFont;
 
-    private JPanel aktivaAnnonserPanel = new JPanel();
+    private final JPanel aktivaAnnonserPanel = new JPanel();
     private String[] nameList;
-    private ArrayList<Annons> annonsList;
 
-    private int width;
-    private ArrayList<String> nameListAnnonser;
+    private final int width;
     private JList list;
 
-    public MinaAnnonserPage(int width, int height, MainFrame view){
+    public MinaAnnonserPage(int width, int height){
         this.setLayout(null);
 
-        this.backgroundColor = new Color(245, 221, 204);
+        Color backgroundColor = new Color(245, 221, 204);
         this.redColor = new Color(236, 66, 66);
         this.greenColor = new Color (167, 203, 156, 255);
-        this.orangeColor = new Color (225, 143, 107);
 
-        myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
+        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
         newFont = myFont.deriveFont(25.0F);
-        myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
-        newFontBold = myFontBold.deriveFont(25.0F);
 
-        this.view = view;
         this.width = width;
 
         this.setBackground(backgroundColor);
@@ -60,7 +45,7 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     }
 
     private void setUp() {
-        minaAnnonserLabel = new JLabel("Mina annonser");
+        JLabel minaAnnonserLabel = new JLabel("Mina annonser");
         minaAnnonserLabel.setLocation(30, 30);
         minaAnnonserLabel.setSize(300, 50);
         minaAnnonserLabel.setFont(newFont.deriveFont(40.0F));
@@ -79,7 +64,6 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         seeAnnonsButton.setSize(200, 50);
         seeAnnonsButton.setFont(newFont.deriveFont(15.0f));
         seeAnnonsButton.setHorizontalAlignment(0);
-       //seeAnnonsButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
         this.add(seeAnnonsButton);
 
         JButton deleteAnnonsButton = new RoundedPanelExample.CircleBtn("Radera annons");
@@ -89,7 +73,6 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
         deleteAnnonsButton.setSize(200, 50);
         deleteAnnonsButton.setFont(newFont.deriveFont(15.0f));
         deleteAnnonsButton.setHorizontalAlignment(0);
-        //deleteAnnonsButton.addActionListener(l-> controller.loginClicked(eMailLoginField.getText(), passwordLoginField.getText()));
         this.add(deleteAnnonsButton);
 
     }
@@ -117,14 +100,6 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
-        /*String productName = nameListAnnonser.get(list.getSelectedIndex()).getProductName();
-        String productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
-        String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
-        String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
-        String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
-        int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsID();
-        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
-        view.displayOneAnnons(mainPanelOneAnnons);*/
 
     }
 
@@ -154,8 +129,7 @@ public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     }
 
     public void addNewAnnons(ArrayList<Annons> annonsList) {
-        nameListAnnonser = new ArrayList<>();
-        this.annonsList = annonsList;
+        ArrayList<String> nameListAnnonser = new ArrayList<>();
 
         for (Annons a : annonsList)
         {

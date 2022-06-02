@@ -1,83 +1,45 @@
 package Client.View.OneAnnons;
 
 import Client.Controller.Controller;
-import Client.View.Main.MainFrame;
 import Client.View.Main.RoundedPanelExample;
-import Shared.Category;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 /**
  * the panel that shows one annons
  * @Author Amidala Hoffmén
  */
 public class OneAnnons extends JPanel {
-    private Color backgroundColor;
-    private Color greenColor;
-    private Color orangeColor;
+    private final Color orangeColor;
 
-    private Font myFont;
-    private Font myFontBold;
-    private Font newFont;
-    private Font newFontBold;
+    private final Font newFont;
+    private final Font newFontBold;
 
-    private String whichPage;
-    private MainFrame view;
 
-    private int width;
-    private int height;
+    private final String productName;
+    private final String productDescription;
+    private final String productPublisher;
+    private final Controller controller;
+    private final int searchedAnnonsId;
+    private final String productPublisherEmail;
 
-    private String productName;
-    private String productCategory;
-    private String productDescription;
-    private String productPublisher;
-
-    private JLabel productNameLabel;
-    private JLabel productCategoryLabel;
-    private JLabel productDescriptionLabel;
-    private JLabel productPublisherLabel;
-
-    private JLabel beskrivning;
-    private JLabel uthyrareLabel;
-    private JLabel uthyrareBoxLabel;
-
-    private JButton skickaMeddelandeButton;
-
-    private boolean loggedIn;
-    private Controller controller;
-    private int searchedAnnonsId;
-    private String productPublisherEmail;
-
-    public OneAnnons(int width, int height, String productName, String productCategory, String productDescription, String productPublisher, boolean loggedIn, Controller controller, int searchedAnnonsId, String productPublisherEmail){
+    public OneAnnons(int width, int height, String productName, String productDescription, String productPublisher, Controller controller, int searchedAnnonsId, String productPublisherEmail){
         setLayout(null);
-        this.backgroundColor = new Color(245, 221, 204);
-        this.greenColor = new Color (167, 203, 156, 255);
+        Color backgroundColor = new Color(245, 221, 204);
         this.orangeColor = new Color (225, 143, 107);
 
-        myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
+        Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
         newFont = myFont.deriveFont(25.0F);
-        myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
+        Font myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
         newFontBold = myFontBold.deriveFont(25.0F);
 
-        this.width = width;
-        this.height = height;
         this.productName = productName;
-        this.productCategory = productCategory;
         this.productDescription = productDescription;
         this.productPublisher = productPublisher;
-        this.loggedIn = loggedIn;
         this.controller = controller;
         this.searchedAnnonsId = searchedAnnonsId;
         this.productPublisherEmail = productPublisherEmail;
-
-        this.whichPage = whichPage;
-
-        this.view = view;
 
         this.setSize(width, height);
         this.setLocation(0,100);
@@ -88,28 +50,28 @@ public class OneAnnons extends JPanel {
     }
 
     public void setUp(){
-        productNameLabel = new JLabel(productName);
+        JLabel productNameLabel = new JLabel(productName);
         productNameLabel.setLocation(30, 50);
         productNameLabel.setSize(600, 100);
         productNameLabel.setFont(newFont.deriveFont(40.0F));
         productNameLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(productNameLabel);
 
-        beskrivning = new JLabel("Beskrivning");
+        JLabel beskrivning = new JLabel("Beskrivning");
         beskrivning.setLocation(30, 110);
         beskrivning.setSize(600, 100);
         beskrivning.setFont(newFontBold.deriveFont(20.0F));
         beskrivning.setHorizontalAlignment(JLabel.LEFT);
         this.add(beskrivning);
 
-        productDescriptionLabel = new JLabel(productDescription);
+        JLabel productDescriptionLabel = new JLabel(productDescription);
         productDescriptionLabel.setLocation(30, 135);
         productDescriptionLabel.setSize(1000, 100);
         productDescriptionLabel.setFont(newFont.deriveFont(20.0F));
         productDescriptionLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(productDescriptionLabel);
 
-        uthyrareBoxLabel = new RoundedPanelExample.roundedJLabel("");
+        JLabel uthyrareBoxLabel = new RoundedPanelExample.roundedJLabel("");
         uthyrareBoxLabel.setLocation(800, 50);
         uthyrareBoxLabel.setSize(400, 200);
         uthyrareBoxLabel.setFont(newFont.deriveFont(20.0F));
@@ -117,34 +79,28 @@ public class OneAnnons extends JPanel {
         uthyrareBoxLabel.setHorizontalAlignment(JLabel.LEFT);
         this.add(uthyrareBoxLabel);
 
-        uthyrareLabel = new JLabel("Uthyrare");
+        JLabel uthyrareLabel = new JLabel("Uthyrare");
         uthyrareLabel.setLocation(15, 15);
         uthyrareLabel.setSize(100, 40);
         uthyrareLabel.setFont(newFont.deriveFont(20.0F));
         uthyrareLabel.setHorizontalAlignment(JLabel.LEFT);
         uthyrareBoxLabel.add(uthyrareLabel);
 
-        productPublisherLabel = new JLabel(productPublisher);
+        JLabel productPublisherLabel = new JLabel(productPublisher);
         productPublisherLabel.setLocation(15, 50);
         productPublisherLabel.setSize(400, 50);
         productPublisherLabel.setFont(newFont.deriveFont(30.0F));
         productPublisherLabel.setHorizontalAlignment(JLabel.LEFT);
         uthyrareBoxLabel.add(productPublisherLabel);
 
-        skickaMeddelandeButton = new RoundedPanelExample.CircleBtn("Skicka meddelande");
+        JButton skickaMeddelandeButton = new RoundedPanelExample.CircleBtn("Skicka meddelande");
         skickaMeddelandeButton.setLocation(800, 300);
         skickaMeddelandeButton.setBorderPainted(false);
         skickaMeddelandeButton.setSize(400, 75);
         skickaMeddelandeButton.setFont(newFont.deriveFont(20.0F));
         skickaMeddelandeButton.setBackground(orangeColor);
         skickaMeddelandeButton.setHorizontalAlignment(JLabel.CENTER);
-        skickaMeddelandeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.sendMessageClicked(searchedAnnonsId, productPublisherEmail);
-            }
-
-        });
+        skickaMeddelandeButton.addActionListener(e -> controller.sendMessageClicked(searchedAnnonsId, productPublisherEmail));
         this.add(skickaMeddelandeButton);
 
 

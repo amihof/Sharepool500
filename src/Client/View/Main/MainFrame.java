@@ -1,8 +1,6 @@
 package Client.View.Main;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Client.View.Annonser.MainPanelAnnons;
@@ -36,14 +34,13 @@ public class MainFrame
     private final Controller controller;
     private MainLogin mainLogin;
     private MainPanelAnnons mainPanelAnnons;
-    private MainPanelMinaSidor mainPanelMinaSidor;
-    private MainPanelMessages mainPanelMessages;
+    private final MainPanelMinaSidor mainPanelMinaSidor;
     private MainPanel mainPanel;
 
     private JDialog d;
     private final JPanel cards;
 
-    private MainFrame view;
+    private final MainFrame view;
 
     /**
      * the constructor that is called when the GUI starts up.
@@ -64,9 +61,9 @@ public class MainFrame
         cards = new JPanel(new CardLayout());
 
         cards.add(mainPanel, "MainPanel");
-        cards.add(new MainPanelSFD(width, height, controller, loggedIn, this), "MainPanelSFD");
+        cards.add(new MainPanelSFD(width, height, loggedIn, this), "MainPanelSFD");
         cards.add(mainPanelMinaSidor, "MainPanelMinaSidor");
-        cards.add(new MainPanelMessages(width, height, controller, loggedIn, this), "MainPanelMessages");
+        cards.add(new MainPanelMessages(width, height, loggedIn, this), "MainPanelMessages");
         addScroll(this);
 
         cardLayout.show(frame.getContentPane(), "MainPanel");
@@ -91,8 +88,8 @@ public class MainFrame
      * when you click on "Ändra uppgifter" on the Mina Sidor panel, this creates a new RedigeraUppgifter
      * which is a jdialog that allows you to change your information
      */
-    public void andraUppgifterClicked(String userUsername, String userEmail) {
-        new RedigeraUppgifter(controller, userUsername, userEmail);
+    public void andraUppgifterClicked() {
+        new RedigeraUppgifter(controller);
     }
 
     /**
@@ -162,13 +159,7 @@ public class MainFrame
         d = new JDialog(frame , "Dialog Example", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("Användarnamn och lösenord matchar inte ");
         label.setForeground(Color.RED);
         d.add(label);
@@ -184,13 +175,7 @@ public class MainFrame
         d = new JDialog(frame , "Fel", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("E-postadressen du angav används redan.");
         label.setForeground(Color.RED);
         d.add(label);
@@ -206,13 +191,9 @@ public class MainFrame
         d = new JDialog(frame , "Annons skapad", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-                addScroll(view);
-            }
+        b.addActionListener (e -> {
+            d.setVisible(false);
+            addScroll(view);
         });
         JLabel label = new JLabel ("Annonsen har skapats.");
         label.setForeground(Color.RED);
@@ -220,14 +201,6 @@ public class MainFrame
         d.add(b);
         d.setSize(300,150);
         d.setVisible(true);
-    }
-
-    /**
-     * updates the text field in annonsPanel based on what u searched for on the homepage
-     * @param newText is the text the user searched for
-     */
-    public void updateTextFieldAnnonsPanel(String newText) {
-        mainPanelAnnons.getAnnonsPanel().updateSearchTextField(newText);
     }
 
     public void updateAnnonserSeen(ArrayList<Annons> nameListAnnonser) {
@@ -242,13 +215,7 @@ public class MainFrame
         d = new JDialog(frame , "Fel uppgifter", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("Användarnamn eller lösenord fel.");
         label.setForeground(Color.RED);
         d.add(label);
@@ -261,13 +228,7 @@ public class MainFrame
         d = new JDialog(frame , "Konto skapats", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("Konto registrerat");
         label.setForeground(Color.RED);
         d.add(label);
@@ -286,7 +247,7 @@ public class MainFrame
     }
 
     public void updateChatList(ArrayList<Chat> chatList) {
-        mainPanelMessages = new MainPanelMessages(width,height,controller,loggedIn,this);
+        MainPanelMessages mainPanelMessages = new MainPanelMessages(width, height, loggedIn, this);
 
         mainPanelMessages.getLeftPanelMessages().addNewChat(chatList);
         cards.add(mainPanelAnnons, "MainPanelAnnons");
@@ -297,13 +258,7 @@ public class MainFrame
         d = new JDialog(frame , "Felmeddelande", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("Du måste logga in för att skicka meddelande");
         label.setForeground(Color.RED);
         d.add(label);
@@ -325,13 +280,7 @@ public class MainFrame
         d.setLayout( new FlowLayout() );
         d.setForeground(Color.RED);
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("Användarnamn har ändrats. Logga ut och in för att se ändringar");
         label.setForeground(Color.RED);
         d.add(label);
@@ -345,13 +294,7 @@ public class MainFrame
         d = new JDialog(frame , "Meddelande", true);
         d.setLayout( new FlowLayout() );
         JButton b = new JButton ("OK");
-        b.addActionListener ( new ActionListener()
-        {
-            public void actionPerformed( ActionEvent e )
-            {
-                d.setVisible(false);
-            }
-        });
+        b.addActionListener (e -> d.setVisible(false));
         JLabel label = new JLabel ("E-post har uppdaterats. Logga ut och in för att se ändringar");
         label.setForeground(Color.RED);
         d.add(label);

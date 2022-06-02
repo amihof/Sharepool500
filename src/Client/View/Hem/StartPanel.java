@@ -66,18 +66,14 @@ public class StartPanel extends JPanel {
         searchRuta.setSize(300, 50);
         searchRuta.setFont(newFont.deriveFont(15.0F));
         searchRuta.setHorizontalAlignment(JLabel.CENTER);
-        searchRuta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (search.getText().equals("Vad vill du hyra?")){
-                    controller.searchedClicked("", (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
-                    view.panelStateChanged("MainPanelAnnons");
-                }
-                else{
-                    controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
-                    view.panelStateChanged("MainPanelAnnons");
-                }
-
+        searchRuta.addActionListener(e -> {
+            if (search.getText().equals("Vad vill du hyra?")){
+                controller.searchedClicked("", (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
+                view.panelStateChanged("MainPanelAnnons");
+            }
+            else{
+                controller.searchedClicked(search.getText(), (Category) cmbCategories.getSelectedItem(), (City) cmbCities.getSelectedItem());
+                view.panelStateChanged("MainPanelAnnons");
             }
 
         });
@@ -127,14 +123,7 @@ public class StartPanel extends JPanel {
         cmbCategories.setFont(newFont.deriveFont(15.0F));
         cmbCategories.setPreferredSize(new Dimension(300,30));
         this.add(cmbCategories);
-        cmbCategories.addItemListener(new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                Object obj = cmbCategories.getSelectedItem();
-                int index = cmbCategories.getSelectedIndex();
-            }
+        cmbCategories.addItemListener(e -> {
         });
     }
 
@@ -150,14 +139,7 @@ public class StartPanel extends JPanel {
         cmbCities.setPreferredSize(new Dimension(300,30));
 
         this.add(cmbCities);
-        cmbCities.addItemListener(new ItemListener()
-        {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                Object obj = cmbCities.getSelectedItem();
-                int index = cmbCities.getSelectedIndex();
-            }
+        cmbCities.addItemListener(e -> {
         });
     }
 }

@@ -1,7 +1,5 @@
 package Client.View.Main;
 
-import Client.Controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -28,7 +26,6 @@ public class TopPanel extends JPanel {
         this.view = view;
         this.loggedIn = loggedIn;
         this.whichPage = whichPage;
-        RoundedPanelExample roundedPanelExample = new RoundedPanelExample();
 
         this.setBackground(Color.WHITE);
         this.setSize(width, height-500);
@@ -109,7 +106,7 @@ public class TopPanel extends JPanel {
             this.add(skapaAnnonsButton);
 
         }
-        else if(!loggedIn) {
+        else {
             JButton loggaInRegistrera = new RoundedPanelExample.CircleBtn("Logga in/Registrera");
             loggaInRegistrera.setBackground(greenColor);
             loggaInRegistrera.setBorderPainted(false);

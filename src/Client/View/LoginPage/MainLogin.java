@@ -46,7 +46,7 @@ public class MainLogin extends JDialog
      * setting up the MainLogin/register dialog
      */
     public void setUp() {
-        final Font myFont = new Font("Shree Devanagari 714", 0, 18);
+        final Font myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
         final Font newFont = myFont.deriveFont(25.0f);
         final Color greenColor = new Color(167, 203, 156, 255);
 
@@ -64,7 +64,7 @@ public class MainLogin extends JDialog
         loggaIn.setHorizontalAlignment(0);
         this.add(loggaIn);
 
-        (this.userNameField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Användarnamn");
+        (this.userNameField = new RoundedPanelExample.RoundedTextField(20)).setText("Användarnamn");
         this.userNameField.setLocation(38, 100);
         this.userNameField.setSize(300, 40);
         this.userNameField.setFont(newFont.deriveFont(15.0f));
@@ -84,7 +84,7 @@ public class MainLogin extends JDialog
 
         this.add(this.userNameField);
 
-        (this.eMailField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
+        (this.eMailField = new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
         this.eMailField.setLocation(38, 160);
         this.eMailField.setSize(300, 40);
         this.eMailField.setFont(newFont.deriveFont(15.0f));
@@ -104,11 +104,7 @@ public class MainLogin extends JDialog
         });
         this.add(this.eMailField);
 
-        /**
-         * ÄNDRA LÖSENORDET SÅ DET INTE SYNS NÄR MAN SKRIVER IN DET!!!!!!!!! MEN DET SKA STÅ
-         * PASSWORD OM INGET ÄR SKRIVET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         */
-        (this.passwordField = (JTextField) new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
+        (this.passwordField = new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
         this.passwordField.setLocation(38, 220);
         this.passwordField.setSize(300, 40);
         this.passwordField.setFont(newFont.deriveFont(15.0f));
@@ -127,7 +123,7 @@ public class MainLogin extends JDialog
         });
         this.add(this.passwordField);
 
-        (this.upprepaPasswordField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Upprepa lösenord");
+        (this.upprepaPasswordField = new RoundedPanelExample.RoundedTextField(20)).setText("Upprepa lösenord");
         this.upprepaPasswordField.setLocation(38, 280);
         this.upprepaPasswordField.setSize(300, 40);
         this.upprepaPasswordField.setFont(newFont.deriveFont(15.0f));
@@ -147,7 +143,7 @@ public class MainLogin extends JDialog
         });
         this.add(this.upprepaPasswordField);
 
-        (this.eMailLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
+        (this.eMailLoginField = new RoundedPanelExample.RoundedTextField(20)).setText("E-post");
         this.eMailLoginField.setLocation(413, 100);
         this.eMailLoginField.setSize(300, 40);
         this.eMailLoginField.setFont(newFont.deriveFont(15.0f));
@@ -166,7 +162,7 @@ public class MainLogin extends JDialog
         });
         this.add(this.eMailLoginField);
 
-        (this.passwordLoginField = (JTextField)new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
+        (this.passwordLoginField = new RoundedPanelExample.RoundedTextField(20)).setText("Lösenord");
         this.passwordLoginField.setLocation(413, 160);
         this.passwordLoginField.setSize(300, 40);
         this.passwordLoginField.setFont(newFont.deriveFont(15.0f));
@@ -186,32 +182,28 @@ public class MainLogin extends JDialog
         this.add(this.passwordLoginField);
 
         JButton registerUser;
-        (registerUser = (JButton)new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
+        (registerUser = new RoundedPanelExample.CircleBtn("Registrera konto")).setBackground(greenColor);
         registerUser.setBorderPainted(false);
         registerUser.setLocation(38, 340);
         registerUser.setSize(300, 50);
         registerUser.setFont(newFont.deriveFont(15.0f));
         registerUser.setHorizontalAlignment(0);
-        registerUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(userNameField.getText().length() > 16 || !passwordField.getText().equals(upprepaPasswordField.getText())){
-                    view.wrongPasswordOrUsername();
-                }
-                else{
-                    System.out.println(userNameField.getText() + eMailField.getText() + passwordField.getText());
-                    controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText());
-                    dispose();
-                    view.accountMade();
-                }
+        registerUser.addActionListener(e -> {
+            if(userNameField.getText().length() > 16 || !passwordField.getText().equals(upprepaPasswordField.getText())){
+                view.wrongPasswordOrUsername();
             }
-
+            else{
+                System.out.println(userNameField.getText() + eMailField.getText() + passwordField.getText());
+                controller.registerNewUser(userNameField.getText(), eMailField.getText(), passwordField.getText());
+                dispose();
+                view.accountMade();
+            }
         });
 
         this.add(registerUser);
 
         JButton loginButton;
-        (loginButton = (JButton)new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
+        (loginButton = new RoundedPanelExample.CircleBtn("Logga in")).setBackground(greenColor);
         loginButton.setBorderPainted(false);
         loginButton.setLocation(413, 340);
         loginButton.setSize(300, 50);

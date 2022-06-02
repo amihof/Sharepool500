@@ -10,7 +10,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * this class is the panel that displays all the annonser that match the users search terms
@@ -21,8 +20,6 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
     private final int width;
     private final int height;
     private final Color backgroundColor;
-
-    private static Map<String, ImageIcon> imageMap;
     private JList list;
     private String[] nameList;
 
@@ -30,8 +27,8 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
 
     private final MainFrame view;
 
-    private boolean loggedIn;
-    private Controller controller;
+    private final boolean loggedIn;
+    private final Controller controller;
 
     /**
      * sets the bounds of the panel
@@ -78,12 +75,11 @@ public class DisplayAnnonser extends JPanel implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         list.getSelectedValue();
         String productName = searchedAnnonsList.get(list.getSelectedIndex()).getProductName();
-        String productCategory = String.valueOf(searchedAnnonsList.get(list.getSelectedIndex()).getProductCategory());
         String productDescription = searchedAnnonsList.get(list.getSelectedIndex()).getProductDescription();
         String productPublisher = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getUsername();
         String productPublisherEmail = searchedAnnonsList.get(list.getSelectedIndex()).getPublisher().getEmail();
         int searchedAnnonsId = searchedAnnonsList.get(list.getSelectedIndex()).getAnnonsID();
-        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productCategory, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
+        MainPanelOneAnnons mainPanelOneAnnons = new MainPanelOneAnnons(width + 40, height, productName, productDescription, productPublisher, view, loggedIn, controller, searchedAnnonsId, productPublisherEmail);
         view.displayOneAnnons(mainPanelOneAnnons);
 
     }

@@ -11,14 +11,13 @@ import javax.swing.*;
  * @Author Amidala Hoffmén
  */
 public class MainPanelAnnons extends JPanel {
-    private final AnnonsPanel annonsPanel;
     private final DisplayAnnonser displayAnnonser;
 
     public MainPanelAnnons(int width, int height, Controller controller, boolean loggedIn, MainFrame view){
         super(null);
         this.setSize(width, height);
 
-        annonsPanel = new AnnonsPanel(width);
+        AnnonsPanel annonsPanel = new AnnonsPanel(width);
         this.add(annonsPanel);
 
         displayAnnonser = new DisplayAnnonser(width, height, view, loggedIn, controller);
@@ -27,10 +26,6 @@ public class MainPanelAnnons extends JPanel {
         TopPanel topPanel = new TopPanel(width, height, "0", loggedIn, view);
         this.add(topPanel);
 
-    }
-
-    public AnnonsPanel getAnnonsPanel() {
-        return annonsPanel;
     }
 
     public DisplayAnnonser getDisplayAnnonser(){

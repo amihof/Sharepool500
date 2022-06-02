@@ -1,6 +1,5 @@
 package Client.View.Annonser;
 
-import Client.Controller.Controller;
 import Client.View.Main.RoundedPanelExample;
 
 import javax.swing.*;
@@ -101,10 +100,6 @@ public class AnnonsPanel extends JPanel {
         thisPanel.setLayout(new BoxLayout(thisPanel, BoxLayout.Y_AXIS));
         thisPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-    }
-
-    public void updateSearchTextField(String newSearch){
-        search.setText(newSearch);
     }
 
 }

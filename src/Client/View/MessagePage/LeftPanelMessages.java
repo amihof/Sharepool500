@@ -1,6 +1,5 @@
 package Client.View.MessagePage;
 
-import Client.Controller.Controller;
 import Shared.Chat;
 
 import javax.swing.*;
@@ -14,36 +13,18 @@ import java.util.ArrayList;
  * @Author Amidala Hoffmén
  */
 public class LeftPanelMessages extends JPanel implements ListSelectionListener {
-    private int width;
-    private int height;
-    private Controller controller;
-    private Color backgroundColor;
-    private Color greenColor;
-    private Color orangeColor;
-    private Font myFont;
-    private Font newFont;
-    private Font myFontBold;
-    private Font newFontBold;
-    private JLabel meddelandenLabel;
-    private JPanel contactsPanel = new JPanel();
+    private final Color greenColor;
+    private final Font newFontBold;
+    private final JPanel contactsPanel = new JPanel();
     private String[] nameList;
-    private ArrayList<Chat> chatList;
-
     private JList list;
 
-    private ArrayList<Chat> contactsList;
-
-    public LeftPanelMessages(int width, int height, Controller controller){
+    public LeftPanelMessages(int width, int height){
         this.setLayout(null);
-        this.controller = controller;
 
-        this.backgroundColor = new Color(245, 221, 204);
         this.greenColor = new Color (167, 203, 156, 255);
-        this.orangeColor = new Color (225, 143, 107);
 
-        myFont = new Font("Shree Devanagari 714", Font.PLAIN, 18);
-        newFont = myFont.deriveFont(25.0F);
-        myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
+        Font myFontBold = new Font("Shree Devanagari 714", Font.BOLD, 18);
         newFontBold = myFontBold.deriveFont(25.0F);
 
         this.setBackground(Color.WHITE);
@@ -54,7 +35,7 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
     }
 
     public void setUp(){
-        meddelandenLabel = new JLabel("Meddelanden");
+        JLabel meddelandenLabel = new JLabel("Meddelanden");
         meddelandenLabel.setLocation(0, 0);
         meddelandenLabel.setSize(250, 100);
         meddelandenLabel.setFont(newFontBold.deriveFont(25.0f));
@@ -133,7 +114,6 @@ public class LeftPanelMessages extends JPanel implements ListSelectionListener {
 
     public void addNewChat(ArrayList<Chat> chatList) {
         ArrayList<String> nameListChat = new ArrayList<>();
-        this.chatList = chatList;
 
         for (Chat a : chatList)
         {

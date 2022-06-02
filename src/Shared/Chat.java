@@ -3,7 +3,10 @@ package Shared;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Stack;
-/**This class represents each chat**/
+
+/**This class is a object class of a class
+ * @author Hadi Saghir
+ */
 
 public class Chat implements Serializable {
     @Serial

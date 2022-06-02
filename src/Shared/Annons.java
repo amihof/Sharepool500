@@ -3,7 +3,9 @@ package Shared;
 import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
-/**This class represents each add which is created**/
+/**This class is an object class of an ad
+ * @author hadisaghir
+ * **/
 public class Annons implements Serializable {
     @Serial
     private static final long serialVersionUID = 5403016831143700756L;

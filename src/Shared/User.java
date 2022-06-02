@@ -2,8 +2,10 @@ package Shared;
 
 import java.io.Serial;
 import java.io.Serializable;
-/**This class represents each user**/
 
+/**This class is an object class of a user
+ * @author Hadi Saghir
+ */
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = -5886308724572898536L;

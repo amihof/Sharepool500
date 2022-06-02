@@ -4,6 +4,8 @@ import Shared.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author Erik svensson*/
 public class SQLquery {
 
     //tom konstruktor

@@ -5,6 +5,7 @@ import Server.Model.Server;
 
 /**
  * MainServer is the starting point for the Server-side of the Application
+ * @author Hadi Saghir
  * */
 
 public class MainServer {

@@ -16,7 +16,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**@Author Evan Ebdo**/
+/**
+ * This class is a client object that connects to the server
+ * It works as an interface to the interface
+ * @Author Hadi Saghir
+ * **/
 
 public class Client {
 
@@ -52,13 +56,11 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("try catch färdig");
+
         inputHandler = new InputHandler();
-        System.out.println("ny inputhandler");
 
         inputHandlerThread = new Thread(inputHandler);
         inputHandlerThread.start(); //starts the  thread
-        System.out.println("starta tråd");
 
     }
 
@@ -92,8 +94,11 @@ public class Client {
             //inputBuffer.
         }
         /**In this method exist several switch statements
-         to hanndle is kind of request. The requests are
-         Strings taken from the request class**/
+         * to hanndle is kind of request. The requests are
+         * Strings taken from the request class
+         * @author Hadi Saghir
+         * @author Evan Ebdo (code blocks of the if-else branches)
+         * **/
         @Override
         public synchronized void run() {
             Object o = null;

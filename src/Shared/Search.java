@@ -4,8 +4,10 @@ package Shared;
 import java.io.Serial;
 import java.io.Serializable;
 
-/**This class represents each search**/
 
+/**This class is an object class of a search
+ * @author Hadi Saghir
+ */
 public class Search implements Serializable {
 
     @Serial

@@ -16,7 +16,8 @@ import java.util.Queue;
  * Server.Model.Client is an object representing a client connected to the server
  * The class is responsible for listing to and handling request sent by the client
  * It has two private inner classes: inputHandler and inputLister
- * When the client disconnects the class will terminate automatically*/
+ * When the client disconnects the class will terminate automatically
+ * @author Hadi Saghir */
 public class Client {
     //clientUserHashMap identifies the different clients as users when logged in
     private static HashMap<Client, User> clientUserHashMap = new HashMap<>();

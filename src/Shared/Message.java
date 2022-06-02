@@ -5,7 +5,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.LinkedList;
-/**This class represents each message**/
+
+/**This class is a object class of a class
+ * @author Hadi Saghir
+ */
 
 public class Message implements Serializable {
     @Serial

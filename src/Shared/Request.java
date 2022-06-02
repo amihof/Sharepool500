@@ -2,8 +2,10 @@ package Shared;
 
 import java.io.Serial;
 import java.io.Serializable;
-/**This class represents each type of request**/
 
+/**This class is a object class of a class
+ * @author Hadi Saghir
+ */
 public class Request implements Serializable {
     @Serial
     private static final long serialVersionUID = -8969009813588142777L;

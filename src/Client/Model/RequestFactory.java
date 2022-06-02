@@ -1,11 +1,11 @@
 package Client.Model;
 
 import Shared.*;
-/**@Author Evan Ebdo**/
 
 /**
  * The request factory is responsible for constructing request to be sent to the server.
- * The class mediated the connection from the controller to client class*/
+ * The class mediated the connection from the controller to client class
+ * @author hadisaghir */
 public class RequestFactory {
     private Client client;
 

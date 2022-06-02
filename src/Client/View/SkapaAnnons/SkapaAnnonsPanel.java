@@ -19,6 +19,10 @@ import java.util.Enumeration;
 
 import static java.awt.Color.black;
 
+/**
+ * the panel that you create your annons on
+ * @Author Amidala Hoffmén
+ */
 public class SkapaAnnonsPanel extends JPanel {
     private Controller controller;
     private JLabel skapaAnnonsLabel;

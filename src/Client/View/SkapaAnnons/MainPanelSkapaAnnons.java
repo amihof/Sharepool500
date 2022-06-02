@@ -7,6 +7,10 @@ import Client.View.Main.TopPanel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * the main panel when you want to create an ad
+ * @Author Amidala Hoffmén
+ */
 public class MainPanelSkapaAnnons extends JPanel {
 
     private int width;

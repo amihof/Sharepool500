@@ -8,6 +8,10 @@ import Client.View.SkapaAnnons.SkapaAnnonsPanel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * the main panel for messages.
+ * @Author Amidala Hoffmén
+ */
 public class MainPanelMessages extends JPanel {
     private int width;
     private int height;

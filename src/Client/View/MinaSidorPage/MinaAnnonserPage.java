@@ -11,6 +11,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * the panel that shows your published ads
+ * @Author Amidala Hoffmén
+ */
 public class MinaAnnonserPage extends JPanel implements ListSelectionListener {
     private Color backgroundColor;
     private Color redColor;

@@ -12,6 +12,7 @@ import Client.Controller.Controller;
 
 /**
  * the JDialog that pops up when you click the Login/register button
+ * @Author Amidala Hoffmén
  */
 public class MainLogin extends JDialog
 {

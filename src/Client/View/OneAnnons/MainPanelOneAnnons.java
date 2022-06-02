@@ -8,6 +8,10 @@ import Client.View.Main.TopPanel;
 
 import javax.swing.*;
 
+/**
+ * the main panel when one annons is shown
+ * @Author Amidala Hoffmén
+ */
 public class MainPanelOneAnnons extends JPanel {
     private MainFrame view;
     private boolean loggedIn;

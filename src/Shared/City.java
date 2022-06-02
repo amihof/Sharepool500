@@ -1,5 +1,8 @@
 package Shared;
 
+/**
+ * @Author Amidala Hoffmén
+ */
 public enum City {
 
     Välj_stad,

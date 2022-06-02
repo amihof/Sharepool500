@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * The panel that has different panels depending on which page you are on in "Mina sidor"
+ * @Author Amidala Hoffmén
+ */
 public class MinaSidorPanel extends JPanel {
 
     private Controller controller;

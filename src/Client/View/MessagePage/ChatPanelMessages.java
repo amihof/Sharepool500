@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * the panel that shows the messages between two users
+ * @Author Amidala Hoffmén
+ */
 public class ChatPanelMessages extends JPanel {
     private final JPanel contactsView = new JPanel();
     private int width;

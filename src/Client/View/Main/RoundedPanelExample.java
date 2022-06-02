@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * a class that makes the panels with rounded corners, so the GUI looks better. Refer to this class
  * when you need to make a panel with rounded corners
+ * @Author Amidala Hoffmén
  */
 public class RoundedPanelExample{
 

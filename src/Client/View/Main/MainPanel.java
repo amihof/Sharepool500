@@ -7,6 +7,7 @@ import javax.swing.*;
 
 /**
  * the main panel that changes depending on the situation
+ * @Author Amidala Hoffmén
  */
 public class MainPanel extends JPanel {
 

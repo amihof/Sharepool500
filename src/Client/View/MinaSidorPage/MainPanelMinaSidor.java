@@ -7,6 +7,10 @@ import Client.View.Main.TopPanel;
 
 import javax.swing.*;
 
+/**
+ * the main panel of "Mina sidor"
+ * @Author Amidala Hoffmén
+ */
 public class MainPanelMinaSidor extends JPanel {
 
     private int width;

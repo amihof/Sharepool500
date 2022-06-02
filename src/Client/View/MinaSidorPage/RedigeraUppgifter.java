@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * the jdialog that pops up when you want to edit your information
+ * @Author Amidala Hoffmén
+ */
 public class RedigeraUppgifter extends JDialog {
 
     private Controller controller;

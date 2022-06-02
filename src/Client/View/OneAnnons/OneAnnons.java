@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * the panel that shows one annons
+ * @Author Amidala Hoffmén
+ */
 public class OneAnnons extends JPanel {
     private Color backgroundColor;
     private Color greenColor;

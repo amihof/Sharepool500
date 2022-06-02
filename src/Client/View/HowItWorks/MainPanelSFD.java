@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 /**
  * the main panel for the "How it works/hur fungerar det" button
+ * @Author Amidala Hoffmén
  */
 public class MainPanelSFD extends JPanel
 {

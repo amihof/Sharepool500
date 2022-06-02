@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 /**
  * The panel that shows when you click "Hur fungerar det"
+ * @Author Amidala Hoffmén
  */
 public class SFDPanel extends JPanel
 {

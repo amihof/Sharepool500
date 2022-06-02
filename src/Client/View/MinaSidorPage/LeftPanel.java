@@ -6,6 +6,10 @@ import Client.View.Main.MainFrame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * the left panel in "Mina sidor"
+ * @Author Amidala Hoffmén
+ */
 public class LeftPanel extends JPanel{
     private Color backgroundColor;
     private Color greenColor;

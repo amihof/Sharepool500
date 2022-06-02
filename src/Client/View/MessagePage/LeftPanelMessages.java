@@ -9,6 +9,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * the panel that shows the people you can chat with
+ * @Author Amidala Hoffmén
+ */
 public class LeftPanelMessages extends JPanel implements ListSelectionListener {
     private int width;
     private int height;

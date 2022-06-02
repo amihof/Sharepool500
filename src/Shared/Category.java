@@ -1,7 +1,9 @@
 package Shared;
 
 /**This class/enum consist every category for
- * the user to choose when uploading an add**/
+ * the user to choose when uploading an add
+ * @Author Amidala Hoffmén
+ * **/
 
 public enum Category {
 

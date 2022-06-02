@@ -1,6 +1,7 @@
 package Client.Model;
 
 import Shared.*;
+/**@Author Evan Ebdo**/
 
 /**
  * The request factory is responsible for constructing request to be sent to the server.

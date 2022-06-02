@@ -12,8 +12,7 @@ public class User implements Serializable {
     private String password;
     private String email;
 
-    /**@param username
-     **/
+    
     public User(){
 
     }
